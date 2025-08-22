@@ -1,0 +1,78 @@
+% ==============================================================================
+% THEOREM STYLE DEFINITIONS
+% ==============================================================================
+
+% --- Default theorem style ---
+% Uses sans-serif bold for theorem head, with punctuation and spacing.
+\newtheoremstyle{default}{\topsep}{\topsep}% 
+    {}% Body font
+    {}% Indent amount (empty = no indent, \parindent = para indent)
+    {\sffamily\bfseries}% Theorem head font
+    {.}% Punctuation after theorem head
+    { }% Space after theorem head
+    {\thmname{#1}\thmnumber{~#2}\thmnote{~#3}}% Theorem head specification
+
+% --- Non-numbered theorem style ---
+% Like default, but omits theorem number.
+\newtheoremstyle{nonum}{\topsep}{\topsep}%
+    {}%
+    {}%
+    {\sffamily\bfseries}%
+    {.}%
+    { }%
+    {\thmname{#1}\thmnote{~#3}}%
+
+% ==============================================================================
+% CUSTOM THEOREM ENVIRONMENT MACRO
+% ==============================================================================
+
+% \mytheorem{name}{display name}{color}{counter}{type}
+% Defines a colored, framed theorem environment using mdframed.
+% - If type is 'o', uses a standalone counter.
+% - Otherwise, uses a dependent counter.
+\newcommand{\mytheorem}[5]{%
+  \ifstrequal{#5}{o}{% Standalone counter
+    \newmdtheoremenv[
+      hidealllines=true,
+      leftline=true,
+      skipabove=0pt,
+      innertopmargin=-5pt,
+      innerbottommargin=2pt,
+      linewidth=4pt,
+      innerrightmargin=0pt,
+      linecolor=#3,
+    ]{#1}[#4]{#2}%
+  }{% Dependent counter
+    \newmdtheoremenv[
+      hidealllines=true,
+      leftline=true,
+      skipabove=0pt,
+      innertopmargin=-5pt,
+      innerbottommargin=2pt,
+      linewidth=4pt,
+      innerrightmargin=0pt,
+      linecolor=#3,
+    ]{#1}{#2}[#4]%
+  }%
+}
+
+% ==============================================================================
+% GLOBAL THEOREM ENVIRONMENTS
+% ==============================================================================
+
+% --- Theorem style selection ---
+\theoremstyle{default}
+
+% --- Toggle for showing solutions ---
+\newtoggle{showsolutions}
+
+% --- Custom exercise counter, reset per section ---
+\newcounter{tdcounter}
+\counterwithin{tdcounter}{section}
+
+% --- Exercise environment: colored, numbered per section ---
+\mytheorem{td-exo}{Exercice}{astral}{tdcounter}{o}
+
+% --- Solution environment: colored, unnumbered ---
+\theoremstyle{nonum}
+\mytheorem{td-sol}{Solution}{verdant}{}{}

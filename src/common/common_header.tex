@@ -1,0 +1,161 @@
+% ==============================================================================
+% FONT & LANGUAGE SETTINGS
+% ==============================================================================
+
+\usepackage[T1]{fontenc}         % T1 font encoding: better European character support
+\usepackage[french]{babel}       % French language support: hyphenation, translations
+\usepackage{lmodern}             % Latin Modern font: improved version of Computer Modern
+
+% ==============================================================================
+% LISTS & ENUMERATION
+% ==============================================================================
+
+\usepackage[shortlabels]{enumitem} % Customizable lists (itemize/enumerate)
+\setlist[itemize,1]{label={\color{gray}\small \textbullet}} % Custom bullet for itemize
+
+% ==============================================================================
+% PAGE LAYOUT & SECTIONING
+% ==============================================================================
+
+\usepackage{fancyhdr}            % Custom headers and footers
+\usepackage{titlesec}            % Section title formatting
+\usepackage{titletoc}            % Table of contents formatting
+\usepackage{sectsty}             % Section font customization
+
+% ==============================================================================
+% MATHEMATICS & SYMBOLS
+% ==============================================================================
+
+\usepackage{centernot}           % Centered negation symbols (e.g., \centernot\implies)
+\usepackage{stmaryrd}            % Extra math symbols (e.g., \llbracket, \rrbracket)
+\usepackage[overload]{abraces}   % Extensible braces for math expressions
+\usepackage{latexsym}            % Standard LaTeX math symbols
+\usepackage{amsmath}             % Advanced math typesetting (align, gather, etc.)
+\usepackage{amsfonts}            % AMS math fonts (e.g., \mathbb)
+\usepackage{amssymb}             % Additional AMS math symbols
+\usepackage{amsthm}              % Theorem environments (definition, lemma, etc.)
+\usepackage{mathtools}           % Extensions to amsmath (e.g., \coloneqq)
+\usepackage{mathrsfs}            % Script font (\mathscr)
+\usepackage{MnSymbol}            % More math symbols (arrows, delimiters, etc.)
+\usepackage{dsfont}              % Double stroke font (\mathds)
+\usepackage{etoolbox}            % Programming tools for conditional macros
+
+% ==============================================================================
+% GRAPHICS & PLOTTING
+% ==============================================================================
+
+\usepackage{tikz}                % Drawing graphics programmatically
+\usepackage{pgfplots}            % Plotting graphs with TikZ
+\pgfplotsset{compat=1.18}        % Set pgfplots compatibility version
+\usetikzlibrary{arrows}          % Arrow tips for TikZ diagrams
+
+% ==============================================================================
+% COLOR MANAGEMENT
+% ==============================================================================
+
+\usepackage{xcolor}              % Color support for text and graphics
+\usepackage{colortbl}            % Color support for tables
+
+% --- Custom color definitions ---
+\definecolor{astral}{RGB}{46,116,181}             % Blue shade for headers
+\definecolor{verdant}{RGB}{96,172,128}            % Green shade
+\definecolor{algebraic-amber}{RGB}{255,179,102}   % Amber shade
+\definecolor{calculus-coral}{RGB}{255,191,191}    % Coral shade
+\definecolor{divergent-denim}{RGB}{130,172,211}   % Denim shade
+\definecolor{matrix-mist}{RGB}{204,204,204}       % Misty gray
+\definecolor{numeric-navy}{RGB}{204,204,204}      % Navy gray (same as mist)
+\definecolor{quadratic-quartz}{RGB}{204,153,153}  % Quartz shade
+
+% ==============================================================================
+% FRAMED ENVIRONMENTS
+% ==============================================================================
+
+\usepackage[]{mdframed}           % Framed boxes for theorems, definitions, etc.
+
+% ==============================================================================
+% SECTIONING ENVIRONMENTS & TOC CUSTOMIZATION
+% ==============================================================================
+
+% --- Set up sectioning depth ---
+\setcounter{secnumdepth}{5}       % Numbering depth for sections
+\setcounter{tocdepth}{5}          % TOC depth
+
+% --- Define suprasection (custom section above \section) ---
+\titleclass{\suprasection}{straight}[\part]
+\newcounter{suprasection}
+\renewcommand\thesuprasection{\arabic{suprasection}}
+
+% --- Format suprasection titles ---
+\titleformat{\suprasection}
+    {\color{astral}\normalfont\sffamily\bfseries\Large\filcenter}{\thesuprasection}{1em}{}
+\titlespacing*{\suprasection}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% --- TOC formatting: shift levels down ---
+\dottedcontents{suprasection}[1.5em]{}{2.3em}{1pc}
+\dottedcontents{section}[3.8em]{}{2.8em}{1pc}
+\dottedcontents{subsection}[7.0em]{}{3.2em}{1pc}
+\dottedcontents{subsubsection}[10.0em]{}{3.8em}{1pc}
+
+% --- Add suprasection to TOC ---
+\titlecontents{suprasection}
+    [0em]
+    {\addvspace{1pc}\bfseries}
+    {\contentslabel{2em}}
+    {\hspace*{-2em}}
+    {\titlerule*[0.5pc]{.}\contentspage}
+
+% ==============================================================================
+% HYPERLINKS
+% ==============================================================================
+
+\usepackage{hyperref}             % Hyperlinks for cross-references and URLs
+
+% ==============================================================================
+% MISCELLANEOUS SETTINGS
+% ==============================================================================
+
+\setlength{\parindent}{0pt}       % Remove paragraph indentation
+
+% --- Section header styling ---
+\allsectionsfont{\color{astral}\normalfont\sffamily\bfseries} % Style all section headers
+
+% ==============================================================================
+% CUSTOM COMMANDS & MACROS
+% ==============================================================================
+
+% --- Emphasis in text ---
+\providecommand{\defemph}[1]{{\sffamily\bfseries\color{astral}#1}}
+
+% --- Utility commands ---
+\newcommand{\skipline}{\vspace{\baselineskip}} % Skip a line
+\newcommand{\noi}{\noindent}                   % No indentation
+\newcommand{\ptr}{\(\triangleright\)}          % Triangle right symbol
+
+% ==============================================================================
+% ADVANCED MACROS & REDECLARATIONS
+% ==============================================================================
+
+% The following section provides a safe way to redeclare an existing math 
+% operator command (like \sin, \ker, etc.) with a new name or formatting, 
+% similar to \DeclareMathOperator, but without causing errors if the operator 
+% already exists. It also supports starred and unstarred versions for different 
+% formatting.
+
+\makeatletter
+\newcommand\RedeclareMathOperator{%
+	\@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
+}
+\newcommand\rmo@redeclare[2]{%
+	\begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+	\expandafter\@ifundefined\@gtempa%
+	{\@latex@error{\noexpand#1undefined}\@ehc}%
+	\relax
+	\expandafter\rmo@declmathop\rmo@s{#1}{#2}}
+
+\newcommand\rmo@declmathop[3]{%
+	\DeclareRobustCommand{#2}{\qopname\newmcodes@#1{#3}}%
+}
+\@onlypreamble\RedeclareMathOperator%
+\makeatother
+
+% End of header
