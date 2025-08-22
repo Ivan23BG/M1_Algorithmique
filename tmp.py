@@ -2,24 +2,17 @@ import os
 
 # Repo structure definition
 structure = {
-    "build": [],
-    "logs": [],
-    "pdfs": [],
-    "src": {
-        "common": {
-            "environments": [],
-            "macros": []
-        },
+    "pdfs": {
         # Example course folders, add/remove as needed
-        "HAI702I": {"assets": [], "cours": [], "tds": []},
-        "HAI703I": {"assets": [], "cours": [], "tds": []},
-        "HAI709I": {"assets": [], "cours": [], "tds": []},
-        "HAI710I": {"assets": [], "cours": [], "tds": []},
-        "HAI711I": {"assets": [], "cours": [], "tds": []},
-        "HAI713I": {"assets": [], "cours": [], "tds": []},
-        "HAI718I": {"assets": [], "cours": [], "tds": []},
-        "HAI720I": {"assets": [], "cours": [], "tds": []},
-        "HAI722I": {"assets": [], "cours": [], "tds": []},
+        "HAI702I": {"cours": [], "tds": []},
+        "HAI703I": {"cours": [], "tds": []},
+        "HAI709I": {"cours": [], "tds": []},
+        "HAI710I": {"cours": [], "tds": []},
+        "HAI711I": {"cours": [], "tds": []},
+        "HAI713I": {"cours": [], "tds": []},
+        "HAI718I": {"cours": [], "tds": []},
+        "HAI720I": {"cours": [], "tds": []},
+        "HAI722I": {"cours": [], "tds": []},
     }
 }
 
