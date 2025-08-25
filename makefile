@@ -85,7 +85,7 @@ endef
 
 # Default target
 all: $(PDF_TARGETS)
-	@echo -e "$(GREEN) All LaTeX files compiled successfully!$(NC)"
+	@echo -e "$(GREEN)LaTeX compilation results:$(NC)"
 	@$(MAKE) --no-print-directory compilation-summary
 
 # Individual module targets - using a different approach to avoid multiple target patterns
@@ -104,15 +104,23 @@ $(foreach module,$(MODULES),$(eval $(call make_module_target,$(module))))
 
 # Main compilation rule with dependency tracking
 $(PDFS_DIR)/%.pdf: $(SRC_DIR)/%.tex
-	@echo -e "$(BLUE) Compiling $(WHITE)$<$(NC)"
+	@echo -e "$(BLUE)Compiling $(WHITE)$<$(NC)"
 	@# Create necessary directories
 	@mkdir -p $(dir $(BUILD_DIR)/$*) $(dir $(LOGS_DIR)/$*) $(dir $(PDFS_DIR)/$*)
-	@# Compile with latexmk
-	@if $(LATEXMK) $(LATEXMK_FLAGS) -output-directory=$(dir $(BUILD_DIR)/$*) $< > $(LOGS_DIR)/$*.log 2>&1; then \
-		echo -e "$(GREEN) Successfully compiled $(WHITE)$<$(NC)"; \
-		mv $(BUILD_DIR)/$*.pdf $@ 2>/dev/null || true; \
+	@# Get absolute paths for compilation
+	@tex_dir=$$(dirname "$<"); \
+	tex_file=$$(basename "$<"); \
+	build_abs=$$(realpath $(dir $(BUILD_DIR)/$*)); \
+	logs_abs=$$(realpath $(dir $(LOGS_DIR)/$*)); \
+	current_dir=$$(pwd); \
+	cd "$$tex_dir" && \
+	if $(LATEXMK) $(LATEXMK_FLAGS) -output-directory="$$build_abs" "$$tex_file" > "$$logs_abs/$$(basename $* .pdf).log" 2>&1; then \
+		cd "$$current_dir" && \
+		echo -e "$(GREEN)Successfully compiled $(WHITE)$<$(NC)" && \
+		mv "$$build_abs/$$(basename $* .pdf).pdf" $@ 2>/dev/null || true; \
 	else \
-		echo -e "$(RED) Failed to compile $(WHITE)$<$(NC) (check $(LOGS_DIR)/$*.log)"; \
+		cd "$$current_dir" && \
+		echo -e "$(RED)Failed to compile $(WHITE)$<$(NC) (check $(LOGS_DIR)/$*.log)" && \
 		echo "$<" >> .compilation_errors 2>/dev/null || true; \
 	fi
 
@@ -158,32 +166,32 @@ range-%:
 # -----------------------------------------------------------------------------
 
 clean-build:
-	@echo -e "$(YELLOW) Cleaning build artifacts...$(NC)"
+	@echo -e "$(YELLOW)Cleaning build artifacts...$(NC)"
 	@rm -rf $(BUILD_DIR)/*
-	@echo -e "$(GREEN) Build artifacts cleaned$(NC)"
+	@echo -e "$(GREEN)Build artifacts cleaned$(NC)"
 
 clean-logs:
-	@echo -e "$(YELLOW) Cleaning log files...$(NC)"
+	@echo -e "$(YELLOW)Cleaning log files...$(NC)"
 	@rm -rf $(LOGS_DIR)/*
-	@echo -e "$(GREEN) Log files cleaned$(NC)"
+	@echo -e "$(GREEN)Log files cleaned$(NC)"
 
 clean-pdfs:
-	@echo -e "$(YELLOW) Cleaning PDF files...$(NC)"
+	@echo -e "$(YELLOW)Cleaning PDF files...$(NC)"
 	@rm -rf $(PDFS_DIR)/*
-	@echo -e "$(GREEN) PDF files cleaned$(NC)"
+	@echo -e "$(GREEN)PDF files cleaned$(NC)"
 
 clean: clean-build clean-logs
 	@rm -f .compilation_errors
-	@echo -e "$(GREEN) Project cleaned (PDFs preserved)$(NC)"
+	@echo -e "$(GREEN)Project cleaned (PDFs preserved)$(NC)"
 
 clean-all: clean clean-pdfs
-	@echo -e "$(GREEN) Project completely cleaned$(NC)"
+	@echo -e "$(GREEN)Project completely cleaned$(NC)"
 
 clean-module:
-	@echo -e "$(YELLOW) Cleaning module $(MODULE)...$(NC)"
+	@echo -e "$(YELLOW)Cleaning module $(MODULE)...$(NC)"
 	@rm -rf $(BUILD_DIR)/$(MODULE)
 	@rm -rf $(LOGS_DIR)/$(MODULE)
-	@echo -e "$(GREEN) Module $(MODULE) cleaned$(NC)"
+	@echo -e "$(GREEN)Module $(MODULE) cleaned$(NC)"
 
 # -----------------------------------------------------------------------------
 # INFORMATION AND DEBUGGING TARGETS
@@ -246,14 +254,14 @@ info:
 
 compilation-summary:
 	@if [ -f .compilation_errors ]; then \
-		echo -e "$(RED) Some files failed to compile:$(NC)"; \
+		echo -e "$(RED)Some files failed to compile:$(NC)"; \
 		while read -r file; do \
-			echo -e "  $(RED) $$file$(NC)"; \
+			echo -e "  $(RED)$file$(NC)"; \
 		done < .compilation_errors; \
 		echo -e "$(YELLOW)Check the corresponding log files for details.$(NC)"; \
 		rm -f .compilation_errors; \
 	else \
-		echo -e "$(GREEN) All files compiled successfully!$(NC)"; \
+		echo -e "$(GREEN)All files compiled successfully!$(NC)"; \
 	fi
 
 # -----------------------------------------------------------------------------
@@ -271,9 +279,9 @@ $(BUILD_DIR) $(LOGS_DIR) $(PDFS_DIR):
 # Watch mode (requires inotify-tools)
 .PHONY: watch
 watch:
-	@echo -e "$(BLUE) Watching for changes... (Ctrl+C to stop)$(NC)"
+	@echo -e "$(BLUE)Watching for changes... (Ctrl+C to stop)$(NC)"
 	@while inotifywait -r -e modify,create,delete $(SRC_DIR) 2>/dev/null; do \
-		echo -e "$(YELLOW) Changes detected, recompiling...$(NC)"; \
+		echo -e "$(YELLOW)Changes detected, recompiling...$(NC)"; \
 		$(MAKE) --no-print-directory all; \
 	done
 
@@ -282,8 +290,8 @@ watch:
 check-parallel:
 	@echo -e "$(BLUE)Checking parallel build safety...$(NC)"
 	@$(MAKE) -j$(shell nproc) --dry-run all >/dev/null 2>&1 && \
-		echo -e "$(GREEN) Parallel builds are safe$(NC)" || \
-		echo -e "$(RED) Parallel builds may have issues$(NC)"
+		echo -e "$(GREEN)Parallel builds are safe$(NC)" || \
+		echo -e "$(RED)Parallel builds may have issues$(NC)"
 
 # Statistics
 .PHONY: stats
@@ -307,7 +315,7 @@ validate:
 	@$(foreach file,$(MAIN_TEX_FILES),echo "  - $(file)";)
 	@echo -e "Detected $(words $(MODULES)) modules:"
 	@$(foreach module,$(MODULES),echo "  - $(module)";)
-	@echo -e "$(GREEN) Configuration valid$(NC)"
+	@echo -e "$(GREEN)Configuration valid$(NC)"
 
 # -----------------------------------------------------------------------------
 # END OF MAKEFILE
