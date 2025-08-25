@@ -1,7 +1,24 @@
-%latexmk td_main.tex -pdf -shell-escape -output-directory=tmp_out
-\subsection*{Graphes}\label{subsec:ss_1}
-\addcontentsline{toc}{subsection}{\nameref{subsec:ss_1}}
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[] % 1
+    Combien y-a-t'il de graphes simples non isomorphes avec 4 sommets? Dessiner chacun de ces graphes.
+\end{td-exo}
 
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[] % 1
+		Il y a exactement 11 graphes simples non isomorphes avec 4 sommets, les voici:
+        \begin{center}
+            \foreach \n in {1,...,11} { %chktex 1 %chktex 11
+            \begin{minipage}[c][2cm][c]{0.16\textwidth}
+                \centering
+                \input{./assets/td_1_ex_1_\n.tex}
+            \end{minipage}
+                \ifnum\n=4 \\[4mm]\fi
+                \ifnum\n=8 \\[4mm]\fi
+            }
+        \end{center}
+	\end{td-sol}
+}{}
 
 % ----- Consignes exo 2 ----- %
 \begin{td-exo}[Exercice 2] % 2
@@ -102,18 +119,7 @@ Montrer que \(\delta(G) \leq 2\frac mn \leq \Delta (G)\).
 }{}
 
 
-% ----- Consignes exo 1 ----- %
-\begin{td-exo}[Exercice 1] % 1
-    Combien y-a-t'il de graphes simples non isomorphes avec 4 sommets? Dessiner chacun de ces graphes.
-\end{td-exo}
 
-% ----- Solutions exo 1 ----- %
-\iftoggle{showsolutions}{
-	\begin{td-sol}[] % 1
-		Il y a exactement 11 graphes simples non isomorphes avec 4 sommets, les voici:
-        % représenter graphiquement les 11 graphes simples avec tikz
-	\end{td-sol}
-}{}
 
 
 % ----- Consignes exo 8 ----- %
