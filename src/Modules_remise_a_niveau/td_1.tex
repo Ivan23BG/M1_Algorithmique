@@ -151,10 +151,10 @@ Représenter le 1-cube, le 2-cube et le 3-cube
 
 % ----- Consignes exo 7 ----- %
 \begin{td-exo}[Exercice 7] % 7
-Les nombres \(\delta(G)\) et \(\Delta(G)\) représentent respectivement 
-les degrés minimum et maximum d'un graphe 
-\(G=(X,E)\) (\(X\) représente l'ensemble des sommets et \(E\) celui des arêtes) où \(n=\n X\) et \(m = \n E\).
-Montrer que \(\delta(G) \leq 2\frac mn \leq \Delta (G)\).
+    Les nombres \(\delta(G)\) et \(\Delta(G)\) représentent respectivement 
+    les degrés minimum et maximum d'un graphe 
+    \(G=(X,E)\) (\(X\) représente l'ensemble des sommets et \(E\) celui des arêtes) où \(n=\n X\) et \(m = \n E\).
+    Montrer que \(\delta(G) \leq 2\frac mn \leq \Delta (G)\).
 \end{td-exo}
 
 % ----- Solutions exo 7 ----- %
@@ -196,7 +196,13 @@ Montrer que \(\delta(G) \leq 2\frac mn \leq \Delta (G)\).
 	\begin{td-sol}[] %
 		Supposons que tous les sommets ont des degrés différents. Alors, comme le degré maximal est \(n-1\), on a
         \begin{equation*}
-            d(x_n) = n-1, d(x_{n-1})=n-2,\ldots,x_2=1,x_1=0
+            \begin{aligned}
+                x_n &= n-1\\
+                x_{n-1} &= n-2\\
+                &\vdots\\
+                x_2 &= 1\\
+                x_1 &= 0
+            \end{aligned}
         \end{equation*}
         Or, \(x_n\) est relié à tous les sommets, donc en particulier à \(x_1\), mais celui-ci est de degré 0. 
         Il y a donc contradiction et il existe au moins deux sommets de même degré
