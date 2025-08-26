@@ -11,7 +11,7 @@
             \foreach \n in {1,...,11} { %chktex 1 %chktex 11
             \begin{minipage}[c][2cm][c]{0.16\textwidth}
                 \centering
-                \input{./assets/td_1_ex_1_\n.tex}
+                \input{./assets/td_1_ex_1_\n.tikz}
             \end{minipage}
                 \ifnum\n=4 \\[4mm]\fi
                 \ifnum\n=8 \\[4mm]\fi
@@ -23,8 +23,10 @@
 % ----- Consignes exo 2 ----- %
 \begin{td-exo}[Exercice 2] % 2
     Calculez les paramètres \(n\) (nombre de sommets), 
-\(m\) (nombre d'arcs ou d'arêtes), \(\delta\) (degré min), \(\Delta\) (degré max), 
-\(D\) (diamètre du graphe) des graphes suivants:
+\(m\) (nombre d'arcs ou d'arêtes), 
+\(\delta\) (degré min), 
+\(\Delta\) (degré max) et 
+\(D\) (diamètre) des graphes suivants:
 
 \begin{enumerate}
     \item \(B_d\) (les arbres binomiaux de dimension \(d\)),
@@ -45,26 +47,29 @@ Dessinez les graphes suivants:
     \item \(H_3\)
     \item \(H_4\)
 \end{enumerate}
+
+\begin{rappel}
+    Le \defemph{diamètre} \(D\) d'un graphe est la plus grande des plus courtes distances entre deux sommets quelconques.
+
+    Par exemple, dans un arbre, le diamètre est la longueur du chemin le plus long entre deux feuilles.
+\end{rappel}
 \end{td-exo}
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
     \begin{td-sol}[] %
-        On a pour: (faire sous forme de tableau, c'est mieux)
-        diametre = plus longue des plus courtes distances, facile a completer
+        Les paramètres des graphes sont les suivants:
 
-        \(\Delta, \delta, n, m, D
-        Gr-> *(p-1)*q+(q-1)*p, p+q % chktex 36
-        Tr->, 4, 4, 2pq, p/2+q/2\)
-
-        \begin{enumerate}
-            \item \(B_d\), \(n=1+2^d\), \(m=2^n\), \(\delta=1\), \(\Delta=3\), \(D=unknown\), 
-            \item \(C_n\), \(n=n\), \(m=n\), \(\delta=2\), \(\Delta=2\), \(D\)
-            \item \(K_n\), \(\Delta=\delta=n-1\), \(n=n\), \(m=\frac{n(n-1)}2\), \(D=1\) graphe regulier = tous les sommets ont le meme degré
-            \item \(GR_{p\times q}\) 
-            \item \(TR_{p\times q}\) 
-            \item \(H_d\) 
-        \end{enumerate}
+        \begin{tabular}{c|c|c|c|c|c} % chktex 44
+            Graphe & \(n\) & \(m\) & \(\delta\) & \(\Delta\) & \(D\) \\
+            \hline % chktex 44
+            \(B_d\) & \(2^d\) & \(2^d-1\) & \(1\) & \(3\) & \(d\) \\
+            \(C_n\) & \(n\) & \(n\) & \(2\) & \(2\) & \(\left\lfloor \frac n2 \right\rfloor \) \\
+            \(K_n\) & \(n\) & \(\frac{n(n-1)}2\) & \(n-1\) & \(n-1\) & \(1\) \\
+            \(GR_{p\times q}\) & \(pq\) & \(2pq - p - q\) & \(2\) & \(4\) & \(p+q-2\) \\
+            \(TR_{p\times q}\) & \(pq\) & \(2pq\) & \(4\) & \(4\) & \(\left\lfloor \frac p2 \right\rfloor + \left\lfloor \frac q2\right\rfloor \) \\
+            \(H_d\) & \(2^d\) & \(d\cdot2^{d-1}\) & \(d\) & \(d\) & \(d\) \\
+        \end{tabular}
     \end{td-sol}
 }{}
 
