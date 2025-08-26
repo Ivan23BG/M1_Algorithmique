@@ -1,0 +1,37 @@
+\begin{tikzpicture}[
+    scale=1.2, 
+    baseline=(current bounding box.center)
+    ]
+    % Style for nodes
+    \tikzstyle{vertex}=[circle, fill=verdant!20, draw, minimum size=8mm, text width=8mm, align=center]
+    
+    % Front face
+    \node[vertex] (000) at (0,0) {000};
+    \node[vertex] (100) at (2,0) {100};
+    \node[vertex] (010) at (0,2) {010};
+    \node[vertex] (110) at (2,2) {110};
+    
+    % Back face (offset for 3D effect)
+    \node[vertex] (001) at (1,1) {001};
+    \node[vertex] (101) at (3,1) {101};
+    \node[vertex] (011) at (1,3) {011};
+    \node[vertex] (111) at (3,3) {111};
+    
+    % Front face edges
+    \draw[thick, verdant!60] (000) -- (100);
+    \draw[thick, astral!60] (000) -- (010);
+    \draw[thick, verdant!60] (010) -- (110);
+    \draw[thick, astral!60] (100) -- (110);
+    
+    % Back face edges
+    \draw[thick, verdant!60] (001) -- (101);
+    \draw[thick, astral!60] (001) -- (011);
+    \draw[thick, verdant!60] (011) -- (111);
+    \draw[thick, astral!60] (101) -- (111);
+    
+    % Connecting edges (3rd dimension)
+    \draw[thick, red!60] (000) -- (001);
+    \draw[thick, red!60] (100) -- (101);
+    \draw[thick, red!60] (010) -- (011);
+    \draw[thick, red!60] (110) -- (111);
+\end{tikzpicture}

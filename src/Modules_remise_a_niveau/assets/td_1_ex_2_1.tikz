@@ -1,0 +1,32 @@
+\begin{tikzpicture}[
+    scale=1.2, 
+    baseline=(current bounding box.center)
+    ]
+    % Style for nodes
+    \tikzstyle{vertex}=[circle, fill=verdant!20, draw, minimum size=6mm]
+    
+    % Level 0
+    \node[vertex] (a) at (0,0) {0};
+    
+    % Level 1
+    \node[vertex] (b) at (-2,-1.2) {1};
+    \node[vertex] (c) at (0,-1.2) {2};
+    \node[vertex] (d) at (2,-1.2) {3};
+    
+    % Level 2
+    \node[vertex] (f) at (0,-2.4) {4};
+    \node[vertex] (g) at (1.2,-2.4) {5};
+    \node[vertex] (h) at (2.8,-2.4) {6};
+    
+    % Level 3
+    \node[vertex] (i) at (2.8,-3.6) {7};
+    
+    % Edges
+    \draw[thick, verdant!60] (a) -- (b);
+    \draw[thick, verdant!60] (a) -- (c);
+    \draw[thick, verdant!60] (a) -- (d);
+    \draw[thick, verdant!60] (c) -- (f);
+    \draw[thick, verdant!60] (d) -- (g);
+    \draw[thick, verdant!60] (d) -- (h);
+    \draw[thick, verdant!60] (h) -- (i);
+\end{tikzpicture}

@@ -60,16 +60,64 @@ Dessinez les graphes suivants:
     \begin{td-sol}[] %
         Les paramètres des graphes sont les suivants:
 
-        \begin{tabular}{c|c|c|c|c|c} % chktex 44
-            Graphe & \(n\) & \(m\) & \(\delta\) & \(\Delta\) & \(D\) \\
-            \hline % chktex 44
-            \(B_d\) & \(2^d\) & \(2^d-1\) & \(1\) & \(3\) & \(d\) \\
-            \(C_n\) & \(n\) & \(n\) & \(2\) & \(2\) & \(\left\lfloor \frac n2 \right\rfloor \) \\
-            \(K_n\) & \(n\) & \(\frac{n(n-1)}2\) & \(n-1\) & \(n-1\) & \(1\) \\
-            \(GR_{p\times q}\) & \(pq\) & \(2pq - p - q\) & \(2\) & \(4\) & \(p+q-2\) \\
-            \(TR_{p\times q}\) & \(pq\) & \(2pq\) & \(4\) & \(4\) & \(\left\lfloor \frac p2 \right\rfloor + \left\lfloor \frac q2\right\rfloor \) \\
-            \(H_d\) & \(2^d\) & \(d\cdot2^{d-1}\) & \(d\) & \(d\) & \(d\) \\
-        \end{tabular}
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c|c} % chktex 44
+                Graphe & \(n\) & \(m\) & \(\delta\) & \(\Delta\) & \(D\) \\
+                \hline % chktex 44
+                \(B_d\) & \(2^d\) & \(2^d-1\) & \(1\) & \(3\) & \(d\) \\
+                \(C_n\) & \(n\) & \(n\) & \(2\) & \(2\) & \(\left\lfloor \frac n2 \right\rfloor \) \\
+                \(K_n\) & \(n\) & \(\frac{n(n-1)}2\) & \(n-1\) & \(n-1\) & \(1\) \\
+                \(GR_{p\times q}\) & \(pq\) & \(2pq - p - q\) & \(2\) & \(4\) & \(p+q-2\) \\
+                \(TR_{p\times q}\) & \(pq\) & \(2pq\) & \(4\) & \(4\) & \(\left\lfloor \frac p2 \right\rfloor + \left\lfloor \frac q2\right\rfloor \) \\
+                \(H_d\) & \(2^d\) & \(d\cdot2^{d-1}\) & \(d\) & \(d\) & \(d\) \\
+            \end{tabular}
+        \end{center}\vspace{1cm}
+        
+        Leur représentation graphique est la suivante:
+
+        \begin{center}
+            \begin{minipage}{0.48\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_1.tikz}}}
+                \captionof{figure}{\(B_3\)}\label{Fig:graph1}
+            \end{minipage}\hfill
+            \begin{minipage}{0.48\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_2.tikz}}}
+                \captionof{figure}{\(K_5\)}\label{Fig:graph2}
+            \end{minipage}
+        \end{center}
+        \begin{center}
+            \begin{minipage}{0.48\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_3.tikz}}}
+                \captionof{figure}{\(GR_{4\times 4}\)}\label{Fig:graph3}
+            \end{minipage}\hfill
+            \begin{minipage}{0.48\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_4.tikz}}}
+                \captionof{figure}{\(TR_{4\times 4}\)}\label{Fig:graph4}
+            \end{minipage}
+        \end{center}
+        \begin{center}
+            \begin{minipage}{0.48\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_5.tikz}}}
+                \captionof{figure}{\(H_2\)}\label{Fig:graph5}
+            \end{minipage}\hfill
+            \begin{minipage}{0.48\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_6.tikz}}}
+                \captionof{figure}{\(H_3\)}\label{Fig:graph6}
+            \end{minipage}
+        \end{center}
+        \begin{center}
+            \begin{minipage}{0.7\textwidth}
+                \centering
+                \fbox{\resizebox{!}{2.6cm}{\input{./assets/td_1_ex_2_7.tikz}}}
+                \captionof{figure}{\(H_4\)}\label{Fig:graph7}
+            \end{minipage}
+        \end{center}
     \end{td-sol}
 }{}
 

@@ -1,0 +1,79 @@
+\begin{tikzpicture}[
+    scale=1.2, 
+    baseline=(current bounding box.center)
+    ]
+    % Style for nodes - matching your style
+    \tikzstyle{vertex}=[circle, fill=verdant!20, draw, minimum size=3mm, text width=6mm, align=center, font=\scriptsize]
+    
+    % Inner cube (w=0) - front face
+    \node[vertex] (0000) at (1,1) {0000};
+    \node[vertex] (1000) at (3,1) {1000};
+    \node[vertex] (0100) at (1,3) {0100};
+    \node[vertex] (1100) at (3,3) {1100};
+    
+    % Inner cube (w=0) - back face (3D effect)
+    \node[vertex] (0010) at (1.8,1.8) {0010};
+    \node[vertex] (1010) at (3.8,1.8) {1010};
+    \node[vertex] (0110) at (1.8,3.8) {0110};
+    \node[vertex] (1110) at (3.8,3.8) {1110};
+    
+    % Outer cube (w=1) - front face
+    \node[vertex] (0001) at (0,0) {0001};
+    \node[vertex] (1001) at (4,0) {1001};
+    \node[vertex] (0101) at (0,4) {0101};
+    \node[vertex] (1101) at (4,4) {1101};
+    
+    % Outer cube (w=1) - back face (3D effect)
+    \node[vertex] (0011) at (1,1) {0011};
+    \node[vertex] (1011) at (5,1) {1011};
+    \node[vertex] (0111) at (1,5) {0111};
+    \node[vertex] (1111) at (5,5) {1111};
+    
+    % Inner cube edges (w=0)
+    % Front face
+    \draw[thick, verdant!60] (0000) -- (1000);
+    \draw[thick, astral!60] (0000) -- (0100);
+    \draw[thick, verdant!60] (0100) -- (1100);
+    \draw[thick, astral!60] (1000) -- (1100);
+    
+    % Back face
+    \draw[thick, verdant!60] (0010) -- (1010);
+    \draw[thick, astral!60] (0010) -- (0110);
+    \draw[thick, verdant!60] (0110) -- (1110);
+    \draw[thick, astral!60] (1010) -- (1110);
+    
+    % Z-connections (depth)
+    \draw[thick, red!60] (0000) -- (0010);
+    \draw[thick, red!60] (1000) -- (1010);
+    \draw[thick, red!60] (0100) -- (0110);
+    \draw[thick, red!60] (1100) -- (1110);
+    
+    % Outer cube edges (w=1)
+    % Front face
+    \draw[thick, verdant!60] (0001) -- (1001);
+    \draw[thick, astral!60] (0001) -- (0101);
+    \draw[thick, verdant!60] (0101) -- (1101);
+    \draw[thick, astral!60] (1001) -- (1101);
+    
+    % Back face
+    \draw[thick, verdant!60] (0011) -- (1011);
+    \draw[thick, astral!60] (0011) -- (0111);
+    \draw[thick, verdant!60] (0111) -- (1111);
+    \draw[thick, astral!60] (1011) -- (1111);
+    
+    % Z-connections (depth)
+    \draw[thick, red!60] (0001) -- (0011);
+    \draw[thick, red!60] (1001) -- (1011);
+    \draw[thick, red!60] (0101) -- (0111);
+    \draw[thick, red!60] (1101) -- (1111);
+    
+    % 4th dimension connections (W) - connecting inner to outer cube
+    \draw[dashed, orange!60] (0000) -- (0001);
+    \draw[dashed, orange!60] (1000) -- (1001);
+    \draw[dashed, orange!60] (0100) -- (0101);
+    \draw[dashed, orange!60] (1100) -- (1101);
+    \draw[dashed, orange!60] (0010) -- (0011);
+    \draw[dashed, orange!60] (1010) -- (1011);
+    \draw[dashed, orange!60] (0110) -- (0111);
+    \draw[dashed, orange!60] (1110) -- (1111);
+\end{tikzpicture}
