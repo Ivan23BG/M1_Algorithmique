@@ -21,7 +21,7 @@
 }{}
 
 % ----- Consignes exo 2 ----- %
-\begin{td-exo}[Exercice 2] % 2
+\begin{td-exo}[] % 2
     Calculez les paramètres \(n\) (nombre de sommets), 
 \(m\) (nombre d'arcs ou d'arêtes), 
 \(\delta\) (degré min), 
@@ -57,7 +57,7 @@ Dessinez les graphes suivants:
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
-    \begin{td-sol}[] %
+    \begin{td-sol}[] % 2
         Les paramètres des graphes sont les suivants:
 
         \begin{center}
@@ -120,6 +120,59 @@ Dessinez les graphes suivants:
         \end{center}
     \end{td-sol}
 }{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[] % 3
+    Soit \(G =(V,E)\) un graphe d'ordre \(n\). 
+    Soient \(d_1,d_2,\ldots,d_n\) les degrés du graphe. 
+    Montrer que
+    \begin{equation*}
+        \sum_{i=1}^n d_i = 2 \cdot\n E.
+    \end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[] % 3
+		Une arête relie exactement 2 sommets. 
+        Le degré \(d_i\) du \(i\)-ième sommet correspond au nombre d'arêtes incidentes à ce sommet.
+        Alors, en sommant tous ces degrés, on compte toutes les arêtes exactement 2 fois, d'où
+        \begin{equation*}
+            \sum_{i=1}^n d_i = 2 \cdot\n E.
+        \end{equation*}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[] % 4
+    Montrer que dans un graphe il y a toujours un nombre pair de sommets de degré impair.
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[] % 4
+        Soit \(G=(V,E)\) un graphe. Pour tout sommet \(v \in V\), notons \(\deg(v)\) son degré. 
+        Chaque arête \(e\in E\) contribue 1 au degré de chacun de ses deux sommets, donc
+        \begin{equation*}
+            \sum_{v \in V} \deg(v) = 2|E|.
+        \end{equation*}
+        Ainsi la somme des degrés est un nombre pair.
+
+        Séparons les sommets selon la parité de leur degré: soit \(I\) l'ensemble des sommets de degré impair et \(P\) l'ensemble des sommets de degré pair. 
+        On a alors
+        \begin{equation*}
+            \sum_{v \in V} \deg(v) = \sum_{v \in I} \deg(v) + \sum_{v \in P} \deg(v).
+        \end{equation*}
+        La somme \(\sum_{v \in P} \deg(v)\) est paire. De plus, chaque terme de 
+        \(\sum_{v \in I} \deg(v)\) est impair, donc \(\sum_{v \in I} \deg(v)\) n'est pair
+        que si \(|I|\) est pair. Or \(\sum_{v \in V} \deg(v)\) est pair,
+        donc \(|I|\) aussi et le nombre de sommets de degré impair est pair.
+	\end{td-sol}
+}{}
+
+
 
 
 
