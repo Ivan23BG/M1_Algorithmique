@@ -1,7 +1,7 @@
 # =============================================================================
 # ELABORATE LATEX PROJECT MAKEFILE
 # =============================================================================
-# Author: Claude Assistant
+# Author: Claude Assistant - Ivan Lejeune
 # Description: Comprehensive Makefile for LaTeX project compilation
 # Features: Recursive compilation, dependency tracking, parallel builds,
 #           flexible module targeting, comprehensive cleaning
@@ -210,10 +210,10 @@ help:
 	@for module in $(MODULES); do \
 		code=$$(echo "$$module" | sed 's/HAI\([0-9]\+\)I/\1/'); \
 		name=$$(echo "$$module" | sed 's/HAI[0-9]\+I_//; s/_/ /g' | tr '[:upper:]' '[:lower:]'); \
-		echo -e "  $(WHITE)$$module$(NC)   - Compile $$module"; \
+		echo -e "  $(WHITE)$$module$(NC)         - Compile $$module"; \
 		echo -e "  $(WHITE)$$code$(NC)             - Same as $$module"; \
-		echo -e "  $(WHITE)$$name$(NC)    - Same as $$module"; \
-		echo -e "  $(WHITE)$$module-clean$(NC) - Clean $$module"; \
+		echo -e "  $(WHITE)$$name$(NC)         - Same as $$module"; \
+		echo -e "  $(WHITE)$$module-clean$(NC)   - Clean $$module"; \
 	done
 	@echo -e ""
 	@echo -e "$(CYAN)Range Targets:$(NC)"
@@ -256,7 +256,7 @@ compilation-summary:
 	@if [ -f .compilation_errors ]; then \
 		echo -e "$(RED)Some files failed to compile:$(NC)"; \
 		while read -r file; do \
-			echo -e "  $(RED)$file$(NC)"; \
+			echo -e "  $(RED)$$file$(NC)"; \
 		done < .compilation_errors; \
 		echo -e "$(YELLOW)Check the corresponding log files for details.$(NC)"; \
 		rm -f .compilation_errors; \
@@ -299,7 +299,7 @@ stats:
 	@echo -e "$(WHITE)Project Statistics:$(NC)"
 	@echo -e "  LaTeX files: $(CYAN)$$(find $(SRC_DIR) -name "*.tex" | wc -l)$(NC)"
 	@echo -e "  Image files: $(CYAN)$$(find $(SRC_DIR) -name "*.png" -o -name "*.jpg" -o -name "*.pdf" | wc -l)$(NC)"
-	@echo -e "  Total lines: $(CYAN)$$(find $(SRC_DIR) -name "*.tex" -exec wc -l {} + | tail -1 | cut -d' ' -f1)$(NC)"
+	@echo -e "  Total lines:$(CYAN)$$(find $(SRC_DIR) -name "*.tex" -exec wc -l {} + | tail -1)$(NC)"
 	@if [ -d $(PDFS_DIR) ]; then \
 		echo -e "  PDF size:    $(CYAN)$$(du -sh $(PDFS_DIR) 2>/dev/null | cut -f1)$(NC)"; \
 	fi
