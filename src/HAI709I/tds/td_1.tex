@@ -1,0 +1,139 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[] % 1
+	Répondez aux questions suivantes:
+	\begin{itemize}
+		\item Supposons qu’un adversaire sache qu’un message, chiffré avec le chiffrement par décalage, 
+		est soit \defemph{aaa}, \defemph{aab}, \defemph{aac}, \defemph{abc}, \defemph{acd} soit \defemph{abd}. 
+		En examinant le texte chiffré obtenu, est-il (toujours) en mesure de déterminer le message d’origine?
+		Expliquez votre réponse: fournissez une stratégie si la réponse est correcte ou 
+		un contre-exemple (une clé) si elle ne l’est pas.
+
+		\item Considérez le point précédent, mais cette fois-ci, 
+		le message est chiffré avec le chiffrement de Vigenère. 
+		Supposons d’abord que la période soit 2, puis que la période soit 3.
+		Est-il (toujours) en mesure de déterminer le message d’origine?
+
+		\item Cette fois-ci, les messages possibles, chiffrés avec le chiffrement de Vigenère de période 2,
+		sont soit \defemph{abcd}, \defemph{aabc} soit \defemph{bccd}. 
+		L’adversaire est-il capable de déterminer le texte en clair à partir du texte chiffré? 
+		Pourquoi?
+	\end{itemize}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{itemize}
+			\item Oui, il est toujours en mesure de déterminer le message d’origine.
+			En effet, il suffit de décaler toutes les lettres du texte chiffré jusqu'à obtenir un des messages possibles.
+			Comme les messages possibles ne peuvent pas être obtenus par décalage les uns des autres,
+			il y a une et une seule possibilité.
+
+			\item Non, il n’est pas toujours en mesure de déterminer le message d’origine. 
+			Si 2 messages partagent les mêmes lettres aux positions 1 et 3 (pour la période 2)
+			alors ce n'est pas possible.
+
+			\item Oui, facile, regarder les écarts entre les paires.
+		\end{itemize}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+	Nous chiffrons le message abacbc avec le chiffrement de Vigenère et une clé de période 2. 
+	Trouvez une clé telle que le texte chiffré contienne exactement 4 fois le caractère c. 
+	Existe-t-il une clé pour laquelle le caractère c apparaît plus de 4 fois dans le texte chiffré?
+	Et pour les autres caractères?
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Oui, pour obtenir exactement 4 fois un caractère donné, on peut utiliser le chiffrement suivant:
+		\begin{itemize}
+			\item Pour \(c\): la clé est \((2,0)\)
+			\item Pour toute autre lettre, la clé est celle du \(c\) décalée de la différence entre \(c\) et la lettre voulue.
+		\end{itemize}
+		
+		Ce n'est pas possible d'avoir plus de 4 fois un caractère dans le texte chiffré.
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[] % 3
+	Montrer que les chiffrements par décalage et par substitution mono-alphabétique
+	ne sont pas inconditionnellement sûrs.
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\tdsolspec{
+		Le mot \(aaa\) a une probabilité non nulle d'être encodée en \(bbb\) avec le chiffrement par décalage
+		ou par substitution mono-alphabétique. Ce n'est en revanche pas le cas du mot \(aab\). Donc
+		les deux chiffrements ne sont pas inconditionnellement sûrs.
+	}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[] % 4
+	A partir de la définition de la sécurité inconditionnelle que nous avons donnée, 
+	prouver la proposition vue pendant le cours:
+	\begin{proposition}
+		Un schéma de chiffrement (\(\gen\), \(\enc\), \(\dec\)) avec un espace de messages \(M\) est
+		inconditionnellement sûr si et seulement si, pour chaque
+		\(m, m' \in M\) et chaque \(c \in C\), on a
+		\begin{equation*}
+			\bb P(\enc_K (m) = c) = \bb P(\enc_K (m') = c).
+		\end{equation*}
+	\end{proposition}
+\end{td-exo}
+
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[] % 5
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Optional title 2] % 2
+Exercise 2 content
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Optional title 2] % 2
+Exercise 2 content
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Exercice solution
+	\end{td-sol}
+}{}
