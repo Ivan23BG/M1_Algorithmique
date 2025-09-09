@@ -1,0 +1,205 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Inspiré d'un exercice du AIMA] % 1
+	Le problème des missionnaires et des cannibales est le suivant:
+	3 missionnaires et 3 cannibales sont d'un côté d'une rivière, avec une barque
+	qui peut transporter 1 ou 2 personnes à la fois. Trouver une façon de faire
+	passer tout ce monde de l'autre côté de la rivière, sans jamais laisser en
+	un lieu des missionnaires en minorité par rapport aux cannibales (auquel cas
+	il ne resterait plus rien des missionnaires).
+
+	\begin{enumerate}
+		\item Formaliser le problème sous la forme de parcours
+		d'un problème d'exploration d'un espace d'états:
+		\begin{itemize}
+			\item Comment représenter un état de problème? Combien d'états
+			\og{}potentiels\fg{} votre représentation permet-elle de définir?
+
+			\item Tous les états potentiels sont-ils des états \og{}valides\fg{} du
+			problème, c'est-à-dire correspondent à une situation où les missionnaires
+			ne sont pas en minorité?
+
+			\item Quel est l'état initial du problème?
+			
+			\item Quelles actions sont applicables à chaque état (attention une action
+			ne doit conduire qu'à un état valide du problème)?
+
+			\item Tous les états valides sont-ils accessibles de l'état initial?
+
+			\item Qu'est-ce qu'un état but?
+
+			\item Quelle pourrait être une fonction de coût pour ce problème?
+		\end{itemize}
+
+		\item Dessiner l'espace d'états de ce problème. Finalement, quelle est la taille
+		de cet espace d'états? On rappelle que les états d'un problème sont définis
+		comme l'ensemble des états atteignables depuis l'état initial.
+
+		\item Donner une solution optimale (i.e.\ de coût minimal) en terme de nombre
+		d'actions.
+
+		\item Quel sera le facteur de branchement d'une stratégie de recherche sur
+		ce problème?
+
+		\item Une recherche en largeur sur ce problème permet-elle de trouver une solution?
+		Si oui, à quelle profondeur et sera-t-elle une solution optimale. Précisez si vos
+		réponses dépendent de l'ordre d'exploration des successeurs d'un noeud.
+
+		\item Une recherche en profondeur sur ce problème permet-elle de trouver une solution?
+		Si oui, à quelle profondeur et sera-t-elle une solution optimale. Précisez si vos
+		réponses dépendent de l'ordre d'exploration des successeurs d'un noeud.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On commence par formaliser nos etats. Voici le tableau représentatif des etats:
+		% \begin{center}
+		% 	\begin{tabular}{|c|} % chktex 44
+		% 		\hline % chktex 44
+		% 		Etat
+		% 		\hline % chktex 44
+		% 		Nombre de cannibales à gauche \(CG\): \(0-3\) \\
+		% 		Nombre de missionnaires à gauche \(MG\): \(0-3\) \\
+		% 		Position de la barque \(B\): \(\{G, D\}\) \\
+		% 		\hline % chktex 44
+		% 	\end{tabular}
+		% \end{center}
+		Le nombre d'etats potentiels est donc de \(4 \times 4 \times 2 = 32\).
+
+		Les contraintes de validité sont les suivantes:
+		\begin{itemize}
+			\item \(CG \leq MG\) (i.e.\ il y a moins de cannibales que de missionnaires à gauche),
+			\item \(CD \leq MD\) (avec \(CD = 3 - CG\) et \(MD = 3 - MG\)).
+		\end{itemize}
+
+		L'état initial est \((3, 3, G)\) et l'état but est \((0, 0, D)\).
+
+		Les actions possibles sont:
+		\begin{itemize}
+			\item traverser avec \(2C\) (si possible),
+			\item traverser avec \(1C\) (si possible),
+			\item traverser avec \(2M\) (si possible),
+			\item traverser avec \(1M\) (si possible),
+			\item traverser avec \((1M,1C)\) (si possible).
+		\end{itemize}
+
+		Une fonction de coût possible est le nombre de traversées effectuées.
+
+		Le graphe des états est le suivant:
+		% https://www.lucidchart.com/invitations/accept/7f4e1f3e-3f4b-4e2b-9a4e-1c3f6f3e4b5c
+		% https://www.lucidchart.com/documents/edit/7f4e1f3e-3f4b-4e2b-9a4e-1c3f6f3e4b5c/0_0
+		% https://lucid.app/lucidchart/invitations/accept/7f4e1f3e-3f4b-4e2b-9a4e-1c3f6f3e4b5c
+		% INSERT GRAPH HERE
+		tmp
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+	On dispose de 3 cubes \(A, B\) et \(C\) sur une table. Un cube peut être soit
+	directement sur la table, soit sur un autre cube. On est dans la situation où
+	les cubes \(A\) et \(B\) sont à même la table et le cube \(C\) est posé sur 
+	le cube \(A\). On cherche à obtenir la situation où les 3 cubes sont empilés
+	de la manière suivante: 
+	\begin{itemize}
+		\item le cube \(A\) est sur le cube \(C\),
+		\item le cube \(C\) est sur le cube \(B\),
+		\item le cube \(B\) est sur la table.
+	\end{itemize}
+	La seule action possible est de déplacer un cube en haut de pile soit sur la 
+	table soit sur une autre pile.
+
+	\begin{enumerate}
+		\item Formaliser le problème en termes d'états, d'actions, de but et de coût.
+
+		\item Dessiner le graphe des états (représentant l'espace des états).
+
+		\item Quelle est la taille de l'espace des états?
+
+		\item Quel sera le facteur de branchement d'une stratégie de recherche sur
+		ce problème?
+
+		\item Que faut-il préciser dans l'algorithme général pour mettre en place 
+		une stratégie en largeur? Appliquer l'algorithme de recherche en largeur (pour
+		l'ordre des actions issues d'un état (cf.\ liste retournée par XXINSERTCODEHEREXX), % p.actions(n.etat)
+		on considèrera en priorité les actions qui créent des empilemments plus hauts
+		puis l'ordre alphabétique en cas d'égalité). Préciser l'ordre de génération et 
+		d'exploration de chaque noed. Combien de noeuds sont générés et explorés? Combien
+		de fois retrouve-t-on l'état initial dans un noeud généré? Dans un noeud exploré?
+
+		\item Mêmes questions pour la recherche en profondeur. Quel problème cela pose-t-il?
+
+		\item On décide maintenant d'ajouter à l'algorithme général de recherche un test 
+		évitant de ré-explorer un état déjà exploré. Modifier l'algorithme en conséquence.
+		Discuter de l'influence de votre modification sur les stratégies en largeur et en profondeur:
+		taille de l'arbre de recherche, de la frontière, ordre d'exploration, complétude de la
+		stratégie, optimalité de la solution trouvée.
+
+		% INSERT FOLLOWING CODE HERE
+		% Interface Ensemble<Etat> {
+		%     Ensemble(); // constructeur d'ensemble vide
+		%     contient?(e: Etat): Booleen;
+		%     ajouter(e: Etat): void;
+		% };
+
+		\item Combien de noeuds sont alors générés et explorés par cet algorithme
+		optimisé de recherche en largeur.
+
+		\item Même question pour la recherche en profondeur. 
+
+		\item Proposer une version récursive de l'algorithme (non optimisé) de recherche en profondeur.
+
+		\item Combien de noeuds sont alors générés et explorés par cette version?
+
+		\item On dit que la recherche en profondeur a une complexité spatiale en \(\mathcal{O}(b,d_m)\)
+		où \(b\) est le facteur de branchement et \(d_m\) la profondeur maximale à laquelle une 
+		solution est cherchée. Si le langage d'implémentation de l'algorithme ne dispose pas d'un
+		système de gestion dynamique de la mémoire par \og{}ramasse-miettes\fg{}, quelle
+		instruction de suppression faut-il ajouter à l'algorithme récursif pour assurer cette
+		complexité spatiale?
+
+		\item On considère à nouveau l'algorithme de recherche en profondeur récursif. Adapter
+		cet algorithme pour restaurer la complétude de la recherche sans mémoriser d'états 
+		précédemment explorés. On distinguera le cas où l'on peut borner la taille de l'espace
+		d'états du cas où l'espace d'états est infini.
+	\end{enumerate}
+
+	\(\star\) Pour s'entrainer on pourra reprendre intégralement cet exercice en choisissant comme
+	but la situation où le cube \(A\) est sur le cube \(B\), le cube \(C\) étant seul à coté.
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Notre tableau des etats:
+		% \begin{center}
+		% 	\begin{tabular}{|c|} % chktex 44
+		% 		\hline % chktex 44
+		% 		Etat
+		% 		\hline % chktex 44
+		% 		Position de A: \(\{B, C, T\}\) \\
+		% 		Position de B: \(\{A, C, T\}\) \\
+		% 		Position de C: \(\{A, B, T\}\) \\
+		% 		\hline % chktex 44
+		% 	\end{tabular}
+		% \end{center}
+
+		L'état initial est \((T, T, A)\) et l'état but est \((C, T, B)\).
+
+		Le nombre d'états est 13, le facteur de branchement est 6.
+	\end{td-sol}
+}{}
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Taquin] % 3
+	Modéliser le jeu du Taquin comme un problème d'exploration d'espace d'états.
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		% PLACEHOLDER
+	\end{td-sol}
+}{}
