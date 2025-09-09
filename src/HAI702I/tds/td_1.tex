@@ -8,7 +8,23 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
+		On pose \(u = \frac{1}{3}(1, 2, 2)\), 
+		c'est à dire celui imposé puis normalisé.
+
+		Ensuite on veut \(v\) orthogonal à \(u\) et de norme \(1\).
+
+		Il faut donc \(\langle u, v\rangle = 0\), soit \((0,1,-1)\).
+
+		On le normalise en divisant par \(\sqrt{2}\): \(v = \frac{1}{\sqrt{2}}(0, 1, -1)\).
+
+		Pour \(w\) on peut faire le produit vectoriel \(u \wedge v\):
 		
+		On trouve \(w = \frac{1}{3\sqrt{2}}(4, 1, 1)\).
+
+		On pose alors notre base orthonormale directe:
+		\begin{equation*}
+			\mathcal B = \left(u, v, w\right) = \left(\frac{1}{3}(1, 2, 2), \frac{1}{\sqrt{2}}(0, 1, -1), \frac{1}{3\sqrt{2}}(4, 1, 1)\right).
+		\end{equation*}
 	\end{td-sol}
 }{}
 
@@ -28,7 +44,8 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		On trouve assez vite que \(-1\) est solution.
+		C'est la seule solution réelle, prouvable avec factorisation puis delta.
 	\end{td-sol}
 }{}
 
@@ -80,7 +97,12 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+			\item La distance de \(M\) à la droite \(\mathcal D\) est donnée par la formule:
+			\begin{equation*}
+				d(M, \mathcal D) = \frac{\norm{AM \wedge u}}{\norm{u}} = \frac{\sqrt{30}}{\sqrt{5}} = \sqrt{6}.
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
 

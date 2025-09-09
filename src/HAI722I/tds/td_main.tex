@@ -1,0 +1,35 @@
+\documentclass[french,a4paper,10pt]{article}
+% uncomment the following lines after copying the template
+\input{../../common/common_header.tex}
+\input{../../common/macros/math.tex}
+\input{../../common/macros/theorems.tex}
+% \input{../assets/module_header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+\title{\color{astral} \sffamily \bfseries HAI722I --- TDs}
+\author{Ivan Lejeune}
+\date{\today}
+
+\toggletrue{showsolutions} % Allows showing/hiding solutions
+% uncomment the following line to hide solutions
+% \togglefalse{showsolutions}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \newpage
+    \section*{TD1}\label{sec:TD1}
+    \addcontentsline{toc}{section}{\nameref{sec:TD1}}
+    \setcounter{section}{1}
+    \setcounter{tdcounter}{0}
+    \input{../tds/td_1.tex}
+
+    % \newpage
+    % \section*{TD2 --- Second sheet title}\label{sec:TD2}
+    % \addcontentsline{toc}{section}{\nameref{sec:TD2}}
+    % \setcounter{section}{2}
+    % \setcounter{tdcounter}{0}
+    % \input{../tds/td_2.tex}
+\end{document}
+
