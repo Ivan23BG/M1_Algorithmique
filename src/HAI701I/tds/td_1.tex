@@ -94,11 +94,25 @@
 		]
 
 		% --- Nodes (placed manually with coordinates) ---
-		\node[state] (start) at (0,0) {$(3,3,G)$};
-		\node[state] (s1)    at (-4,0) {$(2,3,D)$};
-		\node[state] (s2)    at (4,0) {$(1,3,D)$};
-		\node[state] (s3)    at (0,-4) {$(2,2,D)$};
-		\node[state] (s4)    at (4, -4) {$(2,3,G)$};
+		\node[state] (start) at (0,0) {\(3,3,G\)};
+		\node[state] (s1)    at (-4,0) {\(2,3,D\)};
+		\node[state] (s2)    at (4,0) {\(1,3,D\)};
+
+		\node[state] (s3)    at (-4,-4) {\(2,2,D\)};
+		\node[state] (s4)    at (0, -4) {\(2,3,G\)};
+		\node[state] (s5)    at (4, -4) {\(0,3,D\)};
+
+		\node[state] (s6)    at (0,-8) {\(1,3,G\)};
+		\node[state] (s7)    at (-4,-8) {\(1,1,D\)};
+
+		\node[state] (s8)    at (0,-12) {\(2,2,G\)};
+		\node[state] (s9)    at (4,-12) {\(0,2,D\)};
+
+		\node[state] (s10)   at (0,-16) {\(0,3,G\)};
+		\node[state] (s11)   at (4,-16) {\(0,1,D\)};
+		
+		\node[state] (s12)   at (0,-20) {\(0,2,G\)};
+		\node[state] (goal)  at (4,-20) {\(0,0,D\)};
 
 		% --- Edges with labels ---
 		\draw[edge] (start) -- node[above]{\(1C\)} (s1);
@@ -107,10 +121,28 @@
 
 		\draw[edge] (s4) -- node[right]{\(1C\)} (s2);
 		\draw[edge] (s4) -- node[above]{\(1M\)} (s3);
+		\draw[edge] (s4) -- node[above]{\(2C\)} (s5);
+
+		\draw[edge] (s5) -- node[above]{\(1C\)} (s6);
+
+		\draw[edge] (s6) -- node[above]{\(2M\)} (s7);
+
+		\draw[edge] (s7) -- node[above]{\(1M,1C\)} (s8);
+
+		\draw[edge] (s8) -- node[above]{\(2M\)} (s9);
+
+		\draw[edge] (s9) -- node[right]{\(1C\)} (s10);
+
+		\draw[edge] (s10) -- node[above]{\(2C\)} (s11);
+
+		\draw[edge] (s11) -- node[right]{\(1C\)} (s12);
+
+		\draw[edge] (s12) -- node[above]{\(2C\)} (goal);
 
 		\end{tikzpicture}
 	\end{td-sol}
 }{}
+
 
 
 % ----- Consignes exo 2 ----- %

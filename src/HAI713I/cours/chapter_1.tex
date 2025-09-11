@@ -1,0 +1,124 @@
+\section{Calculabilité}\label{sec:secref}
+
+On s'intéresse dans ce cours au système de boite noire.
+
+On attend une entrée, des calculs sont effectués, et on a une sortie.
+
+%       programme
+%       ----------
+% --->  | calcul | --->
+% ent   ----------  sor
+%
+%
+%
+
+Nos entrées et sorties correspondent à des suites de bits,
+on est dans le cadre discret.
+
+On utilisera les symboles suivants:
+\begin{itemize}
+    \item L'alphabet: \(\Sigma = \left\{0,1\right\}\),
+    \item L'ensemble des mots: \(\Sigma^*\),
+\end{itemize}
+
+On utilisera notamment les entiers à la place des mots.
+
+Comment faire? 
+On utilise la représentation binaire des entiers.
+
+probleme, la fonction classique n'est pas bijective,
+on utilisera la solution suivante
+chaine de bits x1---xn
+devient 
+1x1---xn
+mais probleme, on ne peut pas coder le mot vide
+on utilise la solution suivante
+chaine de bits x1---xn
+devient
+1x1---xn et on fait moins 1, et voila
+on a une bijection entre \(\Sigma^*\) et \(\N\).
+
+
+definition importante
+
+si on a \(a\) un programme, et donc un entier, est-il valide?
+
+Pour appliquer un programme à une entrée 
+on utilisera la notation non conventionnelle suivante:
+\begin{equation*}
+    \left[a\ \mid\ x\right]
+\end{equation*}
+ce qui représente l'exécution du programme \(a\) sur l'entrée \(x\).
+
+On a alors deux possibilités:
+\begin{itemize}
+    \item Soit le programme s'arrête, et on note alors
+        \(\left[a\mid x\right]\downarrow\) si le programme \(a\) sur l'entrée \(x\)
+        s'arrête. On dit que ça converge.
+    \item Soit le programme ne s'arrête pas, et on note alors
+        \(\left[a\mid x\right]\uparrow\) si le programme \(a\) sur l'entrée \(x\)
+        ne s'arrête pas. On dit que ça diverge.
+    \item On note alors
+        \(\left[a\mid x\right] = y\) si le programme \(a\) sur l'entrée \(x\)
+        s'arrête et donne la sortie \(y\).
+\end{itemize}
+
+Il existe deux autres notations conventionnelles:
+\begin{itemize}
+    \item \(\varphi_a(x) = y\) si \(\left[a\mid x\right] = y\) (standard historique américain),
+
+    \item \(U(a,x) = y\) si \(\left[a\mid x\right] = y\) (standard historique russe).
+\end{itemize}
+
+On pourra aussi utiliser \(\left[a\mid \cdot\right]\) pour désigner la fonction \defemph{partielle} suivante:
+\begin{equation*}
+    \begin{aligned}
+        \left[a\mid \cdot\right]: \N &\to \N \\
+        x &\mapsto \begin{cases}
+            \left[a\mid x\right] & \text{si } \left[a\mid x\right]\downarrow, \\
+            \text{non défini} & \text{si } \left[a\mid x\right]\uparrow.
+        \end{cases}
+    \end{aligned}
+\end{equation*}
+
+Une fonction (partielle) est calculable (ou récursive) si il existe un programme qui la calcule.
+
+Ensembles (d'entiers).
+
+la fonction caractéristique qui y correspond nous renvoie 
+une suite de bits (0 ou 1) selon que l'entier appartient ou non à l'ensemble.
+On la note \(\chi_A\) pour un ensemble \(A\subseteq \N\).
+
+Un ensemble \(A\) est décidable (ou récursif) si \(\chi_A\) est calculable.
+
+Un ensemble \(A\) est énumérable (récursivement énumérable) si il est le domaine d'une fonction calculable.
+D'autres mots pour dire la même chose:
+récursivement énumérable, calculatoirement énumérable, semi-décidable (à ne pas utiliser).
+
+la domaine \(\iff \exists a, \forall x,x\in E \iff [a \mid x] \downarrow\)
+
+théorème de Post.
+Si \(E\) est énumérable et \(\ol{E}\) est énumérable, alors \(E\) est décidable.
+où \(\ol{E}\) est le complémentaire de \(E\).
+
+preuve.
+On pose \(E = \text{dom} [a \mid \cdot] = W_a\). Alors
+\(\ol{E} = W_b\).
+On veut construire un programme \(c\) qui décide \(E\).
+On utilise la fonction \(\text{Step}\) de la manière suivante:
+\begin{equation*}
+    \text{Step}\langle a,x,t \rangle = \begin{cases}
+        0 & \text{si } [a \mid x] \text{ ne converge pas en } t \text{ étapes}, \\
+        1 + [a \mid x] & \text{sinon}
+    \end{cases}
+\end{equation*}
+
+% rec : x \mapsto :
+% t recoit 0
+% tq step(a,x,t) = step(b,x,t) = 0
+% t recoit t+1
+% si step(a,x,t) != 0
+% alors return 1
+% sinon return 0
+% où rec calcule la fonction caractéristique de E
+Donc \(E\) est décidable.
