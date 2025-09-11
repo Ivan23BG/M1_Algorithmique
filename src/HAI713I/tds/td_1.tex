@@ -1,5 +1,5 @@
 % ----- Consignes exo 1 ----- %
-\begin{td-exo}[Manipuler les définitions]\ % 1
+\begin{td-exo}[Manipuler les définitions]\label{exo:1}\ % 1
 	\begin{enumerate}
 		\item Rappelez ce qu'est une fonction calculable.
 		Montrez que les fonctions suivantes sont calculables:
@@ -30,55 +30,77 @@
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
 		\begin{enumerate}
-			\item Une fonction (partielle) est calculable (ou récursive) si il existe un programme qui la calcule.
+			\item Une fonction est \defemph{calculable} si
+			il existe un programme qui la calcule. Alors,
 			\begin{itemize}
 				\item \(f\) est calculable car il peut être défini par le programme suivant:
-				\begin{verbatim}
-					x |-> return 2 * x 
-				\end{verbatim}
-				\item \(g\) est calculable car il peut être défini par le programme suivant:
-				\begin{verbatim}
-					z |-> return pi1(z) + pi2(z)
-				\end{verbatim}
-				\item \(\upmodels\) est calculable car il peut être défini par le programme suivant:
-				\begin{verbatim}
-					x |-> while true do {}, return 0
-				\end{verbatim}
+				\begin{align*}
+					x \mapsto\ & \text{return } 2 \times x.
+				\end{align*}
+				\item \(g\) est calculable pour la même raison:
+				\begin{align*}
+					z \mapsto\ & \text{return } \pi_1(z) + \pi_2(z).
+				\end{align*}
+				\item De même pour \(\upmodels\):
+				\begin{align*}
+					x \mapsto\ & \text{while } x=x \text{ do }\\
+								&\quad x \leftarrow x \\
+				&\text{end while}\\
+				&\text{return } 0.
+				\end{align*}
 			\end{itemize}
-			\item Un ensemble \(A\subseteq \N\) est récursif (ou décidable) si sa fonction caractéristique \(\chi_A\) est calculable.
+			\item Un ensemble \(A\subseteq \N\) est \defemph{décidable} (ou récursif) si 
+			sa fonction caractéristique \(\chi_A\) est calculable. Alors,
 			\begin{itemize}
 				\item L'ensemble de tous les entiers est récursif car sa fonction caractéristique peut être définie par le programme suivant:
-				\begin{verbatim}
-					x |-> return 1
-				\end{verbatim}
-				\item L'ensemble vide est récursif car sa fonction caractéristique peut être définie par le programme suivant:
-				\begin{verbatim}
-					x |-> return 0
-				\end{verbatim}
-				\item L'ensemble des nombres pairs est récursif car sa fonction caractéristique peut être définie par le programme suivant:
-				\begin{verbatim}
-					x |-> if x mod 2 == 0 then return 1 else return 0
-				\end{verbatim}
+				\begin{align*}
+					x \mapsto\ & \text{return } 1
+				\end{align*}
+				\item L'ensemble vide est récursif car sa fonction caractéristique peut être définie comme suit:
+				\begin{align*}
+					x \mapsto\ & \text{return } 0
+				\end{align*}
+				\item L'ensemble des nombres pairs est récursif pour la même raison:
+				\begin{align*}
+					x \mapsto\ & \text{if } x \hspace{-0.5em}\mod 2 == 0 \text{ then}\\
+								&\quad \text{return } 1 \\
+								&\text{else } \\
+								&\quad \text{return } 0\\
+								&\text{end if}
+				\end{align*}
 			\end{itemize}
-
-			\item Il suffit d'inverser les valeurs de la fonction caractéristique.
-
-			\item On utilise la fonction
-			\begin{verbatim}
-				x |-> if x mod 2 == 0 then return 0 else \upmodels(x)
-			\end{verbatim}
+			\item Il suffit d'inverser les valeurs de la fonction caractéristique
+			de \(E\) pour obtenir celle de \(\overline{E}\) (qui est donc aussi calculable).
+			\item Un ensemble \(E\subseteq \N\) est \defemph{énumérable} si
+			il est le domaine d'une fonction calculable. On définit la fonction suivante:
+			\begin{align*}
+				x \mapsto\ & \text{if } x \hspace{-0.5em}\mod 2 == 0 \text{ then}\\
+							&\quad \text{return } 0 \\
+							&\text{else } \\
+							&\quad \upmodels(x)\\
+							&\text{end if}
+			\end{align*}
 			qui converge si et seulement si son entrée est paire.
+			Donc l'ensemble des nombres pairs est énumérable.
 
 			\item Si \(E\) est récursif, alors sa fonction caractéristique \(\chi_E\) est calculable.
 			Donc on peut définir deux programmes:
-			\begin{verbatim}
-				x |-> if chi_E(x) == 1 then return 0 else \upmodels(x)
-			\end{verbatim}
+			\begin{align*}
+				x \mapsto\ & \text{if } \chi_E(x) == 1 \text{ then}\\
+						&\quad \text{return } 0 \\
+						&\text{else } \\
+						&\quad \upmodels(x) \\
+						&\text{end if}
+			\end{align*}
 			et
-			\begin{verbatim}
-				x |-> if chi_E(x) == 0 then return 0 else \upmodels(x)
-			\end{verbatim}
-			qui convergent respectivement si et seulement si \(x\in E\) et \(x\in \overline{E}\).
+			\begin{align*}
+				x \mapsto\ & \text{if } \chi_E(x) == 0 \text{ then}\\
+						&\quad \text{return } 0 \\
+						&\text{else } \\
+						&\quad \upmodels(x) \\
+						&\text{end if}
+			\end{align*}
+			qui convergent respectivement si et seulement si \(x \in E\) et \(x \in \overline{E}\).
 		\end{enumerate}
 	\end{td-sol}
 }{}
@@ -104,38 +126,54 @@
 	\begin{td-sol}[]\ %
 		\begin{enumerate}
 			\item On utilise la fonction caractéristique:
-			\begin{verbatim}
-				x |-> if chi_A(x) == 1 or chi_B(x) == 1 then return 1 else return 0
-			\end{verbatim}
+			\begin{align*}
+				x \mapsto\ & \text{if } \chi_A(x) == 1 \text{ or } \chi_B(x) == 1 \text{ then}\\
+							&\quad \text{return } 1 \\
+							&\text{else } \\
+							&\quad \text{return } 0\\
+							&\text{end if}
+			\end{align*}
 			\item On utilise la fonction caractéristique:
-			\begin{verbatim}
-				x |-> if chi_A(x) == 1 and chi_B(x) == 1 then return 1 else return 0
-			\end{verbatim}
+			\begin{align*}
+				x \mapsto\ & \text{if } \chi_A(x) == 1 \text{ and } \chi_B(x) == 1 \text{ then}\\
+							&\quad \text{return } 1 \\
+							&\text{else } \\
+							&\quad \text{return } 0\\
+							&\text{end if}
+			\end{align*}
 			\item On utilise la fonction caractéristique:
-			\begin{verbatim}
-				z |-> if chi_A(pi1(z)) == 1 and chi_B(pi2(z)) == 1 then return 1 else return 0
-			\end{verbatim}
-			\item Voir exercice 1.
+			\begin{align*}
+				z \mapsto\ & \text{if } \chi_A(\pi_1(z)) == 1 \text{ and } \chi_B(\pi_2(z)) == 1 \text{ then}\\
+							&\quad \text{return } 1 \\
+							&\text{else } \\
+							&\quad \text{return } 0\\
+							&\text{end if}
+			\end{align*}
+			\item Voir exercice~\ref{exo:1}.
 			\item On utilise la fonction caractéristique:
-			\begin{verbatim}
-				x |-> if chi_A(x) == 1 and chi_B(x) == 0 then return 1 else return 0
-			\end{verbatim}
+			\begin{align*}
+				x \mapsto\ & \text{if } \chi_A(x) == 1 \text{ and } \chi_B(x) == 0 \text{ then}\\
+							&\quad \text{return } 1 \\
+							&\text{else } \\
+							&\quad \text{return } 0\\
+							&\text{end if}
+			\end{align*}
 		\end{enumerate}
 	\end{td-sol}
 }{}
 
 
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[\emph{step}, convergence, projections et énumération] % 3
+\begin{td-exo}[\mintinline{text}{step}, convergence, projections et énumération] % 3
 	Considérons le programme suivant (remarquez qu'il s'appelle \(a\)
 	et son entrée s'appelle \(y\)):
-	\begin{verbatim}
-		[a|y]:
-			z <- 0
-			while step <y,pi1(z),pi2(z)> == 0 repeat
-				z <- z + 1
-			return 17
-	\end{verbatim}
+	\begin{align*}
+		\text{a: } y \mapsto\ & z \leftarrow 0 \\
+		& \text{while } \text{step}\langle y,\pi_1(z),\pi_2(z)\rangle == 0 \text{ do }\\
+		&\quad z \leftarrow z + 1 \\
+		& \text{end while} \\
+		& \text{return } 17
+	\end{align*}
 	\begin{enumerate}
 		\item Soit \(b\) un programme qui s'arrete sur au moins une entrée. Que vaut \([a\mid b]\)?
 		\item Que vaut \([a\mid b]\) si \(b\) est un programme qui ne s'arrête jamais?
@@ -143,16 +181,23 @@
 	\end{enumerate}
 \end{td-exo}
 
+\newpage
+
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
 		\begin{enumerate}
-			\item On note \(c\) une entrée telle que \([b\mid c]\downarrow\) (elle existe par hypothèse).
-			Alors, il existe \(t\) tel que \(\text{Step}\langle b,c,t\rangle = 1\).
+			\item On note \(c\) une entrée telle que \([b\mid c]\downarrow\) (elle existe par hypothèse). 
+			
+			Alors, il existe \(t\) tel que
+			\begin{equation*}
+				\text{Step}\langle b,c,t\rangle = 1
+			\end{equation*}
+			
 			Donc, pour \(z = \langle c,t\rangle\), on a \([a\mid z]\downarrow\).
 			Donc \([a\mid b]\downarrow\) et vaut 17.
 
-			\item Le programme \(a\) ne s'arrête jamais.
+			\item Le programme \(a\) ne s'arrête jamais, donc \([a\mid b]\uparrow\).
 
 			\item Le programme \(a\) correspond exactement au programme dont le domaine est l'ensemble des programmes 
 			qui s'arrêtent sur au moins une entrée. Donc cet ensemble est énumérable.
@@ -164,7 +209,7 @@
 % ----- Consignes exo 4 ----- %
 \begin{td-exo}[Ensembles énumérables] % 4
 	On veut montrer que les propositions suivantes sont équivalentes:
-	\begin{enumerate}[label=(\roman*)]
+	\begin{enumerate}[label=\roman*)] % chktex 9 chktex 10
 		\item \(E\) est \defemph{énumérable} (rappel de la définition) si
 		\begin{equation*}
 			\exists a, E = W_a = \left\{x, [a\mid x]\downarrow\right\}
@@ -194,26 +239,42 @@
 			\item (i) \(\Rightarrow\) (iii):
 			Si \(E = \emptyset\), c'est trivial.
 			Sinon, \(E\) contient au moins un élément qu'on note \(a_0\). On utilise le programme suivant:
-			\begin{verbatim}
-				enum: z |->
-				if step <a,pi1(z),pi2(z)> == 0 then
-					return pi1(z)
-				else
-					return a0
-			\end{verbatim}
+			\begin{align*}
+				\text{enum: } z \mapsto\ & \text{if } \text{step}\langle a,\pi_1(z),\pi_2(z)\rangle == 0 \text{ then }\\
+								&\quad \text{return } \pi_1(z) \\
+								&\text{else } \\
+								&\quad \text{return } a_0\\
+								&\text{end if}
+			\end{align*}
+			qui est total et énumère \(E\).
+
+			\item (iii) \(\Rightarrow\) (ii):
+			C'est trivial car une fonction totale est aussi une fonction partielle.
+
+			\item (ii) \(\Rightarrow\) (i):
+			C'est la définition même d'un ensemble énumérable.
 		\end{itemize}
 	\end{td-sol}
 }{}
 
 
 % ----- Consignes exo 5 ----- %
-\begin{td-exo}[Ensembles énumérables --- mieux comprendre] % 5
-Exercise 2 content
+\begin{td-exo}[Ensembles énumérables --- mieux comprendre]\ % 5
+	\begin{enumerate}
+		\item Montrez qui si \(E\) est un ensemble énumérable \emph{infini} alors 
+		il admet une fonction d'énumération totale bijective.
+
+		\item Soit \(E\) un ensemble infini. Montrez que \(E\) est récursif
+		si et suelement si il admet une fonction d'énumération croissante.
+
+		\item Soit \(E\) un ensemble infini. Montrez que \(E\) est récursif
+		si et suelement si il admet une fonction d'énumération strictement croissante.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		Exercice solution
+		A compléter
 	\end{td-sol}
 }{}
