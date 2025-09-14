@@ -44,7 +44,7 @@
 				\item De même pour \(\upmodels\):
 				\begin{align*}
 					x \mapsto\ & \text{while } x=x \text{ do }\\
-								&\quad x \leftarrow x \\
+								&\qquad x \leftarrow x \\
 				&\text{end while}\\
 				&\text{return } 0.
 				\end{align*}
@@ -63,9 +63,9 @@
 				\item L'ensemble des nombres pairs est récursif pour la même raison:
 				\begin{align*}
 					x \mapsto\ & \text{if } x \hspace{-0.5em}\mod 2 == 0 \text{ then}\\
-								&\quad \text{return } 1 \\
+								&\qquad \text{return } 1 \\
 								&\text{else } \\
-								&\quad \text{return } 0\\
+								&\qquad \text{return } 0\\
 								&\text{end if}
 				\end{align*}
 			\end{itemize}
@@ -75,9 +75,9 @@
 			il est le domaine d'une fonction calculable. On définit la fonction suivante:
 			\begin{align*}
 				x \mapsto\ & \text{if } x \hspace{-0.5em}\mod 2 == 0 \text{ then}\\
-							&\quad \text{return } 0 \\
+							&\qquad \text{return } 0 \\
 							&\text{else } \\
-							&\quad \upmodels(x)\\
+							&\qquad \upmodels(x)\\
 							&\text{end if}
 			\end{align*}
 			qui converge si et seulement si son entrée est paire.
@@ -87,17 +87,17 @@
 			Donc on peut définir deux programmes:
 			\begin{align*}
 				x \mapsto\ & \text{if } \chi_E(x) == 1 \text{ then}\\
-						&\quad \text{return } 0 \\
+						&\qquad \text{return } 0 \\
 						&\text{else } \\
-						&\quad \upmodels(x) \\
+						&\qquad \upmodels(x) \\
 						&\text{end if}
 			\end{align*}
 			et
 			\begin{align*}
 				x \mapsto\ & \text{if } \chi_E(x) == 0 \text{ then}\\
-						&\quad \text{return } 0 \\
+						&\qquad \text{return } 0 \\
 						&\text{else } \\
-						&\quad \upmodels(x) \\
+						&\qquad \upmodels(x) \\
 						&\text{end if}
 			\end{align*}
 			qui convergent respectivement si et seulement si \(x \in E\) et \(x \in \overline{E}\).
@@ -128,34 +128,34 @@
 			\item On utilise la fonction caractéristique:
 			\begin{align*}
 				x \mapsto\ & \text{if } \chi_A(x) == 1 \text{ or } \chi_B(x) == 1 \text{ then}\\
-							&\quad \text{return } 1 \\
+							&\qquad \text{return } 1 \\
 							&\text{else } \\
-							&\quad \text{return } 0\\
+							&\qquad \text{return } 0\\
 							&\text{end if}
 			\end{align*}
 			\item On utilise la fonction caractéristique:
 			\begin{align*}
 				x \mapsto\ & \text{if } \chi_A(x) == 1 \text{ and } \chi_B(x) == 1 \text{ then}\\
-							&\quad \text{return } 1 \\
+							&\qquad \text{return } 1 \\
 							&\text{else } \\
-							&\quad \text{return } 0\\
+							&\qquad \text{return } 0\\
 							&\text{end if}
 			\end{align*}
 			\item On utilise la fonction caractéristique:
 			\begin{align*}
 				z \mapsto\ & \text{if } \chi_A(\pi_1(z)) == 1 \text{ and } \chi_B(\pi_2(z)) == 1 \text{ then}\\
-							&\quad \text{return } 1 \\
+							&\qquad \text{return } 1 \\
 							&\text{else } \\
-							&\quad \text{return } 0\\
+							&\qquad \text{return } 0\\
 							&\text{end if}
 			\end{align*}
 			\item Voir exercice~\ref{exo:1}.
 			\item On utilise la fonction caractéristique:
 			\begin{align*}
 				x \mapsto\ & \text{if } \chi_A(x) == 1 \text{ and } \chi_B(x) == 0 \text{ then}\\
-							&\quad \text{return } 1 \\
+							&\qquad \text{return } 1 \\
 							&\text{else } \\
-							&\quad \text{return } 0\\
+							&\qquad \text{return } 0\\
 							&\text{end if}
 			\end{align*}
 		\end{enumerate}
@@ -170,7 +170,7 @@
 	\begin{align*}
 		\text{a: } y \mapsto\ & z \leftarrow 0 \\
 		& \text{while } \text{step}\langle y,\pi_1(z),\pi_2(z)\rangle == 0 \text{ do }\\
-		&\quad z \leftarrow z + 1 \\
+		&\qquad z \leftarrow z + 1 \\
 		& \text{end while} \\
 		& \text{return } 17
 	\end{align*}
@@ -241,9 +241,9 @@
 			Sinon, \(E\) contient au moins un élément qu'on note \(a_0\). On utilise le programme suivant:
 			\begin{align*}
 				\text{enum: } z \mapsto\ & \text{if } \text{step}\langle a,\pi_1(z),\pi_2(z)\rangle == 0 \text{ then }\\
-								&\quad \text{return } \pi_1(z) \\
+								&\qquad \text{return } \pi_1(z) \\
 								&\text{else } \\
-								&\quad \text{return } a_0\\
+								&\qquad \text{return } a_0\\
 								&\text{end if}
 			\end{align*}
 			qui est total et énumère \(E\).
