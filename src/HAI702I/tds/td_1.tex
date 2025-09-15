@@ -172,7 +172,21 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+			\item Par définition du produit vectoriel, \(v\) est orthogonal
+			à \(u\) et à \(x\) donc en particulier à \(u\).
+
+			\item On pose \(x=\lambda(u\wedge v)\). Alors
+			\begin{equation*}
+				\begin{aligned}
+					u \wedge (\lambda u \wedge v)
+					&= \langle u,v \rangle \lambda v - \langle u, \lambda u\rangle v\\
+					&= -\lambda \langle u,u\rangle v\\
+					&= -\lambda \nn{u}^2v
+				\end{aligned}
+			\end{equation*}
+			Donc \(\boxed{\lambda=-\frac{1}{\nn{u}^2}}\).%
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
