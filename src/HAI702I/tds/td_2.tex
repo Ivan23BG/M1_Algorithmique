@@ -1,22 +1,220 @@
+Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Transformation de \(\bb R^2\)] \,\\% 1
+	Ecrire pour chaque application linéaire ci dessous la matrice (dans la base canonique) de:
+	\begin{enumerate}
+		\item la rotation d'angle \(\theta\) et de centre \((0, 0)\),
+
+		\item la projection sur la droite \(\vect\begin{pmatrix}
+			a_1\\
+			a_2
+		\end{pmatrix}\),
+
+		\item la symétrie par rapport à la droite \(\vect\begin{pmatrix}
+			a_1\\
+			a_2
+		\end{pmatrix}\).
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item La matrice de la rotation d'angle \(\theta\) et de centre \((0, 0)\) est:
+			\begin{equation*}
+				R_\theta = 
+				\begin{pmatrix}
+					\cos(\theta) & -\sin(\theta)\\
+					\sin(\theta) & \cos(\theta)
+				\end{pmatrix}.
+			\end{equation*}
+
+			\item La matrice de la projection sur la droite \(\vect\begin{pmatrix}
+				a_1\\
+				a_2
+			\end{pmatrix}\) est:
+			\begin{equation*}
+				P = \frac{1}{a_1^2 + a_2^2}
+				\begin{pmatrix}
+					a_1^2 & a_1 a_2\\
+					a_1 a_2 & a_2^2
+				\end{pmatrix}.
+			\end{equation*}
+
+			\item La matrice de la symétrie par rapport à la droite \(\vect\begin{pmatrix}
+				a_1\\
+				a_2
+			\end{pmatrix}\) est:
+			\begin{equation*}
+				S = \frac{1}{a_1^2 + a_2^2}
+				\begin{pmatrix}
+					a_1^2 - a_2^2 & 2 a_1 a_2\\
+					2 a_1 a_2 & a_2^2 - a_1^2
+				\end{pmatrix}.
+			\end{equation*}
+		\end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] \,\\% 2
+	Soit \(a,b\in\bb R^3\). On note \(a_{\perp b}\) le vecteur projeté de \(a\) sur le plan orthogonal à \(b\).
+	\begin{enumerate}
+		\item Exprimer \(a_{\perp b}\) en fonction de \(a\) et \(b\).
+		\item Démontrer que \(a_{\perp b} = \frac{(b\wedge a)\wedge b}{\nn{b}^2}\).
+		\item Trouver une matrice \(M \in\bb R^{3\times 3}\) telle que \(a_{\perp b} = M a\).
+		Est-elle inversible?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Non traité.
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Inverser des matrices sans calculs] \,\\% 3
+	\begin{enumerate}
+		\item Soit
+		\begin{equation*}
+			A = 
+			\begin{pmatrix}
+				-1 & 1 & 1\\
+				1 & -1 & 1\\
+				1 & 1 & -1
+			\end{pmatrix}.
+		\end{equation*}
+		Montrer que \(A^2 = 2I_3 - A\). En déduire que \(A\) est inversible et calculer \(A^{-1}\).
+
+		\item Soit 
+		\begin{equation*}
+			A = 
+			\begin{pmatrix}
+				1 & 0 & 2\\
+				0 & -1 & 1\\
+				1 & -2 & 0
+			\end{pmatrix}.
+		\end{equation*}
+		Calculer \(A^3-A\). En déduire que \(A\) est inversible et calculer \(A^{-1}\).
+
+		\item Soit \(A\in \bb R^{n\times n}\) une matrice nilpotente, c'est-à-dire qu'il existe \(p\in\bb N\) tel que \(A^p = 0\).
+		Démontrer que la matrice \(I_n - A\) est inversible et déterminer son inverse.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A remplir, traité.
+	\end{td-sol}
+}{}
+
 
 % ----- Consignes exo 4 ----- %
-\begin{td-exo}[] \(\star\) \,\\% 4
-	Dans l'espace muni d'un repère orthonormal. 
-	On note \(\mathcal D\) la droite passant par le point \(A = (1, 3, -2)\) et
-	de vecteur directeur \(u = (2, 1, 0)\), 
-	\(\mathcal P\) le plan d'équation \(2x - 3y + 5z= 7\) et 
-	\(M\) le point de coordonnées \((1, 2, 3)\).
-
-	\begin{enumerate}
-		\item Calculer la distance de \(M\) à la droite \(\mathcal D\).
-
-		\item Calculer la distance de \(M\) au plan \(\mathcal P\).\\
-		\textit{Indication: remarquer que le point \((1, 0, 1)\) appartient au plan \(\mathcal P\).}
-	\end{enumerate}
+\begin{td-exo}[Déterminant d'une matrice triangulaire] \(\star\) \,\\% 4
+	Démontrer que le déterminant d'une matrice triangulaire est le produit de ses
+	entrées diagonales.
 \end{td-exo}
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-        
-        
+		Non traité.
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[Inverser des matrices avec calculs] \,\\% 5
+	A l'aide du pivot de Gauss, dire si les matrices suivantes sont inversibles et,
+	le cas échéant, calculer leur inverse:
+	\begin{enumerate}
+		\item Soit
+		\begin{equation*}
+			A = 
+			\begin{pmatrix}
+				1 & 1 & 2\\
+				1 & 2 & 1\\
+				2 & 1 & 1
+			\end{pmatrix}.
+		\end{equation*}
+
+		\item Soit
+		\begin{equation*}
+			B = 
+			\begin{pmatrix}
+				1 & 4 & 7\\
+				2 & 5 & 8\\
+				3 & 6 & 9
+			\end{pmatrix}.
+		\end{equation*}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Non traité.
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[Décomposition d'une rotation] \(\star\) \,\\% 6
+	On appelle cisaillement horizontal (\(x\)-shear) les transformations linéaires 
+	de \(\bb R^2\) dont la matrice (dans les bases canoniques) est de la forme
+	\begin{equation*}
+		H_x = 
+		\begin{pmatrix}
+			1 & x\\
+			0 & 1
+		\end{pmatrix}
+		\quad\text{avec } x\in\bb R.
+	\end{equation*}
+	On appelle cisaillement vertical (\(y\)-shear) les transformations linéaires
+	de \(\bb R^2\) dont la matrice (dans les bases canoniques) est de la forme
+	\begin{equation*}
+		V_y = 
+		\begin{pmatrix}
+			1 & 0\\
+			y & 1
+		\end{pmatrix}
+		\quad\text{avec } y\in\bb R.
+	\end{equation*}
+	
+	\begin{enumerate}
+		\item Représenter l'effet de ces transformations sur la base canonique.
+
+		\item Soit \(R_{-\theta}\) la matrice de rotation d'angle \(-\theta\in\bb R\).
+		Démontrer la décomposition suivante:
+		\begin{equation*}
+			R_{-\theta} = H_{-\tan(\frac{\theta}{2})} V_{-\sin(\theta)} H_{\tan(\frac{\theta}{2})}.
+		\end{equation*}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Non traité.
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 7 ----- %
+\begin{td-exo}[] \(\star\) \,\\% 7
+	Soit \(A\) une matrice carrée à coefficients réels. Si \(A\) est inversible,
+	est-ce que \(A^t\) est inversible? Si oui, quel est son inverse? Justifier.
+\end{td-exo}
+
+% ----- Solutions exo 7 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Non traité.
+	\end{td-sol}
+}{}
