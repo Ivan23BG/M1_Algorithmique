@@ -173,19 +173,64 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
 		\begin{enumerate}
-			\item Par définition du produit vectoriel, \(v\) est orthogonal
-			à \(u\) et à \(x\) donc en particulier à \(u\).
+			\item Si l'équation admet une solution alors par définition 
+			du produit vectoriel on a \(v\) orthogonal à \(u\) et \(x\),
+			donc en particulier \(v\) est orthogonal à \(u\).
 
-			\item On pose \(x=\lambda(u\wedge v)\). Alors
+			\item Une solution colinéaire à \(u \wedge v\) s'écrit \(x = \lambda(u \wedge v)\) avec \(\lambda \in \bb R\).
+			Calculons \(u \wedge x\):
 			\begin{equation*}
 				\begin{aligned}
-					u \wedge (\lambda u \wedge v)
+					u \wedge x
+					&= u \wedge (\lambda(u \wedge v))\\
 					&= \langle u,v \rangle \lambda v - \langle u, \lambda u\rangle v\\
 					&= -\lambda \langle u,u\rangle v\\
 					&= -\lambda \nn{u}^2v
 				\end{aligned}
 			\end{equation*}
-			Donc \(\boxed{\lambda=-\frac{1}{\nn{u}^2}}\).%
+			Donc 
+			\begin{equation*}
+				\begin{aligned}
+					&-\lambda \nn{u}^2v = v\\
+					\iff &-\lambda \nn{u}^2 = 1\\
+					\iff &\lambda = -\frac{1}{\nn{u}^2}.
+				\end{aligned}
+			\end{equation*}
+			La solution colinéaire à \(u \wedge v\) est donc:
+			\begin{equation*}
+				\boxed{x = -\frac{1}{\nn{u}^2}(u \wedge v)}.
+			\end{equation*}
+
+			\item Une solution de l'équation \(u \wedge x = v\) se situe sur 
+			le plan formé par \(u\) et \(u \wedge v\). On va donc chercher une 
+			solution sous la forme:
+			\begin{equation*}
+				x = \alpha u + \beta (u \wedge v),\quad \alpha, \beta \in \bb R.
+			\end{equation*}
+			On calcule:
+			\begin{equation*}
+				\begin{aligned}
+					u \wedge x
+					&= u \wedge (\alpha u + \beta (u \wedge v))\\
+					&= \alpha (u \wedge u) + \beta (u \wedge (u \wedge v))\\
+					&= 0 + \beta (\langle u,v \rangle u - \langle u,u \rangle v)\\
+					&= -\beta \nn{u}^2 v.
+				\end{aligned}
+			\end{equation*}
+			On en déduit:
+			\begin{equation*}
+				\begin{aligned}
+					&-\beta \nn{u}^2 v = v\\
+					\iff& -\beta \nn{u}^2 = 1\\
+					\iff& \beta = -\frac{1}{\nn{u}^2}.
+				\end{aligned}
+			\end{equation*}
+			Donc l'ensemble des solutions est:
+			\begin{equation*}
+				\boxed{\left\{x = \alpha u - \frac{1}{\nn{u}^2}(u \wedge v) \mid \alpha \in \bb R\right\}}.
+			\end{equation*}
+
+			\item Non traité.
 		\end{enumerate}
 	\end{td-sol}
 }{}
@@ -372,7 +417,7 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		Non traité.
 	\end{td-sol}
 }{}
 
@@ -386,6 +431,6 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 6 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		Non traité.
 	\end{td-sol}
 }{}
