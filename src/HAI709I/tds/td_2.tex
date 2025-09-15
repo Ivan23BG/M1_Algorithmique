@@ -10,9 +10,9 @@
 		\end{gather*}
 		\item négligeables:
 		\begin{gather*}
-			f_1(n) = \frac{1}{n^2+n+1}, \quad f_2(n) = \frac{3}{\log_2(n)}, \quad f_3(n) = 2^{-n}, \\
-			f_4(n) = 2^{-\frac12n}, \quad f_5(n) = \frac{n^2+n+1}{e^n}, \quad f_6(n) = 2^{-\sqrt{n}}, \quad
-			f_7(n) = n^{-\log_2(n)}
+			g_1(n) = \frac{1}{n^2+n+1}, \quad g_2(n) = \frac{3}{\log_2(n)}, \quad g_3(n) = 2^{-n}, \\
+			g_4(n) = 2^{-\frac12n}, \quad g_5(n) = \frac{n^2+n+1}{e^n}, \quad g_6(n) = 2^{-\sqrt{n}}, \quad
+			g_7(n) = n^{-\log_2(n)}
 		\end{gather*}
 	\end{itemize}
 \end{td-exo}
@@ -20,7 +20,29 @@
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{itemize}
+			\item On a
+			\begin{itemize}
+				\item \(f_1 = n\) est bornée par \(n^2\),
+				\item \(f_2 = n^3 - 4n^2 + 2n + 9\) est bornée par \(n^4\),
+				\item \(f_3 = n \log_2(n)\) est bornée par \(n^2\),
+				\item \(f_4 = {1.1}^n\) n'est pas bornée par un polynôme,
+				\item \(f_5 = 2^{\frac12n}\) n'est pas bornée par un polynôme,
+				\item \(f_6 = 2^{\sqrt{n}}\) n'est pas bornée par un polynôme,
+				\item \(f_7 = n^{\log_2(n)}\) n'est pas bornée par un polynôme.
+			\end{itemize}
+
+			\item On a
+			\begin{itemize}
+				\item \(g_1(n) = \frac{1}{n^2+n+1}\) n'est pas négligeable,
+				\item \(g_2(n) = \frac{3}{\log_2(n)}\) n'est pas négligeable,
+				\item \(g_3(n) = 2^{-n}\) est négligeable par rapport à \(\frac1{n}\),
+				\item \(g_4(n) = 2^{-\frac12n}\) est négligeable par rapport à \(\frac1{n}\),
+				\item \(g_5(n) = \frac{n^2+n+1}{e^n}\) est négligeable par rapport à \(\frac1{n}\),
+				\item \(g_6(n) = 2^{-\sqrt{n}}\) est négligeable par rapport à \(\frac1{n}\),
+				\item \(g_7(n) = n^{-\log_2(n)}\) est négligeable par rapport à \(\frac1{n}\),
+			\end{itemize}
+		\end{itemize}
 	\end{td-sol}
 }{}
 
@@ -29,7 +51,7 @@
 \begin{td-exo}[] % 2
 	Considérons un chiffrement de Vigenère \(\pi\) où l’espace de messages est constitué de toutes les
 	chaînes de 3 caractères et \(\gen\) fonctionne de la manière suivante: d’abord, une période \(t\) est
-	tirée uniformément au hasard dans \({2, 3}\), puis une clé \(k\) est tirée uniformément au hasard dans
+	tirée uniformément au hasard dans \({1,2, 3}\), puis une clé \(k\) est tirée uniformément au hasard dans
 	\({0, . . . , 25}^t\).
 	\begin{itemize}
 		\item Définissez un adversaire \(\mathcal{A}\) tel que \(\bb P(\text{PrivK}^{eav}_{\mathcal{A}, \Pi} = 1) > \frac12\).
