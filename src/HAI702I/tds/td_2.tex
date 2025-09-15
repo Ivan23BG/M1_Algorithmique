@@ -78,7 +78,7 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 
 
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[Inverser des matrices sans calculs] \,\\% 3
+\begin{td-exo}[Inverser des matrices sans calculs] \,% 3
 	\begin{enumerate}
 		\item Soit
 		\begin{equation*}
@@ -110,7 +110,139 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		A remplir, traité.
+		\begin{enumerate}
+			\item On calcule:
+			\begin{equation*}
+				A^2 = 
+				\begin{pmatrix}
+					-1 & 1 & 1\\
+					1 & -1 & 1\\
+					1 & 1 & -1
+				\end{pmatrix}
+				\begin{pmatrix}
+					-1 & 1 & 1\\
+					1 & -1 & 1\\
+					1 & 1 & -1
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					3 & -1 & -1\\
+					-1 & 3 & -1\\
+					-1 & -1 & 3
+				\end{pmatrix}
+				= 2I_3 - A.
+			\end{equation*}
+			Donc \(A^2 = 2I_3 - A\). Il en suit
+			\begin{equation*}
+				\begin{aligned}
+					A^2 = 2I_3 - A
+					&\iff A^2 + A = 2I_3\\
+					&\iff \frac12(A^2 + A) = I_3\\
+					&\iff A\left(\frac12(A + I_3)\right) = I_3.
+				\end{aligned}
+			\end{equation*}
+			Donc \(A\) est inversible et
+			\begin{equation*}
+				\boxed{A^{-1} = \frac12(A + I_3)}.
+			\end{equation*}
+
+			\item On calcule:
+			\begin{equation*}
+				A^2 = 
+				\begin{pmatrix}
+					1 & 0 & 2\\
+					0 & -1 & 1\\
+					1 & -2 & 0
+				\end{pmatrix}
+				\begin{pmatrix}
+					1 & 0 & 2\\
+					0 & -1 & 1\\
+					1 & -2 & 0
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					3 & -4 & 2\\
+					1 & -1 & -1\\
+					1 & 2 & 0
+				\end{pmatrix}.
+			\end{equation*}
+			\begin{equation*}
+				A^3 = 
+				\begin{pmatrix}
+					1 & 0 & 2\\
+					0 & -1 & 1\\
+					1 & -2 & 0
+				\end{pmatrix}
+				\begin{pmatrix}
+					3 & -4 & 2\\
+					1 & -1 & -1\\
+					1 & 2 & 0
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					5 & 0 & 2\\
+					0 & 3 & 1\\
+					1 & -2 & 4
+				\end{pmatrix}.
+			\end{equation*}
+			On remarque alors que
+			\begin{equation*}
+				\begin{aligned}
+					A^3 - A
+					&= 
+					\begin{pmatrix}
+						5 & 0 & 2\\
+						0 & 3 & 1\\
+						1 & -2 & 4
+					\end{pmatrix}
+					-
+					\begin{pmatrix}
+						1 & 0 & 2\\
+						0 & -1 & 1\\
+						1 & -2 & 0
+					\end{pmatrix}\\
+					&=
+					\begin{pmatrix}
+						4 & 0 & 0\\
+						0 & 4 & 0\\
+						0 & 0 & 4
+					\end{pmatrix}
+					= 4I_3.
+				\end{aligned}
+			\end{equation*}
+			Comme précédemment, on en déduit que \(A\) est inversible et
+			\begin{equation*}
+				\boxed{A^{-1} = \frac14(A^2 - I_3)}.
+			\end{equation*}
+
+			\item Soit \(A\in \bb R^{n\times n}\) une matrice nilpotente. On cherche un inverse \(X\)
+			de sorte que \((I_n - A)X = I_n\). On remarque que dans le cadre des réels,
+			l'inverse de \(1 - x\) est \(\frac{1}{1 - x}\). Mais aussi:
+			\begin{equation*}
+				\frac{1}{1 - x} = 1 + x + x^2 + x^3 + \cdots = \sum_{k=0}^{\infty} x^k.
+			\end{equation*}
+			On pose alors \(Y\) un tel candidat:
+			\begin{equation*}
+				Y = I_n + A + A^2 + A^3 + \cdots = \sum_{k=0}^{p} A^k.
+			\end{equation*}
+			Où \(p\) est le plus petit entier tel que \(A^p = 0\). Il suit alors:
+			\begin{equation*}
+				\begin{aligned}
+					(I_n - A)Y
+					&= Y - AY\\
+					&= \sum_{k=0}^{p} A^k - A \sum_{k=0}^{p} A^{k}\\
+					&= \sum_{k=0}^{p} A^k - \sum_{k=0}^{p} A^{k+1}\\
+					&= \sum_{k=0}^{p} A^k - \sum_{k=1}^{p+1} A^{k}\\
+					&= \sum_{k=0}^{p} A^k - \sum_{k=1}^{p} A^{k} - A^{p+1}\\
+					&= I_n + \sum_{k=1}^{p} A^k - \sum_{k=1}^{p} A^{k} - 0\\
+					&= I_n.
+				\end{aligned}
+			\end{equation*}
+			Notre candidat était bien choisi, donc \(I_n - A\) est inversible et
+			\begin{equation*}
+				\boxed{{(I_n - A)}^{-1} = \sum_{k=0}^{p} A^k}.
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
