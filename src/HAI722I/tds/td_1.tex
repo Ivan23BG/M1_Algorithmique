@@ -1,21 +1,84 @@
 \subsection{Convexité: ensembles et fonctions}\label{subsec:ss_1}
 
 % ----- Consignes exo 1 ----- %
-\begin{td-exo}[Convexité] % 1
-Exercise 1 content
+\begin{td-exo}[Convexité]\, % 1
+	\begin{enumerate}
+		\item Soit une famille (éventuellement infinie) d'inégalités linéaires
+		\(a_i^T x \leq b_i,i\in I\). Soit \(C\) son ensemble de solutions.
+		Montrer que \(C\) est convexe.
+
+		\item Montrer que la boule fermée \(\mathsf{B}(a,r)\) est convexe
+		pour tout \(a\in\bb R^n\) et \(r\in \bb R^+\).
+
+		\item Soit \(S\subseteq\bb R^n\) et soit \(W\) l'ensemble de toutes les
+		combinaisons convexes de points de \(S\). Montrer que \(W\) est convexe.
+
+		\item Soit \(C\) un convexe. Montrer que 
+		\begin{equation*}
+			\bigcup_{0\leq\lambda\leq 1}\lambda C
+		\end{equation*}
+		est convexe.
+
+		\item Une matrice \(A=(a_{ij})\) de dimension \(n\times n\) est bistochastique si 
+		elle satisfait
+		\begin{equation*}
+			\begin{aligned}
+				\forall i\in\{1,\ldots,n\}, & \sum_{j=1}^n a_{ij} = 1, \\
+				\forall j\in\{1,\ldots,n\}, & \sum_{i=1}^n a_{ij} = 1, \\
+				\forall (i,j)\in{\{1,\ldots,n\}}^2, & a_{ij}\geq 0.
+			\end{aligned}
+		\end{equation*}
+		Une matrice de permutation \(P\) est une matrice bistochastique à valeurs 
+		entières, c'est-à-dire que dans chaque ligne de \(P\) il y a un et un seul élément égal à 1,
+		et les autres sont nuls. De même pour chaque colonne.
+		\begin{enumerate}
+			\item Montrer que pour toute matrice bistochastique \(A\), il existe
+			une matrice de permutation \(P\) de même dimension telle que \(p_{ij}=0\)
+			si \(a_{ij}=0\).
+
+			\item Est-ce qu'une combinaison convexe de matrices de permutation est 
+			une matrice bistochastique?
+
+			\item Montrer que toute matrice bistochastique \(A\) est une combinaison convexe
+			de matrices de permutation.
+
+			\item Trouver la combinaison convexe pour la matrice \(A\) suivante:
+			\begin{equation*}
+				A = \begin{pmatrix}
+					0.15 & 0.37 & 0 & 0.48 \\
+					0.02 & 0.15 & 0.67 & 0.16 \\
+					0.46 & 0.02 & 0.16 & 0.36 \\
+					0.37 & 0.46 & 0.17 & 0
+				\end{pmatrix}.
+			\end{equation*}
+		\end{enumerate}
+
+		\item Soient maintenant \(C_1\) et \(C_2\) deux convexes disjoints et
+		\begin{equation*}
+			D_1 = \bigcup_{0\leq\lambda\leq 1}\lambda C_1, \quad i=1,2.
+		\end{equation*}
+		Montrer que l'un des deux convexes \(C_1\cap D_2\) ou \(C_2\cap D_1\) est vide.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		Exercice solution
+		A remplir %TODO solve exercise 1
 	\end{td-sol}
 }{}
 
 
 % ----- Consignes exo 2 ----- %
-\begin{td-exo}[Combinaison convexe] % 2
-Exercise 2 content
+\begin{td-exo}[Combinaison convexe]\, % 2
+	\begin{enumerate}
+		\item Rappeler la définition d'une combinaison convexe.
+		\item Est-ce que le point \(A\) de coordonnées \((1,1,1)\) est une combinaison convexe
+		des points \((2,2,0), (0,0,3), (0,0,0)\)?
+		\item Déterminer si le point de coordonnées \((0,7)\) est une combinaison convexe
+		des points \((3,6),(-6,9),(2,1),(-1,1)\).
+		\item Déterminer gra
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 2 ----- %
@@ -144,7 +207,7 @@ Exercise 2 content
 				\begin{aligned}
 					g(\lambda x + (1-\lambda) y) 
 					& = \max\left(f_1(\lambda x + (1-\lambda) y), f_2(\lambda x + (1-\lambda) y)\right) \\
-					& \leq\sim \max\left(\lambda f_1(x) + (1-\lambda) f_1(y), \lambda f_2(x) + (1-\lambda) f_2(y)\right) \\
+					& \leq \max\left(\lambda f_1(x) + (1-\lambda) f_1(y), \lambda f_2(x) + (1-\lambda) f_2(y)\right) \\
 					& \leq \lambda \max\left(f_1(x), f_2(x)\right) + (1-\lambda) \max\left(f_1(y), f_2(y)\right) \\
 					& = \lambda g(x) + (1-\lambda) g(y).
 				\end{aligned}
@@ -154,12 +217,207 @@ Exercise 2 content
 			\begin{equation*}
 				\begin{aligned}
 					f(\lambda x + (1-\lambda) y) 
-					& = (\lambda x + (1-\lambda) y)^2 \\
-					& = \lambda^2 x^2 + (1-\lambda)^2 y^2 + 2\lambda(1-\lambda) xy \\
-					& \leq \lambda^2 x^2 + (1-\lambda)^2 y^2 + \lambda(1-\lambda)(x^2 + y^2) \\
-					& = \lambda x^2 + (1-\lambda) y^2 \\
-					& = \lambda f(x) + (1-\lambda) f(y).
+					& = {(\lambda x + (1-\lambda) y)}^2 \\
+					& = \lambda^2 x^2 + {(1-\lambda)}^2 y^2 + 2\lambda(1-\lambda) xy \\
+					& \iff \lambda^2 x^2 + {(1-\lambda)}^2 y^2 + 2\lambda(1-\lambda) xy - \lambda x^2 - (1-\lambda) y^2 \leq 0 \\
+					& \iff \lambda (1-\lambda)\left(\frac{\lambda}{1-\lambda} x^2 + \frac{1-\lambda}{\lambda} y^2 + 2xy - \frac{x^2}{1-\lambda} - \frac{y^2}{\lambda}\right) \leq 0 \\
+					& \iff \lambda (1-\lambda)\left(-{\left(x - y\right)}^2\right) \leq 0.
 				\end{aligned}
+			\end{equation*}
+			Or tous les termes sont positifs sauf le dernier. Donc l'inégalité est vérifiée.
+		\end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 8 ----- %
+\begin{td-exo}[Fonction convexe] % 8
+	Soit \(f\ \colon\ \bb R^n \to \bb R\) une fonction continue telle que
+	\begin{equation*}
+		\forall (x,y) \in \bb R^2, \quad f\left(\frac{x+y}{2}\right) \leq \frac{f(x) + f(y)}{2}.
+	\end{equation*}
+	Prouver que \(f\) est convexe.\\
+	Indication: Montrer par récurrence que sur \(\n\geq 2\), on a
+	\begin{equation*}
+		\forall (x,y) \in \bb R^2, \forall p\in\{0,1,\ldots,2^n\}, \quad f \left( \frac p{2^n}x + \left(1 - \frac p{2^n}\right)y\right) \leq \frac p{2^n} f(x) + \left(1 - \frac p{2^n}\right) f(y).
+	\end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 12 ----- %
+\begin{td-exo}[Forme standard et forme canonique] % 12
+	Dans cet exercice vous devez mettre les programmes suivants sous forme standard et donner
+	également la forme matricielle.
+	\begin{enumerate}
+		\item
+		\begin{equation*}
+			\begin{cases}
+				\max z = x_1 + x_2 \\
+				x_1 + 5 x_2 \leq 5 \\
+				2x_1 + x_2 \leq 4 \\
+				x_1 \geq 0,\quad i=1,2.
+			\end{cases}
+		\end{equation*}
+
+		\item
+		\begin{equation*}
+			\begin{cases}
+				\max z = 80 x_1 + 60 x_2 \\
+				0.2x_1 + 0.32 x_2 \leq 0.25\\
+				x_1 + x_2 = 1 \\
+				x_1 \geq 0,\quad i=1,2.
+			\end{cases}
+		\end{equation*}
+
+		\item Réécrire le programme précédent dans le cas où la fonction objectif
+		est la minimisation.
+
+		\item
+		\begin{equation*}
+			\begin{cases}
+				\max z = 5x_1 + 2x_2 \\
+				6x_1 + x_2 \geq 6 \\
+				4x_1 + 3x_2  \geq 12 \\
+				x_1 + 2x_2 \geq 4 \\
+				x_1 \geq 0,\quad i=1,2.
+			\end{cases}
+		\end{equation*}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 12 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\max z = x_1 + x_2 + 0\cdot x_3 + 0\cdot x_4 \\
+					x_1 + 5 x_2 + x_3 = 5 \\
+					2x_1 + x_2 + x_4 = 4 \\
+					x_1, x_2, x_3, x_4 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\max z = \begin{pmatrix} 1 & 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \\
+					\begin{pmatrix}
+						1 & 5 & 1 & 0 \\
+						2 & 1 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
+					=
+					\begin{pmatrix} 5 \\ 4 \end{pmatrix} \\
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\max z = 80 x_1 + 60 x_2 + 0\cdot x_3 - M \cdot x_4\\
+					0.2x_1 + 0.32 x_2 + x_3 = 0.25\\
+					x_1 + x_2 + x_4 = 1 \\
+					x_1, x_2, x_3, x_4 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\max z = \begin{pmatrix} 80 & 60 & 0 & -M \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \\
+					\begin{pmatrix}
+						0.2 & 0.32 & 1 & 0 \\
+						1 & 1 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
+					=
+					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix} \\
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\min z = -80 x_1 - 60 x_2 + 0\cdot x_3 + M \cdot x_4\\
+					0.2x_1 + 0.32 x_2 + x_3 = 0.25\\
+					x_1 + x_2 + x_4 = 1 \\
+					x_1, x_2, x_3, x_4 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\min z = \begin{pmatrix} -80 & -60 & 0 & M \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \\
+					\begin{pmatrix}
+						0.2 & 0.32 & 1 & 0 \\
+						1 & 1 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
+					=
+					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix} \\
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\max z = 5x_1 + 2x_2 + 0\cdot x_3 + 0\cdot x_4 + 0\cdot x_5 + M\cdot (x_6 + x_7 + x_8)\\
+					6x_1 + x_2 - x_3 + x_6= 6 \\
+					4x_1 + 3x_2 - x_4 + x_7 = 12 \\
+					x_1 + 2x_2 - x_5 + x_8 = 4 \\
+					x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\max z = \begin{pmatrix} 5 & 2 & 0 & 0 & 0 & M & M & M \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix} \\
+					\begin{pmatrix}
+						6 & 1 & -1 & 0 & 0 & 1 & 0 & 0 \\
+						4 & 3 & 0 & -1 & 0 & 0 & 1 & 0 \\
+						1 & 2 & 0 & 0 & -1 & 0 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix}
+					=
+					\begin{pmatrix} 6 \\ 12 \\ 4 \end{pmatrix} \\
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix} \geq 0.
+				\end{cases}
 			\end{equation*}
 		\end{enumerate}
 	\end{td-sol}
@@ -167,13 +425,78 @@ Exercise 2 content
 
 
 % ----- Consignes exo 2 ----- %
-\begin{td-exo}[Optional title 2] % 2
-Exercise 2 content
+\begin{td-exo}[] % 2
+
 \end{td-exo}
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		Exercice solution
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
 	\end{td-sol}
 }{}
