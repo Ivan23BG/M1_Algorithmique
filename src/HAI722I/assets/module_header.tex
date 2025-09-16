@@ -5,9 +5,6 @@
 % ==============================================================================
 
 % Adjusts indentation and spacing for different section levels in the TOC.
-\dottedcontents{section}[3.5em]{}{2.3em}{1pc}    % Suprasection: extra indent for visual hierarchy
-\dottedcontents{subsection}[5.8em]{}{2.8em}{1pc}         % Section: increased indent for clarity
-\dottedcontents{subsubsection}[9.0em]{}{3.2em}{1pc}      % Subsection: further indent for structure
 
 % ============================================================================== 
 % GENERAL MATH SHORTCUTS
@@ -40,3 +37,6 @@
 \mytheorem{remark}{Remarque}{verdant}{}{}          % Remark: green, unnumbered
 
 \makeatother
+
+\counterwithout{tdcounter}{section} 
+

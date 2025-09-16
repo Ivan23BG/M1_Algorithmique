@@ -1,4 +1,4 @@
-\subsection{Convexité: ensembles et fonctions}\label{subsec:ss_1}
+\section{Convexité: ensembles et fonctions}\label{subsec:ss_1}
 
 % ----- Consignes exo 1 ----- %
 \begin{td-exo}[Convexité]\, % 1
@@ -77,7 +77,8 @@
 		des points \((2,2,0), (0,0,3), (0,0,0)\)?
 		\item Déterminer si le point de coordonnées \((0,7)\) est une combinaison convexe
 		des points \((3,6),(-6,9),(2,1),(-1,1)\).
-		\item Déterminer gra
+		\item Déterminer graphiquement si le point de coordonnées \((1,2)\) est une combinaison
+		convexe des points \((1,1)\) et \((2,-1)\).
 	\end{enumerate}
 \end{td-exo}
 
@@ -90,7 +91,7 @@
 
 
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[Ensembles convexe] % 3
+\begin{td-exo}[Ensembles convexe]\,\\ % 3
 	Montrer qu'étant donné un sous-ensemble convexe \(C\) et deux réels positifs \(\alpha\) et \(\beta\)
 	alors on a
 	\begin{equation*}
@@ -98,7 +99,7 @@
 	\end{equation*}
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
 		Commencons par montrer l'inclusion \(\left(\alpha + \beta\right) C \subset \alpha C + \beta C\).
@@ -120,7 +121,7 @@
 
 
 % ----- Consignes exo 4 ----- %
-\begin{td-exo}[Ensembles convexes] % 4
+\begin{td-exo}[Ensembles convexes]\,\\ % 4
 	Soit \(S\sub\bb R^n\) vérifiant la propriété de \defemph{demi-somme} suivante:
 	\begin{equation*}
 		\forall x,y \in S,\quad \frac{x+y}{2} \in S.
@@ -148,27 +149,70 @@
 
 
 % ----- Consignes exo 5 ----- %
-\begin{td-exo}[Ensembles convexes] % 5
-Exercise 2 content
+\begin{td-exo}[Ensembles convexes]\,\\ % 5
+	Lesquels de ces ensembles sont convexes?
+	\begin{enumerate}
+		\item \(S=\left\{(x_1,x_2)\ \mid\ 3x_1^2 + 2x_2^2 \leq 12\right\}\),
+		\item \(S=\left\{(x_1,x_2)\ \mid\ x_1 \geq 3, x_1 \leq 5\right\}\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		Exercice solution
+		A remplir %TODO solve exercise 5
 	\end{td-sol}
 }{}
 
 
 % ----- Consignes exo 6 ----- %
-\begin{td-exo}[Ensembles convexes] % 6
-Exercise 2 content
+\begin{td-exo}[Ensembles convexes]\ % 6
+	\begin{enumerate}
+		\item Soit \(C\) un convexe. Montrer que \(x\in C\) est un point extrême de \(C\)
+		si et seulement si \(C\setminus\{x\}\) est convexe.
+
+		\item A-t-on une caractérisation similaire pour une face de \(C\)?
+
+		\item On considère dans \(\bb R^n\) les deux boules suivantes:
+		\begin{itemize}
+			\item \(\mathsf{B}_1=\{x = (x_1,\ldots,x_n)\in \bb R^n\ \mid\ \sum_{i=1}^\infty \n{x_i} \leq 1\}\)
+			\item \(\mathsf{B}_\infty = \{x = (x_1,\ldots,x_n)\in \bb R^n\ \mid\ \max_{1\leq i\leq n} \n{x_i} \leq 1\}\)
+		\end{itemize}
+		Quels sont les points extrêmes de \(\mathsf{B}_1\) et \(\mathsf{B}_\infty\)?
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 6 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		Exercice solution
+		\begin{enumerate}
+			\item Commencons par le sens direct:\\
+			Soit \(x\in C\) un point extrême de \(C\). Montrons que \(C\setminus\{x\}\) est convexe.
+
+			Soit \(y,z \in C\setminus\{x\}\) et \(\lambda \in \ff{0,1}\). Alors
+			\begin{equation*}
+				\lambda y + (1-\lambda) z \in C.
+			\end{equation*}
+			car \(C\) est convexe. Supposons par l'absurde que \(\lambda y + (1-\lambda) z = x\). 
+			Alors \(x\) est une combinaison convexe de \(y\) et \(z\) avec \(\lambda \in \ff{0,1}\).
+			Cela contredit le fait que \(x\) est un point extrême de \(C\). Donc la
+			combinaison convexe \(\lambda y + (1-\lambda) z\) est dans \(C\setminus\{x\}\).
+			Donc \(C\setminus\{x\}\) est convexe.
+
+			Montrons maintenant le sens réciproque:\\
+			Soit \(x\in C\) tel que \(C\setminus\{x\}\) est convexe. Montrons que \(x\) est un point extrême de \(C\).
+
+			Supposons par l'absurde que \(x\) n'est pas un point extrême de \(C\). Alors, il existe \(y,z \in C\) et \(\lambda \in \oo{0,1}\) tels que
+			\begin{equation*}
+				x = \lambda y + (1-\lambda) z.
+			\end{equation*}
+			Comme \(y,z \in C\) et \(x\) est une combinaison convexe de \(y\) et \(z\), on a forcément \(y \neq x\) et \(z \neq x\).
+			Donc \(y,z \in C\setminus\{x\}\). Comme \(C\setminus\{x\}\) est convexe, on a
+			\begin{equation*}
+				x = \lambda y + (1-\lambda) z \in C\setminus\{x\}.
+			\end{equation*}
+			C'est une contradiction. Donc \(x\) est un point extrême de \(C\).
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
@@ -231,7 +275,7 @@ Exercise 2 content
 
 
 % ----- Consignes exo 8 ----- %
-\begin{td-exo}[Fonction convexe] % 8
+\begin{td-exo}[Fonction convexe]\,\\% 8
 	Soit \(f\ \colon\ \bb R^n \to \bb R\) une fonction continue telle que
 	\begin{equation*}
 		\forall (x,y) \in \bb R^2, \quad f\left(\frac{x+y}{2}\right) \leq \frac{f(x) + f(y)}{2}.
@@ -243,42 +287,74 @@ Exercise 2 content
 	\end{equation*}
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 8 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		A remplir %TODO solve exercise 8
 	\end{td-sol}
 }{}
 
+\section{Divers formulations}
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
+% ----- Consignes exo 9 ----- %
+\begin{td-exo}[Reformulation en programme linéaire]\,\\% 9
+	Reformuler les problèmes suivants sous forme de programme linéaire.
+	\begin{enumerate}
+		\item \begin{equation*}
+			\begin{cases}
+				\min z = 2x_1 + 3 \n{x_2 - 10} \\
+				\n{x_1 + 2} + \n {x_2} \leq 5\\
+				2x_1 + x_2 \leq 4
+			\end{cases}
+		\end{equation*}
+	\end{enumerate}
 
+	\item Soit un ensemble d'inégalités linéaires 
+	\begin{equation*}
+		a_i^T x \leq b_i, \quad i=1,\ldots,m,a_i\in\bb R^n,b_i\in\bb R.
+	\end{equation*}
+	Formuler un modèle (uniquement des contraintes sans fonction objectif) pour lequel un point \(x\in\bb N^n\)
+	satisfait au moins \(k\) des \(m\) contraintes (\(k\leq m\)) entiers de plus satisfaite
+	\begin{equation*}
+		0\leq x_j \leq M,\quad \forall j \in \{1,\ldots,m\}.
+	\end{equation*}
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 9 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		A remplir %TODO solve exercise 9
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
-
+% ----- Consignes exo 10 ----- %
+\begin{td-exo}[Linéarisation de fonctions non linéaires] % 10
+	A remplir %TODO write exercise 10
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 10 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		A remplir %TODO solve exercise 10
 	\end{td-sol}
 }{}
 
+
+% ----- Consignes exo 11 ----- %
+\begin{td-exo}[] % 11
+	A remplir %TODO write exercise 11
+\end{td-exo}
+
+% ----- Solutions exo 11 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A remplir %TODO solve exercise 11
+	\end{td-sol}
+}{}
 
 % ----- Consignes exo 12 ----- %
-\begin{td-exo}[Forme standard et forme canonique] % 12
+\begin{td-exo}[Forme standard et forme canonique]\,\\ % 12
 	Dans cet exercice vous devez mettre les programmes suivants sous forme standard et donner
 	également la forme matricielle.
 	\begin{enumerate}
@@ -341,7 +417,7 @@ Exercise 2 content
 					\end{pmatrix}
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
 					=
-					\begin{pmatrix} 5 \\ 4 \end{pmatrix} \\
+					\begin{pmatrix} 5 \\ 4 \end{pmatrix}, \quad
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
 				\end{cases}
 			\end{equation*}
@@ -365,7 +441,7 @@ Exercise 2 content
 					\end{pmatrix}
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
 					=
-					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix} \\
+					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix},\quad
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
 				\end{cases}
 			\end{equation*}
@@ -389,7 +465,7 @@ Exercise 2 content
 					\end{pmatrix}
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
 					=
-					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix} \\
+					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix}, \quad
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
 				\end{cases}
 			\end{equation*}
@@ -415,7 +491,7 @@ Exercise 2 content
 					\end{pmatrix}
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix}
 					=
-					\begin{pmatrix} 6 \\ 12 \\ 4 \end{pmatrix} \\
+					\begin{pmatrix} 6 \\ 12 \\ 4 \end{pmatrix}, \quad
 					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix} \geq 0.
 				\end{cases}
 			\end{equation*}
@@ -425,7 +501,7 @@ Exercise 2 content
 
 
 % ----- Consignes exo 13 ----- %
-\begin{td-exo}[] % 13
+\begin{td-exo}[]\,\\ % 13
 	Nous considérons les programmes linéaires avec des variables \(x_1\in\{0, u_j\}\).
 	Montrer que nous pouvons nous ramener à un programme linéaire en nombres entiers.
 	Appliquez-le au problème suivant:
@@ -464,66 +540,188 @@ Exercise 2 content
 }{}
 
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
+% ----- Consignes exo 14 ----- %
+\begin{td-exo}[Points extrêmes]\,\\ % 14
+	On considère le polyèdre \(S\) de \(\bb R^3\) défini par les conditions suivantes:
+	\begin{equation*}
+		\begin{cases}
+			x_1 + x_3 + x_5 = 2\\
+			2x_2 + x_3 + x_4 = 4\\
+			x_1 + x_2 + x_4 + 2x_5 = 3\\
+			x_i \geq 0, \quad i=1,\ldots,5.
+		\end{cases}
+	\end{equation*}
+	\begin{enumerate}
+		\item Le point \(x*=(1,1,1,1,0)\) est-il un point extrême? Pourquoi?
 
+		\item Les points suivants sont-ils des points extrêmes? Dégénérés?
+		\begin{itemize}
+			\item \(x_1 = (0,-1,2,4,0)\),
+			\item \(x_2 = (0.5,0,1.5,2.5,0)\),
+			\item \(x_3 = (2,3,0,-2,0)\),
+			\item \(x_4 = (\frac43,\frac53,\frac23,0,0)\).
+		\end{itemize}
+	\end{enumerate}
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 14 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+			\item On commence par vérifier que \(x*\) respecte les contraintes: %TODO
+
+			On constate qu'il vérifie bien les contraintes, mais on sait qu'il n'y a
+			que 3 variables en base. Or, \(x*\) en a 4 de non nulles. Donc, \(x*\) n'est pas un point extrême.
+
+			\item On commence par vérifier que les points respectent les contraintes:
+			\begin{itemize}
+				\item \(x_1\) ne respecte pas les contraintes car \(x_2 < 0\).
+				\item \(x_2\) respecte les contraintes et a 3 variables en base. Donc, \(x_2\) est un point extrême non dégénéré.
+				\item \(x_3\) ne respecte pas les contraintes car \(x_4 < 0\).
+				\item \(x_4\) respecte les contraintes et a 3 variables en base. Donc, \(x_4\) est un point extrême non dégénéré.
+			\end{itemize}
+			On rappelle qu'un point est dégénéré s'il a plus de \(m\) variables nulles où \(m\) est le nombre de variables originelles.
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
+% ----- Consignes exo 15 ----- %
+\begin{td-exo}[Points extrêmes et solutions]\,\\ % 15
+	Soit le polyèdre \(P = \{x \in \bb R^3 \mid Ax \leq b\}\) avec
+	\begin{equation*}
+		A = \begin{pmatrix}
+			2, 3, 6 \\
+			-1, 0, 0 \\
+			0, -1, 0 \\
+			0, 0, -1 \\
+		\end{pmatrix}, \quad
+		b = \begin{pmatrix}
+			6, 1, 0, 0
+		\end{pmatrix}.
+	\end{equation*}
+	On supposera que le polyèdre est borné.
 
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 15 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		Pour trouver les points extrêmes, on cherche à résoudre
+		tous les arrangements possibles de 3 contraintes parmi les 4.
+		On énumère les lignes qu'on choisit comme contraintes comme suit et on les résout dans l'ordre:
+		\begin{equation*}
+			(1,2,3), (1,2,4), (1,3,4), (2,3,4).
+		\end{equation*}
+		\begin{itemize}
+			\item Pour (1,2,3), on résout:
+			\begin{equation*}
+				\begin{cases}
+					2x_1 + 3x_2 + 6x_3 = 6\\
+					-x_1 = 1\\
+					-x_2 = 0
+				\end{cases}
+			\end{equation*}
+			et on trouve \(x_1 = (-1, 0, \frac43)\).
+			\item Pour (1,2,4), on trouve \(x_2 = (-1, \frac83, 6)\),
+			\item Pour (1,3,4), on trouve \(x_3 = (3, 0, 0)\),
+			\item Pour (2,3,4), on trouve \(x_4 = (-1, 0, 0)\).	
+		\end{itemize}
+		Les points extrêmes sont donc \(x_1, x_2, x_3\) et \(x_4\).
+		Si on rajoute la contrainte \(x_i \geq 0\), on a seulement \(x_3\) qui reste.
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
-
+% ----- Consignes exo 16 ----- %
+\begin{td-exo}[Points extrêmes]\,\\ % 16
+	Soit \(C\) le polyèdre convexe fermé de \(\bb R^2\) 
+	décrit à l'aide des inégalités suivantes:
+	\begin{equation*}
+		\mathcal{P}_y =
+		\begin{cases}
+			x_1 + \frac83 x_2 \leq 4\\
+			x_1 + x_2 \leq 2\\
+			2x_1 \leq 3\\
+			x_1 \geq 0\\
+		\end{cases}
+	\end{equation*}
+	
+	\begin{enumerate}
+		\item Ecrire \(C\) sous la forme standard.
+		\item Quels sont les points extrêmes de \(C\)?
+	\end{enumerate}
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 16 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+			\item On introduit les variables d'écart \(x_3, x_4, x_5\) pour obtenir la forme standard:
+			\begin{equation*}
+				\begin{cases}
+					x_1 + \frac83 x_2 + x_3 = 4\\
+					x_1 + x_2 + x_4 = 2\\
+					2x_1 + x_5 = 3\\
+					x_i \geq 0, \quad i=1,\ldots,5.
+				\end{cases}
+			\end{equation*}
+
+			\item On écrit le problème matriciellement:
+			\begin{equation*}
+				\begin{cases}
+					\begin{pmatrix}
+						1 & \frac83 & 1 & 0 & 0 \\
+						1 & 1 & 0 & 1 & 0 \\
+						2 & 0 & 0 & 0 & 1
+					\end{pmatrix}
+				\end{cases}
+			\end{equation*}
+			On choisit ensuite 3 contraintes parmi les 5 et on résout les systèmes linéaires associés:
+			\begin{itemize}
+				\item Pour (3,4,5), on trouve \(x_1 = (0, 0, 4,2,3)\),
+				\item Pour (1,2,3), on trouve \(x_2 = (\frac32, \frac12, \frac76, 0, 0)\),
+			\end{itemize}
+			et ainsi de suite. 
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
-
+% ----- Consignes exo 17 ----- %
+\begin{td-exo}[] % 17
+	A remplir %TODO write exercise 17
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 17 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		A remplir %TODO solve exercise 17
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo 2 ----- %
-\begin{td-exo}[] % 2
-
+% ----- Consignes exo 18 ----- %
+\begin{td-exo}[] % 18
+	A remplir %TODO write exercise 18
 \end{td-exo}
 
-% ----- Solutions exo 2 ----- %
+% ----- Solutions exo 18 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		A remplir %TODO solve exercise 18
 	\end{td-sol}
 }{}
+
+
+% % ----- Consignes exo 2 ----- %
+% \begin{td-exo}[] % 2
+
+% \end{td-exo}
+
+% % ----- Solutions exo 2 ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\ %
+		
+% 	\end{td-sol}
+% }{}
