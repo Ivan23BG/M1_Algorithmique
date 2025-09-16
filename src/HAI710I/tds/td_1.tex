@@ -238,6 +238,193 @@
 		L'état initial est \((T, T, A)\) et l'état but est \((C, T, B)\).
 
 		Le nombre d'états est 13, le facteur de branchement est 6.
+
+		Le graphe peut aussi ressembler à:
+
+		\begin{tikzpicture}[
+			node distance=2cm and 1.5cm,
+			state/.style={
+				rectangle, 
+				draw=black, 
+				thick,
+				minimum width=2cm,
+				minimum height=1.5cm,
+				align=center,
+				font=\small
+			},
+			arrow/.style={->,>=Stealth,thick},
+			yellow_num/.style={
+				circle,
+				fill=yellow,
+				inner sep=1pt,
+				font=\tiny,
+				minimum size=8pt
+			},
+			red_num/.style={
+				circle,
+				fill=red!80,
+				text=white,
+				inner sep=1pt,
+				font=\tiny,
+				minimum size=8pt
+			},
+			goal/.style={
+				rectangle,
+				draw=green!60!black,
+				thick,
+				fill=green!10,
+				minimum width=2cm,
+				minimum height=1.5cm,
+				align=center,
+				font=\small
+			}
+		]
+
+		% Level 0 (Initial state)
+		\node[state] (s1) at (0,0) {\shortstack{CA,B \\ - \\ 0}};
+		\node[yellow_num] at (-0.8,0.6) {1};
+		\node[red_num] at (-0.8,-0.6) {1};
+
+		% Level 1
+		\node[state] (s2) at (-3,-3) {\shortstack{BCA \\ B to C \\ 1}};
+		\node[yellow_num] at (-3.8,-2.4) {2};
+		\node[red_num] at (-3.8,-3.6) {2};
+
+		\node[state] (s3) at (0,-3) {\shortstack{CB,A \\ C to B \\ 1}};
+		\node[yellow_num] at (-0.8,-2.4) {3};
+		\node[red_num] at (-0.8,-3.6) {3};
+
+		\node[state] (s4) at (3,-3) {\shortstack{A,B,C \\ C to - \\ 1}};
+		\node[yellow_num] at (2.2,-2.4) {4};
+		\node[red_num] at (2.2,-3.6) {4};
+
+		% Level 2 from s2
+		\node[state] (s5) at (-3,-6) {\shortstack{CA,B \\ B to - \\ 2}};
+		\node[yellow_num] at (-3.8,-5.4) {5};
+		\node[red_num] at (-3.8,-6.6) {5};
+
+		% Level 2 from s3
+		\node[goal] (s6) at (-1.5,-6) {\shortstack{ACB \\ A to C \\ 2}};
+		\node[yellow_num] at (-2.3,-5.4) {6};
+		\node[red_num] at (-2.3,-6.6) {6};
+
+		\node[state] (s7) at (0,-6) {\shortstack{CA,B \\ C to A \\ 2}};
+		\node[yellow_num] at (-0.8,-5.4) {7};
+
+		\node[state] (s8) at (1.5,-6) {\shortstack{A,B,C \\ C to - \\ 2}};
+		\node[yellow_num] at (0.7,-5.4) {8};
+
+		% Level 2 from s4 (states 9-14)
+		\node[state] (s9) at (1.5,-6) {\shortstack{AB,C \\ - \\ 2}};
+		\node[yellow_num] at (0.7,-5.4) {9};
+
+		\node[state] (s10) at (2.5,-6) {\shortstack{AC,B \\ - \\ 2}};
+		\node[yellow_num] at (1.7,-5.4) {10};
+
+		\node[state] (s11) at (3.5,-6) {\shortstack{BA,C \\ - \\ 2}};
+		\node[yellow_num] at (2.7,-5.4) {11};
+
+		\node[state] (s12) at (4.5,-6) {\shortstack{BC,A \\ - \\ 2}};
+		\node[yellow_num] at (3.7,-5.4) {12};
+
+		\node[state] (s13) at (5.5,-6) {\shortstack{CA,B \\ - \\ 2}};
+		\node[yellow_num] at (4.7,-5.4) {13};
+
+		\node[state] (s14) at (6.5,-6) {\shortstack{CB,A \\ - \\ 2}};
+		\node[yellow_num] at (5.7,-5.4) {14};
+
+		% Level 3 (only shown as we found goal at level 2)
+		\node[state] (s15) at (-3,-9) {\shortstack{BCA \\ - \\ 3}};
+		\node[yellow_num] at (-3.8,-8.4) {15};
+
+		\node[state] (s16) at (-1,-9) {\shortstack{CB,A \\ - \\ 3}};
+		\node[yellow_num] at (-1.8,-8.4) {16};
+
+		\node[state] (s17) at (1,-9) {\shortstack{A,B,C \\ - \\ 3}};
+		\node[yellow_num] at (0.2,-8.4) {17};
+
+		% Arrows
+		\draw[arrow] (s1) -- (s2);
+		\draw[arrow] (s1) -- (s3);
+		\draw[arrow] (s1) -- (s4);
+
+		\draw[arrow] (s2) -- (s5);
+		\draw[arrow] (s3) -- (s6);
+		\draw[arrow] (s3) -- (s7);
+		\draw[arrow] (s3) -- (s8);
+
+		\draw[arrow] (s4) -- (s9);
+		\draw[arrow] (s4) -- (s10);
+		\draw[arrow] (s4) -- (s11);
+		\draw[arrow] (s4) -- (s12);
+		\draw[arrow] (s4) -- (s13);
+		\draw[arrow] (s4) -- (s14);
+
+		\draw[arrow] (s5) -- (s15);
+		\draw[arrow] (s7) -- (s16);
+		\draw[arrow] (s8) -- (s17);
+
+		% Add legend
+		\node[yellow_num] at (8,1) {G};
+		\node at (8.8,1) {Generation order};
+		\node[red_num] at (8,0.5) {E};
+		\node at (8.8,0.5) {Exploration order};
+
+		% Add goal indicator
+		\node[color=green!60!black, font=\small\bfseries] at (-1.5,-7.5) {GOAL FOUND};
+
+		\end{tikzpicture}
+		On marquera en jaune les étants de génération et en rouge ceux d'exploration.
+
+		On a une fonction qui explore un problème en 
+		profondeur et rend un noeux. Voici son implementation:
+		\begin{equation*}
+			\begin{aligned}
+				&\text{Fonction ExplorerProfondeur} (p: \text{Problème}): \text{Noeud} \\
+				&\text{racine} \leftarrow \text{NouveauNoeud} (p.\text{etatInitial}, null, null, 0) \\
+				&\text{retourner ExplorerRec(racine)}; % chktex 36
+				\\ \\
+				&\text{Fonction ExplorerRec} (n: \text{Noeud}): \text{Noeud} \\
+				&\text{si } p.\text{but}?(n.\text{etat}) \text{ alors }\\
+				&\qquad \text{retourner } n; \\
+				&\text{sinon} \\
+				&\qquad \text{pour chaque } a \text{ dans } p.\text{actions}(n.\text{etat}) \text{ faire} \\
+				&\qquad\qquad \text{res} \leftarrow \text{ExplorerRec}(\text{NouveauNoeud}(a.\text{resultat}(n.\text{etat}), n, a, n.\text{cout} + a.\text{cout})); \\
+				&\qquad\qquad \text{si res} \neq \text{null alors retourner res}; \\
+				&\qquad \text{fin pour} \\
+				&\qquad \text{retourner null}; \\
+			\end{aligned}
+		\end{equation*}
+		Une fois de plus, pour éviter de ré-explorer des états, on suppose disposer 
+		d'une fonction qui teste l'appartenance d'un état à ses parents.
+
+		On modifie donc l'algorithme précédent en rajoutant la ligne suivante
+		au début de la boucle:
+		\begin{equation*}
+			e' \leftarrow a.\text{resultat}(n.\text{etat}); \\
+			\text{si non } (n.\text{AppartientEtatAncetres}(e',n)) \text{ alors } \\
+			\qquad \text{ajouter } (e',n) \text{ à la liste des états explorés};
+		\end{equation*}
+		On aurait aussi pu la rajouter avant l'appel récursif
+		avec la modification suivante:
+		\begin{equation*}
+			\text{si AppartientEtatAncetres}(n.\text{etat}, n.\text{parent}) \text{ alors retourner }null;
+		\end{equation*}
+
+		Supposons maintenant qu'on utilise cette version optimisée (la première),
+		alors on trouve la solution après seulement 4 noeuds générés et explorés. % 12
+
+		% pour le 13, c l'algo 1 encore mais avec un free apres les return null
+
+		% pour le cas avec une profondeur max, ie pour la completude,
+		% on ajoute un parametre \(b\) à la fonction recursive
+		% et on ajoute la condition suivante au début de la fonction:
+		% si b = 0 alors retourner null;
+		% et on rajoute b - 1 dans l'appel recursif
+
+		% ensuite on appelle recursivement avec une profondeur max
+		% qui augmente jusqu'à trouver une solution
+
 	\end{td-sol}
 }{}
 

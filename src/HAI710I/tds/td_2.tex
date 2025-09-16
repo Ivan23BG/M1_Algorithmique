@@ -1,0 +1,160 @@
+Soient les structures et fonctions générales de recherche données en cours
+permettant de parcourir les états d'un espace d'états par priorité croissante.
+On précise que:
+\begin{itemize}
+	\item \(\text{Explorer}\) peut ré-explorer plusieurs fois un même état,
+	\item \(\text{ExplorerOptimise}\) évite de ré-explorer un état déjà exploré
+	et ne conserve dans la frontière qu'un noeud par état.
+\end{itemize}
+
+
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[] % 1
+	Préciser pour chacune des stratégies suivantes comment doivent être
+	choisis les coûts et priorités \(c_0, c_{sn},p_0\) et \(p_{sn}\) des 
+	deux fonctions \(\text{Explorer}\) et \(\text{ExplorerOptimise}\).
+	\begin{itemize}
+		\item Recherche par coût minimal (le coût étant défini
+		comme la somme du coût des actions ayant conduit de l'état
+		du noeud racine à l'état du noeud courant).
+
+		\item La recherche gloutonne.
+
+		\item La recherche avec l'algorithme \(A^\ast\).
+	\end{itemize}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On construit le tableau suivant:
+		\begin{tabular}{|c|c|c|c|c|} %chktex 44
+			\hline %chktex 44
+			\ & \(c_0\) & \(p_0\) & \(c_{sn}\) & \(p_{sn}\)\\
+			\hline %chktex 44
+			coût min & 0 & \(k\) quelconque & \(c(n) + \text{cout}(a)\) & \(c(n) + \text{cout}(a)\)\\
+			\hline %chktex 44
+			glouton & 0 & \(k'\) quelconque & \(c(n) + \text{cout}(a)\) & \(h(a.\text{res}(x.\text{etat}))(x)\)\\
+			\hline %chktex 44
+			\(A^\ast\) & 0 & \(h(e_0)\) & \(c(n) + \text{cout}(a)\) & \(h(se) + c_{sn}\)\\
+			\hline %chktex 44
+		\end{tabular}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+	Soit le problème de calcul d'une route de \emph{Arad} à \emph{Bucharest}
+	(cf.\ document \og{}Problème de recherche de route\fg{} sur Moodle). Dessiner 
+	les arbres de recherche correspondant à l'exécution de ces 3 stratégies
+	en distinguant le cas où la fonction \(\text{Explorer}\) est utilisée
+	de celui où l'on utilise la fonction \(\text{ExplorerOptimise}\).
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 2
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[] % 3
+	Même question de \emph{Iasi} à \emph{Fagaras}. On pourra
+	prendre les distances à vol d'oiseau suivantes
+	pour Fagaras:
+	%TODO insert distances table here 
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 3
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[] % 4
+	Dire pour chacune des deux versions de l'algorithme d'exploration,
+	si les 3 stratégies précédentes sont complètes. Préciser éventuellement 
+	sous quelles conditions elles le sont.
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 4
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[] % 5
+	Une heuristique est dite \defemph{admissible} si pour tout état \(e\) elle
+	ne sur-estime jamais le cout du chemin optimal de \(e\) à l'état but:
+	\begin{equation*}
+		\forall e, h(e) \meq g*(e)
+	\end{equation*}
+	où \(g*(e)\) dénote le cout d'un des chemins optimaux de
+	\(e\) à l'état but le plus proche.
+
+	On considère la stratégie \(A^\ast\) avec l'algorithme \(\text{Explorer}\).
+	\begin{enumerate}
+		\item Exhiber un exemple montrant que si l'heuristique utilisée n'est pas
+		admissible alors la solution trouvée peut ne pas être optimale.
+
+		\item Montrer que si l'heuristique est admissible alors la solution
+		trouvée est optimale.
+
+		\item Est-ce vrai pour l'algorithme \(\text{ExplorerOptimise}\)?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 5
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[] % 6
+	A faire %TODO consignes exo 6
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 6
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 7 ----- %
+\begin{td-exo}[] % 7
+	A faire %TODO consignes exo 7
+\end{td-exo}
+
+% ----- Solutions exo 7 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 7
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 8 ----- %
+\begin{td-exo}[] % 8
+	A faire %TODO consignes exo 8
+\end{td-exo}
+
+% ----- Solutions exo 8 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A faire %TODO sol exo 8
+	\end{td-sol}
+}{}
