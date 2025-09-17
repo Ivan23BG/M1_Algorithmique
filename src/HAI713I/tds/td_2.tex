@@ -1,0 +1,137 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Ensembles énumérables] % 1
+	On veut montrer que les propositions suivantes sont équivalentes:
+	\begin{enumerate}[label=(\roman*)] % chktex 36
+		\item \(E\) est \defemph{énumérable} (rappel de la définition) si
+		\begin{equation*}
+			\exists a, E = W_a = \left\{x, [a\mid x]\downarrow\right\}
+		\end{equation*}
+
+		\item \(E\) admet une \defemph{fonction d'énumération} calculable:
+		\begin{equation*}
+			\exists b, E = \text{Im}[b\mid \cdot] = \left\{x, \exists y, [b\mid y] = x\right\}
+		\end{equation*}
+
+		\item \(E\) est vide ou admet une \defemph{fonction d'énumération totale} calculable:
+		\begin{equation*}
+			E = \emptyset \text{ ou } \exists c, E = \text{Im}[c\mid \cdot] = \left\{x, \exists y, [c\mid y] = x\right\}
+		\end{equation*}
+	\end{enumerate}
+	\begin{itemize}
+		\item Montrer que (i) \(\Rightarrow\) (iii).
+		\item Montrer que (iii) \(\Rightarrow\) (ii).
+		\item Montrer que (ii) \(\Rightarrow\) (i).
+	\end{itemize}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{itemize}
+			\item (i) \(\Rightarrow\) (iii):
+			Si \(E\) est vide, la propriété est vérifiée.
+			Sinon, \(\exists\alpha\in E\). On définit le programme suivant:
+			\begin{equation*}
+				\begin{aligned}
+					b\ :\ z \mapsto \,\,
+					& \text{if Step}\langle a,\pi_1(z),\pi_2(z)\rangle \neq 0 \text{ then } \\
+					& \qquad \text{return } \pi_1(z) \\
+					& \text{else } \\
+					& \qquad \text{return } \alpha\\
+					& \text{end if}
+				\end{aligned}
+			\end{equation*}
+			Montrons que \(\text{Im}[b\mid \cdot] = E\). Si \(e\in E\)
+			alors \(\exists t\) tel que \(\text{Step}\langle a,e,t\rangle \neq 0\).
+			Donc \([b\mid \langle e,t\rangle] = e\) pour tout \(e\in E\), d'où \(E= \text{Im}[b\mid \cdot]\).
+
+			\item (iii) \(\Rightarrow\) (ii):
+			Si \(E\) est vide, \(b\) qui diverge partout convient.
+			Sinon, il existe une fonction d'énumération totale \(c\) de \(E\) calculable
+			et donc une fonction d'énumération \(b=c\) de \(E\) calculable.
+
+			\item (ii) \(\Rightarrow\) (i):
+			Soit \(b\) une fonction d'énumération de \(E\) calculable.
+			On définit le programme suivant:
+			\begin{equation*}
+				\begin{aligned}
+					a\ :\ x \mapsto \,\,
+					& z \leftarrow 0 \\
+					& \text{while Step}\langle b, \pi_1(z), \pi_2(z)\rangle \neq x+1 \text{ do } \\
+					& \qquad z \leftarrow z + 1 \\
+					& \text{end while} \\
+					& \text{return } 34
+				\end{aligned}
+			\end{equation*}
+			Ce programme s'arrête sur \(x\) si et seulement si \(x\in E\).
+			Donc \(E = W_a\).
+		\end{itemize}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Ensembles énumérables --- mieux comprendre]\ % 2
+	\begin{enumerate}
+		\item Montrez que si \(E\) est un ensemble énumérable \emph{infini} alors
+		il admet une fonction d'énumération totale bijective.
+
+		\item Soit \(E\) un ensemble infini. Montrez que \(E\) est récursif si et seulement si
+		il admet une fonction d'énumération croissante.
+
+		\item Soit \(E\) un ensemble infini. Montrez que \(E\) est récursif si et seulement si
+		il admet une fonction d'énumération strictement croissante.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Enumeration des fonctions totales] % 3
+	Nous allons montrer dans cet exercice qu'il n'est pas possible d'avoir un système de
+	programmation \og{} raisonnable \fg{} où les programmes s'arrêtent toujours.
+	Supposons que ce système existe et notons \([x\ \mid\ y]'\) le résultat du calcul
+	du \(x\)-ième programme sur l'entrée \(y\).
+
+	\begin{enumerate}
+		\item On suppose que dans un de nos programmes on peut
+		en appeler un autre et que la fonction successeur soit calculable.
+		Montrez que \(g:x\mapsto [x|x]'+1\) est calculable dans ce système.
+		On notera \(n\) son numéro: \([n\mid \cdot]' = g(\cdot)\).
+
+		\item Que vaut \(g(n)\)? En déduire qu'un tel système n'existe pas.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Ensembles énumérables --- clôture] % 4
+	Nous prouvons dans cet exercice que la classe des ensembles énumérables
+	est bien close par union, intersection et produit cartésien. Soient
+	\(A\) et \(B\) deux ensembles énumérables.
+	\begin{enumerate}
+		\item Montrez que \(A\cup B\) est énumérable.
+		\item Montrez que \(A\cap B\) est énumérable.
+		\item Montrez que \(A\times B = \{\langle x,y\rangle \mid x\in A, y\in B\}\) est énumérable.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
