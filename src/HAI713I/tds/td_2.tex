@@ -87,7 +87,35 @@
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+			\item On crée le programme suivant:
+			\begin{equation*}
+				\begin{aligned}
+					b\ :\ n \mapsto \,\,
+					& J \leftarrow \emptyset \\
+					& k \leftarrow 0 \\
+					& \text{While } \n{J} \leq n \text{ do } \\
+					& \qquad J \leftarrow J \cup \left\{[b \mid k]\right\} \\
+					& \qquad k \leftarrow k + 1 \\
+					& \text{end while} \\
+					& \text{Return } [b \mid k]
+				\end{aligned}
+			\end{equation*}
+			Ce programme s'arrête toujours car \(E\) est infini
+			et il rend tous les éléments de \(E\) sans répétition.
+
+			\item On écrit le programme suivant pour montrer le sens indirect:
+			\begin{equation*}
+				\begin{aligned}
+					d\ :\ x \mapsto \,\,
+					& z \leftarrow 0 \\
+					& \text{while } [b \mid z] < x \text{ do } \\
+					& \qquad z \leftarrow z + 1 \\
+					& \text{end while} \\
+					& \text{if } [b \mid z] = x \text{ then return } 1 \text{ else return } 0 \text{ end if}
+				\end{aligned}
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
