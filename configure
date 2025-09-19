@@ -20,14 +20,31 @@ TEMPLATES_DIR="templates"
 MAX_DEPTH=5
 
 # ------------------------------------------------------------------------------
+# INSTALL LATEXMK IF NOT FOUND (FOR GITHUB ACTIONS ENVIRONMENT)
+# ------------------------------------------------------------------------------
+install_latexmk() {
+    echo "latexmk not found. Installing latexmk..."
+
+    # Update package lists and install latexmk
+    sudo apt-get update
+    sudo apt-get install -y latexmk
+
+    if [ $? -ne 0 ]; then
+        echo "Error: latexmk installation failed."
+        exit 1
+    else
+        echo "latexmk installed successfully."
+    fi
+}
+
+# ------------------------------------------------------------------------------
 # CHECKING NECESSARY TOOLS
 # ------------------------------------------------------------------------------
 check_tools() {
     echo "Checking required tools..."
 
     if [ -z "$LATEXMK" ]; then
-        echo "Error: latexmk is not installed. Please install latexmk."
-        exit 1
+        install_latexmk
     else
         echo "Found latexmk: $LATEXMK"
     fi
@@ -61,7 +78,7 @@ check_directories() {
 }
 
 # ------------------------------------------------------------------------------
-# CHECKING FOR MAIN TEEX FILES
+# CHECKING FOR MAIN TEX FILES
 # ------------------------------------------------------------------------------
 check_main_tex_files() {
     echo "Looking for main LaTeX files..."
@@ -102,7 +119,7 @@ check_latexmk() {
 
     if ! command -v latexmk &> /dev/null; then
         echo "Error: latexmk is not installed."
-        exit 1
+        install_latexmk
     else
         echo "latexmk found at $(command -v latexmk)"
     fi
