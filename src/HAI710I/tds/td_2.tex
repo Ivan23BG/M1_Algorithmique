@@ -39,6 +39,27 @@ On précise que:
 			\(A^\ast\) & 0 & \(h(e_0)\) & \(c(n) + \text{cout}(a)\) & \(h(se) + c_{sn}\)\\
 			\hline %chktex 44
 		\end{tabular}
+
+		Maintenant pour la recherche gloutonne:
+		% TODO insert graph here
+		% on commence avec |A, 366|^1
+		% ensuite de 1 |Z, 374| -- |T, 329| -- |S, 253|^2
+		% ensuite de 2 on remonte vers |A, 366| et sinon on redescend à |O, 380|, |R, 193|, |F, 176|^3
+		% ensuite de 3 on remonte vers |S, 253| et sinon on redescend à |B, 0|^4 -> but
+
+		% avec explorer optimise on obtient le meme graphe mais on supprime (barre) 
+		% la deuxieme occurence de S at A.
+		Le cout de cette solution est de 450 alors que la solution optimale est de 411 (à vérifier).
+
+		Et enfin pour \(A^\ast\):
+		% TODO insert graph here
+		% on commence avec |A, 366|^1
+		% ensuite de 1 |Z, 449| -- |T, 447| -- |S, 393|^2
+		% ensuite de 2 on a |F, 415|^4 -- |R, 413|^3 -- |O, 671| et en remontant |A, 646| 
+		% ensuite de 3 on a |S, 553| -- |P, 417|^5 -- |C, 526|
+		% ensuite de 4 on a |S, 691| -- |B, 450|
+		% ensuite de 5 on a |R, 607|, |C, 615|, |B, 518|^6 -> but
+		% <- les graphes correspondent à l'exercice 2
 	\end{td-sol}
 }{}
 
@@ -71,7 +92,19 @@ On précise que:
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		A faire %TODO sol exo 3
+		Pour le glouton non optimisé on a:
+		% TODO insert graph here
+		% I, 220^1
+		% N, 170^2 -- V, 260
+		% I, 220^3
+		% etc et on boucle entre I et N, donc glouton non optimisé n'est pas complet
+		Pour le glouton optimisé on a:
+		% I, 220^1
+		% N, 170^2 -- V, 260^3
+		% il se passe rien en 2
+		% U, 230^4
+		% B, 190^5 -- H, 310
+		% G, 250 -- P, 110, F, 0^6 -> but
 	\end{td-sol}
 }{}
 
@@ -86,7 +119,27 @@ On précise que:
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		A faire %TODO sol exo 4
+		Synthèse sur la complétude:
+		% TODO inserer tableau ici
+		%    | NO                                                                    | O
+		% CM | si et seulement si \(\forall a, \text{cout}(a) \geq \varepsilon > 0\) | meme condition OU nombre d'etats fini
+		% Gl | non complet                                                           | espace fini 
+		% A* | meme que pour cout min                                                | meme que pour cout min
+		où on suppose que:
+		\begin{itemize}
+			\item le cout de toute action est positif,
+			\item \(\forall n, g(n) = \sum_{i\in\text{branche}(n)} \text{cout}(i)\),
+			\item l'heuristique de tout etat est positif,
+			\item l'heuristique de l'etat but est nulle.
+		\end{itemize}
+
+		Synthèse sur l'optimalité
+		% TODO inserer tableau ici
+		%    | NO                                                                    | O
+		% CM | optimal                                                               | optimal
+		% Gl | non optimal                                                           | non optimal 
+		% A* | si et seulement si h est admissible                                   | si et seulement si h est monotone
+		où on suppose qu'on a déjà la complétude
 	\end{td-sol}
 }{}
 
