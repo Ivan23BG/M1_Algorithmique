@@ -149,7 +149,7 @@ On précise que:
 	Une heuristique est dite \defemph{admissible} si pour tout état \(e\) elle
 	ne sur-estime jamais le cout du chemin optimal de \(e\) à l'état but:
 	\begin{equation*}
-		\forall e, h(e) \meq g*(e)
+		\forall e, h(e) \leq g*(e)
 	\end{equation*}
 	où \(g*(e)\) dénote le cout d'un des chemins optimaux de
 	\(e\) à l'état but le plus proche.
@@ -169,7 +169,44 @@ On précise que:
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		A faire %TODO sol exo 5
+		\begin{enumerate}
+			\item Il suffit de prendre le graphe suivant:
+			% TODO insert graph here
+			% A,B,C,D, A=I, {AB, AC, BD, CD}, couts:{2, 1, 1, 1}, heuristique: {0, 1, 5, 1}
+			Clairement le chemin optimal est \((I,B,D)\) mais \(A^\ast\) fait \((I,C,D)\).
+
+			\item Montrons par l'absurde que l'état but trouvé par \(A^\ast\) est une solution
+			optimale, quand \(h\) est admissible.
+
+			Supposons que le noeud but trouvé par \(A^\ast\) est non optimal. Alors, 
+			\begin{equation*}
+				g(b) > g^\ast
+			\end{equation*}
+			(le coût de \(b\) est supérieur au cout optimal). Soit \(n\) un noeud non exploré (mais généré
+			et donc une feuille de l'arbre de recherche) sur le chemin conduisant à une solution optimale.
+			Alors, \(g(n) \leq g^\ast\) car les couts sont croissant le long d'une branche.
+			Donc \(g(n) < g(b)\) par hypothèse. De plus, on a \(h\) admissible, donc
+			\begin{equation*}
+				\forall e, h(e) \leq g^\ast(e)
+			\end{equation*}
+			On note \(e_n\) l'état du noeud \(n\). Alors
+			\begin{equation*}
+				h(e_n) \leq g^\ast(e_n)
+			\end{equation*}
+			Comme \(n\) est sur un chemin optimal vers un but, on a
+			\begin{equation*}
+				g(n) + g^\ast(e_n) = g^\ast
+			\end{equation*}
+			et donc
+			\begin{equation*}
+				f(n) = g(n) + h(n) \leq g(n) + g^\ast(e_n) = g^\ast
+			\end{equation*}
+			Or, comme \(b\) a été trouvé par \(A^\star\), on sait que
+			\begin{equation*}
+				f(b) \leq f(n) \leq g^\ast
+			\end{equation*}
+			mais \(f(b) > g^\ast\). Contradiction, donc \(b\) est optimal.
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
@@ -195,7 +232,21 @@ On précise que:
 % ----- Solutions exo 7 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		A faire %TODO sol exo 7
+		\begin{enumerate}
+			\item L'espace d'états est le suivant:
+			\begin{itemize}
+				\item Les états sont des cases, 
+				\item l'état initial est \((A,2)\) et 
+				\item le but est \((D,4)\).
+			\end{itemize}
+			\item Voici le tableau des heuristiques:
+			% TODO inserer tableau ici
+			% x                          | A1 | A2   | ...  | A6 | B1 . B6 . D1 . C5 . D2 .
+			% \(h_{\text{vol}}\)         | 3  | rc18 | rc13 | ...
+			% \(h_{\text{manhattan}}\)   | 6  |  5   |   5  | ...
+			Ces deux heuristiques sont bien admissibles et monotones.
+			\item Clairement ici \(h_{\text{manhattan}}\) domine \(h_{\text{vol}}\)
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
