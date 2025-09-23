@@ -1,3 +1,4 @@
+% ----- Consignes exo 1 ----- %
 \begin{td-exo}[Le puzzle du zèbre]
     Le puzzle du zèbre est un jeu logique bien connu, atribué à Albert Einstein
     ou à Lewis Caroll, sans certitude que l'inventeur soit l'un des deux. Il
@@ -20,3 +21,34 @@
 
     Peut-on reformuler certaines contraintes pour diminuer l'espace de recherche?
 \end{td-exo}
+
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On a 25 variables représentant les caractéristiques de chaque maison.
+        Plus précisément, on aura 5 variables représentant chacune la
+        \begin{enumerate}
+            \item nationalité,
+            \item la couleur,
+            \item la boisson,
+            \item ce qui est fumé,
+            \item l'animal de compagnie.
+        \end{enumerate}
+        des 5 maisons. Pour différencier ces maisons, on leur fixe une position
+        prédéfinie de 1 à 5 (ie.\ on attribue un ordre aux maisons dont on pourra se servir
+        plus tard).
+
+        Pour ce qui est des domaines des variables, ce sont celles énoncées dans les contraintes.
+        5 valeurs par domaine, 5 domaines, tous différent.
+
+        Une contrainte est représentée comme suit:
+        \begin{enumerate}
+            \item \(C_2\): l'anglais habite dans la maison rouge:
+            \begin{equation*}
+                C = \left\{ c_1 \langle N_1, C_1\rangle = \left\{(E, R), (J, \not R), (N, \not R),\cdots\right\}\right\}
+            \end{equation*}
+            donc 17 tuples de contraintes :D. Pour la maison 1 et encore une fois pour chaque autre maison, donc 85 en tout, par contrainte.
+        \end{enumerate}
+	\end{td-sol}
+}{}
