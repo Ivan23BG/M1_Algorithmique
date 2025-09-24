@@ -1,0 +1,98 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Reductions]\ % 1
+	Soit \(A = \{x, \forall y, [x\mid y] \downarrow\}\).
+	\begin{enumerate}
+		\item En utilisant avec soin le théorème de Rice, montrez que \(A\) n'est pas récursif.
+		\item Montrez que \(\bb K\prec A\).
+		\item Montrez que \(\bb K\prec \ol A\) (où \(A\) est le complémentaire de \(A\)).
+		\item Montrez que ni \(A\) ni \(\ol A\) ne sont énumérables.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 1
+		\begin{enumerate}
+			\item On pose \(A = P_{\scr C}\) pour \(\mathscr{C} = \{f,\mathsf{Dom}(f) = \bb N\}\).
+			En d'autres termes c'est l'ensemble des fonctions totales où qui sont définies partout.
+			Alors
+			\begin{equation*}
+				\begin{aligned}
+					P_{\mathscr{C}}
+					&=\{
+						x,[x\mid\cdot]\in\mathscr{C}
+					\}\\
+					&=\{
+						x,\forall y,[x\mid y]\downarrow
+					\}
+				\end{aligned}
+			\end{equation*}
+			De plus, \(A\) n'est pas trivial car:
+			\begin{itemize}
+				\item le programme suivant est dans \(A\):
+				\begin{equation*}
+					a: x\mapsto \text{return }42 
+				\end{equation*}
+				\item et celui ci ne l'est pas:
+				\begin{equation*}
+					b: x\mapsto \text{while true } x \leftarrow x+1.
+				\end{equation*}
+			\end{itemize}
+			Donc, d'après le théorème de Rice, \(A\) est indécidable et donc non récursif.
+
+			\item On pose
+			\begin{equation*}
+				c: \langle x,y\rangle \mapsto \text{if } [x\mid x]\downarrow \text{ then return } [a\mid y]
+			\end{equation*}
+			et ensuite
+			\begin{equation*}
+				S_1^1\langle c, x\rangle: y \mapsto \cdots\cdots
+			\end{equation*}
+			(où \(\cdots\cdots\) correspond au meme code que \(c\)).
+			Enfin, on pose \(f(x) = S_1^1\langle c, x\rangle\). Alors
+			\begin{equation*}
+				\forall x, x\in \bb K \iff f(x)\in A.
+			\end{equation*}
+			Donc \(\bb K\prec A\).
+
+			\item On pose
+			\begin{equation*}
+				d\colon \langle x,y\rangle \mapsto \text{if }\mathsf{Step}\langle x, x, y\rangle = 0 \text{ then return } 3
+			\end{equation*}
+			et on pose un \(S_1^1\) similaire avec \(d\).
+			Enfin, on pose \(g(x) = S_1^1\langle d, x\rangle\). Alors
+			\begin{equation*}
+				\forall x, x\in \bb K \iff g(x)\in \ol A.
+			\end{equation*}
+			Donc \(\bb K\prec \ol A\).
+
+			\item On sait que \(\ol{\bb K}\) n'est pas énumérable donc \(A\) est énumérable.
+			De même pour \(\ol A\). Donc ni \(A\) ni \(\ol A\) ne sont énumérables.
+		\end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Reductions]\ % 2
+	Soit \(B = \{x,[x\mid0]\downarrow \text{ et } [x\mid1]\uparrow\}\).
+	\begin{enumerate}
+		\item En utilisant avec soin le théorème de Rice, montrez que \(B\) n'est pas récursif.
+		\item \(B\) et son complémentaire \(\ol B\) sont-ils énumérables?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item On pose \(B = P_{\scr C}\) pour \(\mathscr{C} = \{f, 0\in \mathsf{Dom}(f) \text{ et } 1\notin \mathsf{Dom}(f)\}\).
+			Alors si \(a\) calcule \(\upmodels\) alors \(a\notin B\) et le programme suivant:
+			\begin{equation*}
+				b: x\mapsto \text{if } x=0 \text{ then return } 42 \text{ else }\perp
+			\end{equation*}
+			est dans \(B\). Donc \(B\) n'est pas trivial et d'après le théorème de Rice, \(B\) n'est pas récursif.
+		\end{enumerate}
+	\end{td-sol}
+}{}
+
