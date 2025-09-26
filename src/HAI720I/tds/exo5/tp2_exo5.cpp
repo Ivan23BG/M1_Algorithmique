@@ -69,11 +69,11 @@ int main(int argc, char **argv) {
     std::cout << "CPI=" << PE.cpi(N) << std::endl;
     std::cout << "IPC=" << PE.ipc(N) << std::endl;
 
-    fichier << "nbc:" << PE.nb_c() << "\n";
-    fichier << "nbs:" << PE.nb_s() << "\n";
-    fichier << "nbms:" << PE.nb_ms() << "\n";
-    fichier << "CPI=" << PE.cpi(N) << "\n";
-    fichier << "IPC=" << PE.ipc(N) << "\n";
+    fichier << "nbc:" << (double) nbctot / number_of_loops << "\n";
+    fichier << "nbs:" << (double) nbstot / number_of_loops << "\n";
+    fichier << "nbms:" << (double) nbmstot / number_of_loops << "\n";
+    fichier << "CPI=" << (double) nbcpitot / number_of_loops << "\n";
+    fichier << "IPC=" << (double) nbipctot / number_of_loops << "\n";
 
     /* on ferme le fichier de sortie */
     fichier.close();
