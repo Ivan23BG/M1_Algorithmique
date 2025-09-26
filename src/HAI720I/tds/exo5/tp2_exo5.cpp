@@ -34,10 +34,10 @@ int main(int argc, char **argv) {
     /* boucle sur le nombre de resultats */
     for (int k=0; k < number_of_loops; k++) {
         /* boucle sur la taille du tableau */
-        // for (int i = 0; i < array_size; i++) {
-        //     A[i] = rand() % (max + 1 - min) + min;
-        //     B[i] = A[i];
-        // }
+        for (int i = 0; i < array_size; i++) {
+            A[i] = rand() % (max + 1 - min) + min;
+            B[i] = A[i];
+        }
         PE.start();
         ma_fonction(B, array_size);
         PE.stop();
@@ -93,3 +93,17 @@ void ma_fonction(int* B, int n) {
 int flops_ma_fonction(int n) {
     return n;
 }
+
+/*  commandes d'execution:
+    ./execs/tp2 0 1000 50000 10000 exo5_out.txt
+    ./execs/tp2_O1 0 1000 50000 10000 exo5_out_O1.txt
+    ./execs/tp2_O2 0 1000 50000 10000 exo5_out_O2.txt
+    ./execs/tp2_O3 0 1000 50000 10000 exo5_out_O3.txt
+*/
+/* commandes de compilation:
+    g++ tp2_exo5.cpp -o execs/tp2
+    g++ -O0 tp2_exo5.cpp -o execs/tp2_O0
+    g++ -O1 tp2_exo5.cpp -o execs/tp2_O1
+    g++ -O2 tp2_exo5.cpp -o execs/tp2_O2
+    g++ -O3 tp2_exo5.cpp -o execs/tp2_O3
+*/
