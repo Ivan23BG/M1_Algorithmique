@@ -9,4 +9,4 @@ logs/
 *.dvi
 *.synctex.gz
 .vscode/
-src/HAI720I/tds/.*/execs/
+src/HAI720I/tds/*/execs/
