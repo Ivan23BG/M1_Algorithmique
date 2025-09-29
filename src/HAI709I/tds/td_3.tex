@@ -1,0 +1,118 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[] % 1
+	\, % TODO add content
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{itemize}
+			\item On a la chaine suivante:
+			\begin{equation*}
+				\begin{aligned}
+					&1000\\
+					&1100\\
+					&0110\\
+					&1011\\
+					&1101\\
+					&0110\\
+					&1011\\
+					&1101\\
+					&0110
+				\end{aligned}
+			\end{equation*}
+			Où on peut remarquer que la période est de 3. On ne parcourt pas les 15 combinaisons
+			donc elle n'est pas de longueur maximale.
+			\item La longueur est de 15 et elle est maximale.
+			% TODO finir le 3
+		\end{itemize}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[] % 2
+	% TODO add content
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{itemize}
+			\item Avec \(g(S_{n-1},\ldots,S_0) = S_0\wedge S_1\), on a
+			\begin{equation*}
+				\bb P(g(\cdots) = 0) = \frac34,\quad \bb P(g(\cdots) = 1) = \frac14
+			\end{equation*}
+			ce qui n'est pas uniforme donc ce \(g\) n'est pas un 
+			bon générateur pseudo-aléatoire.
+
+			\item Avec \(g(S_{n-1},\ldots,S_0) = (S_0\wedge S_1) \oplus S_2\), on a
+			\begin{equation*}
+				\begin{aligned}
+					\bb P(g = 0) = \bb P(S_2 = 0)\cdot \frac34 + \bb P(S_2 = 1)\cdot \frac14 =\frac12\\
+					\bb P(g = 1) = \frac12
+				\end{aligned}
+			\end{equation*}
+			ce qui n'est pas uniforme donc ce \(g\) n'est pas un 
+			bon générateur pseudo-aléatoire.
+		\end{itemize}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[] % 3
+	% TODO add content
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{itemize}
+			\item A l'etape 1, on a:
+			\begin{equation*}
+				\begin{aligned}
+					\bb P(S_0\ff2=0 \wedge S_0\ff1\neq2)
+					&= \frac1{256} \cdot \left(1-\frac{1}{255}\right)\\
+					&= \frac{254}{256\cdot255}
+				\end{aligned}
+			\end{equation*}
+
+			\item A l'étape 2, on a:
+			\begin{equation*}
+				\begin{aligned}
+					&S_0\ff2=0, S_0\ff1\neq2\\
+					&i=1, J=S_0\ff1 = X\\
+					&S_1\ff1=S_0\ff J = S_0\ff X\\
+					&S_1\ff X = S_0\ff1 = X
+				\end{aligned}
+			\end{equation*}
+
+			\item A l'étape 3, on a:
+			\begin{equation*}
+				\begin{aligned}
+					i=2, J 
+					&= X + S_1\ff2\\
+					&= X + S_0\ff2\\
+					&= X + 0\\
+					&= X
+				\end{aligned}
+			\end{equation*}
+			et
+			\begin{equation*}
+				\begin{aligned}
+					&S_2\ff2 = S_1\ff X = X\\
+					&S_2\ff X = S_1\ff2 = 0\\
+					&t = S_2\ff1 + S_2\ff J = X + 0 = X\\
+					&Y = S_2\ff t = S_2\ff X = 0
+				\end{aligned}
+			\end{equation*}
+
+			\item On en déduit que le 2e octet de la clé est 0. 
+			De plus, on a une probabilité uniforme sur cet octet.
+			
+			\item On en conclut que le 2e octet est biaisé
+			avec probabilité \(\frac{1}{128} > \frac{1}{256}\).
+		\end{itemize}
+	\end{td-sol}
+}{}
