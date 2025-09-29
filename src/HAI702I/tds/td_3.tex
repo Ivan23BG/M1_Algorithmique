@@ -1,0 +1,45 @@
+Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Vrai ou Faux] \,\\% 1
+	\begin{enumerate}
+		\item En dimension finie, un endomorphisme admet un nombre fini
+		de vecteurs propres.
+
+		\item Si \(A\) est diagonalisable, alors \(A^2\) l'est aussi.
+
+		\item Si \(A^2\) est diagonalisable, alors \(A\) l'est aussi.
+
+		\item Tout endomorphisme d'un espace vectoriel réel de 
+		dimension impaire admet au moins une valeur propre.
+
+		\item La somme de deux matrices diagonalisables est diagonalisable.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item Faux, on peut multiplier un vecteur propre par un scalaire.
+
+			\item Vrai, si \(A = PDP^{-1}\) avec \(D\) diagonale, alors
+			\(A^2 = PD^2P^{-1}\) est aussi diagonale.
+
+			\item Faux, la matrice 
+			\begin{equation*}
+				A = \begin{pmatrix}
+					0 & 1 \\
+					0 & 0
+				\end{pmatrix}
+			\end{equation*}
+			n'est pas diagonalisable mais \(A^2 = 0\) l'est. Montrons-le:
+			\begin{equation*}
+				\begin{aligned}
+					\mathsf{Det}(A - \lambda I_2) = \lambda^2
+				\end{aligned}
+			\end{equation*}
+			La seule valeur propre est donc \(0\) et le sous-espace
+			associé est de dimension \(1\leq 2\) car \(E_0(e_2)=0\).
+		\end{enumerate}
+	\end{td-sol}
+}{}
