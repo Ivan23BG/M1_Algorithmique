@@ -43,12 +43,61 @@
         5 valeurs par domaine, 5 domaines, tous différent.
 
         Une contrainte est représentée comme suit:
-        \begin{enumerate}
-            \item \(C_2\): l'anglais habite dans la maison rouge:
+        
+        \(C_2\): l'anglais habite dans la maison rouge:
             \begin{equation*}
-                C = \left\{ c_1 \langle N_1, C_1\rangle = \left\{(E, R), (J, \not R), (N, \not R),\cdots\right\}\right\}
+                C = \left\{ c_1 \langle N_1, C_1\rangle = \left\{(E, R), (J, \lnot R), (N, \lnot R),\cdots\right\}\right\}
             \end{equation*}
-            donc 17 tuples de contraintes :D. Pour la maison 1 et encore une fois pour chaque autre maison, donc 85 en tout, par contrainte.
-        \end{enumerate}
+            donc 17 tuples de contraintes:D. Pour la maison 1 et encore une fois pour chaque autre maison, donc 85 en tout, par contrainte.
+
+        Une autre manière de les représenter serait la suivante:
+
+        5 contraintes pour chaque \(i\) de la forme
+        \begin{equation*}
+            N_i = E \iff C_i = R
+        \end{equation*}
+
+        On peut modeliser la majorité des contraintes de la même manière.
+        Certaines sont différentes, comme celle-ci:
+        \begin{equation*}
+            C_i = I \iff C_{i-1} = G
+        \end{equation*}
+        pour \(i \in \{2,3,4,5\}\).
+
+        Pour modéliser la différence entre toutes les variables, on ajoute
+        \begin{equation*}
+            \begin{aligned}
+                &\text{Alldiff}(C_1, C_2, C_3, C_4, C_5)\\
+                &\text{Alldiff}(N_1, N_2, N_3, N_4, N_5)\\
+                &\text{Alldiff}(B_1, B_2, B_3, B_4, B_5)\\
+                &\text{Alldiff}(S_1, S_2, S_3, S_4, S_5)\\
+                &\text{Alldiff}(P_1, P_2, P_3, P_4, P_5)\\
+            \end{aligned}
+        \end{equation*}
+        qui correspondent à 10 contraintes binaires chacune.
+
+        Cette implémentation et description des contraintes est très lourde
+        et longue à écrire. Voici une autre approche possible où on inverse
+        le rôle des valeurs et des variables. 
+        \begin{equation*}
+            X = \left\{E, S, U, N, J,\ \  I, B, G, R, Y,\ \ \cdots\right\}.
+        \end{equation*}
+        Ensuite, pour décrire l'unicité de chaque valeur, on utilise
+        encore une contrainte \(\text{Alldiff}\):
+        \begin{equation*}
+            \text{Alldiff}(E, S, U, N, J),\ \ \text{Alldiff}(I, B, G, R, Y),\ \ \cdots
+        \end{equation*}
+
+        On peut alors décrire des contraintes comme suit: \og{}Verte à droite
+        de l'ivoire\fg{}:
+        \begin{equation*}
+            C_6 = \{(I,G) \mid G = I + 1\} = \{(1,2), (2,3), (3,4), (4,5)\}
+        \end{equation*}
+
+        ou encore: \og{}Chesterfield à coté de la maison du renard\fg{}:
+        \begin{equation*}
+            C_{11} = \{(C, R) \mid |C - R| = 1\} = \{(1,2), (2,1), (2,3), (3,2), (3,4), (4,3), (4,5), (5,4)\}
+        \end{equation*}
+
 	\end{td-sol}
 }{}
