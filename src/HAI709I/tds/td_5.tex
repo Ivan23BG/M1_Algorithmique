@@ -1,0 +1,200 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[] % 1
+	Soit \(k\in {\{0,1\}}^n\) la clé d'un MAC.\@
+    Prouvez que, si la longueur de l'étiquette
+    \begin{equation*}
+        t(n) = \mathsf{O}(\log n),
+    \end{equation*}
+    alors le MAC n'est pas sûr (c'est-à-dire, qu'un MAC sûr
+    doit toujours avoir un \(t(n)\) super-logarithmique).
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+        On peut faire une attaque par force brute. On prend
+        \((m, t)\) au hasard et \(m\) admet au moins une étiquette.
+        \begin{equation*}
+            \bb P(\mathsf{Vrfy}_k(m,t) = 1) \geq \frac{1}{2^{\mathsf{O}(\log n)}} = \frac{1}{\mathsf{poly}(n)}.
+        \end{equation*}
+    \end{td-sol}
+}{}
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[]\, % 2
+	\begin{enumerate}
+        \item Ecrivez formellement l'expérience correspondant
+        à l'infalsifiabilité forte d'un MAC à partir de celle
+        de l'infalsifiabilité.
+
+        \item Prouvez la proposition vue en cours:
+        \begin{proposition}
+            Un MAC déterministe sûr avec vérification
+            canonique est fortement sûr.
+        \end{proposition}
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+        \begin{enumerate}
+            \item \, % TODO formellement
+
+            \item Il y a 2 cas de réussite pour l'adversaire:
+            \begin{enumerate}
+                \item Il produit \((m,t)\) tel que \(\forall (m',t')\in Q\) avec \(m'\neq m\),
+                \begin{equation*}
+                    \bb P(\mathsf{Vrfy}_k(m,t) = 1) \leq \mathsf{negl}(n).
+                \end{equation*}
+                car MAC est sûr.
+
+                \item Il produit \((m,t)\) tel que \(\exists (m,t')\in Q\) avec \(t'\neq t\),
+                \begin{equation*}
+                    \bb P(\mathsf{Vrfy}_k(m,t) = 1) = 0.
+                \end{equation*}
+
+            \end{enumerate}
+            Donc 
+            \begin{equation*}
+                \bb P_{\text{tot}} = \bb P_1 + \bb P_2 \leq \mathsf{negl}(n).
+            \end{equation*}
+            Donc le MAC est fortement sûr.
+        \end{enumerate}
+    \end{td-sol}
+}{}
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[] % 3
+	Considérons le MAC suivant pour des messages de longueur
+    \(l(n) = 2n-2\) utilisant une PRF \(F\).
+
+    En entrée, un message \(m_0 || m_1\) avec \(|m_0| = |m_1| = n-1\)
+    et une clé \(k \in {\{0,1\}}^n\), le MAC produit
+    \begin{equation*}
+        t = F_k(0 || m_0) || F_k(1 || m_1).
+    \end{equation*}
+    La vérification est canonique. Le MAC est-il sûr?
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+        On a
+        \begin{equation*}
+            \mathsf{Mac}_k(m_0 || m_1) = F_k(0 || m_0) || F_k(1 || m_1).
+        \end{equation*}
+        
+        L'adversaire peut utiliser la stratégie suivante:
+        \begin{enumerate}
+            \item Il demande l'étiquette de \(m_0 || m_{i\neq 1}\) à
+            l'oracle et reçoit \(t_1 || t_2\).
+            \item Il demande l'étiquette de \(m_{j\neq 0} || m_1\) à
+            l'oracle et reçoit \(t_3 || t_4\).
+            \item Il produit \((m_0 || m_1, t_1 || t_4)\).
+        \end{enumerate}
+    \end{td-sol}
+}{}
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[] % 4
+	Montrez que les MAC suivants ne sont pas sûrs même s'ils sont utilisés
+    pour authentifier des messages de longueur fixe. Dans chaque cas, \(F\) 
+    est une PRF, la clé \(k \in {\{0,1\}}^n\) est choisie au hasard et
+    \(\langle i \rangle\) désigne l'entier \(i\) encodé sous forme de 
+    chaîne de \(\frac n2\) bits.
+    \begin{enumerate}
+        \item L'étiquette de \(m = m_1,\ldots,m_l\) avec \(m_i\in {\{0,1\}}^{n}\)
+        est \(t \coloneqq F_k(m_1)\oplus \cdots \oplus F_k(m_l)\).
+
+        \item L'étiquette de \(m = m_1,\ldots,m_l\) avec \(m_i\in {\{0,1\}}^{\frac n2}\)
+        est \(t \coloneqq F_k(\langle 1 \rangle || m_1) \oplus \cdots \oplus F_k(\langle l \rangle || m_l)\).
+
+        \item L'étiquette de \(m = m_1,\ldots,m_l\) avec \(m_i\in {\{0,1\}}^{\frac n2}\)
+        est \(r, t\) où \(r\) est choisi uniformément dans \({\{0,1\}}^{n}\) et
+        \begin{equation*}
+            t \coloneqq F_k(r)\oplus F_k(\langle 1 \rangle || m_1) \oplus \cdots \oplus F_k(\langle l \rangle || m_l).
+        \end{equation*}
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+        \begin{enumerate}
+            \item Pour \(m = m_1,\ldots,m_l\) on a
+            \begin{equation*}
+                \mathsf{Mac}_k(m) = F_k(m_1)\oplus \cdots \oplus F_k(m_l).
+            \end{equation*}
+            où \(| \mathsf{Mac}_k(m) | = n \neq |m|\).
+            L'adversaire peut utiliser la stratégie suivante:
+            \begin{enumerate}
+                \item Il donne \(m_1 || m_2\) à l'oracle et reçoit \(t=F_k(m_1)\oplus F_k(m_2)\).
+                avec \(m_1\neq m_2\).
+                \item Il produit \(((m_2 || m_1), t)\) 
+            \end{enumerate}
+            Ainsi,
+            \begin{equation*}
+                \bb P(\mathsf{Vrfy}_k(m_2 || m_1, t) = 1) = 1.
+            \end{equation*}
+
+            \item Pour \(m = m_1,\ldots,m_l\) on a
+            \begin{equation*}
+                \mathsf{Mac}_k(m) = \bigoplus_{i=1}^l F_k(\langle i \rangle || m_i).
+            \end{equation*}
+            où \(| \mathsf{Mac}_k(m) | = n \neq |m|\).
+            L'adversaire peut utiliser la stratégie suivante dans le cas \(l=2\):
+            \begin{enumerate}
+                \item Il donne \(m_1 || m_2\) à l'oracle et reçoit \(t_1=F_k(\langle 1 \rangle || m_1)\oplus F_k(\langle 2 \rangle || m_2)\).
+                \item Il donne \(m_3 || m_4\) à l'oracle et reçoit \(t_2=F_k(\langle 1 \rangle || m_3)\oplus F_k(\langle 2 \rangle || m_4)\).
+                \item Enfin, il donne \(m_1 || m_4\) à l'oracle et reçoit \(t_3=F_k(\langle 1 \rangle || m_1)\oplus F_k(\langle 2 \rangle || m_4)\).
+                \item Alors, il obtient
+                \begin{equation*}
+                    t_1 \oplus t_2 \oplus t_3 = F_k(\langle 1 \rangle || m_3) \oplus F_k(\langle 2 \rangle || m_2).
+                \end{equation*}
+                donc il peut identifier \(m_3 || m_2\) avec cette étiquette.
+            \end{enumerate}
+            Donc 
+            \begin{equation*}
+                \bb P(\mathsf{Vrfy}_k(m_3 || m_2, t_1 \oplus t_2 \oplus t_3) = 1) = 1.
+            \end{equation*}
+            
+        \end{enumerate}
+    \end{td-sol}
+}{}
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[] % 5
+	Prouvez que les modifications suivantes du CBC-MAC ne permettent 
+    pas d'obtenir un MAC sûr (même pour des messages de longueur fixe):
+    \begin{enumerate}
+        \item \(\mathsf{Mac}\) produit tous les blocs \(t_1,\ldots,t_l\) 
+        au lieu de seulement \(t_l\). La vérification ne controle
+        que \(t_l\).
+
+        \item Au lieu de \(t_0 = 0^n\), un bloc initial aléatoire
+        \(t_0\) est utilisé à chaque fois qu'un message est authentifié.
+        Ainsi, pour le message \(t_0,m_1,\ldots,m_l\), affichez
+        \((t_0, t_l)\) comme étiquette. La vérification est canonique.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+        % TODO finir le 5
+    \end{td-sol}
+}{}
+
+% % ----- Consignes exo 1 ----- %
+% \begin{td-exo}[] % 1
+% 	% TODO add content
+% \end{td-exo}
+
+% % ----- Solutions exo 1 ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\ %
+%         % TODO finir le 1
+%     \end{td-sol}
+% }{}
+
