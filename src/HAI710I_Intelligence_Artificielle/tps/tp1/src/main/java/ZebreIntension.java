@@ -1,5 +1,4 @@
 import org.chocosolver.solver.Model;
-import org.chocosolver.solver.constraints.extension.Tuples;
 import org.chocosolver.solver.variables.IntVar;
 
 
@@ -44,13 +43,7 @@ public class ZebreIntension {
 
 
         // Création des contraintes
-        int [][] tEq = new int[][] {{1,1},{2,2},{3,3},{4,4},{5,5}};
-        Tuples tuplesAutorises = new Tuples(tEq,true);		// création de Tuples de valeurs autorisés
-        Tuples tuplesInterdits = new Tuples(tEq,false);		// création de Tuples de valeurs interdits
-        
-        // model.table(new IntVar[]{blu,gre}, tuplesInterdits).post();
-        // création d'une contrainte en extension de portée <blu,gre>
-        // dont les tuples autorisés/interdits sont données par tuplesInterdits
+
         model.allDifferent(blu, gre, ivo, red, yel).post();
         model.allDifferent(eng, jap, nor, spa, ukr).post();
         model.allDifferent(cof, mil, ora, tea, wat).post();
@@ -114,14 +107,14 @@ public class ZebreIntension {
         /*
          * Contrainte 11: The man who smokes Chesterfields lives in the house next to the man with the fox.
          */
-        model.arithm(che, "=", fox, "+", 1).post();
-        model.arithm(che, "=", fox, "-", 1).post();
+        model.arithm(che, "-", fox, "=", 1).post();
+        model.arithm(che, "-", fox, "=", -1).post();
 
         /*
          * Contrainte 12: Kools are smoked in the house next to the house where the horse is kept.
          */
-        model.arithm(koo, "=", hor, "+", 1).post();
-        model.arithm(koo, "=", hor, "-", 1).post();
+        model.arithm(koo, "-", hor, "=", 1).post();
+        model.arithm(koo, "-", hor, "=", -1).post();
 
         /*
          * Contrainte 13: The Lucky Strike smoker drinks orange juice.
@@ -136,8 +129,8 @@ public class ZebreIntension {
         /*
          * Contrainte 15: The Norwegian lives next to the blue house.
          */
-        model.arithm(nor, "=", blu, "+", 1).post();
-        model.arithm(nor, "=", blu, "-", 1).post();
+        model.arithm(nor, "-", blu, "=", 1).post();
+        model.arithm(nor, "-", blu, "=", -1).post();
 
         // Affichage du réseau de contraintes créé
         System.out.println("*** Réseau Initial ***");
