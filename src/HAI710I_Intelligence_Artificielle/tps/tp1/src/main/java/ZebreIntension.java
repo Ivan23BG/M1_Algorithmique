@@ -48,7 +48,7 @@ public class ZebreIntension {
         Tuples tuplesAutorises = new Tuples(tEq,true);		// création de Tuples de valeurs autorisés
         Tuples tuplesInterdits = new Tuples(tEq,false);		// création de Tuples de valeurs interdits
         
-        model.table(new IntVar[]{blu,gre}, tuplesInterdits).post();
+        // model.table(new IntVar[]{blu,gre}, tuplesInterdits).post();
         // création d'une contrainte en extension de portée <blu,gre>
         // dont les tuples autorisés/interdits sont données par tuplesInterdits
         model.allDifferent(blu, gre, ivo, red, yel).post();
@@ -67,83 +67,78 @@ public class ZebreIntension {
         /*
          * Contrainte 2: The Englisman lives in the red house.
          */
-        model.table(new IntVar[]{eng,red}, tuplesAutorises).post();
+        model.arithm(eng, "=", red).post();
 
         /*
          * Contrainte 3: The Spaniard owns the dog.
          */
-        model.table(new IntVar[]{spa,dog}, tuplesAutorises).post();
+        model.arithm(spa, "=", dog).post();
 
         /*
          * Contrainte 4: Coffee is drunk in the green house.
          */
-        model.table(new IntVar[]{cof,gre}, tuplesAutorises).post();
+        model.arithm(cof, "=", gre).post();
 
         /*
          * Contrainte 5: The Ukrainian drinks tea.
          */
-        model.table(new IntVar[]{ukr,tea}, tuplesAutorises).post();
+        model.arithm(ukr, "=", tea).post();
 
         /*
          * Contrainte 6: The green house is immediately to the right of the ivory house.
          */
-        int [][] tc6 = new int[][] {{1,2},{2,3},{3,4},{4,5}};
-        Tuples ta6 = new Tuples(tc6,true);
-        model.table(new IntVar[]{ivo,gre}, ta6).post();
+        model.arithm(gre, "=", ivo, "+", 1).post();
 
         /*
          * Contrainte 7: The Old Gold smoker owns snails.
          */
-        model.table(new IntVar[]{old,sna}, tuplesAutorises).post();
+        model.arithm(old, "=", sna).post();
 
         /*
          * Contrainte 8: Kools are smoked in the yellow house.
          */
-        model.table(new IntVar[]{koo,yel}, tuplesAutorises).post();
+        model.arithm(koo, "=", yel).post();
 
         /*
          * Contrainte 9: Milk is drunk in the middle house.
          */
-        IntVar ho3 = model.intVar("House 3", 3, 3);
-        model.table(new IntVar[]{mil, ho3}, tuplesAutorises).post();
+        IntVar co9 = model.intVar("House 3", 3, 3);
+        model.arithm(mil, "=", co9).post();
 
         /*
          * Contrainte 10: The Norwegian lives in the first house.
          */
-        IntVar ho1 = model.intVar("House 1", 1, 1);
-        model.table(new IntVar[]{nor, ho1}, tuplesAutorises).post();
+        IntVar co10 = model.intVar("House 1", 1, 1);
+        model.arithm(nor, "=", co10).post();
 
         /*
          * Contrainte 11: The man who smokes Chesterfields lives in the house next to the man with the fox.
          */
-        int [][] tc11 = new int[][] {{1,2},{2,1}, {2, 3}, {3, 2}, {3, 4}, {4, 3}, {4, 5}, {5, 4}};
-        Tuples ta11 = new Tuples(tc11,true);
-        model.table(new IntVar[]{che,fox}, ta11).post();
+        model.arithm(che, "=", fox, "+", 1).post();
+        model.arithm(che, "=", fox, "-", 1).post();
 
         /*
          * Contrainte 12: Kools are smoked in the house next to the house where the horse is kept.
          */
-        int [][] tc12 = new int[][] {{1,2},{2,1}, {2, 3}, {3, 2}, {3, 4}, {4, 3}, {4, 5}, {5, 4}};
-        Tuples ta12 = new Tuples(tc12,true);
-        model.table(new IntVar[]{koo,hor}, ta12).post();
+        model.arithm(koo, "=", hor, "+", 1).post();
+        model.arithm(koo, "=", hor, "-", 1).post();
 
         /*
          * Contrainte 13: The Lucky Strike smoker drinks orange juice.
          */
-        model.table(new IntVar[]{luc,ora}, tuplesAutorises).post();
+        model.arithm(luc, "=", ora).post();
 
         /*
          * Contrainte 14: The Japanese smokes Parliaments.
          */
-        model.table(new IntVar[]{jap,par}, tuplesAutorises).post();
+        model.arithm(jap, "=", par).post();
 
         /*
          * Contrainte 15: The Norwegian lives next to the blue house.
          */
-        int [][] tc15 = new int[][] {{1,2},{2,1}, {2, 3}, {3, 2}, {3, 4}, {4, 3}, {4, 5}, {5, 4}};
-        Tuples ta15 = new Tuples(tc15,true);
-        model.table(new IntVar[]{nor,blu}, ta15).post();
-        
+        model.arithm(nor, "=", blu, "+", 1).post();
+        model.arithm(nor, "=", blu, "-", 1).post();
+
         // Affichage du réseau de contraintes créé
         System.out.println("*** Réseau Initial ***");
         System.out.println(model);
