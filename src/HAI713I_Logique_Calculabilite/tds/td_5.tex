@@ -1,0 +1,143 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[facile]\ % 1
+	Soit \(g\) une fonction calculable.
+    \begin{enumerate}
+        \item Montrez qu'il existe une fonction calculable \emph{totale} \(G\)
+        telle que
+        \begin{equation*}
+            [G(n)\ |\ \cdot] = n+g(\cdot)
+        \end{equation*}
+
+        \item Montrez que \(\exists n [n\ |\ \cdot] = n+g(\cdot)\).
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 1
+        \begin{enumerate}
+            \item On ecrit le programme suivant:
+            % Penser SNM
+            \begin{equation*}
+                \begin{aligned}
+                    a:\ \langle x,y\rangle &\rightarrow \text{ return }(x+g(y))\\
+                    S_1^1\langle a,x\rangle y &\mapsto \cdots\\
+                    G:\ x&\mapsto S_1^1\langle a, x\rangle.
+                \end{aligned}
+            \end{equation*}
+            Alors, on a
+            \begin{equation*}
+                \forall n, [G(n)\ |\ \cdot] = n + g(\cdot)
+            \end{equation*}
+
+            \item On ecrit le programme suivant:
+            % Penser point fixe
+            \begin{equation*}
+                \begin{aligned}
+                    P.F. \implies \exists n, [n\ |\ \cdot] = [G(n)\ |\ \cdot] = n+g(\cdot)
+                \end{aligned}
+            \end{equation*}
+        \end{enumerate}
+    \end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[tout aussi aisé]\ % 2
+	\begin{enumerate}
+        \item Montre qu'il existe une fonction calculable \emph{totale} \(f\) telle que
+        \begin{equation*}
+            [f(n)\ |\ \cdot] = [n\ |\ \cdot] + 1
+        \end{equation*}
+
+        \item Quelles fonctions sont calculées par les points fixes de \(f\)?
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 2
+        \begin{enumerate}
+            \item On utilise S.N.M pour obtenir:
+            \begin{equation*}
+                \begin{aligned}
+                    b:\ \langle x,y\rangle &\rightarrow \text{ return }\left( [x\ |\ y] + 1\right)\\
+                    S_1^1\langle b,x\rangle y &\mapsto \cdots\\
+                    f:\ x&\mapsto S_1^1\langle b, x\rangle.
+                \end{aligned}
+            \end{equation*}
+            Alors, on a
+            \begin{equation*}
+                \forall n [f(n)\ |\ \cdot] = [n\ |\ \cdot]+1
+            \end{equation*}
+
+            \item D'après le théorème du point fixe, on a
+            \begin{equation*}
+                \exists n [n\ |\ \cdot] = [f(n)\ |\ \cdot] = [n\ |\ \cdot] + 1
+            \end{equation*}
+            Donc les points fixes de \(f\) calculent les fonctions qui plantent partout.
+        \end{enumerate}
+    \end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[amusant et à peine plus dur]\ % 3
+	\begin{enumerate}
+        \item Montrez que dans tout système acceptable de programmation il existe 2 programmes consécutifs qui calculent la même fonction.
+
+        \item Proposez un système de programmation dans lequel 3 programmes consécutifs ne calculent jamais la même fonction.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 3
+        \begin{enumerate}
+            \item On pose \(f\ :\ x\mapsto x+1\). Cette fonction est calculable.
+            Déterminons son point fixe:
+            \begin{equation*}
+                \exists n [n\ |\ \cdot] = [f(n)\ |\ \cdot] = [n+1\ |\ \cdot].
+            \end{equation*}
+            Fini.
+
+            \item On prend un système usuel avec la fonction universelle \(U\langle x, y\rangle\).
+            \begin{itemize}
+                \item Si \(x \equiv 0\mod 3\), alors \(\forall y [x\ |\ y] = U\langle k, y\rangle\).
+                \item Si \(x \equiv 1\mod 3\), alors \(\forall y [x\ |\ y] = \perp\).
+                \item Si \(x \equiv 2\mod 3\), alors \(\forall y [x\ |\ y] = U\langle k, y\rangle\).
+            \end{itemize}
+        \end{enumerate}
+    \end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[opérations ensemblistes]\ % 4
+    \begin{enumerate}
+        \item Trouvez un exemple d'ensembles \(S_1\) et \(S_2\) non énumérables tels que \(S_1\setminus S_2\) soit énumérable.
+        \item Trouvez un exemple d'ensembles \(S_1\) et \(S_2\) non énumérables tels que \(S_1\cup S_2\) soit énumérable.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 4
+        \begin{enumerate}
+            \item On pose \(S_1 = S_2 = \ol{\bb K}\). Alors on a bien \(S_1\) et \(S_2\) non énumérables mais \(S_1\setminus S_2=\varnothing\) qui est énumérable.
+            \item On pose deux ensembles bien choisis:
+            \begin{equation*}
+                \begin{aligned}
+                    &S_1 = \mathsf{Pairs}\cup \left\{2x+1, [x\ |\ x]\uparrow\right\}\\
+                    &S_2 = \mathsf{Impairs}\cup \left\{2x, [x\ |\ x]\uparrow\right\}\\
+                \end{aligned}
+            \end{equation*}
+            Ces ensembles sont bien non énumérables car \(\ol{\bb K}\prec S_i\) en prenant
+            la fonction de réduction
+            \begin{equation*}
+                f_1\ :\ x\mapsto 2x+1,\quad f_2\ :\ x\mapsto 2x
+            \end{equation*}
+            et leur union fait bien \(\bb N\) et donc est énumérable.
+        \end{enumerate}
+    \end{td-sol}
+}{}
