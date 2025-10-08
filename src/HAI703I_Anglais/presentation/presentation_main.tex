@@ -1,0 +1,147 @@
+% NeuroSync Pitch - Beamer presentation
+% Filename: NeuroSync_Pitch_Beamer.tex
+% Compile with: pdflatex (or use Overleaf)
+
+\documentclass[10pt]{beamer}
+\usetheme{Madrid} % clean, professional
+\usecolortheme{seagull}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{tikz}
+\setbeamertemplate{navigation symbols}{} % remove nav symbols
+
+% ----- Metadata -----
+\title{NeuroSync}
+\subtitle{Think faster. Work smarter.}
+\author{Ivan Lejeune}
+\date{Oral Presentation — \today}
+
+\begin{document}
+
+% Title slide
+\begin{frame}
+    \titlepage
+    % Speaker note: Quick one-liner hook, then state names and why this matters for developers/students.
+\end{frame}
+
+% Slide 1: Hook / Intro
+\begin{frame}{Hook: imagine your computer could know when you're tired \(\ldots\)}
+    \begin{itemize}
+        \item Short opening question (use this to engage the audience).
+        \item One sentence: what NeuroSync is (wearable AI productivity assistant).
+    \end{itemize}
+    % PLACEHOLDER: small image/logo
+    % \begin{center}\includegraphics[height=2.5cm]{placeholder_logo.png}\end{center}
+    % Speaker note: Deliver the hook energetically. Smile. Pause for 1 second for effect.
+\end{frame}
+
+% Slide 2: The problem
+\begin{frame}{The Problem}
+    \begin{itemize}
+        \item Distraction and burnout are skyrocketing in tech and study environments.
+        \item Developers / students lose focus frequently; productivity suffers.
+    \end{itemize}
+    \vspace{0.4cm}
+    % PLACEHOLDER: Insert a graph showing "average focus time" or an exaggerated bar chart.
+    % Example: include: \includegraphics[width=0.8\textwidth]{placeholder_focus_graph.png}
+    % Speaker note: Keep stats short and relatable. You can use hyperbolic bars for humor.
+\end{frame}
+
+% Slide 3: The solution
+\begin{frame}{Our Solution: NeuroSync}
+    \begin{itemize}
+        \item A comfortable wearable that monitors cognitive load and stress markers.
+        \item Uses on-device ML to recommend work/rest cycles and auto-adjust settings (notifications, playlists, screen dimming).
+        \item Simple mobile dashboard and productivity timeline.
+    \end{itemize}
+    % PLACEHOLDER: product mockup image (phone + wearable)
+    % \includegraphics[width=0.7\textwidth]{placeholder_mockup.png}
+    % Speaker note: Keep it accessible. Avoid heavy technical jargon here.
+\end{frame}
+
+% Slide 4: How it works (brief tech)
+\begin{frame}{How it works (in 30 seconds)}
+    \begin{columns}
+        \column{0.55\textwidth}
+        \begin{enumerate}
+            \item Sensors (EEG-like/PPG proxies) collect lightweight signals.
+            \item Bluetooth \(\rightarrow\) smartphone \(\rightarrow\) privacy-first ML model.
+            \item Actions: adjust environment, suggest micro-breaks, or activate focus mode.
+        \end{enumerate}
+        \column{0.45\textwidth}
+        % PLACEHOLDER: simple diagram showing wearable -> phone -> cloud/ai -> actions
+        % \includegraphics[width=\textwidth]{placeholder_architecture.png}
+    \end{columns}
+    % Speaker note: Emphasise privacy (data processed locally) — important for European audience.
+\end{frame}
+
+% Slide 5: Market and users
+\begin{frame}{Market and Impact}
+    \begin{itemize}
+        \item Primary users: developers, masters students, remote teams.
+        \item Secondary: knowledge workers, gamers, creative professionals.
+        \item Quick TAM/ SOM teaser (one slide, one sentence each).
+    \end{itemize}
+    % PLACEHOLDER: market pie chart or simple table showing segments
+    % \includegraphics[width=0.75\textwidth]{placeholder_market_chart.png}
+    % Speaker note: Keep numbers round and persuasive. Use exaggerated growth humor if you want.
+\end{frame}
+
+% Slide 6: Traction / Pilot
+\begin{frame}{Traction \\ Pilots and Next Steps}
+    \begin{itemize}
+        \item Pilot study proposed at 2 tech universities (e.g., your faculty).
+        \item Early prototype validated with N=10 testers — improved subjective focus scores.
+        \item Next: iterate hardware, refine ML, prepare MVP.
+    \end{itemize}
+    % PLACEHOLDER: timeline graphic or "roadmap" image
+    % \includegraphics[width=0.8\textwidth]{placeholder_roadmap.png}
+    % Speaker note: Mention low-cost pilot, ethical approval, and data privacy briefly.
+\end{frame}
+
+% Slide 7: Why invest / Business model
+\begin{frame}{Why invest? Business Model}
+    \begin{itemize}
+        \item Revenue: device sales + subscription for advanced analytics.
+        \item Competitive edge: privacy-first, student-friendly pricing, easy integration with calendars and IDEs.
+        \item Ask: € X for Y\% (optional — keep playful if you prefer).
+    \end{itemize}
+    % PLACEHOLDER: small table: revenue streams
+    % \begin{center}\includegraphics[width=0.6\textwidth]{placeholder_revenue.png}\end{center}
+    % Speaker note: If doing Shark Tank humor, deliver a bold funding ask and wink.
+\end{frame}
+
+% Slide 8: Demo / example use-case (mini)
+\begin{frame}{Mini Use-Case: Alice the Developer}
+    \begin{itemize}
+        \item 10:00 — deep work: NeuroSync suggests 50-min focus + 10-min break.
+        \item 11:00 — stress spike: device suggests breathing break and dims distractions.
+        \item Result: Alice ships feature, less burnout.
+    \end{itemize}
+    % PLACEHOLDER: timeline / small screenshots
+    % \includegraphics[width=0.7\textwidth]{placeholder_usecase.png}
+    % Speaker note: Make it relatable and a little funny.
+\end{frame}
+
+% Slide 9: Closing / Call to action
+\begin{frame}{Thank you — Questions?}
+    \begin{center}
+        \Large{Thanks for listening!}
+    \end{center}
+    % Speaker note: End with a confident ask for questions. Be ready for 1-2 short questions.
+\end{frame}
+
+% Optional backup slide: FAQ / technical details
+\begin{frame}{Appendix: Tech Details (if asked)}
+    \begin{itemize}
+        \item Lightweight ML model: explainable features (alpha/beta proxies, HRV-like indicators).
+        \item Privacy: edge-first inference, anonymized pilot data.
+    \end{itemize}
+    % Speaker note: Use this only if you have time during QandA.
+    \end{frame}
+
+\end{document}
