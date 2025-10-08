@@ -29,7 +29,7 @@ This repository contains LaTeX source files and compiled materials for various a
 
 ## Prerequisites
 - LaTeX distribution (e.g., TeX Live or MiKTeX)
-- Make (for build automation)
+- Python (for build automation)
 - Git
 
 ## Building the Documents
