@@ -10,3 +10,4 @@ logs/
 *.synctex.gz
 .vscode/
 src/HAI720I/tds/*/execs/
+.build_cache.json
