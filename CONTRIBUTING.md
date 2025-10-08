@@ -39,7 +39,7 @@ Thank you for considering contributing to our algorithmics course materials! Thi
 ### Example of Good LaTeX Style
 ```latex
 \begin{theorem}[Fundamental Theorem of Calculus]\label{thm:ftc}
-    Let $f$ be continuous on $\ff{a,b}$ and let $F$ be an antiderivative of $f$.
+    Let \(f\) be continuous on \(\ff{a,b}\) and let \(F\) be an antiderivative of \(f\).
     Then:
     \begin{equation*}
         \int_a^b f(x)\der x = F(b) - F(a)
@@ -57,19 +57,13 @@ Thank you for considering contributing to our algorithmics course materials! Thi
 
 ### Prerequisites
 - Complete TeX Live or MiKTeX installation
-- Make utility
+- Python
 - Git
 
 ### Build Commands
 ```bash
 # Build all materials
-make all
-
-# Build specific course
-make 70X
-
-# Clean build artifacts
-make clean
+./build.py
 ```
 
 ## Questions?
