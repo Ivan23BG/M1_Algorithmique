@@ -1,0 +1,218 @@
+\iftoggle{showquestions}{
+\section*{Instructions}
+
+Ce devoir est à rendre avant le 12 décembre 2025 à 12h, soit par mail à l'adresse:
+rodolphe.giroudeau@{}lirmm.fr,
+soit en déposant votre devoir durant le cours
+}{}
+
+\section{Partie théorique}
+% ----- Consignes exo 1 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Algorithmes pour la programmation linéaire]\, % 1
+        Considérons la formulation suivante:
+        \begin{equation*}
+            P_\beta =
+            \begin{cases}
+                \max z = 5x_1 + 2x_2\\
+                6x_1 + x_2 \geq 6\\
+                4x_1 + 4x_2 \geq 12\\
+                x_1 + 2x_2 \geq 4\\
+                x_i \geq 0,\quad \forall i \in \{1,2\}
+            \end{cases}
+        \end{equation*}\,
+        \begin{enumerate}
+            \item Résoudre le problème \(P_\beta\) par la méthode du big \(M\).
+            \item Résoudre le problème \(P_\beta\) par la méthode à deux phases.
+            \item \textbf{Difficile:}
+            \begin{enumerate}
+                \item Résoudre le problème \(P_\beta\) par la méthode dual-simplexe.
+                \item Soit le programme linéaire \(P_\theta\)
+                \begin{equation*}
+                    P_\theta =
+                    \begin{cases}
+                        \max z = x_1 + 3x_2\\
+                        x_1 + x_2 \geq 3\\
+                        x_1 - 2x_2 \geq 5\\
+                        -2x_1 + x_2 \leq 5\\
+                        x_i \geq 0,\quad \forall i \in \{1,2\}
+                    \end{cases}
+                \end{equation*}
+                Résoudre le problème \(P_\theta\) par la méthode dual-simplexe.
+            \end{enumerate}
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 1 ----- %
+\begin{td-sol}[]\ %
+    \begin{enumerate}
+        \item Commençons par poser le problème sous forme standard:
+        \begin{equation*}
+            P_\beta =
+            \begin{cases}
+                \max z = 5x_1 + 2x_2 + 0x_3 + 0x_4 + 0x_5 - M\cdot(y_1 + y_2 + y_3)\\
+                6x_1 + x_2 - x_3 + y_1 = 6\\
+                4x_1 + 4x_2 - x_4 + y_2 = 12\\
+                x_1 + 2x_2 - x_5 + y_3 = 4\\
+                x_i\geq 0, y_j \geq 0,\quad \forall i \in \{1,\ldots,5\}, \forall j \in \{1,2,3\}.
+            \end{cases}
+        \end{equation*}
+        Ensuite on construit notre tableau du simplexe:
+        \begin{center}
+            \begin{tabular}{|ccc|cccccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(5\)&\(2\)&\(0\)&\(0\)&\(0\)&\(-M\)&\(-M\)&\(-M\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(y_1\)&\(y_2\)&\(y_3\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-M\)}& \multicolumn{1}{c|}{\(x_1^{1}=y_1\)} &\(6\)&\(6\)&\(1\)&\(-1\)&\(0\)&\(0\)&\(1\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-M\)}& \multicolumn{1}{c|}{\(x_2^{1}=y_2\)} &\(12\)&\(4\)&\(4\)&\(0\)&\(-1\)&\(0\)&\(0\)&\(1\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-M\)}& \multicolumn{1}{c|}{\(x_2^{1}=y_3\)} &\(4\)&\(1\)&\(2\)&\(0\)&\(0\)&\(-1\)&\(0\)&\(0\)&\(1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(-22M\)} &\(-11M-5\)&\(-7M-2\)&\(M\)&\(M\)&\(M\)&\(0\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+    \end{enumerate}
+\end{td-sol}
+
+% ----- Consignes exo 2 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Dualité]
+        Considérez le programme linéaire le plus général envisageable donné ci-dessous:
+        \begin{equation*}
+            \begin{cases}
+                \min z = c_1 x_1 + c_2 x_2 \\
+                A_{11} x_1 + A_{12} x_2 \leq b_1 \\
+                A_{21} x_1 + A_{22} x_2 = b_2 \\
+                x_i \geq 0,\quad \forall i \in \{1,2\}
+            \end{cases}
+        \end{equation*}
+        où \(A\) est une matrice \((m_1 + m_2) \times (n_1 + n_2)\) et \(c, x\in \bb R^{n_1 + n_2}\) et \(b \in \bb R^{m_1 + m_2}\).
+
+        Caractériser le dual.
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 2 ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice 2
+\end{td-sol}
+
+% ----- Consignes exo 3 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Ensemble convexe]\,
+        Soit \(C_1\) et \(C_2\) deux convexes de \(\bb R^{m+n}\). Montrer que l'ensemble 
+        \begin{equation*}
+            C = \left\{\left(x, y_1 + y_2\right) \mid x\in\bb R^m, y_1\in \bb R^n, y_2\in\bb R^n, (x,y_1)\in C_1, (x, y_2)\in C_2\right\}
+        \end{equation*} est également convexe.
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 3 ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice 3
+\end{td-sol}
+
+% ----- Consignes exo 4 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Modélisation et dualité]
+    Considérons un problème d'affectation avec \(m\) jobs et \(n\) travailleurs (\(n\geq m\)). Chaque job doit être affecté à exactement un travailleur.
+    Soit \(p_{ij}\) le rendement obtenu si on affecte le job \(i\) au travailleur \(j\), où \(i\in\{1,\ldots,m\}\) et \(j\in\{1,\ldots,n\}\). On cherche une affectation qui maximise le rendement total.
+    \begin{enumerate}
+        \item Donner le programme linéaire.
+        \item Donner la formulation du dual de ce problème.
+    \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 4 ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice 4
+\end{td-sol}
+
+% ----- Consignes exo 5 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Programmation linéaire: Farkas]\,
+        Considérons le programme linéaire suivant, qui dépend de \(\varepsilon\in\bb R\):
+        \begin{equation*}
+            \begin{cases}
+                \min z = 4x_1 - 2x_2\\
+                x_2\leq 3\\
+                \varepsilon x_1 + (2-\varepsilon) x_2 \leq 4\\
+                x_i \geq 0,\quad \forall i \in \{1,2\}
+            \end{cases}
+        \end{equation*}\,
+        \begin{enumerate}
+            \item Montrer que le problème est réalisable \(\forall \varepsilon\in\bb R\).
+            \item Pour quelles valeurs de \(\varepsilon\) la valeur optimale est-elle non bornée?
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 5 ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice 5
+\end{td-sol}
+
+% ----- Consignes exo 6 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Résolution numérique]\,
+        Résoudre le programme linéaire suivant par la méthode Primal-Dual:
+        \begin{equation*}
+            \text{Primal} = 
+            \begin{cases}
+                \min z(x_1, x_2, x_3) = 2x_1 + x_2 + 2x_3 + 8x_4\\
+                2x_1 - x_2 + 3x_3 - 2x_4 = 3\\
+                -x_1 + 3x_2 - 4x_3 = 1\\
+                x_i \geq 0,\quad \forall i \in \{1,2,3,4\}
+            \end{cases}
+        \end{equation*}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 6 ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice 6
+\end{td-sol}
+
+\section{Partie pratique}
+
+% ----- Consignes exo xx ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[]
+
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo xx ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice xx
+\end{td-sol}
+
+% ----- Consignes exo xx ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[]
+
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo xx ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice xx
+\end{td-sol}
+
+% ----- Consignes exo xx ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[]
+
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo xx ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice xx
+\end{td-sol}
