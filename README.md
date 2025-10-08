@@ -52,4 +52,4 @@ This project is licensed under the [LICENSE-NAME] - see the [LICENSE](LICENSE) f
 - [Ivan Lejeune]
 
 ## Acknowledgments
-- University of science and letters of Montpellier
+- University of Montpellier
