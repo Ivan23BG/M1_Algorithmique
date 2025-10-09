@@ -1179,7 +1179,7 @@ def main():
             return 1
     
     except KeyboardInterrupt:
-        print(f"\n{Config.YELLOW}⚠ Build interrupted by user{Config.NC}")
+        print(f"\n{Config.YELLOW}Build interrupted by user{Config.NC}")
         return 130  # Standard SIGINT exit code
     except Exception as e:
         print(f"\n{Config.RED}Error: {e}{Config.NC}")
