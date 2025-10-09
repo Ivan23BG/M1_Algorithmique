@@ -1047,7 +1047,7 @@ Example: -r 702 710 (builds modules 702 through 710)
         metavar='N',
         help="""
 Number of parallel compilation jobs.
-Default: CPU_COUNT - 1. Use 1 for sequential compilation.
+Default: CPU_COUNT - 2. Use 1 for sequential compilation.
         """.strip()
     )
     
@@ -1122,11 +1122,11 @@ Use flags to customize what gets cleaned.
         help='Show project information with metrics',
         description="""
 Display comprehensive project information including:
-  - Directory configuration
-  - Module and file counts
-  - Content metrics (lines, file sizes)
-  - Output statistics (PDFs generated)
-  - Build cache status
+    - Directory configuration
+    - Module and file counts
+    - Content metrics (lines, file sizes)
+    - Output statistics (PDFs generated)
+    - Build cache status
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
@@ -1136,10 +1136,10 @@ Display comprehensive project information including:
         help='Show detailed project statistics',
         description="""
 Display detailed project statistics including:
-  - Complete file inventory
-  - Storage usage breakdown
-  - Content metrics (total lines, averages)
-  - Module distribution
+    - Complete file inventory
+    - Storage usage breakdown
+    - Content metrics (total lines, averages)
+    - Module distribution
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
