@@ -53,7 +53,7 @@ USAGE EXAMPLES:
     # Clean everything
     ./build.py clean --all
 
-Author: Enhanced by Claude
+Enhanced by Claude
 Version: 2.0
 """
 
@@ -201,7 +201,7 @@ class BuildCache:
         """Save cache to disk"""
         try:
             with open(Config.CACHE_FILE, 'w') as f:
-                json.dump(self.data, f, indent=2)
+                json.dump(self.data, f, indent=4)
         except IOError as e:
             print(f"{Config.YELLOW}Warning: Could not save cache: {e}{Config.NC}")
     
@@ -483,7 +483,7 @@ def compile_files_parallel(files: List[Path], num_jobs: Optional[int] = None) ->
     Shows progress for single files, uses pool for multiple.
     """
     if num_jobs is None:
-        num_jobs = max(1, mp.cpu_count() - 1)
+        num_jobs = max(1, mp.cpu_count() - 2)
     
     if len(files) == 1 or num_jobs == 1:
         # Single file or single job - compile directly with live output
@@ -494,9 +494,9 @@ def compile_files_parallel(files: List[Path], num_jobs: Optional[int] = None) ->
             result = compile_tex_file(f)
             
             if result.success:
-                print(f"{Config.GREEN}✓ Success{Config.NC} ({result.duration:.1f}s)")
+                print(f"{Config.GREEN}Success{Config.NC} ({result.duration:.1f}s)")
             else:
-                print(f"{Config.RED}✗ Failed{Config.NC} {result.error_msg}")
+                print(f"{Config.RED}Failed{Config.NC} {result.error_msg}")
             
             results.append(result)
         return results
@@ -519,7 +519,7 @@ def clean_build():
     if Config.BUILD_DIR.exists():
         shutil.rmtree(Config.BUILD_DIR)
         Config.BUILD_DIR.mkdir()
-    print(f"{Config.GREEN}✓ Build artifacts cleaned{Config.NC}")
+    print(f"{Config.GREEN}Build artifacts cleaned{Config.NC}")
 
 
 def clean_logs():
@@ -527,7 +527,7 @@ def clean_logs():
     if Config.LOGS_DIR.exists():
         shutil.rmtree(Config.LOGS_DIR)
         Config.LOGS_DIR.mkdir()
-    print(f"{Config.GREEN}✓ Log files cleaned{Config.NC}")
+    print(f"{Config.GREEN}Log files cleaned{Config.NC}")
 
 
 def clean_pdfs():
@@ -535,7 +535,7 @@ def clean_pdfs():
     if Config.PDFS_DIR.exists():
         shutil.rmtree(Config.PDFS_DIR)
         Config.PDFS_DIR.mkdir()
-    print(f"{Config.GREEN}✓ PDF files cleaned{Config.NC}")
+    print(f"{Config.GREEN}PDF files cleaned{Config.NC}")
 
 
 def clean_module(module_name: str):
@@ -548,7 +548,7 @@ def clean_module(module_name: str):
             cleaned = True
     
     if cleaned:
-        print(f"{Config.GREEN}✓ Module '{module_name}' cleaned{Config.NC}")
+        print(f"{Config.GREEN}Module '{module_name}' cleaned{Config.NC}")
     else:
         print(f"{Config.YELLOW}Module '{module_name}' not found{Config.NC}")
 
@@ -626,7 +626,7 @@ def build_command(args) -> int:
         return 1
     
     modules = discover_modules(main_files)
-    print(f"{Config.GREEN}✓ Found {len(main_files)} main files in {len(modules)} modules{Config.NC}\n")
+    print(f"{Config.GREEN}Found {len(main_files)} main files in {len(modules)} modules{Config.NC}\n")
     
     # Filter files based on targets
     files_to_build = []
@@ -670,8 +670,6 @@ def build_command(args) -> int:
         print(f"{Config.RED}No files to build{Config.NC}")
         return 1
     
-    print()  # Spacing
-    
     # Determine what needs compilation
     metrics = BuildMetrics(total_files=len(files_to_build))
     
@@ -692,7 +690,7 @@ def build_command(args) -> int:
         metrics.compiled_files = len(files_to_compile)
         metrics.skipped_files = len(files_to_build) - len(files_to_compile)
         
-        print(f"{Config.GREEN}✓ {metrics.compiled_files} files need rebuilding, "
+        print(f"{Config.GREEN}{metrics.compiled_files} files need rebuilding, "
               f"{metrics.skipped_files} up to date{Config.NC}\n")
     
     if not files_to_compile:
@@ -728,10 +726,10 @@ def print_build_summary(results: List[CompileResult], metrics: BuildMetrics):
     
     # Overall stats
     print(f"\n{Config.WHITE}Results:{Config.NC}")
-    print(f"  {Config.GREEN}✓ Successful:{Config.NC}  {metrics.successful}")
+    print(f"  {Config.GREEN}Successful:{Config.NC}  {metrics.successful}")
     
     if metrics.failed > 0:
-        print(f"  {Config.RED}✗ Failed:{Config.NC}      {metrics.failed}")
+        print(f"  {Config.RED}Failed:{Config.NC}      {metrics.failed}")
     
     if metrics.skipped_files > 0:
         print(f"  {Config.CYAN}• Skipped:{Config.NC}     {metrics.skipped_files} (up to date)")
@@ -918,7 +916,7 @@ def clean_command(args) -> int:
         clean_pdfs()
         if Config.CACHE_FILE.exists():
             Config.CACHE_FILE.unlink()
-            print(f"{Config.GREEN}✓ Cache cleared{Config.NC}")
+            print(f"{Config.GREEN}Cache cleared{Config.NC}")
     elif args.build:
         clean_build()
     elif args.logs:
@@ -932,7 +930,7 @@ def clean_command(args) -> int:
         clean_logs()
         if Config.CACHE_FILE.exists():
             Config.CACHE_FILE.unlink()
-            print(f"{Config.GREEN}✓ Cache cleared{Config.NC}")
+            print(f"{Config.GREEN}Cache cleared{Config.NC}")
     
     return 0
 
@@ -948,50 +946,50 @@ def create_parser() -> argparse.ArgumentParser:
         prog='build.py',
         description="""
 ╔═══════════════════════════════════════════════════════════════════════╗
-║  LaTeX Build System for Multi-Module Academic Projects               ║
+║  LaTeX Build System for Multi-Module Academic Projects                ║
 ╚═══════════════════════════════════════════════════════════════════════╝
 
 A smart build system that compiles LaTeX documents organized in modules
 with intelligent caching, parallel compilation, and dependency tracking.
 
 TYPICAL WORKFLOW:
-  1. ./build.py info              # See project structure
-  2. ./build.py list-modules      # List available modules
-  3. ./build.py                   # Build changed files
-  4. ./build.py build -m 702      # Build specific module
-  5. ./build.py stats             # See detailed statistics
+    1. ./build.py info              # See project structure
+    2. ./build.py list-modules      # List available modules
+    3. ./build.py                   # Build changed files
+    4. ./build.py build -m 702      # Build specific module
+    5. ./build.py stats             # See detailed statistics
         """,
         epilog="""
 EXAMPLES:
-  Build all changed files:
-    ./build.py
-    ./build.py build
-  
-  Build specific module(s):
-    ./build.py build -m HAI702I_Algebre
-    ./build.py build -m 702
-    ./build.py build -m 702 -m 703
-  
-  Build range of modules:
-    ./build.py build -r 702 710
-  
-  Force rebuild everything:
-    ./build.py build --force
-  
-  Use 4 parallel workers:
-    ./build.py build -j 4
-  
-  Clean operations:
-    ./build.py clean              # Clean build artifacts and logs
-    ./build.py clean --all        # Clean everything including PDFs
-    ./build.py clean --pdfs       # Clean only PDFs
-    ./build.py clean --module HAI702I_Algebre
-  
-  Information commands:
-    ./build.py info               # Project overview with metrics
-    ./build.py list-modules       # List all modules
-    ./build.py list-files         # List all main files
-    ./build.py stats              # Detailed statistics
+    Build all changed files:
+        ./build.py
+        ./build.py build
+    
+    Build specific module(s):
+        ./build.py build -m HAI702I_Algebre
+        ./build.py build -m 702
+        ./build.py build -m 702 -m 703
+    
+    Build range of modules:
+        ./build.py build -r 702 710
+    
+    Force rebuild everything:
+        ./build.py build --force
+    
+    Use 4 parallel workers:
+        ./build.py build -j 4
+    
+    Clean operations:
+        ./build.py clean              # Clean build artifacts and logs
+        ./build.py clean --all        # Clean everything including PDFs
+        ./build.py clean --pdfs       # Clean only PDFs
+        ./build.py clean --module HAI702I_Algebre
+    
+    Information commands:
+        ./build.py info               # Project overview with metrics
+        ./build.py list-modules       # List all modules
+        ./build.py list-files         # List all main files
+        ./build.py stats              # Detailed statistics
 
 For more information, see README.md or visit the project repository.
         """,
@@ -1184,7 +1182,7 @@ def main():
         print(f"\n{Config.YELLOW}⚠ Build interrupted by user{Config.NC}")
         return 130  # Standard SIGINT exit code
     except Exception as e:
-        print(f"\n{Config.RED}✗ Error: {e}{Config.NC}")
+        print(f"\n{Config.RED}Error: {e}{Config.NC}")
         if '--debug' in sys.argv:
             raise
         return 1
