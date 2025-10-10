@@ -60,7 +60,7 @@
 
 
 % ----- Consignes exo 5 ----- %
-\begin{td-exo}[Tous d'un coup]\,\\ % 5 
+\begin{td-exo}[Tous d'un coup]\,\label{ex:td2ex5}\\ % 5 
 	Soit \(G = (X\cup Y, E)\) un graphe biparti de bipartition \((X, Y)\)
 	avec \(\Delta(G) \geq 1\).
 	\begin{enumerate}
@@ -192,6 +192,22 @@
 
 			On obtient une formule équivalente à \(F\), où les clauses
 			sont de taille \(\leq 3\) et les variables apparaissent 3 fois.
+
+			Comme \(3\)-\(SAT\) est NP-complet, \((\leq 3)\)-\(SAT(\leq 3)\)
+			est aussi NP-complet.
+
+			\item On fait le biparti \(G\) Clause-Variable.
+			% insert graph here
+			Les sommets clauses sont de degré 3 dans \(G\).
+			Les sommets variables sont de degré \(\leq 3\).
+
+			Par l'exercice~\ref{ex:td2ex5} il existe un couplage \(M\) saturant les clauses.
+			Chaque clause \(C_i\) a sa variable privée \(M\cdot C_i\).
+			Pour \(i\in\{1,\ldots,n\}\), on instancie \(M\cdot C_i\) 
+			pour satisfaire \(C_i\).
+
+			Ainsi, la formule de départ est toujours satisfaisable.
+
 		\end{enumerate}
 	\end{td-sol}
 }{}
