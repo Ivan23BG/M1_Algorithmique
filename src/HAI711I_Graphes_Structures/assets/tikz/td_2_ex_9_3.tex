@@ -1,0 +1,22 @@
+% Figure 1
+\ffigbox[\FBwidth]{
+\label{Fig:td2ex9}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=4mm}]
+            \node (d) at (3, 2) {\(d\)};
+            \node (e) at (4, 2) {\(e\)};
+            \node (f) at (5, 2) {\(f\)};
+
+            \node (4) at (3, 0) {\(4\)};
+            \node (5) at (4, 0) {\(5\)};
+
+            \draw[red] (d) -- (4);
+            
+            \draw (e) -- (4);
+            \draw[red] (e) -- (5);
+            
+            \draw (f) -- (5);
+        \end{tikzpicture}
+    }
+}

@@ -1,0 +1,87 @@
+% Figure 3
+\ffigbox[\FBwidth]{
+\caption{\centering \,\\Hypercube \(Q_3\)}\label{Fig:qd3}
+}{
+    \fbox{
+        % Q3: Cube (Hypercube of dimension 3)
+        \begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize}]
+            % Parameters
+            \def\L{2}            % side length of square
+            \def\dx{0.9} 
+            \def\dy{0.6}         % offset for the "back" square (gives perspective)
+            \def\offset{0.12}    % offset distance from cube edges
+            
+            % front (lower) square: coordinates ordered 000,001,011,010 (clockwise)
+            \coordinate (v000) at (0,0);
+            \coordinate (v001) at (\L,0);
+            \coordinate (v011) at (\L,\L);
+            \coordinate (v010) at (0,\L);
+            
+            % back (shifted) square: add (dx,dy) and these will be 100,101,111,110
+            \coordinate (v100) at ($ (v000) + (\dx,\dy) $);
+            \coordinate (v101) at ($ (v001) + (\dx,\dy) $);
+            \coordinate (v111) at ($ (v011) + (\dx,\dy) $);
+            \coordinate (v110) at ($ (v010) + (\dx,\dy) $);
+            
+            % draw edges front square
+            \foreach \a/\b in {v000/v001, v001/v011, v011/v010, v010/v000}
+                \draw (\a) -- (\b);
+            
+            % draw edges back square
+            \foreach \a/\b in {v100/v101, v101/v111, v111/v110, v110/v100}
+                \draw (\a) -- (\b);
+            
+            % connect corresponding vertices (cube edges)
+            \foreach \a/\b in {v000/v100, v001/v101, v011/v111, v010/v110}
+                \draw (\a) -- (\b);
+            
+            % Path: 000 → 001 → 101 → 100 → 110 → 010 → 011 → 111
+            % Draw arrows parallel to edges but offset outside
+            
+            % Arrow 1: 000 → 001 (bottom edge, offset downward)
+            \draw[->, thick, red!70!black] 
+                ($ (v000) + (0,-\offset) $) -- ($ (v001) + (0,-\offset) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v000)!0.5!(v001) + (0,-\offset-0.15) $) {1};
+            
+            % Arrow 2: 001 → 101 (right-back edge, offset to the right)
+            \draw[->, thick, red!70!black] 
+                ($ (v001) + (\offset,-\offset) $) -- ($ (v101) + (\offset,-\offset) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v001)!0.5!(v101) + (\offset+0.15,-\offset) $) {2};
+            
+            % Arrow 3: 101 → 100 (top-back edge, offset behind/up)
+            \draw[->, thick, red!70!black] 
+                ($ (v101) + (\offset,\offset) $) -- ($ (v100) + (\offset,\offset) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v101)!0.5!(v100) + (\offset,\offset+0.15) $) {3};
+            
+            % Arrow 4: 100 → 110 (left-back edge, offset behind/left)
+            \draw[->, thick, red!70!black] 
+                ($ (v100) + (-\offset,\offset) $) -- ($ (v110) + (-\offset,\offset) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v100)!0.5!(v110) + (-\offset-0.15,\offset) $) {4};
+            
+            % Arrow 5: 110 → 010 (left front-back edge, offset to the left)
+            \draw[->, thick, red!70!black] 
+                ($ (v110) + (-\offset,0) $) -- ($ (v010) + (-\offset,0) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v110)!0.5!(v010) + (-\offset-0.15,0) $) {5};
+            
+            % Arrow 6: 010 → 011 (left-top edge, offset to the right)
+            \draw[->, thick, red!70!black] 
+                ($ (v010) + (\offset,0) $) -- ($ (v011) + (\offset,0) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v010)!0.5!(v011) + (\offset+0.15,0) $) {6};
+            
+            % Arrow 7: 011 → 111 (right front-back edge, offset to the right)
+            \draw[->, thick, red!70!black] 
+                ($ (v011) + (\offset,0) $) -- ($ (v111) + (\offset,0) $);
+            \node[draw=none, fill=none, font=\tiny, text=red!70!black] at ($ (v011)!0.5!(v111) + (\offset+0.15,0) $) {7};
+            
+            % nodes with labels (binary strings) - drawn last to be on top
+            \node at (v000) {000};
+            \node at (v001) {001};
+            \node at (v011) {011};
+            \node at (v010) {010};
+            \node at (v100) {100};
+            \node at (v101) {101};
+            \node at (v111) {111};
+            \node at (v110) {110};
+        \end{tikzpicture}
+    }
+}
