@@ -1,0 +1,198 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Soirée chez Ramsey]\,\\ % 1 
+	On considère un ensemble de six personnes. Montrer que au moins 
+	trois personnes se connaissent deux-à-deux ou que au moins trois 
+	personnes ne se connaissent pas deux-à-deux. 
+	Est-ce vrai pour un ensemble de cinq personnes?
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		Soit \(G = (V, E)\) un graphe à six sommets. On 
+		veut montrer que \(G\) contient \(K_3\) ou \(\ol{K_3}\).
+
+		Considérons \(x\in V\) un sommet de \(G\) et procédons
+		par disjonction de cas en fonction du degré de \(x\):
+		\begin{itemize}
+			\item Si \(\deg(x) \geq 3\), on note \(s_1, s_2, s_3\) trois voisins de \(x\).
+			Si \((s_1, s_2)\in E\) alors \(x, s_1, s_2\) forment \(K_3\).
+			
+			De manière similaire, si \((s_1, s_3)\in E\) ou \((s_2, s_3)\in E\) alors \(K_3\) est formé.
+			Si il n'existe pas d'arête entre \(s_1, s_2, s_3\) alors \(\ol{K_3}\) est formé.
+			
+			Ainsi, si \(\deg(x) \geq 3\) alors \(G\) contient \(K_3\) ou \(\ol{K_3}\).
+
+			\item Si \(\deg(x) \leq 2\), on note \(s_1, s_2, s_3\in V\)
+			trois sommets de \(G\) qui ne sont pas voisins de \(x\).
+			Si \((s_1, s_2)\notin E\) alors \(x, s_1, s_2\) forment \(\ol{K_3}\).
+
+			De manière similaire, si \((s_1, s_3)\notin E\) ou \((s_2, s_3)\notin E\) alors \(\ol{K_3}\) est formé.
+			Si il existe une arête entre chacun des sommets \(s_1, s_2, s_3\) alors \(K_3\) est formé.
+
+			Ainsi, si \(\deg(x) \leq 2\) alors \(G\) contient \(K_3\) ou \(\ol{K_3}\).
+		\end{itemize}
+		Donc pour un ensemble de six personnes, au moins trois personnes se connaissent deux-à-deux ou au moins trois personnes ne se connaissent pas deux-à-deux.
+
+		Pour un ensemble de cinq personnes, le graphe \(G\) à cinq sommets
+		ci-dessous ne contient ni \(K_3\) ni \(\ol{K_3}\):
+		\begin{center}
+			\begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20}]
+				\node (A) at (0, 0) {A};
+				\node (B) at (2, 0) {B};
+				\node (C) at (2, 2) {C};
+				\node (D) at (1, 3.7) {D};
+				\node (E) at (0, 2) {E};
+
+				\foreach \from/\to in {A/B, B/C, C/D, D/E, E/A}
+					\draw (\from) -- (\to);
+			\end{tikzpicture}
+		\end{center}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Hyperparcours]\,\\ % 2 
+	Soit \(d\) un entier positif non nul. L'hypercube
+	\(Q_d\) est le graphe dont l'ensemble des sommets est l'ensemble
+	des \(d\)-uplets \(x_1,\ldots,x_d\) de 0 et de 1, deux 
+	\(d\)-uplets étant adjacents s'ils diffèrent sur une seule entrée.
+	\begin{enumerate}
+		\item Dessiner \(Q_d\) pour \(d=1,2,3,4\).
+		\item Calculer un parcours en largeur de \(Q_3\) de racine \(000\).
+		En cas de choix entre plusieurs sommets pour entrer dans la file, on choisira celui
+		de valeur (en binaire) minimale.
+		\item Effectuer de même un parcours en profondeur de \(Q_3\).
+		Cette fois, il n'y a pas de consigne en cas de choix, mais
+		on essayera d'obtenir un arbre de parcours qui ne soit pas un chemin.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, %
+		\begin{enumerate}
+			\item On a les hypercubes suivants:
+			
+			\input{../assets/tikz/td_1_ex_2_q1.tex}
+		\end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Convexité]\,\\ % 3 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 3
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Convexité]\,\\ % 4 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 4
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[Convexité]\,\\ % 5 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 5
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[Convexité]\,\\ % 6 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 6
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 7 ----- %
+\begin{td-exo}[Convexité]\,\\ % 7 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 7 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 7
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 8 ----- %
+\begin{td-exo}[Convexité]\,\\ % 8 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 8 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 8
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 9 ----- %
+\begin{td-exo}[Convexité]\,\\ % 9 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 9 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 9
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 10 ----- %
+\begin{td-exo}[Convexité]\,\\ % 10 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 10 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 10
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 11 ----- %
+\begin{td-exo}[Convexité]\,\\ % 11 
+	% fill
+\end{td-exo}
+
+% ----- Solutions exo 11 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ %
+		A remplir %TODO solve exercise 11
+	\end{td-sol}
+}{}

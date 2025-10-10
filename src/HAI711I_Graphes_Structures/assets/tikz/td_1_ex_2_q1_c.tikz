@@ -1,0 +1,47 @@
+% Figure 3
+\ffigbox[\FBwidth]{
+\caption{\centering \,\\Hypercube \(Q_3\)}\label{Fig:qd3}
+}{
+    \fbox{
+        % Q3: Cube (Hypercube of dimension 3)
+        \begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize}]
+            % Parameters
+            \def\L{2}            % side length of square
+            \def\dx{0.9} \def\dy{0.6} % offset for the "back" square (gives perspective)
+
+            % front (lower) square: coordinates ordered 000,001,011,010 (clockwise)
+            \coordinate (v000) at (0,0);
+            \coordinate (v001) at (\L,0);
+            \coordinate (v011) at (\L,\L);
+            \coordinate (v010) at (0,\L);
+
+            % back (shifted) square: add (dx,dy) and these will be 100,101,111,110
+            \coordinate (v100) at ($ (v000) + (\dx,\dy) $);
+            \coordinate (v101) at ($ (v001) + (\dx,\dy) $);
+            \coordinate (v111) at ($ (v011) + (\dx,\dy) $);
+            \coordinate (v110) at ($ (v010) + (\dx,\dy) $);
+
+            % draw edges front square
+            \foreach \a/\b in {v000/v001, v001/v011, v011/v010, v010/v000}
+                \draw (\a) -- (\b);
+
+            % draw edges back square
+            \foreach \a/\b in {v100/v101, v101/v111, v111/v110, v110/v100}
+                \draw (\a) -- (\b);
+
+            % connect corresponding vertices (cube edges)
+            \foreach \a/\b in {v000/v100, v001/v101, v011/v111, v010/v110}
+                \draw (\a) -- (\b);
+
+            % nodes with labels (binary strings)
+            \node at (v000) {000};
+            \node at (v001) {001};
+            \node at (v011) {011};
+            \node at (v010) {010};
+            \node at (v100) {100};
+            \node at (v101) {101};
+            \node at (v111) {111};
+            \node at (v110) {110};
+        \end{tikzpicture}
+    }
+}

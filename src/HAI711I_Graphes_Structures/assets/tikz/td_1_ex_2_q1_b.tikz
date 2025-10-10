@@ -1,0 +1,14 @@
+% Figure 2
+\ffigbox[\FBwidth]{
+\caption{\centering \,\\Hypercube \(Q_2\)}\label{Fig:qd2}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20}]
+            \node (A) at (0, 0) {00};
+            \node (B) at (2, 0) {01};
+            \node (C) at (2, 2) {11};
+            \node (D) at (0, 2) {10};
+            \foreach \from/\to in {A/B, B/C, C/D, D/A} \draw (\from) -- (\to);
+        \end{tikzpicture}
+    }
+}

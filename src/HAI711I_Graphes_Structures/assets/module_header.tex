@@ -1,0 +1,56 @@
+\makeatletter
+
+% ==============================================================================
+% TABLE OF CONTENTS FORMATTING
+% ==============================================================================
+
+% Adjusts indentation and spacing for different section levels in the TOC.
+
+% ============================================================================== 
+% GENERAL MATH SHORTCUTS
+% ==============================================================================
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}  % Absolute value with scalable bars
+\newcommand{\Tau}{\mathcal{T}}                   % Calligraphic Tau, often used for topology
+
+% ============================================================================== 
+% SUBJECT-SPECIFIC THEOREM ENVIRONMENTS
+% ==============================================================================
+
+% --- Numbered theorem environments (per subsection) ---
+% Uses colored left border and custom counter for clarity in notes.
+\theoremstyle{default}
+\mytheorem{definition}{Définition}{algebraic-amber}{subsection}{o}  % Definitions: amber, numbered per subsection
+\mytheorem{exs}{Exemples}{matrix-mist}{subsection}{o}               % Examples: mist, numbered per subsection
+
+% --- Unnumbered theorem environments ---
+% Used for remarks, interpretations, and other statements that don't require numbering.
+\theoremstyle{nonum}
+\mytheorem{interp}{Interprétation}{verdant}{}{}    % Interpretation: green, unnumbered
+\mytheorem{proposition}{Proposition}{verdant}{}{}  % Proposition: green, unnumbered
+\mytheorem{notation}{Notation}{verdant}{}{}        % Notation: green, unnumbered
+\mytheorem{example}{Exemple}{matrix-mist}{}{}      % Example: mist, unnumbered
+\mytheorem{exo}{Exercice}{matrix-mist}{}{}         % Exercise: mist, unnumbered
+\mytheorem{exercice}{Exercice}{matrix-mist}{}{}    % Exercise (alt): mist, unnumbered
+\mytheorem{theorem}{Théorème}{astral}{}{}          % Theorem: blue, unnumbered
+\mytheorem{lemma}{Lemme}{astral}{}{}               % Lemma: blue, unnumbered
+\mytheorem{remark}{Remarque}{verdant}{}{}          % Remark: green, unnumbered
+
+\makeatother
+
+\counterwithout{tdcounter}{section} 
+
+\usetikzlibrary{shapes,arrows,positioning,calc,fit,backgrounds,angles,quotes}
+
+\usepackage{floatrow}
+\usepackage{caption}
+% \usepackage{empheq}
+% \usepackage[most]{tcolorbox}
+
+% \newtcbox{\mymath}[1][]{%
+%     nobeforeafter, math upper, tcbox raise base,
+%     enhanced, colframe=blue!30!black,
+%     colback=blue!30, boxrule=1pt,
+%     #1}
+
+    
