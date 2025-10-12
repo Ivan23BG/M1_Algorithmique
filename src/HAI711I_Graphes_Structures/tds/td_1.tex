@@ -23,12 +23,29 @@
 			
 			Ainsi, si \(\deg(x) \geq 3\) alors \(G\) contient \(K_3\) ou \(\ol{K_3}\).
 
+			\vspace{0.1cm}
+			\input{../assets/tikz/td_1_ex_1_case1.tex}
+
+			Visuellement, on peut voir que si un des traits rouges est présent
+			(donc si il existe une arête entre deux des sommets \(s_1, s_2, s_3\))
+			alors \(K_3\) est formé. Sinon, il y a un triangle rouge en pointillés
+			et \(\ol{K_3}\) est formé.
+
 			\item Si \(\deg(x) \leq 2\), on note \(s_1, s_2, s_3\in V\)
-			trois sommets de \(G\) qui ne sont pas voisins de \(x\).
+			trois sommets de \(G\) qui ne sont pas voisins de \(x\) (ils
+			existent forcément car \(|V| = 6\)).
 			Si \((s_1, s_2)\notin E\) alors \(x, s_1, s_2\) forment \(\ol{K_3}\).
 
 			De manière similaire, si \((s_1, s_3)\notin E\) ou \((s_2, s_3)\notin E\) alors \(\ol{K_3}\) est formé.
 			Si il existe une arête entre chacun des sommets \(s_1, s_2, s_3\) alors \(K_3\) est formé.
+
+			\vspace{0.1cm}
+			\input{../assets/tikz/td_1_ex_1_case2.tex}
+
+			Visuellement, on peut voir que si un des traits rouges est absent
+			(donc si il n'existe pas d'arête entre deux des sommets \(s_1, s_2, s_3\))
+			alors \(\ol{K_3}\) est formé. Sinon, il y a un triangle rouge en pointillés
+			et \(K_3\) est formé.
 
 			Ainsi, si \(\deg(x) \leq 2\) alors \(G\) contient \(K_3\) ou \(\ol{K_3}\).
 		\end{itemize}
@@ -38,12 +55,11 @@
 		ci-dessous ne contient ni \(K_3\) ni \(\ol{K_3}\):
 		\begin{center}
 			\begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20}]
-				\node (A) at (0, 0) {A};
-				\node (B) at (2, 0) {B};
-				\node (C) at (2, 2) {C};
-				\node (D) at (1, 3.7) {D};
-				\node (E) at (0, 2) {E};
-
+				\node (A) at (90:2) {A};
+				\node (B) at (18:2) {B};
+				\node (C) at (-54:2) {C};
+				\node (D) at (-126:2) {D};
+				\node (E) at (162:2) {E};
 				\foreach \from/\to in {A/B, B/C, C/D, D/E, E/A}
 					\draw (\from) -- (\to);
 			\end{tikzpicture}
