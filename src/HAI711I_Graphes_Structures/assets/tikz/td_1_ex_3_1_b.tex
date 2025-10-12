@@ -1,0 +1,22 @@
+% Figure 1
+\ffigbox[\FBwidth]{
+\caption{\centering Cas cycle impair}\label{Fig:td1ex3c1}
+}{
+    \fbox{
+        \resizebox{!}{3cm}{%
+            \begin{tikzpicture}[scale=0.45, every node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\footnotesize, minimum size=4mm}]
+                \node[fill=red!30] (A) at (90:2) {\(a\)};
+                \node[fill=blue!30] (B) at (18:2) {\(b\)};
+                \node[fill=red!30] (C) at (-54:2) {\(c\)};
+                \node[fill=blue!30] (D) at (-126:2) {\(d\)};
+                \node[fill=red!30] (E) at (162:2) {\(e\)};
+
+                \draw[green] (A) -- (B);
+                \draw[orange] (B) -- (C);
+                \draw[green] (C) -- (D);
+                \draw[orange] (D) -- (E);
+                \draw[red] (E) -- (A);
+            \end{tikzpicture}
+        }
+    }
+}

@@ -106,14 +106,48 @@
 
 
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[Convexité]\,\\ % 3 
-	% fill
+\begin{td-exo}[Biparti]\,\\ % 3 
+	Montrer qu'un graphe est biparti si et seulement si il ne contient
+	pas de cycle impair comme sous-graphe (on pourra s'aider 
+	d'un parcours en largeur).
 \end{td-exo}
 
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 3
+		Montrons qu'un graphe est biparti si et seulement si il ne contient pas de cycle impair comme sous-graphe.
+		\begin{itemize}
+			\item Sens direct: Supposons que \(G\) est biparti. Soit \(C\) un cycle de \(G\).
+			Par définition d'un graphe biparti, on peut colorier les sommets de \(G\)
+			en deux couleurs telles que deux sommets adjacents
+			n'aient pas la même couleur. En parcourant le cycle \(C\), on remarque
+			que chaque sommet doit avoir une couleur différente du sommet précédent.
+			Ainsi, si le cycle \(C\) a une longueur impaire, le premier et le dernier
+			sommet du cycle \(C\) seraient de la même couleur, ce qui est impossible
+			car ils sont adjacents. Donc \(C\) ne peut pas être de longueur impaire.
+
+			\input{../assets/tikz/td_1_ex_3_1.tex}
+
+			\item Sens indirect: Supposons que \(G\) ne contient pas de cycle impair.
+			On choisit un sommet racine \(r\) et on effectue un BFS à partir de \(r\).
+			On colorie le sommet \(r\) en rouge. Ensuite, on colorie tous les sommets
+			de niveau 1 (voisins de \(r\)) en bleu, tous les sommets de niveau 2 en rouge,
+			tous les sommets de niveau 3 en bleu, et ainsi de suite.
+
+			\input{../assets/tikz/td_1_ex_3_2.tex}
+
+			Si il y avait une arête entre deux sommets du même niveau, cela formerait
+			un cycle impair avec le chemin passant par la racine \(r\). En effet,
+			si deux sommets \(u\) et \(v\) sont au même niveau et sont adjacents,
+			alors le chemin de \(r\) à \(u\), l'arête \((u,v)\), et le chemin de
+			\(v\) à \(r\) forment un cycle dont la longueur est impaire (car il y a
+			un nombre pair d'arêtes dans les chemins plus une arête entre \(u\) et \(v\)).
+			
+			Cependant, par hypothèse, \(G\) ne contient pas de cycle impair.
+			Donc, il ne peut pas y avoir d'arêtes entre deux sommets du même niveau.
+			Par conséquent, tous les sommets de niveau pair sont colorés en rouge et tous les sommets de niveau impair sont colorés en bleu.
+			Ainsi, \(G\) est biparti.
+		\end{itemize}
 	\end{td-sol}
 }{}
 

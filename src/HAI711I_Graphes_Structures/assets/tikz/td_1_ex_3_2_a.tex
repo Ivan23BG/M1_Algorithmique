@@ -1,0 +1,15 @@
+% Figure 1
+\ffigbox[\FBwidth]{
+\caption{\centering Premiere etape du BFS}\label{Fig:td1ex3c3}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, every node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\footnotesize, minimum size=4mm}]
+            \node[fill=red!30] (r) at (0, 0) {\(r\)};
+            \node[fill=blue!30] (s1) at (-2, -2) {\(s_1\)};
+            \node[fill=blue!30] (s2) at (2, -2) {\(s_2\)};
+
+            \draw (r) -- (s1);
+            \draw (r) -- (s2);
+        \end{tikzpicture}
+    }
+}
