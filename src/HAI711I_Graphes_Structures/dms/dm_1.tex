@@ -1,4 +1,8 @@
 % ----- Consignes exo 1 ----- %
+%
+% \section*{TD1 --- First sheet title}\label{sec:TD1}
+% \addcontentsline{toc}{section}{\nameref{sec:TD1}}
+
 \iftoggle{showquestions}{
     \begin{td-exo}[Antigone des asso]\,\\ % 1
         Un groupe de personnes est tel que:
@@ -52,131 +56,6 @@
     \end{enumerate}
 \end{td-sol}
 
-% ----- Consignes exo 2 ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[Dualité]
-        Considérez le programme linéaire le plus général envisageable donné ci-dessous:
-        \begin{equation*}
-            \begin{cases}
-                \min z = c_1 x_1 + c_2 x_2 \\
-                A_{11} x_1 + A_{12} x_2 \leq b_1 \\
-                A_{21} x_1 + A_{22} x_2 = b_2 \\
-                x_i \geq 0,\quad \forall i \in \{1,2\}
-            \end{cases}
-        \end{equation*}
-        où \(A\) est une matrice \((m_1 + m_2) \times (n_1 + n_2)\) et \(c, x\in \bb R^{n_1 + n_2}\) et \(b \in \bb R^{m_1 + m_2}\).
-
-        Caractériser le dual.
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo 2 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 2
-\end{td-sol}
-
-% ----- Consignes exo 3 ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[Ensemble convexe]\,
-        Soit \(C_1\) et \(C_2\) deux convexes de \(\bb R^{m+n}\). Montrer que l'ensemble 
-        \begin{equation*}
-            C = \left\{\left(x, y_1 + y_2\right) \mid x\in\bb R^m, y_1\in \bb R^n, y_2\in\bb R^n, (x,y_1)\in C_1, (x, y_2)\in C_2\right\}
-        \end{equation*} est également convexe.
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo 3 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 3
-\end{td-sol}
-
-% ----- Consignes exo 4 ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[Modélisation et dualité]
-    Considérons un problème d'affectation avec \(m\) jobs et \(n\) travailleurs (\(n\geq m\)). Chaque job doit être affecté à exactement un travailleur.
-    Soit \(p_{ij}\) le rendement obtenu si on affecte le job \(i\) au travailleur \(j\), où \(i\in\{1,\ldots,m\}\) et \(j\in\{1,\ldots,n\}\). On cherche une affectation qui maximise le rendement total.
-    \begin{enumerate}
-        \item Donner le programme linéaire.
-        \item Donner la formulation du dual de ce problème.
-    \end{enumerate}
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo 4 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 4
-\end{td-sol}
-
-% ----- Consignes exo 5 ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[Programmation linéaire: Farkas]\,
-        Considérons le programme linéaire suivant, qui dépend de \(\varepsilon\in\bb R\):
-        \begin{equation*}
-            \begin{cases}
-                \min z = 4x_1 - 2x_2\\
-                x_2\leq 3\\
-                \varepsilon x_1 + (2-\varepsilon) x_2 \leq 4\\
-                x_i \geq 0,\quad \forall i \in \{1,2\}
-            \end{cases}
-        \end{equation*}\,
-        \begin{enumerate}
-            \item Montrer que le problème est réalisable \(\forall \varepsilon\in\bb R\).
-            \item Pour quelles valeurs de \(\varepsilon\) la valeur optimale est-elle non bornée?
-        \end{enumerate}
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo 5 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 5
-\end{td-sol}
-
-% ----- Consignes exo 6 ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[Résolution numérique]\,
-        Résoudre le programme linéaire suivant par la méthode Primal-Dual:
-        \begin{equation*}
-            \text{Primal} = 
-            \begin{cases}
-                \min z(x_1, x_2, x_3) = 2x_1 + x_2 + 2x_3 + 8x_4\\
-                2x_1 - x_2 + 3x_3 - 2x_4 = 3\\
-                -x_1 + 3x_2 - 4x_3 = 1\\
-                x_i \geq 0,\quad \forall i \in \{1,2,3,4\}
-            \end{cases}
-        \end{equation*}
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo 6 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 6
-\end{td-sol}
-
-\section{Partie pratique}
-
-% ----- Consignes exo xx ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[]
-
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo xx ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice xx
-\end{td-sol}
-
-% ----- Consignes exo xx ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[]
-
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo xx ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice xx
-\end{td-sol}
 
 % ----- Consignes exo xx ----- %
 \iftoggle{showquestions}{
