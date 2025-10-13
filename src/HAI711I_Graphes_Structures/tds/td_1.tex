@@ -93,13 +93,30 @@
 			
 			\input{../assets/tikz/td_1_ex_2_q1.tex}
 
-			\item On peut effectuer le parcours suivant:
+			\item On peut effectuer le parcours en largeur suivant:
 			\begin{equation*}
-				000 \to 001 \to 101 \to 100 \to 110 \to 010 \to 011 \to 111
+				\begin{aligned}
+					&000 \rightarrow 001 \rightarrow 010 \rightarrow 100\\
+					&001 \rightarrow 011 \rightarrow 101\\
+					&010 \rightarrow 110\\
+					&011 \rightarrow 111
+				\end{aligned}
 			\end{equation*}
 			ce qui se représente visuellement comme suit:
 
 			\input{../assets/tikz/td_1_ex_2_q2.tex}
+
+			\item On peut effectuer le parcours en profondeur suivant:
+			\begin{equation*}
+				\begin{aligned}
+					&000 \rightarrow 001 \rightarrow 101 \rightarrow 111 \rightarrow 110 \rightarrow 100\\
+					&100 \rightarrow 110\\
+					&110 \rightarrow 010 \rightarrow 011
+				\end{aligned}
+			\end{equation*}
+			ce qui se représente visuellement comme suit:
+
+			\input{../assets/tikz/td_1_ex_2_q3.tex}
 		\end{enumerate}
 	\end{td-sol}
 }{}
