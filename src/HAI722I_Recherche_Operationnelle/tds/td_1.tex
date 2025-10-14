@@ -1207,18 +1207,323 @@
 				\end{cases}
 			\end{equation*}
 		\end{enumerate}
+
+		Pour ce qui est de leur résolution, on a:
+		\begin{enumerate}
+			\item \, % TODO add answer
+
+			\item On a
+
+			\begin{center}
+				\begin{tabular}{|ccc|ccccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(y_1\)&\(y_2\)&\(y_3\)&\(y_4\)&\(y_5\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1}=x_3\)} &\(10\)&\(1\)&\(5\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1}=x_4\)} &\(6\)&\(1\)&\(3\)&\(0\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_3^{1}=x_5\)} &\(8\)&\(2\)&\(2\)&\(0\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(0\)} &\(-2\)&\(-1\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			\becomes{}
+			\begin{center}
+				\begin{tabular}{|ccc|ccccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(y_1\)&\(y_2\)&\(y_3\)&\(y_4\)&\(y_5\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{2}=x_3\)} &\(\vphantom{\dfrac16}6\)&\(0\)&\(4\)&\(1\)&\(0\)&\(-\frac12\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{2}=x_4\)} &\(\vphantom{\dfrac16}2\)&\(0\)&\(2\)&\(0\)&\(1\)&\(-\frac12\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_3^{2}=x_1\)} &\(\vphantom{\dfrac16}4\)&\(1\)&\(1\)&\(0\)&\(0\)&\(\frac12\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(8\)} &\(0\)&\(1\)&\(0\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+
+			Comme \(x_3,x_4\) sont en bases, leurs variables duales associées valent 0.
+
+			Pour \(x_5\), on prend la valeur associée donc 1. Cela donne:
+			\begin{equation*}
+				(x_3,x_4,x_5) = (0, 0, 1) \implies (y_1,y_2,y_3) = (0, 0, 1).
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
 
-% % ----- Consignes exo 2 ----- %
-% \begin{td-exo}[] % 2
+% petite note sur max flot = min cut
+% matrice A - TU = A totalement unimodulaire
+% totalement unimodulaire voulant dire que tous les dets
+% de toutes les sous-matrices de A valent 0 ou 1 ou -1
+% en particulier on connait une matrice comme ca:
+% la matrice d'incidence d'un graphe oriente
+% elle a que des 0 partout sauf un 1 et un -1 par colonne
+% donc elle est TU.
+
+
+
+% ----- Consignes exo 34 ----- %
+\begin{td-exo}[] % 34
+	\, % TODO a remplir
+\end{td-exo}
+
+% ----- Solutions exo 34 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 34
+		On peut extraire des tableaux les problèmes suivants:
+		\begin{equation*}
+			PL_4 = 
+			\begin{cases}
+				\min (z) = 25y_1 + 30y_2\\
+				4y_1 + 7y_2 = 1\\
+				8y_1 + 5y_2 = 3\\
+				6y_1 + 9y_2 = -1\\
+				y_1,y_2\geq 0
+			\end{cases}
+		\end{equation*}
+		et
+		\begin{equation*}
+			PL_5 = 
+			\begin{cases}
+				\max (z) = 7y_1 + 30y_2\\
+				y_1 + 2y_2 \geq 3\\
+				y_1 + 3y_2 \geq 1\\
+				-y_1 \geq 0\\
+				-y_2 \geq 0\\
+				y_1 \geq M\\
+				y_2 \geq M\\
+				y_1,y_2\geq 0
+			\end{cases}
+		\end{equation*}
+
+		% On a le tableau suivant:
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 35 ----- %
+\begin{td-exo}[] % 35
+	\, % TODO remplir consignes exo 35
+\end{td-exo}
+
+% ----- Solutions exo 35 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 35
+		\, % TODO remplir sol exo 35
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 36 ----- %
+\begin{td-exo}[Ecarts complémentaires et dualité] % 36
+	Soit 
+	\begin{equation*}
+		PL = 
+		\begin{cases}
+			\max z(x_1,x_2) = 4x_1 + 5x_2\\
+			2x_1 + x_2 \leq 800\\
+			x_1 + 2x_2 \leq 700\\
+			x_2 \leq 300\\
+			x_1, x_2 \geq 0.
+		\end{cases}
+	\end{equation*}
+	\begin{enumerate}
+		\item Vérifier la faisabilité du système \(PL\).
+		\item Résoudre le primal.
+		\item Donner le programme dual.
+		\item Vérifier les écarts complémentaires.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 36 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 36
+		\begin{enumerate}
+			\item On sait que \((0,0,0)\) satisfait les contraintes donc
+			il existe une solution au système \(PL\).
+
+			On peut le vérifier avec le lemme de Farkas:
+			\begin{equation*}
+				Ax\leq b,\ x\geq 0\quad \mathsf{XOR}\quad \exists y\geq 0, yA\geq 0, yb<0
+			\end{equation*}
+			Or ici, il n'y a clairement pas de solution a \(yb<0\) car tous les \(y_i b_i\)
+			sont positifs. Donc on a une solution à \(Ax\leq b\).
+
+			\item On a le tableau initial suivant:
+			
+			\begin{center}
+				\begin{tabular}{|ccc|ccccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(4\)&\(5\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1}=x_3\)}&\(800\)&\(2\)&\(1\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1}=x_4\)}&\(700\)&\(1\)&\(2\)&\(0\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_3^{1}=x_5\)}&\(300\)&\(0\)&\(1\)&\(0\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(0\)}&\(-4\)&\(-5\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			
+			On fait rentrer \(x_2\) et on fait sortir \(x_5\):
+			\begin{center}
+				\begin{tabular}{|ccc|ccccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(4\)&\(5\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{2}=x_3\)}&\(500\)&\(2\)&\(0\)&\(1\)&\(0\)&\(-1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{2}=x_4\)}&\(100\)&\(1\)&\(0\)&\(0\)&\(1\)&\(-2\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(5\)}& \multicolumn{1}{c|}{\(x_3^{2}=x_2\)}&\(300\)&\(0\)&\(1\)&\(0\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)            & \multicolumn{1}{|c|}{\(1500\)}&\(-4\)&\(0\)&\(0\)&\(0\)&\(5\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+
+			On fait rentrer \(x_1\) et on fait sortir \(x_4\):
+			\begin{center}
+				\begin{tabular}{|ccc|ccccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(4\)&\(5\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{3}=x_3\)}&\(300\)&\(0\)&\(0\)&\(1\)&\(-2\)&\(3\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(4\)}& \multicolumn{1}{c|}{\(x_2^{3}=x_1\)}&\(100\)&\(1\)&\(0\)&\(0\)&\(1\)&\(-2\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(5\)}& \multicolumn{1}{c|}{\(x_3^{3}=x_2\)}&\(300\)&\(0\)&\(1\)&\(0\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)            & \multicolumn{1}{|c|}{\(1900\)}&\(0\)&\(0\)&\(0\)&\(4\)&\(-3\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+
+			On fait rentrer \(x_5\) et on fait sortir \(x_3\):
+			\begin{center}
+				\begin{tabular}{|ccc|ccccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(4\)&\(5\)&\(0\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{4}=x_5\)}&\(100\)&\(0\)&\(0\)&\(\frac13\)&\(-\frac23\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(4\)}& \multicolumn{1}{c|}{\(x_2^{4}=x_1\)}&\(300\)&\(1\)&\(0\)&\(\frac23\)&\(-\frac13\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(5\)}& \multicolumn{1}{c|}{\(x_3^{4}=x_2\)}&\(200\)&\(0\)&\(1\)&\(-\frac13\)&\(\frac23\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)            & \multicolumn{1}{|c|}{\(2200\)}&\(0\)&\(0\)&\(1\)&\(2\)&\(0\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			Tous les \(z_j-c_j\) sont positifs donc on a trouvé notre solution optimale:
+			\begin{equation*}
+				(x_1,x_2) = (300,200),\ z_{\max} = 2200.
+			\end{equation*}
+
+			En ecrivant 
+			\begin{equation*}
+				A = \begin{pmatrix}
+					2 & 1\\
+					1 & 2\\
+					0 & 1
+				\end{pmatrix},\quad b = \begin{pmatrix}
+					800\\
+					700\\
+					300
+				\end{pmatrix}
+			\end{equation*}
+			On peut observer qu'à l'optimum, les deux premières contraintes
+			\begin{equation*}
+				\begin{aligned}
+					2x_1 + x_2 &= 800\\
+					x_1 + 2x_2 &= 700
+				\end{aligned}
+			\end{equation*}
+			sont serrées, donc \(y_1, y_2 > 0\) (c'est le cas ici).
+
+			La troisième contrainte
+			\begin{equation*}
+				x_2 \leq 300
+			\end{equation*}
+			n'est pas serrée, donc \(y_3 = 0\) (c'est le cas ici).
+
+			\item Le programme dual de \(PL\) est:
+			\begin{equation*}
+				\begin{cases}
+					\min z(y_1,y_2,y_3) = 800y_1 + 700y_2 + 300y_3\\
+					2y_1 + y_2 \geq 4\\
+					y_1 + 2y_2 + y_3 \geq 5\\
+					y_1, y_2, y_3 \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			On peut lire les valeurs de \(y\) dans le tableau, ici on a
+			\begin{equation*}
+				y=(1, 2, 0)
+			\end{equation*}
+
+			\item \, % TODO remplir solution
+		\end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 37 ----- %
+\begin{td-exo}[Lecture des variables duales] % 37
+	Soit le programme linéaire ci-dessous:
+	\begin{equation*}
+		PL_9 =
+		\begin{cases}
+			\max z(x_1,x_2) = 2x_1 + x_2\\
+			x_1 + 5x_2 \leq 10\\
+			x_1 + 3x_2 \leq 6\\
+			2x_1 + 2x_2 \leq 8
+			x_1,x_2\geq 0
+		\end{cases}
+	\end{equation*}\,
+	\begin{enumerate}
+		\item Donner le dual.
+		\item Résoudre le primal et le dual.
+		\item Retrouver la solution du primal et du dual dans 
+		les tableaux optimaux.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 37 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 37
+	\end{td-sol}
+}{}
+
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[] % xx
 
 % \end{td-exo}
 
-% % ----- Solutions exo 2 ----- %
+% % ----- Solutions exo xx ----- %
 % \iftoggle{showsolutions}{
-% 	\begin{td-sol}[]\ %
+% 	\begin{td-sol}[]\ % xx
 		
 % 	\end{td-sol}
 % }{}
