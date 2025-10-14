@@ -16,7 +16,7 @@
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ % 1
         \begin{enumerate}
-            \item On ecrit le programme suivant:
+            \item\label{td5:ex1:2} On ecrit le programme suivant:
             % Penser SNM
             \begin{equation*}
                 \begin{aligned}
@@ -30,13 +30,18 @@
                 \forall n, [G(n)\ |\ \cdot] = n + g(\cdot)
             \end{equation*}
 
-            \item On ecrit le programme suivant:
-            % Penser point fixe
+            \item D'après la question~\ref{td5:ex1:2}, on a
+            on a trouvé une fonction calculable totale
+            \(G\) telle que
             \begin{equation*}
-                \begin{aligned}
-                    P.F. \implies \exists n, [n\ |\ \cdot] = [G(n)\ |\ \cdot] = n+g(\cdot)
-                \end{aligned}
+                \forall n, [G(n)\ |\ \cdot] = n + g(\cdot)
             \end{equation*}
+            Alors, d'après le théorème du point fixe, il existe
+            un programme \(n\) tel que
+            \begin{equation*}
+                [n\ |\ \cdot] = [G(n)\ |\ \cdot] = n + g(\cdot)
+            \end{equation*}
+            ce qui est exactement ce qu'on voulait démontrer.
         \end{enumerate}
     \end{td-sol}
 }{}
