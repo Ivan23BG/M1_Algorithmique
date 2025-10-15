@@ -1,0 +1,198 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Rice]\,\\ % 1
+    Soit \(A = \left\{x,\exists n>0,\forall y, [x\ |\ y] = y^n\right\}\)
+    \begin{enumerate}
+        \item Exprimez cet ensemble avec des mots en français.
+        \item Peut-on écrire \(A=P_{\mathcal{C}}\) pour une certaine propriété \(\mathcal{C}\) où
+        \(P_{\mathcal{C}}=\{\langle x, [x\ |\ \cdot] \in \mathcal{C}\}\)? Si oui, proposez une telle propriété,
+        sinon faites une preuve.
+        \item En appliquant proprement le théorème de Rice, montrez que \(A\) est indécidable.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 2
+		\begin{enumerate}
+            \item L'ensemble des programmes qui renvoient un monome de degré \(n\).
+            \item Une telle propriété existe:
+            \begin{equation*}
+                f\in\mathcal{C} \iff f(y)=y^n, n>0
+            \end{equation*}
+            \item On voit que \(A\) est non trivial car:
+            \begin{equation*}
+                x\mapsto x \in A
+            \end{equation*}
+            et
+            \begin{equation*}
+                x\mapsto \perp
+            \end{equation*}
+            donc en appliquant le théorème de Rice, on en déduit que \(A\) est indécidable.
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Progressif]\,\\ % 2
+    Soit \(g\) une fonction calculable totale qui ne s'annule jamais. 
+    
+    Soit \(A = \{x, [x\ |\ 0]\uparrow \text{ et } [x\ |\ g(x)] = 1\}\).
+    On définit le programme \(p\) suivant:
+    
+    % insert program code here
+    On définit aussi la fonction \(f\) par \(f(x) = S_1^1\langle p,x\rangle\).
+    \begin{enumerate}
+        \item La fonction \(f\) est-elle calculable? Est-elle totale? Justifier.
+        \item Soit \(x\) tel que \([x\ |\ x]\downarrow\). Quelle fonction est calculée par \(y\mapsto [f(x)\ |\ y]\)?
+        \item Soit \(x\) tel que \([x\ |\ x]\uparrow\). Quelle fonction est calculée par \(y\mapsto [f(x)\ |\ y]\)?
+        \item Montrez qur \(\bb K \prec A\).
+        \item Montrez que l'ensemble \(A\) n'est pas récursif.
+        \item Aurait-on pu montrer que \(A\) n'est pas récursif en appliquant le Théorème de Rice?
+        \item Ecrivez un programme \(q\) tel que les deux conditions suivantes soient vérifiées:
+        \begin{itemize}
+            \item \(\forall x,[q\ |\ \langle x,0\rangle]\downarrow \iff x\in\bb K\),
+            \item \(\forall x,y,y\neq 0 \implies [q\ |\ \langle x,y\rangle] = 1\).
+        \end{itemize}
+        \item Montrez que \(\ol{\bb K}\prec A\).
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 2
+        \begin{enumerate}
+            \item\label{exam:s2:1} D'après le théorème SNM qu'on utilise pour construire la fonction \(f\), \(f\) est bien calculable.
+
+            \item\label{exam:s2:2} La fonction calculée est celle qui renvoie 1 partout sauf en 0 où elle n'est pas définie.
+
+            \item\label{exam:s2:3} La fonction calculée est \(\upmodels\).
+
+            \item On veut mmontrer qu'il existe une fonction \(F\) calculable totale telle que
+            pour tout \(x\):
+            \begin{equation*}
+                x\in \bb K \iff f(x)\in A
+            \end{equation*}
+            On a montré que \(f\) est calculable totale au~\ref{exam:s2:1} que
+            \(f\) est calculable totale. On a montré au~\ref{exam:s2:2} que si \(x\in \bb K\) alors
+            \(f(x)\in A\) et au~\ref{exam:s2:3} que si \(x\notin \bb K\) alors \(f(x)\notin A\).
+            Donc \(f\) est bien la fonction cherchée.
+
+            \item Si \(A\) était récursif, alors \(\bb K\) serait récursif, ce qui n'est pas le cas 
+            donc \(A\) n'est pas récursif.
+
+            \item Non car l'ensemble est défini par des propriétés sur le programme et non sur la fonction calculée.
+
+            \item On pose \(q\) comme suit:
+            % insert code
+            % if y = 0 then return [x|x]
+            % else return 1
+
+            \item On pose \(f'(x) = S_1^1\langle q,x\rangle\).
+            \begin{equation*}
+                \forall x,x\in \ol{\bb K} \iff f'(x)\in A
+            \end{equation*}
+            et \(f'\) est calculable totale. Donc \(\ol{\bb K}\prec A\).
+
+            \item On a \(\ol{\bb K}\prec A\) donc \(\bb K \prec \ol{A}\) et donc \(\ol{A}\) n'est pas énumérable.
+            De même, \(\bb K\prec A\) donc \(A\) n'est pas énumérable.
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Enumérabilité] % 3
+    
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 3
+        
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Points fixes]\,\\ % 4
+    Soit \(F:x\mapsto a\) où \(a\) est un entier fixé. Notons \(n_0\) un point fixe de \(F\).
+    \begin{enumerate}
+        \item Que calcule le programme \(n_0\)?
+        \item Est-ce que \(a\) est un point fixe de \(F\)?
+        % insert escaped text here
+        \item Peut-on avoir \(n_1 = a\)? \(n_1 = n_0\)? Que calcule \(n_1\)?
+        \item Montrez qu'il existe un programme partour convergent qui prend en entrée \(a\) et \(b\)
+        et donne en sortie le point fixe \(n_1\). En d'autres termes, il faut montrer que \(n_1\)
+        est récursif en \(\langle a,b\rangle\).
+        \item En vous inspirant de ce qui précède, montrez qu'il existe un programme partout
+        convergent \(toto\) qui, sur l'entrée \(\langle a,b,i\rangle\) donne un programme noté \(n_i\) 
+        qui calcule la même fonction que \(a\) \(\left( [a\ |\ \cdot = [n_i\ |\ \cdot]]\right)\),
+        tous les \(n_i\) étant différents quand \(i\) varie, \(a\) et \(b\) étant fixés.
+        % insert second escaped text here
+        \item Si le programme \(a\) calcule la fonction constante de valeur 2, 
+        que donnent \(toto\langle a,b_0,i\rangle\) et \(toto\langle a,b_1,i\rangle\)?
+        \item Si le programme \(a\) calcule la fonction constante de valeur 1, 
+        que donnent \(toto\langle a,b_0,i\rangle\) et \(toto\langle a,b_1,i\rangle\)?
+        \item A l'aide de \(b_0,b_1\) et \(toto\), définissez un programme partout convergent qui,
+        sur l'entrée \(\langle a,i\rangle\) donne un programme \(n_i\) qui calcule la même fonction que \(a\),
+        tous les \(n_i\) étant différents quand \(i\) varie, \(a\) étant fixé.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 4
+        \begin{enumerate}
+            \item On applique le théorème de point fixe qui nous dit que
+            \begin{equation*}
+                \exists n,[n\ |\ \cdot] = [F(n)\ |\ \cdot] = [a\ |\ \cdot]
+            \end{equation*}
+            Donc le programme \(n_0\) calcule la même chose que \(a\).
+
+            \item Oui car \(F(a) = a\).
+
+            \item Non car si \(n_1 = a\) ou \(n_1 = n_0\), on aurait à la fois
+            \begin{equation*}
+                F(n_1) = n_1 = a \text{ ou } n_0
+            \end{equation*}
+            et 
+            \begin{equation*}
+                F(n_1) = b
+            \end{equation*}
+            On arrive à une contradiction donc \(n_1\neq a\) et \(n_1\neq n_0\).
+
+            \item \(n_1\) est récursif en \(a\) et \(b\) car il est récursif dans \(F_1\) (par le théorème 
+            du point fixe effectif) et ce code dépend récursivement de \(a\) et \(b\).
+
+            \item On va définir \(F_i\) comme suit:
+            % if x = a or x = n0 or ... or x = n_(i)
+            % then return b
+            % else return a
+
+            où \(n_i\) est un point fixe de \(F_i\). On applique le théorème du point fixe effectif pour obtenir
+            \(n_i\) récursif en \(a,b,i\).
+
+            \item Il renvoie un programme qui calcule la fonction constante de valeur 2 dans
+            les deux cas.
+
+            \item Il renvoie un programme qui calcule la fonction constante de valeur 1 dans
+            le premier cas et dans le deuxième cas, il peut renvoyer \(a\).
+
+            \item 
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[yy]\,\\ % xx
+    
+% \end{td-exo}
+
+% % ----- Solutions exo xx ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\, % xx
+        
+% 	\end{td-sol}
+% }{}
