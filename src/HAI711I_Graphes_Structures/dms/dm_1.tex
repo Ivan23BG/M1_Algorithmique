@@ -1,8 +1,4 @@
 % ----- Consignes exo 1 ----- %
-%
-% \section*{TD1 --- First sheet title}\label{sec:TD1}
-% \addcontentsline{toc}{section}{\nameref{sec:TD1}}
-
 \iftoggle{showquestions}{
     \begin{td-exo}[Antigone des asso]\,\\ % 1
         Un groupe de personnes est tel que:
@@ -16,7 +12,7 @@
 }{}
 
 % ----- Solutions exo 1 ----- %
-\begin{td-sol}[]\,\\ %
+\begin{td-sol}[]\,\\ % 1
     Il y a exactement 6 personnes et 4 associations avec l'arrangement qui suit:
 
     \vspace{0.5cm}
@@ -57,14 +53,160 @@
 \end{td-sol}
 
 
-% ----- Consignes exo xx ----- %
+% ----- Consignes exo 2 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[]
+    \begin{td-exo}[Bipartis]\,\\ % 2
+        Montrer proprement qu'un graphe \(G\) est biparti si et 
+        seulement si il ne contient pas de cycle de longueur impaire.
 
+        De plus, donner un algorithme linéaire (en \(O(n+m)\))
+        pour décider si un graphe est biparti ou non.
     \end{td-exo}
 }{}
 
-% ----- Solutions exo xx ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice xx
+% ----- Solutions exo 2 ----- %
+\begin{td-sol}[]\,\\ % 2
+    Montrons qu'un graphe est biparti si et seulement si il ne contient pas de cycle impair comme sous-graphe.
+    \begin{itemize}
+        \item Sens direct: Supposons que \(G\) est biparti. Soit \(C\) un cycle de \(G\).
+        Par définition d'un graphe biparti, on peut colorier les sommets de \(G\)
+        en deux couleurs telles que deux sommets adjacents
+        n'aient pas la même couleur. En parcourant le cycle \(C\), on remarque
+        que chaque sommet doit avoir une couleur différente du sommet précédent.
+        Ainsi, si le cycle \(C\) a une longueur impaire, le premier et le dernier
+        sommet du cycle \(C\) seraient de la même couleur, ce qui est impossible
+        car ils sont adjacents. Donc \(C\) ne peut pas être de longueur impaire.
+
+        \input{../assets/tikz/td_1_ex_3_1.tex}
+
+        \item Sens indirect: Supposons que \(G\) ne contient pas de cycle impair.
+        On choisit un sommet racine \(r\) et on effectue un parcours en largeur à partir de \(r\).
+        On colorie le sommet \(r\) en rouge. Ensuite, on colorie tous les sommets
+        de niveau 1 (voisins de \(r\)) en bleu, tous les sommets de niveau 2 en rouge,
+        tous les sommets de niveau 3 en bleu, et ainsi de suite.
+
+        \input{../assets/tikz/td_1_ex_3_2.tex}
+
+        Si il y avait une arête entre deux sommets du même niveau, cela formerait
+        un cycle impair avec le chemin passant par leur parent commun \(r_i\). En effet,
+        si deux sommets \(u\) et \(v\) sont au même niveau et sont adjacents,
+        alors le chemin de \(r_i\) à \(u\), l'arête \((u,v)\), et le chemin de
+        \(v\) à \(r_i\) forment un cycle dont la longueur est impaire (car la 
+        distance de \(r_i\) à \(u\) et \(v\) est la même, disons \(d\), donc le cycle a une longueur de \(2d + 1\)).
+        
+        Cependant, par hypothèse, \(G\) ne contient pas de cycle impair.
+        Donc, il ne peut pas y avoir d'arêtes entre deux sommets du même niveau.
+        Par conséquent, tous les sommets de niveau pair sont colorés en rouge et tous les sommets de niveau impair sont colorés en bleu.
+        Ainsi, \(G\) est biparti.
+
+        Un algorithme permettant de décider si un graphe est biparti ou non est donc celui 
+        décrit ci-dessus, avec une complexité en \(O(n+m)\) car chaque sommet et chaque arête
+        est visité au plus une fois lors du parcours en largeur.
+    \end{itemize}
+\end{td-sol}
+
+
+
+% ----- Consignes exo 3 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Graphes sans triangles]\,\\ % 3
+        Le but de l'exercice est de montrer que si \(G\) ne contient pas 
+        de triangle alors le nombre d'arêtes de \(G\) est au plus
+        \(\frac{n^2}{4}\) si \(n\) est pair et au plus \(\frac{n^2-1}{4}\) si \(n\) est impair.
+        \begin{enumerate}
+            \item On raisonne par récurrence sur \(n\). Soit \(uv\) une arête de \(G\).
+            Majorer le nombre d'arêtes entre \(\{u,v\}\) et \(V\setminus\{u,v\}\)
+            puis conclure.
+            \item Quels sont les graphes sans triangle qui ont pour 
+            nombre d'arêtes exactement les bornes proposées?
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 3 ----- %
+\begin{td-sol}[]\,\\ % 3
+    % TODO: completer solution exercice 3
+\end{td-sol}
+
+
+
+% ----- Consignes exo 4 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Couplage dans les cubiques]\,\\ % 4
+        Une arête \(e\) d'un graphe connexe \(G\) est dite séparatrice si 
+        \(G - e\) n'est pas connexe.
+        \begin{enumerate}
+            \item Soit \(G\) un graphe 3-régulier (ou cubique\dots) et \(M\) 
+            un couplage parfait de \(G\). Montrer que \(M\) contient 
+            toutes les arêtes séparatrices de \(G\).
+            \item Donner un exemple de graphe cubique qui n'admet 
+            pas de couplage parfait.
+            \item Plus généralement, pour tout \(k\geq 2\), proposer un graphe 
+            \((2k+1)\)-régulier qui n'admet pas de couplage parfait.
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 4 ----- %
+\begin{td-sol}[]\,\\ % 4
+    % TODO: completer solution exercice 4
+\end{td-sol}
+
+
+
+% ----- Consignes exo 5 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Pierre, papier, ciseaux]\,\\ % 5
+        Lors du tournoi international de Pierre-Papier-Ciseaux,
+        vous êtes en charge d'organiser le déroulement des matchs.
+        On note \(n\) le nombre de participants. Un match oppose deux 
+        participants. Lors du tournoi, chaque participant doit rencontrer 
+        chaque autre participant exactement une fois. Le tournoi est 
+        découpé en rounds pendant lesquels les match ont lieu, un 
+        partipant faisant au plus un match par round. Le but de votre 
+        travail est d'organiser les rencontres en minimisant le nombre 
+        de rounds.
+        \begin{enumerate}
+            \item Modéliser le problème (avec un graphe bien choisi).
+            \item Résoudre le problème pour \(n=3,4,5,6\).
+            \item Donner une réponse pour \(n\) quelconque et 
+            justifier votre réponse.
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 5 ----- %
+\begin{td-sol}[]\,\\ % 5
+    % TODO: completer solution exercice 5
+\end{td-sol}
+
+
+
+% ----- Consignes exo 6 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Couplage dans les arbres]\,\\ % 6
+        Le but de l'exercice est de proposer un algorithme de calcul 
+        d'un couplage maximum dans les arbres plus direct que 
+        l'algorithme de Egerváry.
+        \begin{enumerate}
+            \item Soit \(T\) un arbre et \(f\) une feuille de \(T\).
+            Montrer que \(T\) admet un couplage maximum qui sature \(f\).
+            \item En déduire un algorithme récursif pour le calcul 
+            d'un couplage maximum de \(T\).
+            \item On propose une implémentation efficace de l'algorithme 
+            ci-dessus: on pourra effectuer un parcours en profondeur 
+            de \(T\), puis lister les sommets selon l'ordre de \emph{fin}
+            obtenu et choisir les arêtes du couplage gloutonnement selon 
+            cet ordre. Détailler l'algorithme (on pourra faire appel à 
+            un parcours en profondeur), prouver sa validité et calculer 
+            sa complexité.
+            \item \emph{Question annexe}: montrer qu'un arbre possède au 
+            plus un couplage parfait
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 6 ----- %
+\begin{td-sol}[]\,\\ % 6
+    % TODO: completer solution exercice 6
 \end{td-sol}
