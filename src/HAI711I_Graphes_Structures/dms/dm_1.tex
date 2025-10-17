@@ -124,8 +124,128 @@
 }{}
 
 % ----- Solutions exo 3 ----- %
-\begin{td-sol}[]\,\\ % 3
-    % TODO: completer solution exercice 3
+\begin{td-sol}[]\, % 3
+    \begin{enumerate}
+        \item On peut commencer par remarquer que comme \(G\) est sans triangles,
+        les voisins de \(u\) et \(v\) sont disjoints (en effet si 
+        on note \(w\) un voisin commun aux 2 alors \(uvw\) forme un triangle).
+        
+        Alors, le nombre d'arêtes entre \(\{u,v\}\) et \(V\setminus\{u,v\}\)
+        est le nombre d'arêtes entre \(u\) et \(V\setminus\{u,v\}\)
+        plus le nombre d'arêtes entre \(v\) et \(V\setminus\{u,v\}\). Soit
+        \begin{equation*}
+            \deg(u) - 1 + \deg(v) - 1 = \deg(u) + \deg(v) - 2
+        \end{equation*}
+        où on a enlevé 1 au degré des deux sommets car ils sont adjacents.
+
+        De plus, comme les voisins de \(u\) et \(v\) sont disjoints,
+        on a
+        \begin{equation*}
+            \begin{aligned}
+                \deg(u) - 1 + \deg(v) - 1 &\leq n - 2 \\
+                \deg(u) + \deg(v) &\leq n
+            \end{aligned}
+        \end{equation*}
+
+        Pour ce qui est de la récurrence, si \(n=1\), le graphe
+        n'a pas d'arêtes et la propriété est vérifiée.
+        Si \(n=2\), le graphe peut avoir au plus une arête
+        et la propriété est vérifiée. Montrons que si 
+        la propriété est vérifiée pour un graphe de taille \(n-2\),
+        elle l'est aussi pour un graphe de taille \(n\).
+
+        On peut catégoriser les arêtes de \(G\) en trois groupes différents:
+        \begin{itemize}
+            \item L'arête \(uv\) que l'on a choisie,
+            \item Les arêtes entre \(\{u,v\}\) et \(V\setminus\{u,v\}\),
+            \item Les arêtes entre les sommets de \(V\setminus\{u,v\}\) (on 
+            notera \(m'\) leur nombre).
+        \end{itemize}
+        Ce qui nous donne \(m\), le nombre total d'arêtes de \(G\):
+        \begin{equation*}
+            m = 1 + \underbrace{(\deg(u) + \deg(v) - 2)}_{\text{arêtes entre } \{u,v\} \text{ et } V\setminus\{u,v\}} + m' = \deg(u) + \deg(v) - 1 + m'
+        \end{equation*}
+
+        On procède par disjonction de cas:
+        \begin{itemize}
+            \item Si \(n = 2k\) est pair, alors \(n-2\) est pair. Par hypothèse de récurrence,
+            on a
+            \begin{equation*}
+                m' \leq \frac{{(n-2)}^2}{4}
+            \end{equation*}
+            En utilisant notre formule précédente, on a
+            \begin{equation*}
+                \begin{aligned}
+                    m
+                    &= \deg(u) + \deg(v) - 1 + m' \\
+                    &\leq n - 1 + \frac{{(n-2)}^2}{4} \\
+                    &\leq 2k - 1 + \frac{{(2k-2)}^2}{4} \\
+                    &\leq 2k - 1 + \frac{4k^2 - 8k + 4}{4} \\
+                    &\leq 2k - 1 + k^2 - 2k + 1 \\
+                    &\leq k^2 \\
+                    &\leq {(\frac{n}{2})}^2 \\
+                    &\leq \frac{n^2}{4}
+                \end{aligned}
+            \end{equation*}
+            Donc la formule est vérifiée pour \(n\) pair.
+
+            \item Si \(n = 2k + 1\) est impair, alors \(n-2\) est impair. Par hypothèse de récurrence,
+            on a
+            \begin{equation*}
+                m' \leq \frac{{(n-2)}^2-1}{4}
+            \end{equation*}
+            En utilisant notre formule précédente, on a
+            \begin{equation*}
+                \begin{aligned}
+                    m
+                    &= \deg(u) + \deg(v) - 1 + m' \\
+                    &\leq n - 1 + \frac{{(n-2)}^2 - 1}{4} \\
+                    &\leq 2k + 1 - 1 + \frac{{(2k-1)}^2 - 1}{4} \\
+                    &\leq 2k + \frac{4k^2 - 4k + 1 - 1}{4} \\
+                    &\leq 2k + k^2 - k \\
+                    &\leq k^2 + k \\
+                    &\leq {(\frac{n-1}{2})}^2 + \frac{n-1}{2} \\
+                    &\leq \frac{n^2 - 2n + 1 + 2n - 2}{4} \\
+                    &\leq \frac{n^2 - 1}{4}
+                \end{aligned}
+            \end{equation*}
+            Donc la formule est vérifiée pour \(n\) impair.
+        \end{itemize}
+        On a donc montré que si \(G\) est un graphe sans triangles
+        alors le nombre d'arêtes de \(G\) est au plus
+        \(\frac{n^2}{4}\) si \(n\) est pair et 
+        au plus \(\frac{n^2-1}{4}\) si \(n\) est impair.
+
+        \item Pour le cas d'égalité, il faut que toutes les inégalités deviennent des égalités:
+        \begin{itemize}
+            \item \(\deg(u) + \deg(v) = n\) (les voisins de \(u\) et \(v\) partitionnent \(V\setminus\{u,v\}\))
+            \item \(G \setminus \{u,v\}\) atteint sa borne maximale (donc est un graphe biparti complet équilibré par l'hypothèse de récurrence)
+            \item Tous les sommets d'une partie de \(G \setminus \{u,v\}\) sont connectés à \(u\), et tous les sommets de l'autre partie à \(v\)
+        \end{itemize}
+        Cela nous donne la structure suivante:
+
+        \vspace{0.5cm}
+        \input{../assets/tikz/dm_1_exo_3_2.tex}
+
+        En respectant toutes les conditions, on arrive
+        bien à un graphe biparti complet où les deux parties
+        ont une taille aussi proche que possible:
+        \begin{itemize}
+            \item La première condition nous impose la partition
+            du graphe par \(uv\).
+            \item Les autres nous imposent que chaque sommet
+            d'une partie soit relié à tous les sommets de l'autre partie
+            et pour la maximalité, que les tailles des deux parties
+            soient aussi proches que possible (pour maximiser le produit des tailles).
+
+            \item Visuellement cela veut dire qu'il y a une arête 
+            entre chaque paire \((a_i,b_j)\) et que \(r\) et \(s\)
+            sont distants d'au plus 1.
+        \end{itemize}
+
+        Donc la solution est \(G\) un graphe biparti complet
+        \(K_{r,s}\) avec \(r+s=n\) et \(|r-s|\leq 1\).
+    \end{enumerate}
 \end{td-sol}
 
 
