@@ -296,8 +296,63 @@
 }{}
 
 % ----- Solutions exo 5 ----- %
-\begin{td-sol}[]\,\\ % 5
-    % TODO: completer solution exercice 5
+\begin{td-sol}[]\, % 5
+    \begin{enumerate}
+        \item \,% TODO: completer solution exercice 5
+        \item On procède en fonction de \(n\):
+        \begin{itemize}
+            \item Pour \(n=3\), on note \(p_1,p_2,p_3\) les participants et on a
+            \begin{equation*}
+                \begin{aligned}
+                    R1
+                    &\rightarrow (p_1,p_2)\\
+                    R2
+                    &\rightarrow (p_1,p_3)\\
+                    R3
+                    &\rightarrow (p_2,p_3)
+                \end{aligned}
+            \end{equation*}
+            Il faut exactement 3 rounds pour que tous les participants s'affrontent.
+        
+            \item Pour \(n=4\), on a
+            \begin{equation*}
+                \begin{aligned}
+                    R1
+                    &\rightarrow (p_1,p_2)\\
+                    &\rightarrow (p_3,p_4)\\
+                    R2
+                    &\rightarrow (p_1,p_3)\\
+                    &\rightarrow (p_2,p_4)\\
+                    R3
+                    &\rightarrow (p_1,p_4)\\
+                    &\rightarrow (p_2,p_3)
+                \end{aligned}
+            \end{equation*}
+            Il faut exactement 3 rounds pour résoudre le problème.
+        
+            \item Pour \(n=5\), on a
+            \begin{equation*}
+                \begin{aligned}
+                    R1
+                    &\rightarrow (p_1,p_2)\\
+                    &\rightarrow (p_5,p_4)\\
+                    R2
+                    &\rightarrow (p_1,p_3)\\
+                    &\rightarrow (p_5,p_2)\\
+                    R3
+                    &\rightarrow (p_1,p_4)\\
+                    &\rightarrow (p_2,p_3)\\
+                    R4
+                    &\rightarrow (p_5,p_1)\\
+                    &\rightarrow (p_3,p_4)\\
+                    R5
+                    &\rightarrow (p_2,p_4)\\
+                    &\rightarrow (p_5,p_3)\\
+                \end{aligned}
+            \end{equation*}
+            Il faut exactement 5 rounds pour résoudre le problème.
+        \end{itemize}
+    \end{enumerate}
 \end{td-sol}
 
 
