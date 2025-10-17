@@ -294,7 +294,31 @@
 % ----- Solutions exo 12 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 12
+		On part de \(m\) non saturé et on calcule un arbre 
+		de couplage. Le sommet \(j\) est non saturé donc 
+		on a le chemin augmentant \(mj\), on le rajoute au couplage.
+
+		\vspace{0.5cm}
+		\input{../assets/tikz/td_2_ex_12_a.tex}
+
+		On part de \(d\) non saturé.
+		% d -- c
+		% c -- f en rouge, c bleu, d et f rouges
+
+		On trouve \(df\) une arête entre 2 sommets rouges,
+		c'est-à-dire un blossom. On le contracte.
+		% a -- b -- "cdf"
+
+		On part de \(i\) non saturé et on trouve \(i-cdf\) un 
+		chemin augmentant. En décontractant le blossom, 
+		on trouve \(i-c-f-d\) un chemin augmentant.
+		% insert another graph here
+
+		On augmente \(M\), on a \(M\) final:
+		\begin{equation*}
+			M = \{ic, fd, ae, gh, jm, kl\}
+		\end{equation*}
+		seul \(b\) est non saturé: \(M\) est maximum
 	\end{td-sol}
 }{}
 
