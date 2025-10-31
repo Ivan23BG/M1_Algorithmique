@@ -15,25 +15,29 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 			\item Une base est orthonormale si ses vecteurs sont de norme \(1\) et deux à deux orthogonaux.
 
 			\item Une base est directe si le produit vectoriel du premier vecteur par le deuxième donne le troisième.
+
+			\item Deux vecteurs \(u\) et \(v\) sont colinéaires s'il existe \(\lambda \in \bb R^*\) tel que \(u = \lambda v\).
 		\end{itemize}
 
+		On veut former une base \((u, v, w)\) avec les critères ci-dessus.
 		Commençons par choisir notre premier vecteur \(u\).
+
 		On veut \(u\) colinéaire à \((1, 2, 2)\) donc on a
 		\begin{equation*}
 			u = \lambda(1, 2, 2),\quad \lambda \in \bb R^*.
 		\end{equation*}
-		Ensuite on veut que \(u\) soit de norme \(1\):
+		Pour que la base soit directe, on veut que \(u\) soit de norme \(1\):
 		\begin{equation*}
 			\begin{aligned}
 				\nn{u} = 1 
 				& \iff \sqrt{\sum_{i=1}^3 u_i^2} = 1\\
-				& \iff \sum_{i=1}^3 u_i^2 = 1\\
-				& \iff \lambda^2(1^2 + 2^2 + 2^2) = 1\\
-				& \iff 9\lambda^2 = 1\\
-				& \iff \lambda = \pm\frac{1}{3}.
+				& \iff \sqrt{\lambda^2(1^2 + 2^2 + 2^2)} = 1\\
+				& \iff \sqrt{9\lambda^2} = 1\\
+				& \iff 3\lambda = 1\\
+				& \iff \lambda = \frac{1}{3}.
 			\end{aligned}
 		\end{equation*}
-		On prend \(\lambda = \frac{1}{3}\), donc
+		On a donc déterminé notre premier vecteur:
 		\begin{equation*}
 			\boxed{u = \frac{1}{3}(1, 2, 2)}.
 		\end{equation*}
@@ -46,14 +50,19 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 		\begin{equation*}
 			\begin{aligned}
 				\langle u, v' \rangle = 0
-				& \iff \frac{1}{3}(1, 2, 2) \cdot (x, y, z) = 0
-				& \iff \frac{1}{3}(x + 2y + 2z) = 0.
+				& \iff \frac{1}{3}(1, 2, 2) \cdot (x, y, z) = 0\\
+				& \iff \frac{1}{3}(x + 2y + 2z) = 0\\
 				& \iff x + 2y + 2z = 0.
 			\end{aligned}
 		\end{equation*}
 
-		Pour des questions de simplicité, on peut choisir \(x = 0, y = 1\) et \(z = -1\).
-		Il faut ensuite normaliser \(v'\) pour obtenir \(v\).
+		Ce système admet plusieurs solutions, on peut choisir celle qui nous arrange.
+		Ici, on choisit \(x = 0\), \(y = 1\) et \(z = -1\). On a bien:
+		\begin{equation*}
+			0 + 2 \cdot 1 + 2 \cdot (-1) = 0.
+		\end{equation*}
+
+		Maintenant il faut normaliser \(v'\) pour obtenir \(v\):
 		\begin{equation*}
 			\nn{v'} = \sqrt{0^2 + 1^2 + {(-1)}^2} = \sqrt{2}.
 		\end{equation*}
@@ -63,32 +72,42 @@ Les exercices ou les questions marqués d'une étoile ne sont pas prioritaires.
 		Il y a plusieurs manières de faire le calcul, ici on utilise le déterminant:
 		% description step by steop
 		\begin{equation*}
-			w = u \wedge v = 
-			\begin{vmatrix}
-				e_1 & e_2 & e_3\\
-				\frac{1}{3} & \frac{2}{3} & \frac{2}{3}\\
-				0 & \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
-			\end{vmatrix}
-			= e_1
-			\begin{vmatrix}
-				\frac{2}{3} & \frac{2}{3}\\
-				\frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
-			\end{vmatrix}
-			- e_2
-			\begin{vmatrix}
-				\frac{1}{3} & \frac{2}{3}\\
-				0 & -\frac{1}{\sqrt{2}}
-			\end{vmatrix}
-			+ e_3
-			\begin{vmatrix}
-				\frac{1}{3} & \frac{2}{3}\\
-				0 & \frac{1}{\sqrt{2}}
-			\end{vmatrix}.
+			\begin{aligned}
+				w = u \wedge v &= 
+				\frac{1}{3} \cdot \frac{1}{\sqrt{2}} \cdot
+				\begin{vmatrix}
+					e_1 & e_2 & e_3\\
+					1 & 2 & 2\\
+					0 & 1 & -1
+				\end{vmatrix}\\
+				&= \frac{1}{3\sqrt{2}} \cdot e_1
+				\begin{vmatrix}
+					2 & 2\\
+					1 & -1
+				\end{vmatrix}
+				- \frac{1}{3\sqrt{2}} \cdot e_2
+				\begin{vmatrix}
+					1 & 2\\
+					0 & -1
+				\end{vmatrix}
+				+ \frac{1}{3\sqrt{2}} \cdot e_3
+				\begin{vmatrix}
+					1 & 2\\
+					0 & 1
+				\end{vmatrix}\\
+				&= \frac{1}{3\sqrt{2}} \left(e_1(-2 - 2) - e_2(-1 - 0) + e_3(1 - 0)\right)\\
+				&= \frac{1}{3\sqrt{2}} (-4, 1, 1).
+			\end{aligned}
 		\end{equation*}
-		On trouve:
+		On trouve alors notre dernier vecteur:
 		\begin{equation*}
 			\boxed{w = \frac{1}{3\sqrt{2}}(-4, 1, 1)}.
 		\end{equation*}
+
+		\begin{remark}
+			Notre dernier vecteur est déjà de norme \(1\) car \(u\) et \(v\) 
+			sont orthogonaux et de norme \(1\):
+		\end{remark}
 
 		On a alors notre base orthonormale directe:
 		\begin{equation*}
