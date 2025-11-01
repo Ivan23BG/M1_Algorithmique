@@ -1,0 +1,92 @@
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[] \,\\% 3
+	On se place dans \(\bb R^3\). L'objectif est de trouver une matrice 
+    de rotation qui transforme le plan \((P)\) d'équation \(x + 2y + 2z = 0\) en
+    le plan horizontal \((H)\) (d'équation \(z = 0\)).
+    \begin{enumerate}
+        \item Donnez un vecteur \(n\) normal au plan \((P)\), de norme 1.
+        \item Trouver un vecteur \(u\) de coordonnées \((a,b,0)\),
+        de norme 1 et orthogonal à \(n\).
+        \item Complétez \((n,u)\) en une base orthonormale directe 
+        \((n,u,v)\) de \(\bb R^3\).
+        \item Soit \(M\) la matrice dont les colonnes sont \((u,v,n)\). 
+        Justifiez le fait que \((u,v,n)\) est également une base orthonormale directe.
+        \item On rappelle qu'une matrice de rotation \(Q\) est une matrice 
+        orthogonale de déterminant 1 (donc telle que \(Q^T Q = Q Q^T = I\)
+        et \(\det(Q) = 1\)). Montrez que \(M\) transforme le vecteur \((0,0,1)\)
+        en \(n\). En déduire une matrice de rotation transformant \((P)\) en \((H)\).
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 3
+		\begin{enumerate}
+            \item Un vecteur normal au plan \((P)\) est un vecteur \(k = (a,b,c)\) 
+            tel que 
+            \begin{equation*}
+                a + 2b + 2c = 0.
+            \end{equation*}
+            Ici, on prend \(k = (1, 2, 2)\). Normalisons-le:
+            \begin{equation*}
+                \|k\| = \sqrt{1^2 + 2^2 + 2^2} = 3,
+            \end{equation*}
+            donc le vecteur normal unitaire est
+            \begin{equation*}
+                n = \frac{1}{3}(1, 2, 2).
+            \end{equation*}
+
+            \item On cherche un vecteur \(k = (a,b,0)\) orthogonal à \(n\), soit:
+            \begin{equation*}
+                k \cdot n = \frac{1}{3}(a + 2b) = 0 \implies a + 2b = 0.
+            \end{equation*}
+            Choix simple: \(a = 2, b = -1\), donc \(k = (2,-1,0)\).  
+            Normalisons-le:
+            \begin{equation*}
+                \|k\| = \sqrt{2^2 + {(-1)}^2} = \sqrt{5}, \quad
+                u = \frac{1}{\sqrt{5}}(2,-1,0).
+            \end{equation*}
+
+            \item Complétons en une base orthonormale directe avec le produit vectoriel :
+            \begin{equation*}
+                \begin{aligned}
+                    v & = n \times u \\
+                    & = \frac{1}{3\sqrt{5}}
+                    \begin{vmatrix}
+                        e_1 & e_2 & e_3 \\
+                        1 & 2 & 2 \\
+                        2 & -1 & 0
+                    \end{vmatrix} \\
+                    & = \frac{1}{3\sqrt{5}} \big( (2 \cdot 0 - 2 \cdot (-1)) e_1
+                    - (1 \cdot 0 - 2 \cdot 2) e_2
+                    + (1 \cdot (-1) - 2 \cdot 2) e_3 \big) \\
+                    & = \frac{1}{3\sqrt{5}} (2, 4, -5). 
+                \end{aligned}
+            \end{equation*}
+
+            \item La matrice \(M\) dont les colonnes sont \((u,v,n)\) est
+            \begin{equation*}
+                M = 
+                \begin{pmatrix}
+                    2/\sqrt{5} & 2/(3\sqrt{5}) & 1/3 \\
+                    -1/\sqrt{5} & 4/(3\sqrt{5}) & 2/3 \\
+                    0 & -5/(3\sqrt{5}) & 2/3
+                \end{pmatrix}.
+            \end{equation*}
+            Tous les vecteurs sont unitaires et orthogonaux, et \(u \times v = n\) assure la directivité.
+
+            \item Une matrice de rotation \(Q\) doit vérifier \(Q^T Q = I\) et \(\det(Q)=1\).  
+            Ici, \(M\) envoie \((0,0,1)\) sur \(n\), donc elle envoie \(H\) sur \(P\).  
+            Pour envoyer \(P\) sur \(H\), il faut prendre l’inverse, soit \(Q = M^T\):
+            \begin{equation*}
+                Q = M^T = 
+                \begin{pmatrix}
+                    2/\sqrt{5} & -1/\sqrt{5} & 0 \\
+                    2/(3\sqrt{5}) & 4/(3\sqrt{5}) & -5/(3\sqrt{5}) \\
+                    1/3 & 2/3 & 2/3
+                \end{pmatrix}.
+            \end{equation*}
+            Cette matrice est bien orthogonale, de déterminant 1, et envoie le plan \((P)\) sur le plan horizontal \((H)\).
+        \end{enumerate}
+	\end{td-sol}
+}{}
