@@ -11,7 +11,17 @@ public class ReinesIntension {
 		
 		
 		// Création des variables
-		IntVar [] reines = model.intVarArray("R", 8, 1, 8);
+    int [] vals_possibles = {1, 2, 3, 4, 8, 12, 16};
+    
+    //int n = 8; // default n value
+    for (int val : vals_possibles) {
+        int n = val;
+        System.out.println("\n\nRésolution du problème des " + val + " reines");
+        model = new Model("Reines"); // reset model for next iteration
+    
+		
+    
+    IntVar [] reines = model.intVarArray("R", n, 1, n);
 
     // Création des contraintes
     // Le allDiff est déjà dans la construction même du tableau de reines
@@ -25,13 +35,13 @@ public class ReinesIntension {
     /*
      * Contrainte 1: Deux reines ne peuvent pas être sur la même colonne.
      */
-    model.allDifferent(reines[0], reines[1], reines[2], reines[3], reines[4], reines[5], reines[6], reines[7]).post();
+    model.allDifferent(reines).post();
     
     /*
      * Contrainte 2: Deux reines ne peuvent pas être sur la même ligne.
      */
-    for (int i = 0; i < 8; i++) {
-        for (int j = i + 1; j < 8; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             model.arithm(reines[i], "!=", reines[j]).post();
         }
     }
@@ -39,8 +49,8 @@ public class ReinesIntension {
     /*
      * Contrainte 3: Deux reines ne peuvent pas être sur la même diagonale (de gauche à droite).
      */
-    for (int i = 0; i < 8; i++) {
-        for (int j = i + 1; j < 8; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             model.arithm(reines[i], "-", reines[j], "!=", i - j).post();
         }
     }
@@ -48,8 +58,8 @@ public class ReinesIntension {
     /*
      * Contrainte 4: Deux reines ne peuvent pas être sur la même diagonale (de droite à gauche).
      */
-    for (int i = 0; i < 8; i++) {
-        for (int j = i + 1; j < 8; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
             model.arithm(reines[i], "-", reines[j], "!=", j - i).post();
         }
     }
@@ -80,3 +90,7 @@ public class ReinesIntension {
     model.getSolver().printStatistics();
 	}
 }
+}
+
+// on peut alors constater que le nombre de solutions 
+// pour tout n est toujours 1 à rotation près
