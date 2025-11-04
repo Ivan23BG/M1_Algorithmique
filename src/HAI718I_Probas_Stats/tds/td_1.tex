@@ -1,0 +1,62 @@
+% \subsection*{Optional Sheet section 1}\label{subsec:ss_1}
+% \addcontentsline{toc}{subsection}{\nameref{subsec:ss_1}}
+
+
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[]\, % 1
+    \begin{enumerate}
+        \item En considérant les 26 lettres de l'alphabet, combien peut-on former de mots de 2 lettres?
+        Combien peut-on former de mots de deux lettres constitués d'une consonne suivie d'une voyelle?
+        Combien peut-on former de mots de deux lettres constitués d'une consonne et d'une voyelle?
+        \item Combien d'équipes différentes de 3 personnes peut-on former à partir d'un groupe de 5 personnes?
+        \item Avec 17 chevaux au départ, combien y a-t-il de tiercés possibles? Dans le désordre?
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 1
+		\begin{enumerate}
+            \item On peut former \(26 \times 26 = 676\) mots de 2 lettres. On peut former \(20 \times 6 = 120\) 
+            mots de deux lettres constitués d'une consonne suivie d'une voyelle. On peut former \(20 \times 6 + 6 \times 20 = 240\) 
+            mots de deux lettres constitués d'une consonne et d'une voyelle.
+            \item On peut en former \(\binom{5}{3} = 10\) équipes différentes de 3 personnes à partir d'un groupe de 5 personnes.
+            \item Avec 17 chevaux au départ, il y a \(17 \times 16 \times 15 = 4080\) tiercés possibles. Dans le désordre,
+            il y en a \(4080 / 6 = 680\).
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[]\,\\ % 2
+    Une urne contient \(n\) boules blanches (\(n\geq 5\)) et 10 boules noires. 
+    On tire au hasard et simultanément 10 boules de l'urne.
+    \begin{enumerate}
+        \item Quelle est la probabilité \(p_n\) pour que l'on ait tiré 
+        exactement 3 boules noires?
+        \item Etudier le sens de variation de la suite \(p_n\) et calculer \(\lim_{n \to +\infty} p_n\).
+    \end{enumerate}
+\end{td-exo}
+%helix
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 2
+		\begin{enumerate}
+            \item Exercice solution
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[Optional title xx]\,\\ % xx
+% Exercise xx content
+% \end{td-exo}
+
+% % ----- Solutions exo xx ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\,\\ % xx
+% 		Exercice solution
+% 	\end{td-sol}
+% }{}
