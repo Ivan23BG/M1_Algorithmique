@@ -31,8 +31,11 @@ public class Expe {
 		
 			
 	public static void main(String[] args) throws Exception{
-		String ficName = "bench.txt";
+		String files_to_read[] = new String[] {"benchSatisf.txt", "benchInsat.txt"};
+		// String ficName = "bench.txt";
 		int nbRes=3;
+		for (String ficName : files_to_read) {
+			
 		BufferedReader readFile = new BufferedReader(new FileReader(ficName));
 		for(int nb=1 ; nb<=nbRes; nb++) {
 			Model model=lireReseau(readFile);
@@ -40,7 +43,19 @@ public class Expe {
 				System.out.println("Problème de lecture de fichier !\n");
 				return;
 			}
-			System.out.println("Réseau lu "+nb+" :\n"+model+"\n\n");
+			System.out.println("Réseau lu dans "+ficName+" numero "+nb+" :\n"+model+"\n\n");
+
+			
+			// Calcul de la première solution
+			if(model.getSolver().solve()) {
+			System.out.println("\n\n*** Première solution ***");        
+			System.out.println(model);
+			}
+
+			// Affichage de l'ensemble des caractéristiques de résolution
+			// System.out.println("\n\n*** Bilan ***");        
+			// model.getSolver().printStatistics();
+		}
 		}
 		return;	
 	}
