@@ -1,32 +1,43 @@
 % ----- Consignes exo 1 ----- %
-\begin{td-exo}[Convexité]\,\\ % 1 
-	% fill
+\begin{td-exo}[Euh \dots]\,\\ % 1 
+	Que vaut \(\alpha(L(G))\)?
 \end{td-exo}
 
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 1
+		On a
+		\begin{equation*}
+			\alpha(L(G)) = \mu(G)
+		\end{equation*}
 	\end{td-sol}
 }{}
 
 
 % ----- Consignes exo 2 ----- %
-\begin{td-exo}[Convexité]\,\\ % 2 
-	% fill
+\begin{td-exo}[Couplage maximum Vs couplage maximal]\,\\ % 2 
+	Soient \(G\) un graphe, \(M\) un couplage maximal de 
+	\(G\) et \(M^\ast\) un couplage maximum de \(G\).
+	Montrer que \(|M| \leq |M^\ast| \leq 2|M|\).
 \end{td-exo}
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 2
+		On peut considérer le stable \(S\) tel que 
+		\(S\cup M = G\).
 	\end{td-sol}
 }{}
 
 
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[Convexité]\,\\ % 3 
-	% fill
+\begin{td-exo}[Couplage dans les graphes sans triangle]\,\\ % 3 
+	Un graphe est dit sans triangle si il ne contient pas 
+	de cycle de longueur 3 comme sous-graphe. Si \(G\) 
+	est sans triangle, montrer que
+	\begin{equation*}
+		\chi(\ol G) + \mu(G) = n
+	\end{equation*}
 \end{td-exo}
 
 % ----- Solutions exo 3 ----- %
@@ -121,7 +132,19 @@
 
 % ----- Consignes exo 6 ----- %
 \begin{td-exo}[Famille couvrante de cycles dans les graphes \(2k\)-réguliers]\,\\ % 6 
-	Un \(2\)\emph{-factor} d'un graphe \(G\)
+	Un \(2\)\emph{-factor} d'un graphe \(G\) est un sous-graphe \(2\)-régulier couvrant \(G\).
+	Le but de l'exercice est de montrer le résultat suivant dû à J. Petersen (1891): 
+	\emph{tout graphe régulier de degré pair admet un \(2\)-factor}.
+	Soit \(G\) un graphe régulier de degré pair.
+	\begin{enumerate}
+		\item A l'aide d'une marche eulérienne de \(G\), montrer que \(G\) admet une orientation 
+		\(D\) dans laquelle \(d^+(x) = d^-(x)\) pour tout sommet \(x\) de \(G\).
+
+		\item Le \defemph{biparti d'adjacence} d'un graphe orienté \(D = (V, A)\) est le graphe 
+		de sommets \(\left\{x^+, x^-,\ : x\in V(D)\right\}\) et d'arêtes 
+		\(\left\{u^+ v^-,\ : uv\in A(D)\right\}\). En étudiant le biparti d'adjacence du graphe orienté
+		produit à la question précédente, conclure.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 6 ----- %
