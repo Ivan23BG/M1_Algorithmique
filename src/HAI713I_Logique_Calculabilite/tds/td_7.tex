@@ -1,0 +1,134 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Modèles, théories et propriétés]
+	\begin{enumerate}
+		\item Pour le modèle \(\bb R, |x-y| = 1\), c'est-à-dire \(\bb R\) avec un prédicat binaire \(d\) tel que 
+		\(d(x,y)\) si et seulement si \(|x-y| = 1\) (ce qui exprime que \(x\) et \(y\) sont à distance \(1\) dans \(\bb R\)),
+		donner une formule \emph{une formule du langage ayant uniquement le prédicat binaire} \(d\) qui exprime \(|x-y| = 2\).
+
+		\item Rappelez ce qu'est un automorphisme. Pour le modèle \((\bb R, |x-y|=1)\) montrez que la fonction \(x\to x+1\) 
+		est un automorphisme. En déduire que dans ce modèle on ne peut pas exprimer la propriété \(x=0\).
+
+		\item Montrez que dans \((\bb R, |x-y|=1)\) on ne peut pas exprimer la propriété \(x\) est un entier relatif.
+
+		\item Montrez que dans \((\bb Z, x+y=z)\) on peut exprimer les propriétés \(x=0\) et \(x\) est pair.
+
+		\item Montrez que dans \((\bb Z, x+y=z)\) on ne peut pas exprimer la propriété \(x>0\). 
+	\end{enumerate}
+\end{td-exo}
+
+	
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 1
+        \begin{enumerate}
+			\item On peut utiliser la formule:
+			\begin{equation*}
+				P(x,y) \iff \exists z,\quad x\neq z \land d(x,z) \land d(z,y)
+			\end{equation*}
+
+			\item La fonction \(f : x \mapsto x + 1\) est bien bijective donc on peut faire comme suit:
+			\begin{equation*}
+				\begin{aligned}
+					M_a M &\models d(x,y) \\
+					&\iff d(f(x), f(y)) \\
+					&\iff d(x+1, y+1) \\
+					&\iff |(x+1) - (y+1)| = 1 \\
+					&\iff |x-y| = 1
+				\end{aligned}
+			\end{equation*}
+
+			\item Si on pouvait exprimer la propriété \(P(x) \sim x = 0\) alors on aurait \(M \models P(x_0)\) et en particulier \(M \models P(f(x_0)) \equiv P(x+1)\). On aurait alors \(1=0\) ce qui est impossible, donc \(P\) ne peut pas exprimer \og{}\(x = 0\)\fg{}.
+
+			\item On veut montrer que
+			\begin{equation*}
+				M \models P(\underbrace{x}_{\in \bb Z}) \iff M \models P(\underbrace{f(x)}_{\notin \bb Z})
+			\end{equation*}
+			Supposons qu'il existe \(P : P(x) \iff x\in \bb Z\). Utilisons l'isomorphisme suivant:
+			\begin{equation*}
+				g : x\mapsto x + \frac12
+			\end{equation*}
+			Alors pour \(x=1\), on a \(M\models P(1)\) et \(M\models P(1.5)\) qui n'est pas entier. Alors \(P\) n'exprime pas \og{}\(x\in \bb Z\)\fg{}
+
+			\item On peut utiliser la formule suivante:
+			\begin{equation*}
+				F(x) \iff \exists y (x + y = y)
+			\end{equation*}
+			qui exprime bien \og{}\(x = 0\)\fg{}. Pour l'autre formule on peut utiliser:
+			\begin{equation*}
+				G(x) \iff \exists y\quad y+y=x
+			\end{equation*}
+
+			\item On peut utiliser l'isomorphisme suivant:
+			\begin{equation*}
+				f : x\mapsto -x
+			\end{equation*}
+			Il en suit
+			\begin{equation*}
+				\begin{aligned}
+					-(x+y)=-z
+					& \iff x+y = z \\
+					& \iff f(x) + f(y) = f(z)
+				\end{aligned}
+			\end{equation*}
+		\end{enumerate}
+	\end{td-sol}
+}{} 
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Compacité - ordres complétés]
+	Soit \(\mathcal{A} = (A, <, \{a_0, a_1,\ldots\})\) un modèle dénombrable où chaque élément de \(\mathcal A\) apparaît comme une constante \(a_i\). Dans la suite, \(i\) et \(j\) sont des symboles de l'exercice et non pas de la théorie; ils représentent des entiers. La relation \(<\) est un ordre (partiel et strict) quelconque. On note \(T\) la théorie de l'ordre partiel (voir précédents exercices) et on a donc \(A\models T\). Nous allons démontrer qu'on peut étendre l'ordre de \(A\) en un (nouvel) ordre qui, lui, est total. On appelle \(f_{i,j}\) la formule \(a_i < a_j \lor a_j < a_i\).
+	\begin{enumerate}
+		\item Pour \(i\neq j\), trouvez un modèle \(\mathcal{A}_{i,j}\) de même langage que \(\mathcal A\) tel que \(\mathcal{A}_{i,j} \models T\cup \{f_{i,j}\}\) et où l'ordre sur \(\mathcal{A}_{i,j}\) étend celui sur \(\mathcal A\).
+
+		\item Trouvez un modèle \(\mathcal{A}_n\) de même langage que \(\mathcal A\) tel que \(A_n \models T \cup \left\{ \big\land_{i\leq n,\j\leq n,i\neq j} f_{i,j}\right\}\) et où l'ordre sur \(\mathcal{A}_n\) étend celui sur \(\mathcal A\).
+
+		\item En déduire qu'on peut étendre l'ordre en un ordre total sur \(\mathcal A\).
+		
+	\end{enumerate}
+\end{td-exo}
+	
+
+	
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 1
+        \begin{enumerate}
+			\item On prend \(T\) la théorie de l'ordre partiel. 
+
+			\begin{itemize}
+				\item Soit \(a_i < a_j\) ou \(a_j < a_i\).
+				Alors, \(\mathcal{A} \models f_{i,j}\) donc \(\mathcal{A} \models T \cup \{f_{i,j}\}\).
+
+				\item Sinon, on pose \(<^{\prime} = < \cup \{a_i < a_j\}\). Alors, pour tout \(b\in A\) tel que 
+				\begin{equation*}
+					\begin{cases}
+						a_i < a_j \\
+						a_j < b
+					\end{cases}
+				\end{equation*}
+				En rajoutant \(a_i < b\) on a
+				\begin{equation*}
+					\mathcal{A}' = \left( A, <^{\prime}, \ldots \right)\models T \cup \{f_{i,j}\}
+				\end{equation*}
+			\end{itemize}
+
+			\item On peut juste redémontrer la même chose pour chaque \(\{f_{i,j}\}\).
+
+			\item On veut construire un modèle de \(T\cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}\).
+			\begin{equation*}
+				\begin{aligned}
+					&T_f \subseteq T \cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}\\
+					& T_f = T \cup \left\{ f_{i_1, j_1}, f_{i_2, j_2}, \ldots \right\} \\
+					& \exists n, \forall i, \forall j, \quad f_{i,j} \in T_f \implies i\leq n \land j\leq n\\
+					& \mathcal{A}_n \models T\cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}\\
+					& \mathcal{A}_n \models T_f
+				\end{aligned}
+			\end{equation*}
+			Donc par \(H_1\) compacité, \(T\) a un modèle \(B\):
+			\begin{equation*}
+				B \models T \cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}
+			\end{equation*}
+		\end{enumerate}
+	\end{td-sol}
+}{} 
