@@ -1,0 +1,30 @@
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Ensembles convexe]\,\\ % 3
+	Montrer qu'étant donné un sous-ensemble convexe \(C\) et deux réels positifs \(\alpha\) et \(\beta\)
+	alors on a
+	\begin{equation*}
+		\alpha C + \beta C = (\alpha + \beta) C.
+	\end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Commencons par montrer l'inclusion \(\left(\alpha + \beta\right) C \subset \alpha C + \beta C\).
+
+		Soit \(x \in \left(\alpha + \beta\right) C\). Alors, il existe \(x_0\in C\) tel que
+		\begin{equation*}
+			x = \left(\alpha + \beta\right) x_0 = \alpha x_0 + \beta x_0.
+		\end{equation*}
+		
+		Donc \(x \in \alpha C + \beta C\).
+
+		Montrons maintenant l'inclusion \(\alpha C + \beta C \subset \left(\alpha + \beta\right) C\).
+
+		Soit \(x \in \alpha C + \beta C\). Alors, il existe \(x_1, x_2 \in C\) tels que
+		\begin{equation*}
+			x = \alpha x_1 + \beta x_2 = \left(\alpha + \beta\right) \left(\frac{\alpha}{\alpha + \beta} x_1 + \frac{\beta}{\alpha + \beta} x_2\right).
+		\end{equation*}
+	\end{td-sol}
+}{}
+

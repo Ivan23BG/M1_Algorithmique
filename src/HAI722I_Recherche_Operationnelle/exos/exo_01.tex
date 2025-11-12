@@ -1,0 +1,68 @@
+
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Convexité]\, % 1 
+	\begin{enumerate}
+		\item Soit une famille (éventuellement infinie) d'inégalités linéaires
+		\(a_i^T x \leq b_i,i\in I\). Soit \(C\) son ensemble de solutions.
+		Montrer que \(C\) est convexe.
+
+		\item Montrer que la boule fermée \(\mathsf{B}(a,r)\) est convexe
+		pour tout \(a\in\bb R^n\) et \(r\in \bb R^+\).
+
+		\item Soit \(S\subseteq\bb R^n\) et soit \(W\) l'ensemble de toutes les
+		combinaisons convexes de points de \(S\). Montrer que \(W\) est convexe.
+
+		\item Soit \(C\) un convexe. Montrer que 
+		\begin{equation*}
+			\bigcup_{0\leq\lambda\leq 1}\lambda C
+		\end{equation*}
+		est convexe.
+
+		\item Une matrice \(A=(a_{ij})\) de dimension \(n\times n\) est bistochastique si 
+		elle satisfait
+		\begin{equation*}
+			\begin{aligned}
+				\forall i\in\{1,\ldots,n\}, & \sum_{j=1}^n a_{ij} = 1, \\
+				\forall j\in\{1,\ldots,n\}, & \sum_{i=1}^n a_{ij} = 1, \\
+				\forall (i,j)\in{\{1,\ldots,n\}}^2, & a_{ij}\geq 0.
+			\end{aligned}
+		\end{equation*}
+		Une matrice de permutation \(P\) est une matrice bistochastique à valeurs 
+		entières, c'est-à-dire que dans chaque ligne de \(P\) il y a un et un seul élément égal à 1,
+		et les autres sont nuls. De même pour chaque colonne.
+		\begin{enumerate}
+			\item Montrer que pour toute matrice bistochastique \(A\), il existe
+			une matrice de permutation \(P\) de même dimension telle que \(p_{ij}=0\)
+			si \(a_{ij}=0\).
+
+			\item Est-ce qu'une combinaison convexe de matrices de permutation est 
+			une matrice bistochastique?
+
+			\item Montrer que toute matrice bistochastique \(A\) est une combinaison convexe
+			de matrices de permutation.
+
+			\item Trouver la combinaison convexe pour la matrice \(A\) suivante:
+			\begin{equation*}
+				A = \begin{pmatrix}
+					0.15 & 0.37 & 0 & 0.48 \\
+					0.02 & 0.15 & 0.67 & 0.16 \\
+					0.46 & 0.02 & 0.16 & 0.36 \\
+					0.37 & 0.46 & 0.17 & 0
+				\end{pmatrix}.
+			\end{equation*}
+		\end{enumerate}
+
+		\item Soient maintenant \(C_1\) et \(C_2\) deux convexes disjoints et
+		\begin{equation*}
+			D_1 = \bigcup_{0\leq\lambda\leq 1}\lambda C_1, \quad i=1,2.
+		\end{equation*}
+		Montrer que l'un des deux convexes \(C_1\cap D_2\) ou \(C_2\cap D_1\) est vide.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		A remplir %TODO solve exercise 1
+	\end{td-sol}
+}{}
