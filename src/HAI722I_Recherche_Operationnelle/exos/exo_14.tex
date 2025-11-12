@@ -1,0 +1,45 @@
+% ----- Consignes exo 14 ----- %
+\begin{td-exo}[Points extrêmes]\,\\ % 14
+	On considère le polyèdre \(S\) de \(\bb R^3\) défini par les conditions suivantes:
+	\begin{equation*}
+		\begin{cases}
+			x_1 + x_3 + x_5 = 2\\
+			2x_2 + x_3 + x_4 = 4\\
+			x_1 + x_2 + x_4 + 2x_5 = 3\\
+			x_i \geq 0, \quad i=1,\ldots,5.
+		\end{cases}
+	\end{equation*}
+	\begin{enumerate}
+		\item Le point \(x*=(1,1,1,1,0)\) est-il un point extrême? Pourquoi?
+
+		\item Les points suivants sont-ils des points extrêmes? Dégénérés?
+		\begin{itemize}
+			\item \(x_1 = (0,-1,2,4,0)\),
+			\item \(x_2 = (0.5,0,1.5,2.5,0)\),
+			\item \(x_3 = (2,3,0,-2,0)\),
+			\item \(x_4 = (\frac43,\frac53,\frac23,0,0)\).
+		\end{itemize}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 14 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item On commence par vérifier que \(x*\) respecte les contraintes: %TODO
+
+			On constate qu'il vérifie bien les contraintes, mais on sait qu'il n'y a
+			que 3 variables en base. Or, \(x*\) en a 4 de non nulles. Donc, \(x*\) n'est pas un point extrême.
+
+			\item On commence par vérifier que les points respectent les contraintes:
+			\begin{itemize}
+				\item \(x_1\) ne respecte pas les contraintes car \(x_2 < 0\).
+				\item \(x_2\) respecte les contraintes et a 3 variables en base. Donc, \(x_2\) est un point extrême non dégénéré.
+				\item \(x_3\) ne respecte pas les contraintes car \(x_4 < 0\).
+				\item \(x_4\) respecte les contraintes et a 3 variables en base. Donc, \(x_4\) est un point extrême non dégénéré.
+			\end{itemize}
+			On rappelle qu'un point est dégénéré s'il a plus de \(m\) variables nulles où \(m\) est le nombre de variables originelles.
+		\end{enumerate}
+	\end{td-sol}
+}{}
+

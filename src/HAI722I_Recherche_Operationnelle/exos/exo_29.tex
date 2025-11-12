@@ -1,0 +1,162 @@
+
+% ----- Consignes exo 29 ----- %
+\begin{td-exo}[La méthode du simplexe n'est pas une méthode polynomiale]\,\\ % 29
+	Dans cet exercice nous allons montrer que la méthode du simplexe n'est pas une méthode polynomiale.
+	Pour cela, nous allons considérer le programme linéaire suivant:
+	\begin{equation*}
+		(PL_n)=
+		\begin{cases}
+			\max z = 2^{n-1} x_1 + 2^{n-2} x_2 + \cdots + 2x_{n-1} + x_n \\
+			x_1 \leq 5\\
+			4x_1 + x_2 \leq 25\\
+			8x_1 + 4x_2 + x_3 \leq 125\\
+			\ldots\\
+			2^n x_1 + 2^{n-1} x_2 + \cdots + 4x_{n-1} + x_n \leq 5^n\\
+			x_i \geq 0, \quad i=1,\ldots,n.
+		\end{cases}
+	\end{equation*}\,
+	\begin{enumerate}
+		\item Donner la forme standard de \((PL_n)\).
+		\item Donner la solution optimale.
+		\item Montrer que \(\forall i, x_i\) et \(y_i\) (où \(y_i\) est la variable d'écart associée à la \(i\)-ième
+		variable) ne peuvent être en même temps des variables hors base.
+		\item Nous allons montrer que \(2^n\) tableaux sont nécessaires pour résoudre ce problème.
+		\begin{itemize}
+			\item Vérifez-le pour \(n=1\).
+			\item Montrez-le pour \(n=2\).
+			\begin{itemize}
+				\item Résoudre graphiquement.
+				\item Résoudre par la méthode des tableaux. Combien de tableaux sont nécessaires
+				pour résoudre \((PL_2)\).
+				\item Quel est le chemin des visites des points extrêmes. Montrez que le 
+				dernier tableau peut se mettre sous la forme (voir le tableau 2).
+				\begin{equation*}
+					2cx + x_n \leq 5^n
+				\end{equation*}
+				où
+				\begin{equation*}
+					l\in \{1,\ldots,n-1\}, \quad c = (2^{n-1}, 2^{n-2}, \ldots, 2),
+				\end{equation*}
+				et \(A\) est la matrice associé au \(n-1\) premières contraintes.
+			\end{itemize}
+			\item Supposons par hypothèse de récurrence que la résolution du programme linéaire 
+			\(PL_n\) nécessite \(2^n\) tableaux. Nous allons montrer que la résolution du
+			programme linéaire \(PL_{n+1}\) nécessite \(2^{n+1}\) tableaux.
+			\begin{itemize}
+				\item 
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 29 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item On réécrit les équations avec les \(n\) variables d'écart \(y_i\):
+			\begin{equation*}
+				\begin{cases}
+					\max z = 2^{n-1} x_1 + 2^{n-2} x_2 + \cdots + 2x_{n-1} + x_n + 0\cdot y_1 + \cdots + 0\cdot y_n \\
+					x_1 + y_1 = 5\\
+					4x_1 + x_2 + y_2 = 25\\
+					8x_1 + 4x_2 + x_3 + y_3 = 125\\
+					\vdots\\
+					2^n x_1 + 2^{n-1} x_2 + \cdots + 4x_{n-1} + x_n + y_n = 5^n\\
+					x_i, y_i \geq 0, \quad i=1,\ldots,n.
+				\end{cases}
+			\end{equation*}
+			\item Pour \(n=1\), la solution optimale est \(x_1 = 5\).
+
+			Pour \(n=2\), la solution optimale est \((0, 25)\). On peut
+			vérifier avec le tableau du simplexe qui suit:
+			\begin{center}
+				\begin{tabular}{|ccc|cccc|} % chktex 44
+					\hline  % chktex 44
+					& \ &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(y_1\)&\(y_2\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1}=y_1\)} &\(5\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1}=y_2\)} &\(25\)&\(4\)&\(1\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(0\)} &\(-2\)&\(-1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			ensuite
+			\begin{center}
+				\begin{tabular}{|ccc|cccc|} % chktex 44
+					\hline  % chktex 44
+					& \ &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(y_1\)&\(y_2\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_1^{2}=x_1\)} &\(5\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{2}=y_2\)} &\(5\)&\(0\)&\(1\)&\(-4\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(10\)} &\(0\)&\(-1\)&\(2\)&\(0\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			ensuite
+			\begin{center}
+				\begin{tabular}{|ccc|cccc|} % chktex 44
+					\hline  % chktex 44
+					& \ &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(y_1\)&\(y_2\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_1^{3}=x_1\)} &\(5\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_2^{3}=x_2\)} &\(5\)&\(0\)&\(1\)&\(-4\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(10\)} &\(0\)&\(0\)&\(-2\)&\(1\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			et enfin
+			\begin{center}
+				\begin{tabular}{|ccc|cccc|} % chktex 44
+					\hline  % chktex 44
+					& \ &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(y_1\)&\(y_2\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{4}=y_1\)} &\(5\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_2^{4}=x_2\)} &\(25\)&\(4\)&\(1\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(25\)} &\(2\)&\(0\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			ce qui confirme que la solution optimale est \((0, 25)\).
+			\item On ecrit les deux lignes du tableau et on 
+			regarde ce qui se passe en \(x_i\) et \(y_i\):
+			\begin{equation*}
+				\begin{aligned}
+					&2^{i-1}x_1 + 2^{i-2}x_2 + \cdots + 4x_{i-2} + x_{i-1} + y_{i-1} = 5^{i-1}\\
+					&2^i x_1 + 2^{i-1}x_2 + \cdots + 4x_{i-1} + x_i + y_i = 5^i
+				\end{aligned}
+			\end{equation*}
+			Si \(y_i = 0\), alors dans l'équation du haut on a
+			\begin{equation*}
+				4x_{i-1} = 5^{i-1} - 2^{i-1}x_1 - 2^{i-2}x_2 - \cdots - x_{i-2} \geq 0
+			\end{equation*}
+			mais dans celle du bas on a
+			\begin{equation*}
+				4x_{i-1} = 4\cdot 5^{i-1} - 2^i x_1 - 2^{i-1}x_2 - \cdots - x_i > 0
+			\end{equation*}
+			
+			Si on fait cela aussi avec \(x_i = 0\), on trouve que \(x_i = y_i = 0\)
+			est impossible.
+
+			\item On a
+			\begin{enumerate}
+				\item \,%
+			\end{enumerate}
+		\end{enumerate}
+	\end{td-sol}
+}{}

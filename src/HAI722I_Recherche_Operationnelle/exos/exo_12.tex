@@ -1,0 +1,145 @@
+% ----- Consignes exo 12 ----- %
+\begin{td-exo}[Forme standard et forme canonique]\,\\ % 12
+	Dans cet exercice vous devez mettre les programmes suivants sous forme standard et donner
+	également la forme matricielle.
+	\begin{enumerate}
+		\item
+		\begin{equation*}
+			\begin{cases}
+				\max z = x_1 + x_2 \\
+				x_1 + 5 x_2 \leq 5 \\
+				2x_1 + x_2 \leq 4 \\
+				x_1 \geq 0,\quad i=1,2.
+			\end{cases}
+		\end{equation*}
+
+		\item
+		\begin{equation*}
+			\begin{cases}
+				\max z = 80 x_1 + 60 x_2 \\
+				0.2x_1 + 0.32 x_2 \leq 0.25\\
+				x_1 + x_2 = 1 \\
+				x_1 \geq 0,\quad i=1,2.
+			\end{cases}
+		\end{equation*}
+
+		\item Réécrire le programme précédent dans le cas où la fonction objectif
+		est la minimisation.
+
+		\item
+		\begin{equation*}
+			\begin{cases}
+				\max z = 5x_1 + 2x_2 \\
+				6x_1 + x_2 \geq 6 \\
+				4x_1 + 3x_2  \geq 12 \\
+				x_1 + 2x_2 \geq 4 \\
+				x_1 \geq 0,\quad i=1,2.
+			\end{cases}
+		\end{equation*}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 12 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\max z = x_1 + x_2 + 0\cdot x_3 + 0\cdot x_4 \\
+					x_1 + 5 x_2 + x_3 = 5 \\
+					2x_1 + x_2 + x_4 = 4 \\
+					x_1, x_2, x_3, x_4 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\max z = \begin{pmatrix} 1 & 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \\
+					\begin{pmatrix}
+						1 & 5 & 1 & 0 \\
+						2 & 1 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
+					=
+					\begin{pmatrix} 5 \\ 4 \end{pmatrix}, \quad
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\max z = 80 x_1 + 60 x_2 + 0\cdot x_3 - M \cdot x_4\\
+					0.2x_1 + 0.32 x_2 + x_3 = 0.25\\
+					x_1 + x_2 + x_4 = 1 \\
+					x_1, x_2, x_3, x_4 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\max z = \begin{pmatrix} 80 & 60 & 0 & -M \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \\
+					\begin{pmatrix}
+						0.2 & 0.32 & 1 & 0 \\
+						1 & 1 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
+					=
+					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix},\quad
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\min z = -80 x_1 - 60 x_2 + 0\cdot x_3 + M \cdot x_4\\
+					0.2x_1 + 0.32 x_2 + x_3 = 0.25\\
+					x_1 + x_2 + x_4 = 1 \\
+					x_1, x_2, x_3, x_4 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\min z = \begin{pmatrix} -80 & -60 & 0 & M \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \\
+					\begin{pmatrix}
+						0.2 & 0.32 & 1 & 0 \\
+						1 & 1 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}
+					=
+					\begin{pmatrix} 0.25 \\ 1 \end{pmatrix}, \quad
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+
+			\item La forme standard est
+			\begin{equation*}
+				\begin{cases}
+					\max z = 5x_1 + 2x_2 + 0\cdot x_3 + 0\cdot x_4 + 0\cdot x_5 + M\cdot (x_6 + x_7 + x_8)\\
+					6x_1 + x_2 - x_3 + x_6= 6 \\
+					4x_1 + 3x_2 - x_4 + x_7 = 12 \\
+					x_1 + 2x_2 - x_5 + x_8 = 4 \\
+					x_1, x_2, x_3, x_4, x_5, x_6, x_7, x_8 \geq 0.
+				\end{cases}
+			\end{equation*}
+			La forme matricielle est
+			\begin{equation*}
+				\begin{cases}
+					\max z = \begin{pmatrix} 5 & 2 & 0 & 0 & 0 & M & M & M \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix} \\
+					\begin{pmatrix}
+						6 & 1 & -1 & 0 & 0 & 1 & 0 & 0 \\
+						4 & 3 & 0 & -1 & 0 & 0 & 1 & 0 \\
+						1 & 2 & 0 & 0 & -1 & 0 & 0 & 1
+					\end{pmatrix}
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix}
+					=
+					\begin{pmatrix} 6 \\ 12 \\ 4 \end{pmatrix}, \quad
+					\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6 \\ x_7 \\ x_8 \end{pmatrix} \geq 0.
+				\end{cases}
+			\end{equation*}
+		\end{enumerate}
+	\end{td-sol}
+}{}

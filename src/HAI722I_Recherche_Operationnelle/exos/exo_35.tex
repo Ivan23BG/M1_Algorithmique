@@ -1,0 +1,49 @@
+
+
+% ----- Consignes exo 35 ----- %
+\begin{td-exo}[Contraintes serrées et solutions] % 35
+	On considère
+	\begin{equation*}
+		P = \begin{cases}
+			\max z &= 6x_1 + 5x_2\\
+			x_1 + x_2 &\leq 8\\
+			-2x_1 + 3x_2 &\leq 6\\
+			x_1 - x_2 &\leq 2\\
+			x_1,x_2 &\geq 0.
+		\end{cases},\quad
+		D = \begin{cases}
+			\min z = 8u_1 + 6u_2 + 2u_3\\
+			u_1 - 2u_2 + u_3 &\geq 6\\
+			u_1 + 3u_2 - u_3 &\geq 5\\
+			u_i &\geq 0,\ i=1,2,3.
+		\end{cases}
+	\end{equation*}
+	En supposant que la solution optimale du primal est \(x=(5,3)\), donner 
+	la solution du dual. Quelles sont les contraintes serrées pour le primal et le dual.
+\end{td-exo}
+
+% ----- Solutions exo 35 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 35
+		Supposons que la solution optimale du primal est \(x=(5,3)\). Les contraintes donnent alors:
+		\begin{equation*}
+			\begin{aligned}
+				5 + 3 \leq 8 &\iff 8 \leq 8\\
+				-2\cdot 5 + 3\cdot 3 \leq 6 &\iff -1 \leq 6\\
+				5-3 \leq 2 &\iff 2 \leq 2
+			\end{aligned}
+		\end{equation*}
+		Les contraintes 1 et 3 sont serrées, la contrainte 2 ne l'est pas. Donc on sait que 
+		\begin{equation*}
+			u_1 > 0,\ u_2 = 0,\ u_3 > 0.
+		\end{equation*}
+		En rentrant cela dans le dual on obtient:
+		\begin{equation*}
+			\begin{cases}
+				u_1 + u_3 \geq 6\\
+				u_1 - u_3 \geq 5\\
+			\end{cases}
+		\end{equation*}
+		Alors, la solution optimale est \((u_1 = \frac{11}2, u_2 = 0, u_3 = \frac12)\).
+	\end{td-sol}
+}{}

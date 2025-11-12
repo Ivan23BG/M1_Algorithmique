@@ -1,0 +1,39 @@
+% ----- Consignes exo 13 ----- %
+\begin{td-exo}[]\,\\ % 13
+	Nous considérons les programmes linéaires avec des variables \(x_1\in\{0, u_j\}\).
+	Montrer que nous pouvons nous ramener à un programme linéaire en nombres entiers.
+	Appliquez-le au problème suivant:
+	\begin{equation*}
+		\begin{cases}
+			\max z = 18x_1 + 3x_2 + 9x_3 \\
+			2x_1 + x_2 + 7x_3 \leq 150 \\
+			x_1 \in \{0, 60\} \\
+			x_2 \in \{0, 30\} \\
+			x_3 \in \{0, 20\}.
+		\end{cases}
+	\end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 13 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On remplace chaque variable \(x_j\) par une variable \(y_j\) telle que \(x_j = u_j y_j\)
+		et \(y_j \in \{0,1\}\). Le programme devient
+		\begin{equation*}
+			\begin{cases}
+				\max z = 18\cdot 60 y_1 + 3\cdot 30 y_2 + 9\cdot 20 y_3 \\
+				2\cdot 60 y_1 + 30 y_2 + 7\cdot 20 y_3 \leq 150 \\
+				y_1, y_2, y_3 \in \{0,1\}.
+			\end{cases}
+		\end{equation*}
+		Cela revient à résoudre le programme linéaire en nombres entiers suivant:
+		\begin{equation*}
+			\begin{cases}
+				\max z = 1080 y_1 + 90 y_2 + 180 y_3 \\
+				120 y_1 + 30 y_2 + 140 y_3 \leq 150 \\
+				y_1, y_2, y_3 \in \{0,1\}.
+			\end{cases}
+		\end{equation*}
+	\end{td-sol}
+}{}
+

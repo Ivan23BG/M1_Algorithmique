@@ -1,0 +1,55 @@
+% ----- Consignes exo 17 ----- %
+\begin{td-exo}[] % 17
+	Soient: \(P = \{x\in\bb R^n: Ax\geq b, x\geq0\}\) et \(Q = \{(x,y)\in\bb R^n\times\bb R^n: Ax-y = b,x\geq0,y\geq0\}\).
+	\begin{enumerate}
+		\item Montrer que si \(x\) est un point extreme de \(P\), alors
+		\(x, Ax-b\) est un point extrême de \(Q\).
+
+		\item Montrer que si \((x,y)\) est un point extrême de \(Q\), alors \(x\) est un point extrême de \(P\).
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 17 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item Supposons que \(x\) est un point extrême de \(P\). Montrons que \((x,Ax-b)\) est un point extrême de \(Q\).
+
+			Si \((x, Ax-b)\) n'est pas un point extrême de \(Q\), alors il existe \(x_1, x_2 \in Q\) 
+			tels que
+			\begin{equation*}
+				(x, Ax-b) = \frac{x_1, y_1 + x_2, y_2}{2}
+			\end{equation*}
+			De plus
+			\begin{equation*}
+				\begin{cases}
+					Ax_1 - y_1 = b \implies & Ax_1 \geq b \\
+					Ax_2 - y_2 = b \implies & Ax_2 \geq b
+				\end{cases}
+			\end{equation*}
+			Donc \(x_1, x_2 \in P\) et donc \(x = \frac{x_1 + x_2}{2}\in P\).
+			Cela contredit le fait que \(x\) est un point extrême de \(P\). Donc \((x,Ax-b)\) est un point extrême de \(Q\).
+
+			\item Supposons que \(x\) n'est pas un point extreme de \(P\). Alors il existe
+			\(x_1, x_2 \in P\) tels que \(x = \frac{x_1 + x_2}{2}\). Alors
+
+			\begin{equation*}
+				\begin{aligned}
+					y
+					&= Ax-b\\
+					&= A\frac{x_1}2 + A\frac{x_2}2 - b\\
+					&= A\frac{x_1}2 + A\frac{x_2}2 - \frac{b}2 - \frac{b}2\\
+					&= \frac12\left(Ax_1 - b\right) + \frac12\left(Ax_2 - b\right)\\
+					&= \frac{y_1 + y_2}{2}
+				\end{aligned}
+			\end{equation*}
+			d'où
+			\begin{equation*}
+				\begin{aligned}
+					(x,y) = \frac12\left(x_1, y_1\right) + \frac12\left(x_2, y_2\right)
+				\end{aligned}
+			\end{equation*}
+			et donc \((x,y)\) n'est pas un point extrême de \(Q\).
+		\end{enumerate}
+	\end{td-sol}
+}{}

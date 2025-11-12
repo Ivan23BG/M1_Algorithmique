@@ -1,0 +1,26 @@
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Ensembles convexes]\,\\ % 4
+	Soit \(S\sub\bb R^n\) vérifiant la propriété de \defemph{demi-somme} suivante:
+	\begin{equation*}
+		\forall x,y \in S,\quad \frac{x+y}{2} \in S.
+	\end{equation*}
+
+	\begin{enumerate}
+		\item \(S\) est-il convexe?
+
+		\item Même question si on suppose que \(S\) est fermé.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item Non. Par exemple, le sous-ensemble \(S\) suivant:
+			\begin{equation*}
+				S = \left\{ x \in \ff{0,1} \mid x = \sum_{i=I} \frac{1}{2^i} \right\} = \left\{ 0, \frac{1}{2}, \frac{1}{4}, \frac{3}{4}, \ldots \right\}
+			\end{equation*}
+			vérifie la propriété de demi-somme mais n'est pas convexe, car par exemple \(\sqrt{2}/2 \in \ff{0,1} \notin S\).
+		\end{enumerate}
+	\end{td-sol}
+}{}

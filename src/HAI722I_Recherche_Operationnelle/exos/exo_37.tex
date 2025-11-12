@@ -1,0 +1,40 @@
+
+% ----- Consignes exo 37 ----- %
+\begin{td-exo}[Lecture des variables duales]\,\\ % 37
+	Soit le programme linéaire ci-dessous:
+	\begin{equation*}
+		PL_9 =
+		\begin{cases}
+			\max z(x_1,x_2) = 2x_1 + x_2\\
+			x_1 + 5x_2 \leq 10\\
+			x_1 + 3x_2 \leq 6\\
+			2x_1 + 2x_2 \leq 8
+			x_1,x_2\geq 0
+		\end{cases}
+	\end{equation*}\,
+	\begin{enumerate}
+		\item Donner le dual.
+		\item Résoudre le primal et le dual.
+		\item Retrouver la solution du primal et du dual dans 
+		les tableaux optimaux.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 37 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 37
+		\begin{enumerate}
+			\item Le dual est le suivant:
+			\begin{equation*}
+				\begin{cases}
+					\min z(y_1,y_2,y_3) = 10y_1 + 6y_2 + 8y_3\\
+					y_1 + y_2 + 2y_3 \geq 2\\
+					5y_1 + 3y_2 + 2y_3 \geq 1\\
+					y_1,y_2,y_3\geq 0
+				\end{cases}
+			\end{equation*}
+
+			\item \, % TODO remplir les deux tableaux qui suivent.
+		\end{enumerate}
+	\end{td-sol}
+}{}

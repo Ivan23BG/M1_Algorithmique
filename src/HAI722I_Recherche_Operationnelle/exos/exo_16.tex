@@ -1,0 +1,53 @@
+% ----- Consignes exo 16 ----- %
+\begin{td-exo}[Points extrêmes]\,\\ % 16
+	Soit \(C\) le polyèdre convexe fermé de \(\bb R^2\) 
+	décrit à l'aide des inégalités suivantes:
+	\begin{equation*}
+		\mathcal{P}_y =
+		\begin{cases}
+			x_1 + \frac83 x_2 \leq 4\\
+			x_1 + x_2 \leq 2\\
+			2x_1 \leq 3\\
+			x_1 \geq 0\\
+		\end{cases}
+	\end{equation*}
+	
+	\begin{enumerate}
+		\item Ecrire \(C\) sous la forme standard.
+		\item Quels sont les points extrêmes de \(C\)?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 16 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item On introduit les variables d'écart \(x_3, x_4, x_5\) pour obtenir la forme standard:
+			\begin{equation*}
+				\begin{cases}
+					x_1 + \frac83 x_2 + x_3 = 4\\
+					x_1 + x_2 + x_4 = 2\\
+					2x_1 + x_5 = 3\\
+					x_i \geq 0, \quad i=1,\ldots,5.
+				\end{cases}
+			\end{equation*}
+
+			\item On écrit le problème matriciellement:
+			\begin{equation*}
+				\begin{cases}
+					\begin{pmatrix}
+						1 & \frac83 & 1 & 0 & 0 \\
+						1 & 1 & 0 & 1 & 0 \\
+						2 & 0 & 0 & 0 & 1
+					\end{pmatrix}
+				\end{cases}
+			\end{equation*}
+			On choisit ensuite 3 contraintes parmi les 5 et on résout les systèmes linéaires associés:
+			\begin{itemize}
+				\item Pour (3,4,5), on trouve \(x_1 = (0, 0, 4,2,3)\),
+				\item Pour (1,2,3), on trouve \(x_2 = (\frac32, \frac12, \frac76, 0, 0)\),
+			\end{itemize}
+			et ainsi de suite. 
+		\end{enumerate}
+	\end{td-sol}
+}{}

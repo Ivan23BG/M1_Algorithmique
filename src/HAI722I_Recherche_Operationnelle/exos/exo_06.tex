@@ -1,0 +1,50 @@
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[Ensembles convexes]\ % 6
+	\begin{enumerate}
+		\item Soit \(C\) un convexe. Montrer que \(x\in C\) est un point extrême de \(C\)
+		si et seulement si \(C\setminus\{x\}\) est convexe.
+
+		\item A-t-on une caractérisation similaire pour une face de \(C\)?
+
+		\item On considère dans \(\bb R^n\) les deux boules suivantes:
+		\begin{itemize}
+			\item \(\mathsf{B}_1=\{x = (x_1,\ldots,x_n)\in \bb R^n\ \mid\ \sum_{i=1}^\infty \n{x_i} \leq 1\}\)
+			\item \(\mathsf{B}_\infty = \{x = (x_1,\ldots,x_n)\in \bb R^n\ \mid\ \max_{1\leq i\leq n} \n{x_i} \leq 1\}\)
+		\end{itemize}
+		Quels sont les points extrêmes de \(\mathsf{B}_1\) et \(\mathsf{B}_\infty\)?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		\begin{enumerate}
+			\item Commencons par le sens direct:\\
+			Soit \(x\in C\) un point extrême de \(C\). Montrons que \(C\setminus\{x\}\) est convexe.
+
+			Soit \(y,z \in C\setminus\{x\}\) et \(\lambda \in \ff{0,1}\). Alors
+			\begin{equation*}
+				\lambda y + (1-\lambda) z \in C.
+			\end{equation*}
+			car \(C\) est convexe. Supposons par l'absurde que \(\lambda y + (1-\lambda) z = x\). 
+			Alors \(x\) est une combinaison convexe de \(y\) et \(z\) avec \(\lambda \in \ff{0,1}\).
+			Cela contredit le fait que \(x\) est un point extrême de \(C\). Donc la
+			combinaison convexe \(\lambda y + (1-\lambda) z\) est dans \(C\setminus\{x\}\).
+			Donc \(C\setminus\{x\}\) est convexe.
+
+			Montrons maintenant le sens réciproque:\\
+			Soit \(x\in C\) tel que \(C\setminus\{x\}\) est convexe. Montrons que \(x\) est un point extrême de \(C\).
+
+			Supposons par l'absurde que \(x\) n'est pas un point extrême de \(C\). Alors, il existe \(y,z \in C\) et \(\lambda \in \oo{0,1}\) tels que
+			\begin{equation*}
+				x = \lambda y + (1-\lambda) z.
+			\end{equation*}
+			Comme \(y,z \in C\) et \(x\) est une combinaison convexe de \(y\) et \(z\), on a forcément \(y \neq x\) et \(z \neq x\).
+			Donc \(y,z \in C\setminus\{x\}\). Comme \(C\setminus\{x\}\) est convexe, on a
+			\begin{equation*}
+				x = \lambda y + (1-\lambda) z \in C\setminus\{x\}.
+			\end{equation*}
+			C'est une contradiction. Donc \(x\) est un point extrême de \(C\).
+		\end{enumerate}
+	\end{td-sol}
+}{}

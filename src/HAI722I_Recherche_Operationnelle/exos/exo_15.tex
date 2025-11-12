@@ -1,0 +1,45 @@
+% ----- Consignes exo 15 ----- %
+\begin{td-exo}[Points extrêmes et solutions]\,\\ % 15
+	Soit le polyèdre \(P = \{x \in \bb R^3 \mid Ax \leq b\}\) avec
+	\begin{equation*}
+		A = \begin{pmatrix}
+			2, 3, 6 \\
+			-1, 0, 0 \\
+			0, -1, 0 \\
+			0, 0, -1 \\
+		\end{pmatrix}, \quad
+		b = \begin{pmatrix}
+			6, 1, 0, 0
+		\end{pmatrix}.
+	\end{equation*}
+	On supposera que le polyèdre est borné.
+
+\end{td-exo}
+
+% ----- Solutions exo 15 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		Pour trouver les points extrêmes, on cherche à résoudre
+		tous les arrangements possibles de 3 contraintes parmi les 4.
+		On énumère les lignes qu'on choisit comme contraintes comme suit et on les résout dans l'ordre:
+		\begin{equation*}
+			(1,2,3), (1,2,4), (1,3,4), (2,3,4).
+		\end{equation*}
+		\begin{itemize}
+			\item Pour (1,2,3), on résout:
+			\begin{equation*}
+				\begin{cases}
+					2x_1 + 3x_2 + 6x_3 = 6\\
+					-x_1 = 1\\
+					-x_2 = 0
+				\end{cases}
+			\end{equation*}
+			et on trouve \(x_1 = (-1, 0, \frac43)\).
+			\item Pour (1,2,4), on trouve \(x_2 = (-1, \frac83, 6)\),
+			\item Pour (1,3,4), on trouve \(x_3 = (3, 0, 0)\),
+			\item Pour (2,3,4), on trouve \(x_4 = (-1, 0, 0)\).	
+		\end{itemize}
+		Les points extrêmes sont donc \(x_1, x_2, x_3\) et \(x_4\).
+		Si on rajoute la contrainte \(x_i \geq 0\), on a seulement \(x_3\) qui reste.
+	\end{td-sol}
+}{}
