@@ -76,12 +76,12 @@
 
 
 % ----- Consignes exo 2 ----- %
-\begin{td-exo}[Compacité - ordres complétés]
+\begin{td-exo}[Compacité --- ordres complétés]
 	Soit \(\mathcal{A} = (A, <, \{a_0, a_1,\ldots\})\) un modèle dénombrable où chaque élément de \(\mathcal A\) apparaît comme une constante \(a_i\). Dans la suite, \(i\) et \(j\) sont des symboles de l'exercice et non pas de la théorie; ils représentent des entiers. La relation \(<\) est un ordre (partiel et strict) quelconque. On note \(T\) la théorie de l'ordre partiel (voir précédents exercices) et on a donc \(A\models T\). Nous allons démontrer qu'on peut étendre l'ordre de \(A\) en un (nouvel) ordre qui, lui, est total. On appelle \(f_{i,j}\) la formule \(a_i < a_j \lor a_j < a_i\).
 	\begin{enumerate}
 		\item Pour \(i\neq j\), trouvez un modèle \(\mathcal{A}_{i,j}\) de même langage que \(\mathcal A\) tel que \(\mathcal{A}_{i,j} \models T\cup \{f_{i,j}\}\) et où l'ordre sur \(\mathcal{A}_{i,j}\) étend celui sur \(\mathcal A\).
 
-		\item Trouvez un modèle \(\mathcal{A}_n\) de même langage que \(\mathcal A\) tel que \(A_n \models T \cup \left\{ \big\land_{i\leq n,\j\leq n,i\neq j} f_{i,j}\right\}\) et où l'ordre sur \(\mathcal{A}_n\) étend celui sur \(\mathcal A\).
+		\item Trouvez un modèle \(\mathcal{A}_n\) de même langage que \(\mathcal A\) tel que \(A_n \models T \cup \left\{ \bigwedge\limits_{\substack{i\leq n \\ j\leq n \\ i\neq j}} f_{i,j}\right\}\) et où l'ordre sur \(\mathcal{A}_n\) étend celui sur \(\mathcal A\).
 
 		\item En déduire qu'on peut étendre l'ordre en un ordre total sur \(\mathcal A\).
 		
@@ -115,19 +115,19 @@
 
 			\item On peut juste redémontrer la même chose pour chaque \(\{f_{i,j}\}\).
 
-			\item On veut construire un modèle de \(T\cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}\).
+			\item On veut construire un modèle de \(T\cup \left\{ \bigwedge\limits_{i\neq j} f_{i,j}\right\}\).
 			\begin{equation*}
 				\begin{aligned}
-					&T_f \subseteq T \cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}\\
+					&T_f \subseteq T \cup \left\{ \bigwedge\limits_{i\neq j} f_{i,j}\right\}\\
 					& T_f = T \cup \left\{ f_{i_1, j_1}, f_{i_2, j_2}, \ldots \right\} \\
 					& \exists n, \forall i, \forall j, \quad f_{i,j} \in T_f \implies i\leq n \land j\leq n\\
-					& \mathcal{A}_n \models T\cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}\\
+					& \mathcal{A}_n \models T\cup \left\{ \bigwedge\limits_{\substack{i\leq n \\ j\leq n \\ i\neq j}} f_{i,j}\right\}\\
 					& \mathcal{A}_n \models T_f
 				\end{aligned}
 			\end{equation*}
 			Donc par \(H_1\) compacité, \(T\) a un modèle \(B\):
 			\begin{equation*}
-				B \models T \cup \left\{ \big\land_{i\neq j} f_{i,j}\right\}
+				B \models T \cup \left\{ \bigwedge\limits_{i\neq j} f_{i,j}\right\}
 			\end{equation*}
 		\end{enumerate}
 	\end{td-sol}
