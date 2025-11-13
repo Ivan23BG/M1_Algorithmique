@@ -482,8 +482,7 @@ def compile_files_parallel(files: List[Path], num_jobs: Optional[int] = None) ->
     Uses multiprocessing to compile files concurrently.
     Shows progress for single files, uses pool for multiple.
     """
-    if num_jobs is None:
-        num_jobs = max(1, mp.cpu_count() - 2)
+    num_jobs = 1
     
     if len(files) == 1 or num_jobs == 1:
         # Single file or single job - compile directly with live output

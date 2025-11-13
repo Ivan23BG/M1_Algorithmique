@@ -246,39 +246,19 @@
 % ----- Solutions exo 9 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		On commence par \(a\) non saturé
-		et on fait l'arbre de couplage.
-		\begin{itemize}
-			\item On trouve \(1, 2\) à partir de \(a\),
-			\item puis on trouve \(b, c\) et on barre les chemins reliés,
-			\item on trouve \(4\) à partir de \(b\), il est non saturé donc
-			\(a1b4\) est augmentant.
-			\item On augmente \(|M|\) et on recommence.
-		\end{itemize}
-		\,
-		\begin{itemize}
-			\item Je choisis \(e\) non saturé, 
-			\item \(5\) est non saturé donc \(e5\) est augmentant.
-			\item On augmente \(|M|\) et on recommence.
-		\end{itemize}
-		
+		On nous donne \(\{1b, 2c\}\) au départ. On part d'un sommet non saturé et on essaie de lui trouver un chemin augmentant. Prenons ici par exemple \(5\). On le lie a \(e\) et on le rajoute au couplage qui devient alors \(\{1b, 2c, 5e\}\).
+	
 		\input{../assets/tikz/td_2_ex_9_1.tex}
 
-		\begin{itemize}
-			\item Je choisis \(d\) non saturé,
-			\item \(6\) est non saturé donc \(d4b6\) est augmentant.
-			\item On augmente \(|M|\) et on recommence.
-		\end{itemize}
-		
+		Ensuite on choisit encore un nouveau sommet non saturé, par exemple \(d\). On le relie a \(4\) et on le rajoute au couplage qui devient \(\{1b, 2c, 5e, 4d\}\).
+	
 		\input{../assets/tikz/td_2_ex_9_2.tex}
 
-		\begin{itemize}
-			\item On calcule un arbre de couplage enraciné en \(3\),
-			\item Il est complet, on peut le retirer du graphe
-		\end{itemize}
-		A la fin, il reste:
-
+		On continue, cette fois-ci disons avec \(a\). On cherche un chemin augmentant à partir de \(a\) et on trouve \(\{a1, 1b, b6\}\). On augmente le chemin et on le rajoute au couplage qui devient alors \(\{a1, b6, 2c, 5e, 4d\}\).
+	
 		\input{../assets/tikz/td_2_ex_9_3.tex}
+		On choisit encore un nouveau sommet, disons \(3\). On ne trouve pas de chemin augmentant à partir de \(3\) donc on réessaie avec un autre sommet non saturé, ici \(f\).
+		On ne trouve pas non plus de chemin augmentant à partir de \(f\). Comme il n'y a plus de sommets non saturés, l'algorithme s'arrête et on a trouvé un couplage maximum.
 	\end{td-sol}
 }{}
 
@@ -347,14 +327,45 @@
 
 
 % ----- Consignes exo 13 ----- %
-\begin{td-exo}[Convexité]\,\\ % 13 
-	% fill
+\begin{td-exo}[Théorème de structure de Gallai (1964)]\,\\ % 13 
+	Consigne ici, faut pas m'en tenir rigueur
+
+	\input{../assets/tikz/td_2_ex_13.tex}
 \end{td-exo}
 
 % ----- Solutions exo 13 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 13
+		On nous donne le couplage initial \(\{ae, cf, gh, kl\}\) suivant:
+
+		\input{../assets/tikz/td_2_ex_13_1.tex}
+
+		On choisit un sommet non saturé, disons \(m\). On cherche un chemin augmentant à partir de \(m\) et on trouve \(mj\).
+		On augmente le couplage qui devient \(\{ae, cf, gh, kl, jm\}\).
+
+		\input{../assets/tikz/td_2_ex_13_2.tex}
+
+		C'est un bon moment pour commencer à contracter nos blossoms. On contracte \(gkl, abe, cdf\). Le graphe devient alors:
+
+		\input{../assets/tikz/td_2_ex_13_3.tex}
+
+		On choisit un nouveau sommet non saturé, disons \(i\). On cherche un chemin augmentant à partir de \(i\) et on trouve \(i-cdf\). Le graphe devient:
+
+		\input{../assets/tikz/td_2_ex_13_4.tex}
+
+		On ne peut plus contracter de blossom ou trouver de chemin augmentant, donc on remonte en décontractant les blossoms. 
+		Le sommet \(i\) est relié à \(c\) dans le blossom \(cdf\), on a donc le chemin augmentant \(i-c-f-d\) dans le graphe initial.
+		On augmente le couplage qui devient \(\{ae, gh, kl, jm, ic, fd, kl\}\).
+
+		\input{../assets/tikz/td_2_ex_13_5.tex}
+
+		On voit que seul le blossom \(aeb\) n'est pas saturé, donc le couplage est maximum. On décontracte tous les blossoms pour obtenir le couplage maximum final:
+
+		\begin{equation*}
+			M = \{ae, ci, df, gh, jm, kl\}
+		\end{equation*}
+
+		\input{../assets/tikz/td_2_ex_13_6.tex}
 	\end{td-sol}
 }{}
 

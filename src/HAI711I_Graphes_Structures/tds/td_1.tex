@@ -170,14 +170,17 @@
 
 
 % ----- Consignes exo 4 ----- %
-\begin{td-exo}[Convexité]\,\\ % 4 
-	% fill
+\begin{td-exo}[Long Chemin]\,\\ % 4 
+	Montrer que tout graphe \(G\) contient un chemin de longueur \(\delta(G)\), ainsi qu'un cycle de longueur \(\geq \delta(G) + 1\) si \(\delta(G) \geq 2\). 
+	Montrer que ces résultats sont optimaux.
 \end{td-exo}
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 4
+		Soit \(x_0\) un sommet de \(G\). On sait que \(\delta(x) \geq \delta(G)\). Il a donc au moins \(\delta(G)\) voisins. On choisit un de ces voisins, notons le \(x_1\). Ce nouveau sommet a aussi \(\delta(G)\) voisins dont au moins \(\delta(G)-1\) différents de ceux choisis précédemment. En répétant processus \(\delta(G)\) fois, on aura bien obtenu \(\delta(G)\) sommets différents de \(x_0\) et tels que \((x_0,x_1,\ldots,x_{\delta(G)})\) forme un chemin de longueur \(\delta(G)\).
+
+		On reprend le chemin \((x_0,x_1,\ldots,x_{\delta(G)})\) choisi précédemment. Si \(x_{\delta(G)}\) est de degré 
 	\end{td-sol}
 }{}
 
