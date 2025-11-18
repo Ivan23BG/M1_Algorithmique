@@ -1,0 +1,21 @@
+% ----- Consignes exo tmp ----- %
+\begin{td-exo}[Un problème de modélisation] % tmp
+	Soit \(G = ((A, B), E)\). On cherche à trouver un couplage de taille maximale dans le biparti. 
+\end{td-exo}
+
+% ----- Solutions exo tmp ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On peut modéliser le problème de la manière suivante:
+        \begin{equation*}
+            \begin{aligned}
+                \max\quad & \sum_{(u,v) \in E} x_{uv}\\
+                \text{s.c.}\quad & \sum_{v\in B, (u,v)\in E} x_{uv} \leq 1, \quad \forall u\in A,\\
+                                 & \sum_{u\in A, (u,v)\in E} x_{uv} \leq 1, \quad \forall v\in B,\\
+                                 & x_{uv} \in \{0,1\}, \quad \forall (u,v) \in E.
+            \end{aligned}
+        \end{equation*}
+        
+	\end{td-sol}
+}{}
+

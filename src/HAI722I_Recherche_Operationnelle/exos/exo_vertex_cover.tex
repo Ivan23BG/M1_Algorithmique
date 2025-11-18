@@ -1,0 +1,29 @@
+% ----- Consignes exo tmp ----- %
+\begin{td-exo}[Un problème de modélisation] % tmp
+	Soit \(G = (V, E)\) et \(k\in\bb N\). On se demande si il existe \(V'\subseteq V\) tel que:
+    \begin{equation*}
+        |V'| \leq k,\quad \forall (u,v) \in E, u\in V' \text{ ou } v\in V'
+    \end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo tmp ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On peut modéliser le problème de la manière suivante:
+        \begin{equation*}
+            \begin{aligned}
+                \min\quad & \sum_{v\in V} x_v\\
+                \text{s.c.}\quad & x_u + x_v \geq 1, \quad \forall (u,v) \in E\\
+                & x_v \in \{0,1\}, \quad \forall v\in V
+            \end{aligned}
+        \end{equation*}
+        où \(x_v = 1\) si \(v\in V'\) et \(0\) sinon. 
+
+        Dans le cas d'un graphe où les sommets ont un poids \(w_v\), on peut modifier la fonction objectif:
+        \begin{equation*}
+            \min\quad \sum_{v\in V} w_v x_v
+        \end{equation*}
+        où \(x_v = 1\) si \(v\in V'\) et \(0\) sinon. 
+	\end{td-sol}
+}{}
+

@@ -1,0 +1,26 @@
+% ----- Consignes exo 50 ----- %
+\begin{td-exo}[Un problème de découpe] % 50
+	Soit une entreprise sidérurgique produisant des barres d'acier de longueur \(l\). 
+    Elle doit satisfaire un carnet de commandes constitué de \(n_i\) barres de longueur \(L_i \leq l, i = 1, \ldots, m\).
+
+    Le problème consiste à déterminer quelles découpes effectuer pour satisfaire le carnet de commande tout en minimisant la longueur totale des déchets.
+
+    La modélisation classique, la plus simple, énumère toutes les découpes admissibles (ou du moins, parmi elles, les découpes intéressantes).
+\end{td-exo}
+
+% ----- Solutions exo 50 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		On peut modéliser le problème comme suit:
+
+        \begin{equation*}
+            \begin{aligned}
+                \min\quad & \sum_{j} c_j x_j\\
+                \text{s.c.}\quad & n_i \leq t_{ij} x_j, \quad \forall i = 1, \ldots, m,\\
+                                 & x_j \geq 0, \quad \forall j,
+            \end{aligned}
+        \end{equation*}
+        où \(x_j\) est le nombre de barres découpées selon le schéma \(j\), \(t_{ij}\) est le nombre de barres de longueur \(L_i\) obtenues dans le schéma \(j\), et \(c_j\) est la longueur de déchets générée par le schéma \(j\).
+	\end{td-sol}
+}{}
+

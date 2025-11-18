@@ -1,0 +1,31 @@
+% ----- Consignes exo 51 ----- %
+\begin{td-exo}[Un problème d'ordonnancement de production sur des machines en parallèle] % 51
+	Soit 
+    \begin{itemize}
+        \item un atelier de production avec \(m\) machines ou lignes de production identiques en parallèle \((i = 1,\ldots, m)\);
+        chaque machine ne peut traiter qu'un seul travail à la fois;
+        \item un carnet de commandes de \(n\) travaux \((j = 1, \ldots, n)\). Chaque travail \(j\) peut être effectué 
+        indifféremment sur une des \(m\) machines, mais sans  interruption et nécessite un temps de travail \(p_j\);
+    \end{itemize}
+    Il convient d'affecter les \(n\) travaux aux \(m\) machines de façon à ce que l'ensemble du carnet de commandes 
+    soit le plus rapidement terminé (critère appelé le \og{}makespan\fg{}).
+\end{td-exo}
+
+% ----- Solutions exo 51 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+        On peut modéliser le problème comme suit:
+
+        \begin{equation*}
+            \begin{aligned}
+                \min\quad & C_{\max} = \min \max_{i=1,\ldots,m} C_i\\
+                \text{s.c.}\quad & \sum_{i=1}^{m} x_{ij} = 1, \quad \forall j = 1, \ldots, n,\\
+                                 & \sum_{j=1}^{n} p_j x_{ij} \leq C_{\max}, \quad \forall i = 1, \ldots, m,\\
+                                 & x_{ij} \in \{0, 1\}, \quad \forall i = 1, \ldots, m, \quad \forall j = 1, \ldots, n,
+            \end{aligned}
+        \end{equation*}
+        où \(x_{ij}\) est une variable binaire valant 1 si le travail \(j\) est affecté à la machine \(i\), et 0 sinon, et 
+        \(C_{\max}\) est le temps total de traitement (makespan).
+	\end{td-sol}
+}{}
+
