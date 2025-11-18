@@ -3,7 +3,6 @@ import os
 import sys
 import shutil
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 BUILD_DIR = "build"
 LOG_DIR = "logs"
@@ -20,8 +19,6 @@ LATEXMK_FLAGS = [
     "-interaction=nonstopmode",
     "-halt-on-error"
 ]
-
-MAX_WORKERS = 4
 
 STATS = {
     "compiled": 0,
@@ -113,7 +110,7 @@ def clean_all():
 
 
 # ================================================================
-# Step 1: Find all *_main.tex files
+# Step 1 â€” Find all *_main.tex files
 # ================================================================
 
 def find_main_files():
@@ -134,7 +131,7 @@ def find_main_files():
     return main_files
 
 # ================================================================
-# Step 2: Create simple dependency tree
+# Step 2 â€” Create simple dependency tree
 # ================================================================
 
 def extract_dependencies(tex_path):
@@ -193,7 +190,7 @@ def create_deps_tree():
         print(f"Deps for {mf}: {len(deps)} entries â†’ {deps_filename}")
 
 # ================================================================
-# Step 3: Compile a LaTeX file
+# Step 3 â€” Compile a LaTeX file
 # ================================================================
 
 def compile_file(tex_file):
@@ -266,43 +263,39 @@ def move_build_outputs(tex_file, build_path, log_path, pdf_path):
 
 
 # ================================================================
-# Step 4: Build logic
+# Step 4 â€” Build logic
 # ================================================================
 
 def load_main_files():
     if not os.path.exists(MAIN_FILES_LIST):
-        print("No main_files.txt found: run --find-files first.")
+        print("No main_files.txt found â€” run --find-files first.")
         return []
     return read_file(MAIN_FILES_LIST).splitlines()
 
 def build_needed():
     main_files = load_main_files()
     if not main_files:
-        print("No main files found: run --initial first.")
+        print("No main files found â€” run --initial first.")
         return
 
     reset_stats(len(main_files))
-
-    files_to_compile = []
 
     for mf in main_files:
         _, _, pdf_path = ensure_output_dirs_for(mf)
         pdf_file = os.path.join(pdf_path, os.path.basename(mf).replace(".tex", ".pdf"))
 
         if not os.path.exists(pdf_file):
-            print(f"PDF missing: rebuild {mf}")
-            files_to_compile.append(mf)
+            print(f"PDF missing â€” rebuild {mf}")
+            compile_file(mf)
         else:
             # compare timestamps properly
             if os.path.getmtime(mf) > os.path.getmtime(pdf_file):
-                print(f"Source newer: rebuild {mf}")
-                files_to_compile.append(mf)
+                print(f"Source newer â€” rebuild {mf}")
+                compile_file(mf)
             else:
                 print(f"{mf} is up to date.")
                 STATS["skipped"] += 1
         
-    if files_to_compile:
-        compile_with_progress(files_to_compile)
     print_summary()
 
 def rebuild_all():
@@ -323,64 +316,13 @@ def rebuild_all():
                 os.remove(os.path.join(build_path, f))
 
     # Recompile everything
-    files_to_compile = main_files
-    if files_to_compile:
-        compile_with_progress(files_to_compile)
+    for mf in main_files:
+        compile_file(mf)
     print_summary()
-
-def compile_with_progress(files_to_compile):
-    """
-    Compiles multiple files in parallel with simple progress updates.
-    
-    How it works:
-    1. Creates a ThreadPoolExecutor to run multiple compilations at once
-    2. Submits all files to be compiled
-    3. Prints updates as each file finishes
-    4. Collects results and updates statistics
-    """
-    if not files_to_compile:
-        return
-
-    total = len(files_to_compile)
-    completed = 0
-
-    # Create a thread pool that can run MAX_WORKERS compilations at once
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        
-        # Submit all files for compilation
-        # This creates "futures" - promises of future results
-        future_to_file = {
-            executor.submit(compile_file, mf): mf 
-            for mf in files_to_compile
-        }
-        
-        # as_completed() gives us results as each compilation finishes
-        for future in as_completed(future_to_file):
-            tex_file = future_to_file[future]
-            completed += 1
-            
-            try:
-                # Get the result (True if success, False if failed)
-                success = future.result()
-                
-                if success:
-                    STATS["compiled"] += 1
-                    print(f"  [{completed}/{total}] O {os.path.basename(tex_file)}")
-                else:
-                    STATS["failed"] += 1
-                    print(f"  [{completed}/{total}] X {os.path.basename(tex_file)} FAILED")
-                    
-            except Exception as e:
-                # If something went wrong during compilation
-                STATS["failed"] += 1
-                print(f"  [{completed}/{total}] XXX {os.path.basename(tex_file)} ERROR: {e}")
-
-
-
 
 
 # ================================================================
-# Step 5: CLI handling
+# Step 5 â€” CLI handling
 # ================================================================
 
 def main():
@@ -404,15 +346,6 @@ def main():
         create_deps_tree()
     elif arg == "--clean":
         clean_all()
-    elif arg == "--help" or arg == "-h" or arg == "?":
-        print("Usage: python run.py [option]")
-        print("Options:")
-        print("  --rebuild-all         Rebuild all main files")
-        print("  --initial             Find main files and create dependency tree")
-        print("  --find-files          Find all main files")
-        print("  --create-deps-tree    Create dependency tree for main files")
-        print("  --clean               Clean build, log, and pdf directories")
-        print("  --help, -h, ?         Show this help message")
     else:
         print("Unknown option:", arg)
         print("Valid options:")
@@ -420,8 +353,6 @@ def main():
         print("  --initial")
         print("  --find-files")
         print("  --create-deps-tree")
-        print("  --clean")
-        print("  --help, -h, ?")
 
 if __name__ == "__main__":
     main()
