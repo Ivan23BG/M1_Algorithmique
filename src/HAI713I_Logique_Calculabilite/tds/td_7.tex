@@ -129,7 +129,6 @@
 			\begin{equation*}
 				B \models T \cup \left\{ \bigwedge\limits_{i\neq j} f_{i,j}\right\}
 			\end{equation*}
-			\end{itemize}
 		\end{enumerate}
 	\end{td-sol}
 }{} 
@@ -159,17 +158,17 @@
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ % 3
 		On rappelle que dans un ordre total, on a les propriétés suivantes:
+		\begin{itemize}
+			\item Antiréflexivité: \(\forall x, \lnot (x < x)\),
+			\item Asymétrie: \(\forall x, \forall y, (x < y) \implies \lnot (y < x)\),
+			\item Transitivité: \(\forall x, \forall y, \forall z, (x < y \land y < z) \implies (x < z)\),
+			\item Totalité: \(\forall x, \forall y, x = y \lor x < y \lor y < x\).
+			\item Une fonction \(S\) telle que
 			\begin{itemize}
-				\item Antiréflexivité: \(\forall x, \lnot (x < x)\),
-				\item Asymétrie: \(\forall x, \forall y, (x < y) \implies \lnot (y < x)\),
-				\item Transitivité: \(\forall x, \forall y, \forall z, (x < y \land y < z) \implies (x < z)\),
-				\item Totalité: \(\forall x, \forall y, x = y \lor x < y \lor y < x\).
-				\item Une fonction \(S\) telle que
-				\begin{itemize}
-					\item \(\forall x, S(x) > x\),
-					\item \(\lnot \left( \exists x, \exists y, x < y < S(x) \right)\).
-				\end{itemize}
+				\item \(\forall x, S(x) > x\),
+				\item \(\lnot \left( \exists x, \exists y, x < y < S(x) \right)\).
 			\end{itemize}
+		\end{itemize}
 		\begin{enumerate}
 			\item On a
 			\begin{equation*}
@@ -203,7 +202,8 @@
 				F_3(a, b) = S(S(S(a))) < b
 			\end{equation*}
 
-			\item\label{log:td2:ex3} On a \(T \cup \{ F_{K_1}, \ldots, F_{K_m} \}\) avec \(m\) un entier quelconque et \(K\) une constante.
+			\item%\label{log:td2:ex3} 
+			On a \(T \cup \{ F_{K_1}, \ldots, F_{K_m} \}\) avec \(m\) un entier quelconque et \(K\) une constante.
 			Alors 
 			\begin{equation*}
 				\exists m, \forall n \geq m\quad F_n \notin T \cup \{ F_{K_1}, \ldots, F_{K_m} \}
@@ -222,7 +222,8 @@
 			\end{equation*}
 			Donc l'extension de \(T\) par un nombre fini de formules \(F_n\) est cohérente.
 
-			\item \(T \cup \{ F_n,n\in \bb N\}\). Par\~\ref{log:td2:ex3}, toute partie finie de \(T \cup \{F_n\}\) a un modèle, donc \(T \cup \{F_n\}\) a un modèle \(M\). Alors 
+			\item \(T \cup \{ F_n,n\in \bb N\}\). Par la question précédente, %\~\ref{log:td2:ex3}
+			toute partie finie de \(T \cup \{F_n\}\) a un modèle, donc \(T \cup \{F_n\}\) a un modèle \(M\). Alors 
 			\begin{equation*}
 				M = \left(
 					\bb N, <_{\bb N}, S_{\bb N}, a, b
@@ -241,7 +242,7 @@
 				\right\}
 			\end{equation*}
 
-			\item \(\forall x, \exissts y, S(y) = x\). 
+			\item \(\forall x, \exists y, S(y) = x\). 
 		\end{enumerate}
 	\end{td-sol}
 }{}
