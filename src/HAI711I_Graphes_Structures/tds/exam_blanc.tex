@@ -1,22 +1,25 @@
-
-% ----- Consignes exo xx ----- %
-\begin{td-exo}[Flots --- 3pts]\,\\ % xx
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Flots --- 3pts]\,\\ % 1
     Calculer un flot maximal sur le réseau de transport ci-dessous, commençant par une augmentation de flot le long du chemin \(sadbep\).
     En expliquant comment l'obtenir, donner une coupe minimale du réseau.
 
     \input{../assets/tikz/exam_blanc_ex_1_1.tex}
 \end{td-exo}
 
-% ----- Solutions exo xx ----- %
+% ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % xx
-		Exercice solution
+	\begin{td-sol}[]\,\\ % 1
+		Commençons par retirer \(sadbep\) au réseau pour obtenir le réseau résiduel suivant:
+
+        \input{../assets/tikz/exam_blanc_ex_1_2.tex}
+
+        Ensuite, 
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo xx ----- %
-\begin{td-exo}[Indépendant dans les subcubiques --- 5pts]\,\\ % xx
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Indépendant dans les subcubiques --- 5pts]\,\\ % 2
     Un graphe \(G = (V,E)\) est dit \defemph{subcubique} si tous ses sommets ont degré au plus 3, c'est à dire si \(\forall v\in V, \mathsf{deg}_G(v) \leq 3\).
     Le but de l'exercice est de donner des bornes sur \(\alpha(G)\), la taille du plus grand ensemble indépendant (ou stable) de \(G\) en fonction de \(n\), le nombre de sommets de \(G\).
     \begin{enumerate}
@@ -36,31 +39,31 @@
     \end{enumerate}
 \end{td-exo}
 
-% ----- Solutions exo xx ----- %
+% ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % xx
+	\begin{td-sol}[]\,\\ % 2
 		Exercice solution
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo xx ----- %
-\begin{td-exo}[Couplage max --- 3pts]\,\\ % xx
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Couplage max --- 3pts]\,\\ % 3
     Dans le graphe suivant, appliquer l'algorithme d'Edmonds pour calculer un couplage maximum, en sachant que le couplage \(\left\{ be, ci, hp \right\}\) a déjà été précalculé. Au cours de votre déroulement d'algorithme, vous devrez, à au moins une reprise, contracter un blossom.
 
     \input{../assets/tikz/exam_blanc_ex_3_1.tex}
 \end{td-exo}
 
-% ----- Solutions exo xx ----- %
+% ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % xx   
+	\begin{td-sol}[]\,\\ % 3   
         Exercice solution
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo xx ----- %
-\begin{td-exo}[Miam! --- 5pts]\,\\ % xx
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Miam! --- 5pts]\,\\ % 4
     Trois étudiants affamés, nommés \(E_1, E_2\) et \(E_3\), se retrouvent pour manger 6 pizzas, notées \(P_1, \ldots, P_6\).
     Chaque étudiant veut manger 2 pizzas exactement. Les étudiants ont les contraintes alimentaires suivantes:
     \begin{itemize}
@@ -80,16 +83,16 @@
     \end{enumerate}
 \end{td-exo}
 
-% ----- Solutions exo xx ----- %
+% ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % xx
+	\begin{td-sol}[]\,\\ % 4
 		Exercice solution
 	\end{td-sol}
 }{}
 
 
-% ----- Consignes exo xx ----- %
-\begin{td-exo}[Graphes auto-complémentaires --- 4pts]\,\\ % xx
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[Graphes auto-complémentaires --- 4pts]\,\\ % 5
     Un graphe \(G\) est dit \defemph{auto-complémentaire} si \(G\) est isomorphe à son complémentaire \(\ol{G}\).
     \begin{enumerate}
         \item Justifier que \(P_4\) et \(C_5\) sont auto-complémentaires.
@@ -103,9 +106,9 @@
     \end{enumerate}
 \end{td-exo}
 
-% ----- Solutions exo xx ----- %
+% ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % xx
+	\begin{td-sol}[]\,\\ % 5
 		Exercice solution
 	\end{td-sol}
 }{}

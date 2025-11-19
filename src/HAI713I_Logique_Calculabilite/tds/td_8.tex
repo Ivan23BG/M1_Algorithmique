@@ -1,0 +1,78 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Non standard on refait]\,\\ % 1
+    On considère \(\mathcal{M} = (\bb Z, <)\) les entiers relatifs avec un seul symbole de prédicat qui est l'ordre habituel inférieur strict (total) noté \(<\).
+    Le langage du modèle est noté \(\mathcal L\).
+    On note \(T = \mathsf{th}(\mathcal{M})\), ensemble de formules sur le langage \(\mathcal L\).
+    On ajoute maintenant à \(\mathcal L\) deux symboles de constante \(a\) et \(b\) et on obtient le langage \(\mathcal{L}'\).
+    \begin{enumerate}
+        \item On considère le \(\mathcal L'\)-modèle
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 1
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Inexprimabilité de l'infini]\,\\ % 2
+    On commence par étudier une théorie sur le langage avec uniquement un prédicat binaire \(<\).
+    \begin{enumerate}
+        \item Rappelez sous forme de formules closes les propriétés du prédicat \(<\) que l'on souhaite de façon à ce qu'il représente un ordre (strict) total.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 2
+		\begin{enumerate}
+            \item % TODO
+            \item \(M\) est fini alors l'univers de \(M\) est fini, donc a un plus grand élément \(a\) et \(M \models \lnot \exists y\quad a<y\).
+            
+            \item Non, par exemple dans \((\bb Z \setminus \bb N, <_{\bb{Z}})\), le modèle est infini mais il existe un élément maximum.
+
+            \item On se donne \(\mathcal L\) le langage quelconque et \(T\) une théorie cohérente qui admet un modèle de cardinal \(n\) pour tout \(n \in \bb N\).
+
+            \item \(\varphi\) correspond à \og{}le modèle a \(n\) éléments au moins\fg{}. C'est à dire
+            \begin{equation*}
+                M \models \varphi_n \iff |M| \geq n.
+            \end{equation*}
+            Donc
+            \begin{equation*}
+                \varphi_n = \exists x_1, \dots, x_n \bigwedge_{i \neq j} x_i \neq x_j.
+            \end{equation*}
+            Donc
+            \begin{equation*}
+                M \models \varphi_n \iff |M| \geq n.
+            \end{equation*}
+            On pose \(G = \{ \varphi_n, n \in \bb N\}\) et on considère \(T \cup G\).
+
+            \item On prend \(M\) un modèle fini de \(T\). Alors 
+            \begin{itemize}
+                \item \(M \models T\) car \(M\) est un modèle de \(T\).
+                \item et \(M \not\models G\).
+            \end{itemize}
+            car \(m = |M|\) et alors
+
+            \item On suppose \(T\cup G \vdash \perp\). Montrons qu'il existe \(F \subseteq T\cup G\) fini et tel que \(F \vdash \perp\).
+            
+            Il suffit de prendre \(M\) assez grand pour que \(|M| \geq n\) pour tout \(\varphi_n \in F \cap G\).
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Théorie de l'incrément]\,\\ % 3
+Exercise 3 content
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 3
+		Exercice solution
+	\end{td-sol}
+}{}

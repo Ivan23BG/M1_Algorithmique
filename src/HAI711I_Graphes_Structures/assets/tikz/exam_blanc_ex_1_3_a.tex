@@ -1,0 +1,38 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Réseau de transport initial après la deuxième étape}\label{Fig:exam_blanc_ex_1_3_a}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
+            % les sommets initiaux
+            \node[main node] (s) at (-3,0) {\(s\)};
+            \node[main node] (p) at (3,0) {\(p\)};
+
+            \node[main node] (a) at (-1,2) {\(a\)};
+            \node[main node] (b) at (-1,0) {\(b\)};
+            \node[main node] (c) at (-1,-2) {\(c\)};
+
+            \node[main node] (d) at (1,2) {\(d\)};
+            \node[main node] (e) at (1,0) {\(e\)};
+            \node[main node] (f) at (1,-2) {\(f\)};
+
+            % les arcs avec capacités
+            \draw[-{Stealth}, draw=red] (s) to node[above left] {\(2/4\)} (a);
+            \draw[-{Stealth}] (s) to node[above] {\(5\)} (b);
+            \draw[-{Stealth}] (s) to node[below left] {\(4\)} (c);
+
+            \draw[-{Stealth}, draw=red] (a) to node[above] {\(2/5\)} (d);
+
+            \draw[-{Stealth}, draw=red] (b) to node[above] {\(2/6\)} (e);
+            \draw[-{Stealth}] (b) to node[left] {\(9\)} (f);
+
+            \draw[-{Stealth}] (c) to node[below] {\(1\)} (f);
+
+            \draw[-{Stealth}, draw=red] (d) to node[right] {\(2/2\)} (b);
+            \draw[-{Stealth}] (d) to node[above right] {\(3\)} (p);
+
+            \draw[-{Stealth}] (e) to node[right] {\(9\)} (c);
+            \draw[-{Stealth}, draw=red] (e) to node[above] {\(2/9\)} (p);
+            \draw[-{Stealth}] (f) to node[below right] {\(1\)} (p);
+        \end{tikzpicture}
+    }
+}

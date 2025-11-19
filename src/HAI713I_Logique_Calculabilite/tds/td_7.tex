@@ -90,9 +90,9 @@
 	
 
 	
-% ----- Solutions exo 1 ----- %
+% ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\ % 1
+	\begin{td-sol}[]\ % 2
         \begin{enumerate}
 			\item On prend \(T\) la théorie de l'ordre partiel. 
 
@@ -129,6 +129,119 @@
 			\begin{equation*}
 				B \models T \cup \left\{ \bigwedge\limits_{i\neq j} f_{i,j}\right\}
 			\end{equation*}
+			\end{itemize}
 		\end{enumerate}
 	\end{td-sol}
 }{} 
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Compacité et \(\bb Z\)]
+	On dispose ici d'une théorie \(T\) de l'ordre total strict et d'une fonction \(S\) vérifiant \(\forall x\quad x < S(x)\) et \(\lnot \left( \exists x, \exists y, x < y < S(x) \right)\). 
+	\begin{enumerate}
+		\item Ré-écrivez la formule \(\lnot \left( \exists x, \exists y, x < y < S(x) \right)\) avec uniquement des quantificateurs, le symbole de fonction \(S\) et celui de prédicat \(<\), et des symboles \(=, \land, \lor, \lnot\) où on n'appliquera ce dernier qu'à des formules atomiques.
+		Ensuite, transformez la formule en une formule équivalente sans \(\lnot\) en tenant compte des autres formules de la théorie \(T\).
+
+		\item On ajoute maintenant les symboles de constante \(a\) et \(b\) au langage. Pour tout entier \(n\) trouver une formule \(F_n(a,b)\) qui exprime \(a+n < b\).
+
+		\item Pour tout entier \(n\) trouvez un modèle d'univers \(\bb N\) où \(F_n(a,b)\) est vrai, \(a,b\) étant des constantes du modèle.
+
+		\item Montrez que tout ensemble fini de formules \(F_n\) ajouté à la théorie \(T\) est cohérent.
+
+		\item Montrez que l'ensemble infini des formules \(F_n\) ajouté à la théorie \(T\) a un modèle.
+		Décrivez un tel modèle.
+
+		\item Que se passe-t-il si on ajoute à la théorie la formule \(\forall x, \exists y, S(y) = x\)?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ % 3
+		On rappelle que dans un ordre total, on a les propriétés suivantes:
+			\begin{itemize}
+				\item Antiréflexivité: \(\forall x, \lnot (x < x)\),
+				\item Asymétrie: \(\forall x, \forall y, (x < y) \implies \lnot (y < x)\),
+				\item Transitivité: \(\forall x, \forall y, \forall z, (x < y \land y < z) \implies (x < z)\),
+				\item Totalité: \(\forall x, \forall y, x = y \lor x < y \lor y < x\).
+				\item Une fonction \(S\) telle que
+				\begin{itemize}
+					\item \(\forall x, S(x) > x\),
+					\item \(\lnot \left( \exists x, \exists y, x < y < S(x) \right)\).
+				\end{itemize}
+			\end{itemize}
+		\begin{enumerate}
+			\item On a
+			\begin{equation*}
+				\forall x, \forall y\quad \lnot (x < y) \lor \lnot (y < S(x))
+			\end{equation*}
+			et
+			\begin{equation*}
+				\forall x, \forall y \quad y < x \lor x = y \lor S(x) < y \lor S(x) = y
+			\end{equation*}
+
+			\item On a
+			\begin{equation*}
+				F_n(a,b) = \underbrace{S(S(\cdots (S(x))))}_{n \text{ fois}} < b
+			\end{equation*}
+
+			\item On pose
+			\begin{equation*}
+				\begin{aligned}
+					M &= \left(
+						\bb N, <_{\bb N}, S_{\bb N}, a, b
+					\right)\\
+					{[a]}^M &= 0\\
+					{[b]}^M &= n+1\\
+					M &\models F_n(a,b)
+				\end{aligned}
+			\end{equation*}
+			Où \(T \cup \{F_n\}\) est cohérente.
+
+			Alors, 
+			\begin{equation*}
+				F_3(a, b) = S(S(S(a))) < b
+			\end{equation*}
+
+			\item\label{log:td2:ex3} On a \(T \cup \{ F_{K_1}, \ldots, F_{K_m} \}\) avec \(m\) un entier quelconque et \(K\) une constante.
+			Alors 
+			\begin{equation*}
+				\exists m, \forall n \geq m\quad F_n \notin T \cup \{ F_{K_1}, \ldots, F_{K_m} \}
+			\end{equation*}
+			Donc 
+			\begin{equation*}
+				{[a]}^M = 10,\quad {[b]}^M = 10 + m + 1
+			\end{equation*}
+			Donc
+			\begin{equation*}
+				M \models F_{K_i}
+			\end{equation*}
+			pour tout \(K_i\). Donc 
+			\begin{equation*}
+				M \models T \cup \{ F_{K_1}, \ldots, F_{K_m} \}
+			\end{equation*}
+			Donc l'extension de \(T\) par un nombre fini de formules \(F_n\) est cohérente.
+
+			\item \(T \cup \{ F_n,n\in \bb N\}\). Par\~\ref{log:td2:ex3}, toute partie finie de \(T \cup \{F_n\}\) a un modèle, donc \(T \cup \{F_n\}\) a un modèle \(M\). Alors 
+			\begin{equation*}
+				M = \left(
+					\bb N, <_{\bb N}, S_{\bb N}, a, b
+				\right)
+			\end{equation*}
+			et \(F_n(a,b)\) est équivalent à \og{}\(a, b\) à distance au moins \(n\)\fg{}. Si 
+			\begin{equation*}
+				\exists n_0\quad a + n_0 = b,\quad M\models F_{n_0+1}
+			\end{equation*}
+			ce qui est absurde donc \(n\) est cohérente.
+
+			%% inserer schema ici de deux \bb Ns concatenes a dans l'un, b dans l'autre
+			\begin{equation*}
+				U = \left\{
+					(1, m) \text{ avec } i \in \{0, 1\} \text{ et } m \in \bb N
+				\right\}
+			\end{equation*}
+
+			\item \(\forall x, \exissts y, S(y) = x\). 
+		\end{enumerate}
+	\end{td-sol}
+}{}
