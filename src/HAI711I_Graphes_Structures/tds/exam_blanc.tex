@@ -3,6 +3,7 @@
 \begin{td-exo}[Flots --- 3pts]\,\\ % xx
     Calculer un flot maximal sur le réseau de transport ci-dessous, commençant par une augmentation de flot le long du chemin \(sadbep\).
     En expliquant comment l'obtenir, donner une coupe minimale du réseau.
+
     \input{../assets/tikz/exam_blanc_ex_1_1.tex}
 \end{td-exo}
 
@@ -15,8 +16,24 @@
 
 
 % ----- Consignes exo xx ----- %
-\begin{td-exo}[Optional title xx]\,\\ % xx
-Exercise xx content
+\begin{td-exo}[Indépendant dans les subcubiques --- 5pts]\,\\ % xx
+    Un graphe \(G = (V,E)\) est dit \defemph{subcubique} si tous ses sommets ont degré au plus 3, c'est à dire si \(\forall v\in V, \mathsf{deg}_G(v) \leq 3\).
+    Le but de l'exercice est de donner des bornes sur \(\alpha(G)\), la taille du plus grand ensemble indépendant (ou stable) de \(G\) en fonction de \(n\), le nombre de sommets de \(G\).
+    \begin{enumerate}
+        \item On commence par fournir une borne inférieure pour \(\alpha(G)\).
+        \begin{enumerate}
+            \item Montrer que si \(x\) est un sommet de \(G\) et \(I\) un indépendant de \(G \setminus \left( x\cup N_G(x) \right)\) alors \(I \cup \{x\}\) est un indépendant de \(G\).
+            \item En déduire, par récurrence sur \(n\), que tout graphe subcubique à \(n\) sommets admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
+        \end{enumerate}
+
+        \item On suppose maintenant que \(G\) est cubique (c'est à dire \(\forall v\in V, \mathsf{deg}_G(v) = 3\)) et on va établir une borne supérieure pour \(\alpha(G)\).
+        \begin{enumerate}
+            \item soit \(X\) un indépendant de \(G\). En fonction de la taille de \(X\), calculer le nombre d'arêtes, noté \(e(X, \ol{X})\), entre \(X\) et son complémentaire.
+            \item En déduire que \(|X| \leq |\ol{X}|\) puis que \(|X| \leq \lfloor \frac{n}{2} \rfloor\).
+        \end{enumerate}
+
+        \item Donner deux exemples de graphes cubiques \(G_1\) et \(G_2\) sur \(n\) sommets tels que \(\alpha(G_1) = \frac{n}{4}\) et \(\alpha(G_2) = \frac{n}{2}\). Si possible, vous donnerez des exemples pour \(n\) arbitrairement grand.
+    \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo xx ----- %
@@ -28,8 +45,39 @@ Exercise xx content
 
 
 % ----- Consignes exo xx ----- %
-\begin{td-exo}[Optional title xx]\,\\ % xx
-Exercise xx content
+\begin{td-exo}[Couplage max --- 3pts]\,\\ % xx
+    Dans le graphe suivant, appliquer l'algorithme d'Edmonds pour calculer un couplage maximum, en sachant que le couplage \(\left\{ be, ci, hp \right\}\) a déjà été précalculé. Au cours de votre déroulement d'algorithme, vous devrez, à au moins une reprise, contracter un blossom.
+
+    \input{../assets/tikz/exam_blanc_ex_3_1.tex}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx   
+        Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[Miam! --- 5pts]\,\\ % xx
+    Trois étudiants affamés, nommés \(E_1, E_2\) et \(E_3\), se retrouvent pour manger 6 pizzas, notées \(P_1, \ldots, P_6\).
+    Chaque étudiant veut manger 2 pizzas exactement. Les étudiants ont les contraintes alimentaires suivantes:
+    \begin{itemize}
+        \item \(E_1\) qui déteste les champignons, ne veut manger que les pizzas \(P_1, P_4\) et \(P_5\).
+        \item \(E_2\) qui est allergique au chorizo, ne veut manger que les pizzas \(P_2, P_5\) et \(P_6\).
+        \item \(E_3\) qui ne digère pas les anchois, ne veut manger que les pizzas \(P_1, P_2, P_3\) et \(P_6\).
+    \end{itemize}
+    On souhaite savoir si il est possible de répartir les 6 pizzas afin de satisfaire les choix des étudiants.
+    \begin{enumerate}
+        \item Construire le graphe biparti \(H_{(E, P)}\) défini sur \(\left\{P_1, \ldots, P_6\right\} \cup \left\{E_1, E_2, E_3\right\}\) et dont les arêtes sont \(\{P_i E_j : \) si \(E_j\) veut manger la pizza \(P_i\}\).
+        \item Quelle structure souhaite-t-on trouver dans \(H_{(E, P)}\) pour garantir une solution au problème?
+        \item Une \defemph{copie} d'un sommet \(x\) dans un graphe \(G\) est un sommet \(y\) non-adjacent à \(x\) et dont le voisinage est identique à celui de \(x\). A partir du graphe \(H_{(E, P)}\), on construit le graphe \(H_{(E, P)}'\) en ajoutant une copie pour chaque sommet \(E_i\). Sans preuve, quelle structure souhaite-t-on trouver dans \(H_{(E, P)}'\) pour garantir que les trois étudiants peuvent se répartir les six pizzas en respectant leurs choix?
+        \item Résoudre le problème (en utilisant un algorithme du cours \(\ldots\)).
+        \item Plus généralement, soit \(k\geq 2\) fixé, le \defemph{centre} d'un graphe biparti complet \(K_{1, k}\) est le sommet de ce graphe qui n'est pas une feuille. 
+        Etant donné un graphe biparti \(G = ((A, B), E)\), on souhaite déterminer si \(G\) peut être (sommet-)\~partitionné en graphes \(K_{1, k}\) dont les centres sont tous dans \(A\). 
+        Donner un algorithme de résolution en temps polynomial pour ce problème. Prouver la validité de votre algorithme.
+    \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo xx ----- %
@@ -41,21 +89,18 @@ Exercise xx content
 
 
 % ----- Consignes exo xx ----- %
-\begin{td-exo}[Optional title xx]\,\\ % xx
-Exercise xx content
-\end{td-exo}
-
-% ----- Solutions exo xx ----- %
-\iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % xx
-		Exercice solution
-	\end{td-sol}
-}{}
-
-
-% ----- Consignes exo xx ----- %
-\begin{td-exo}[Optional title xx]\,\\ % xx
-Exercise xx content
+\begin{td-exo}[Graphes auto-complémentaires --- 4pts]\,\\ % xx
+    Un graphe \(G\) est dit \defemph{auto-complémentaire} si \(G\) est isomorphe à son complémentaire \(\ol{G}\).
+    \begin{enumerate}
+        \item Justifier que \(P_4\) et \(C_5\) sont auto-complémentaires.
+        \item Montrer que tout graphe auto-complémentaire est connexe.
+        \item En notant \(n\) le nombre de sommets de \(G\), calculer le nombre d'arêtes d'un graphe auto-complémentaire en fonction de \(n\).
+        \item En déduire que \(n \equiv 0 \text{ ou } 1 \mod 4\).
+        \item Soit \(G\) un graphe auto-complémentaire et \(P\) un chemin de longueur 3 (c'est à dire avec 4 sommets).
+        On note \(G'\) le graphe obtenu depuis \(G \cup P\) en reliant le premier et le dernier sommet de \(P\) à tous les sommets de \(G\).
+        Montrer que \(G'\) est auto-complémentaire.
+        \item En déduire que pour tout \(n\) avec \(n \equiv 0 \text{ ou } 1 \mod 4\), il existe un graphe auto-complémentaire à \(n\) sommets.
+    \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo xx ----- %
