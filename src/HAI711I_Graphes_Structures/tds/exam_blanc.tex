@@ -94,6 +94,23 @@
 
                 De plus, on a \(X \sqcup \ol{X} = V\) donc \(|X| + |\ol{X}| = n\). Comme \(|X| \leq |\ol{X}|\), on a forcément \(|X| \leq \lfloor \frac{n}{2} \rfloor\).
             \end{enumerate}
+
+            \item On peut utiliser les graphes suivants:
+            \begin{itemize}
+                \item Pour \(G_1\), on peut prendre une collection de copies du graphe suivant (le nombre de copies dépend de \(n\)):
+                
+                \input{../assets/tikz/exam_blanc_ex_2_1.tex}
+
+                Chaque copie possède un indépendant de taille 1 (par exemple le sommet central) et le graphe est cubique.
+                Donc pour \(n\) suffisamment grand, on peut obtenir un graphe cubique à \(n\) sommets avec un indépendant de taille \(\frac{n}{4}\).
+
+                \item Pour \(G_2\), on peut prendre une collection de copies du graphe suivant (le nombre de copies dépend de \(n\)):
+                
+                \input{../assets/tikz/exam_blanc_ex_2_2.tex}
+
+                Chaque copie possède un indépendant de taille 3 (par exemple les trois sommets en haut) et le graphe est cubique.
+                Donc pour \(n\) suffisamment grand, on peut obtenir un graphe cubique à \(n\) sommets avec un indépendant de taille \(\frac{n}{2}\).
+            \end{itemize}
         \end{enumerate}
 	\end{td-sol}
 }{}
