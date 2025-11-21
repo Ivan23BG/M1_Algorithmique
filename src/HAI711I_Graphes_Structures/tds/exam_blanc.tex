@@ -27,7 +27,7 @@
 
         On a trouvé un flot maximal de valeur 10.
         Une coupe minimale est donnée par l'ensemble des sommets atteignables depuis \(s\) dans le réseau résiduel final, soit \(\{s, c\}\).
-        
+
 	\end{td-sol}
 }{}
 
@@ -55,8 +55,34 @@
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 2
-		Exercice solution
+	\begin{td-sol}[]\, % 2
+		\begin{enumerate}
+            \item On fournit une borne inférieure pour \(\alpha(G)\).
+            \begin{enumerate}
+                \item\label{exb:ex2:q1} Soit \(x\) un sommet de \(G\) et \(I\) un indépendant de \(G \setminus \left( x\cup N_G(x) \right)\).
+                Soit \(y\) un sommet de \(I\). 
+                
+                Si \(y\) est un voisin de \(x\) alors \(y \in N_G(x)\) ce qui contredit le fait que \(y\) est dans \(G \setminus \left( x\cup N_G(x) \right)\).
+                Donc \(y\) n'est pas un voisin de \(x\). 
+                
+                Alors, tout sommet de \(I\) n'est pas voisin de \(x\) donc \(I \cup \{x\}\) est un indépendant de \(G\).
+
+                \item On montre par récurrence (forte) sur \(n\) que tout graphe subcubique à \(n\) sommets admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
+                
+                Pour \(n=1\), le graphe subcubique est réduit à un sommet isolé qui est bien un indépendant de taille \(1 \geq \lceil \frac{1}{4} \rceil\).
+                Supposons que la propriété est vraie pour tout graphe subcubique à \(k\) sommets (avec \(1 \leq k < n\)) et montrons-la pour un graphe subcubique \(G\) à \(n\) sommets.
+                
+                Soit \(G\) un graphe subcubique à \(n\) sommets.
+                Soit \(x\) un sommet de \(G\).
+                
+                Le graphe \(G' = G \setminus \left( x\cup N_G(x) \right)\) est subcubique (car \(G\) l'est) et possède au moins \(n-4\) sommets (ceux de départ, moins \(x\) et au plus ses 3 voisins).
+                Par hypothèse de récurrence, il admet un indépendant \(I\) de taille au moins \(\lceil \frac{n-4}{4} \rceil\).
+                
+                D'après~\eqref{exb:ex2:q1}, \(I \cup \{x\}\) est un indépendant de \(G\) de taille au moins \(\lceil \frac{n-4}{4} \rceil + 1\).
+
+                Donc \(G\) admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
+            \end{enumerate}
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
