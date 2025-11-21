@@ -45,7 +45,7 @@
 
         \item On suppose maintenant que \(G\) est cubique (c'est à dire \(\forall v\in V, \mathsf{deg}_G(v) = 3\)) et on va établir une borne supérieure pour \(\alpha(G)\).
         \begin{enumerate}
-            \item soit \(X\) un indépendant de \(G\). En fonction de la taille de \(X\), calculer le nombre d'arêtes, noté \(e(X, \ol{X})\), entre \(X\) et son complémentaire.
+            \item Soit \(X\) un indépendant de \(G\). En fonction de la taille de \(X\), calculer le nombre d'arêtes, noté \(e(X, \ol{X})\), entre \(X\) et son complémentaire.
             \item En déduire que \(|X| \leq |\ol{X}|\) puis que \(|X| \leq \lfloor \frac{n}{2} \rfloor\).
         \end{enumerate}
 
@@ -70,6 +70,7 @@
                 \item On montre par récurrence (forte) sur \(n\) que tout graphe subcubique à \(n\) sommets admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
                 
                 Pour \(n=1\), le graphe subcubique est réduit à un sommet isolé qui est bien un indépendant de taille \(1 \geq \lceil \frac{1}{4} \rceil\).
+                
                 Supposons que la propriété est vraie pour tout graphe subcubique à \(k\) sommets (avec \(1 \leq k < n\)) et montrons-la pour un graphe subcubique \(G\) à \(n\) sommets.
                 
                 Soit \(G\) un graphe subcubique à \(n\) sommets.
@@ -79,8 +80,19 @@
                 Par hypothèse de récurrence, il admet un indépendant \(I\) de taille au moins \(\lceil \frac{n-4}{4} \rceil\).
                 
                 D'après~\eqref{exb:ex2:q1}, \(I \cup \{x\}\) est un indépendant de \(G\) de taille au moins \(\lceil \frac{n-4}{4} \rceil + 1\).
+            \end{enumerate}
+            Donc \(G\) admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
 
-                Donc \(G\) admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
+            \item On suppose maintenant que \(G\) est cubique et on établit une borne supérieure pour \(\alpha(G)\).
+            \begin{enumerate}
+                \item Soit \(X\) un indépendant de \(G\).
+                Chaque sommet de \(X\) possède 3 arêtes qui le relient à des sommets de \(\ol{X}\) (car \(G\) est cubique et \(X\) est un indépendant).
+                Donc \(e(X, \ol{X}) = 3|X|\).
+
+                \item Au mieux, tout triplet de sommets de \(X\) est relié à un même triplet de sommets de \(\ol{X}\).
+                Donc \(|X| \leq |\ol{X}|\).
+
+                De plus, on a \(X \sqcup \ol{X} = V\) donc \(|X| + |\ol{X}| = n\). Comme \(|X| \leq |\ol{X}|\), on a forcément \(|X| \leq \lfloor \frac{n}{2} \rfloor\).
             \end{enumerate}
         \end{enumerate}
 	\end{td-sol}
