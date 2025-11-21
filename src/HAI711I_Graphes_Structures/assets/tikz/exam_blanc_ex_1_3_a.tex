@@ -16,23 +16,23 @@
             \node[main node] (f) at (1,-2) {\(f\)};
 
             % les arcs avec capacités
-            \draw[-{Stealth}, draw=red] (s) to node[above left] {\(2/4\)} (a);
-            \draw[-{Stealth}] (s) to node[above] {\(5\)} (b);
-            \draw[-{Stealth}] (s) to node[below left] {\(4\)} (c);
+            \draw[-{Stealth}, draw=blue] (s) to node[above left] {\(2/4\)} (a);
+            \draw[-{Stealth}, draw=red] (s) to node[above] {\(2/5\)} (b);
+            \draw[-{Stealth}, draw=red] (s) to node[below left] {\(1/4\)} (c);
 
-            \draw[-{Stealth}, draw=red] (a) to node[above] {\(2/5\)} (d);
+            \draw[-{Stealth}, draw=blue] (a) to node[above] {\(2/5\)} (d);
 
-            \draw[-{Stealth}, draw=red] (b) to node[above] {\(2/6\)} (e);
+            \draw[-{Stealth}, draw=blue] (b) to node[above] {\(2/6\)} (e);
             \draw[-{Stealth}] (b) to node[left] {\(9\)} (f);
 
-            \draw[-{Stealth}] (c) to node[below] {\(1\)} (f);
+            \draw[-{Stealth}, draw=red] (c) to node[below] {\(1/1\)} (f);
 
-            \draw[-{Stealth}, draw=red] (d) to node[right] {\(2/2\)} (b);
-            \draw[-{Stealth}] (d) to node[above right] {\(3\)} (p);
+            \draw[-{Stealth}, draw=red] (d) to node[right] {\(2\)} (b);
+            \draw[-{Stealth}, draw=red] (d) to node[above right] {\(2/3\)} (p);
 
             \draw[-{Stealth}] (e) to node[right] {\(9\)} (c);
-            \draw[-{Stealth}, draw=red] (e) to node[above] {\(2/9\)} (p);
-            \draw[-{Stealth}] (f) to node[below right] {\(1\)} (p);
+            \draw[-{Stealth}, draw=blue] (e) to node[above] {\(2/9\)} (p);
+            \draw[-{Stealth}, draw=red] (f) to node[below right] {\(1/1\)} (p);
         \end{tikzpicture}
     }
 }

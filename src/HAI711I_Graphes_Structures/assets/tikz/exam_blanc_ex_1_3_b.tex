@@ -16,25 +16,24 @@
             \node[main node] (f) at (1,-2) {\(f\)};
 
             % les arcs avec capacités
-            \draw[-{Stealth}, draw=red] (s) to node[above left] {\(2\)} (a);
-            \draw[-{Stealth}] (s) to node[above] {\(5\)} (b);
-            \draw[-{Stealth}] (s) to node[below left] {\(4\)} (c);
+            \draw[-{Stealth}, draw=blue] (s) to node[above left] {\(2\)} (a);
+            \draw[-{Stealth}, draw=red] (s) to node[above] {\(3\)} (b);
+            \draw[-{Stealth}, draw=red] (s) to node[below left] {\(3\)} (c);
 
-            \draw[-{Stealth}, draw=red, bend left] (a) to node[above] {\(3\)} (d);
-            \draw[-{Stealth}, draw=red, bend left] (d) to node[above] {\(2\)} (a);
+            \draw[-{Stealth}, draw=blue, bend left] (a) to node[above] {\(3\)} (d);
+            \draw[-{Stealth}, draw=blue, bend left] (d) to node[above] {\(2\)} (a);
 
-            \draw[-{Stealth}, draw=red, bend left] (b) to node[above] {\(4\)} (e);
-            \draw[-{Stealth}, draw=red, bend left] (e) to node[above] {\(2\)} (b);
+            \draw[-{Stealth}, draw=blue, bend left] (b) to node[above] {\(4\)} (e);
+            \draw[-{Stealth}, draw=blue, bend left] (e) to node[above] {\(2\)} (b);
             \draw[-{Stealth}] (b) to node[left] {\(9\)} (f);
 
-            \draw[-{Stealth}] (c) to node[below] {\(1\)} (f);
+            \draw[-{Stealth}, draw=red] (f) to node[below] {\(1\)} (c);
 
-            \draw[-{Stealth}, draw=red] (b) to node[left] {\(2\)} (d);
-            \draw[-{Stealth}] (d) to node[above right] {\(3\)} (p);
+            \draw[-{Stealth}, draw=red] (d) to node[left] {\(2\)} (b);
+            \draw[-{Stealth}, draw=red] (d) to node[above right] {\(1\)} (p);
 
             \draw[-{Stealth}] (e) to node[right] {\(9\)} (c);
-            \draw[-{Stealth}, draw=red] (e) to node[above] {\(7\)} (p);
-            \draw[-{Stealth}] (f) to node[below right] {\(1\)} (p);
+            \draw[-{Stealth}, draw=blue] (e) to node[above] {\(7\)} (p);
         \end{tikzpicture}
     }
 }
