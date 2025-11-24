@@ -1,18 +1,18 @@
 \ffigbox[\FBwidth]{%
-\caption{\centering Graphe initial}\label{Fig:exam_blanc_ex_3_1}
+\caption{\centering Graphe après contraction du blossom \(cfi\)}\label{Fig:exam_blanc_ex_3_3}
 }{
     \fbox{
         \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
             % les sommets initiaux
             \node[main node] (a) at (-2,2) {\(a\)};
             \node[main node] (b) at (0,2) {\(b\)};
-            \node[main node] (c) at (1,2) {\(c\)};
+            % \node[main node] (c) at (1,2) {\(c\)};
 
             \node[main node] (e) at (-1,1) {\(e\)};
-            \node[main node] (f) at (2,1) {\(f\)};
+            % \node[main node] (f) at (2,1) {\(f\)};
 
             \node[main node] (h) at (-1,0) {\(h\)};
-            \node[main node] (i) at (1,0) {\(i\)};
+            \node[main node] (cfi) at (1,0) {\(cfi\)};
             \node[main node] (j) at (2, 0) {\(j\)};
 
             \node[main node] (o) at (-1, -2) {\(o\)};
@@ -24,21 +24,21 @@
             \draw[] (a) -- (e);
             \draw[] (a) -- (h);
 
-            \draw[] (b) -- (e);
-            \draw[] (b) -- (i);
+            \draw[draw=blue, thick] (b) -- (e);
+            \draw[] (b) -- (cfi);
 
-            \draw[] (c) -- (f);
-            \draw[] (c) -- (i);
+            % \draw[] (c) -- (f);
+            % \draw[draw=blue, thick] (c) -- (i);
             \draw[] (e) -- (h);
 
-            \draw[] (f) -- (i);
-            \draw[] (f) -- (j);
+            % \draw[] (f) -- (i);
+            \draw[] (cfi) -- (j);
 
-            \draw[] (h) -- (i);
+            \draw[] (h) -- (cfi);
             \draw[] (h) -- (o);
-            \draw[] (h) -- (p);
+            \draw[draw=blue, thick] (h) -- (p);
 
-            \draw[] (i) -- (q);
+            \draw[] (cfi) -- (q);
 
             \draw[] (j) -- (q);
 

@@ -1,5 +1,5 @@
 \ffigbox[\FBwidth]{%
-\caption{\centering Graphe initial}\label{Fig:exam_blanc_ex_3_1}
+\caption{\centering Graphe avec couplage \(\{be, ci, hp\}\) précalculé}\label{Fig:exam_blanc_ex_3_2}
 }{
     \fbox{
         \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
@@ -24,11 +24,11 @@
             \draw[] (a) -- (e);
             \draw[] (a) -- (h);
 
-            \draw[] (b) -- (e);
+            \draw[draw=red, thick] (b) -- (e);
             \draw[] (b) -- (i);
 
             \draw[] (c) -- (f);
-            \draw[] (c) -- (i);
+            \draw[draw=red, thick] (c) -- (i);
             \draw[] (e) -- (h);
 
             \draw[] (f) -- (i);
@@ -36,7 +36,7 @@
 
             \draw[] (h) -- (i);
             \draw[] (h) -- (o);
-            \draw[] (h) -- (p);
+            \draw[draw=red, thick] (h) -- (p);
 
             \draw[] (i) -- (q);
 

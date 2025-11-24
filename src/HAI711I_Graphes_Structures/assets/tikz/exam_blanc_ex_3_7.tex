@@ -1,5 +1,5 @@
 \ffigbox[\FBwidth]{%
-\caption{\centering Graphe initial}\label{Fig:exam_blanc_ex_3_1}
+\caption{\centering Graphe final après décontraction du blossom \(cfi\)}\label{Fig:exam_blanc_ex_3_7}
 }{
     \fbox{
         \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
@@ -21,13 +21,13 @@
 
             % les aretes
             \draw[] (a) -- (b);
-            \draw[] (a) -- (e);
+            \draw[draw=blue, thick] (a) -- (e);
             \draw[] (a) -- (h);
 
             \draw[] (b) -- (e);
-            \draw[] (b) -- (i);
+            \draw[draw=blue, thick] (b) -- (i);
 
-            \draw[] (c) -- (f);
+            \draw[draw=red, thick] (c) -- (f);
             \draw[] (c) -- (i);
             \draw[] (e) -- (h);
 
@@ -36,11 +36,11 @@
 
             \draw[] (h) -- (i);
             \draw[] (h) -- (o);
-            \draw[] (h) -- (p);
+            \draw[draw=blue, thick] (h) -- (p);
 
             \draw[] (i) -- (q);
 
-            \draw[] (j) -- (q);
+            \draw[draw=blue, thick] (j) -- (q);
 
             \draw[] (o) -- (p);
 

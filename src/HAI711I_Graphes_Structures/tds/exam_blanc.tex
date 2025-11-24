@@ -106,6 +106,7 @@
 
                 \item Pour \(G_2\), on peut prendre une collection de copies du graphe suivant (le nombre de copies dépend de \(n\)):
                 
+                \vspace{0.2cm}
                 \input{../assets/tikz/exam_blanc_ex_2_2.tex}
 
                 Chaque copie possède un indépendant de taille 3 (par exemple les trois sommets en haut) et le graphe est cubique.
@@ -120,13 +121,52 @@
 \begin{td-exo}[Couplage max --- 3pts]\,\\ % 3
     Dans le graphe suivant, appliquer l'algorithme d'Edmonds pour calculer un couplage maximum, en sachant que le couplage \(\left\{ be, ci, hp \right\}\) a déjà été précalculé. Au cours de votre déroulement d'algorithme, vous devrez, à au moins une reprise, contracter un blossom.
 
+    \vspace{0.2cm}
     \input{../assets/tikz/exam_blanc_ex_3_1.tex}
 \end{td-exo}
 
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ % 3   
-        Exercice solution
+        On commence par rajouter le couplage initial:
+
+        \vspace{0.2cm}
+        \input{../assets/tikz/exam_blanc_ex_3_2.tex}
+
+        Contractons maintenant des blossoms. On peut commencer par le blossom \(cfi\):
+
+        \vspace{0.2cm}
+        \input{../assets/tikz/exam_blanc_ex_3_3.tex}
+
+        Ensuite on peut contracter le blossom \(cfijq\):
+
+        \vspace{0.2cm}
+        \input{../assets/tikz/exam_blanc_ex_3_4.tex}
+
+        Cherchons maintenant des chemins augmentants. 
+        On part d'un sommet non saturé, ici \(a\), et on trouve le chemin augmentant \(ae-eb-bcfijq\).
+        On augment alors le couplage:
+
+        \vspace{0.2cm}
+        \input{../assets/tikz/exam_blanc_ex_3_5.tex}
+
+        Il ne reste qu'un seul sommet non saturé \(o\) donc on a fini de trouver des chemins augmentants.
+        Il faut maintenant décontracter nos blossoms pour retrouver le couplage maximum:
+
+        \vspace{0.2cm}
+        \input{../assets/tikz/exam_blanc_ex_3_6.tex}
+
+        Enfin, on décontracte le blossom \(cfi\) pour obtenir le couplage maximum final:
+        
+        \vspace{0.2cm}
+        \input{../assets/tikz/exam_blanc_ex_3_7.tex}
+
+        On voit alors notre couplage maximum de taille 5:
+        \begin{equation*}
+            \left\{
+                ae, bi, cf, hp, qj
+            \right\}.
+        \end{equation*}
 	\end{td-sol}
 }{}
 
