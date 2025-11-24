@@ -249,6 +249,8 @@
                     E_3 \text{ mange } P_3 \text{ et } P_6
                 \end{cases}
             \end{equation*}
+
+            \item Pas encore rédigé.
         \end{enumerate}
 	\end{td-sol}
 }{}
@@ -262,7 +264,7 @@
         \item Montrer que tout graphe auto-complémentaire est connexe.
         \item En notant \(n\) le nombre de sommets de \(G\), calculer le nombre d'arêtes d'un graphe auto-complémentaire en fonction de \(n\).
         \item En déduire que \(n \equiv 0 \text{ ou } 1 \mod 4\).
-        \item Soit \(G\) un graphe auto-complémentaire et \(P\) un chemin de longueur 3 (c'est à dire avec 4 sommets).
+        \item\label{exb:q5:1} Soit \(G\) un graphe auto-complémentaire et \(P\) un chemin de longueur 3 (c'est à dire avec 4 sommets).
         On note \(G'\) le graphe obtenu depuis \(G \cup P\) en reliant le premier et le dernier sommet de \(P\) à tous les sommets de \(G\).
         Montrer que \(G'\) est auto-complémentaire.
         \item En déduire que pour tout \(n\) avec \(n \equiv 0 \text{ ou } 1 \mod 4\), il existe un graphe auto-complémentaire à \(n\) sommets.
@@ -271,7 +273,86 @@
 
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 5
-		Exercice solution
+	\begin{td-sol}[]\, % 5
+		\begin{enumerate}
+            \item Dessinons ces graphes et leurs complémentaires pour comprendre visuellement ce qui se passe:
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_5_1.tex}
+
+            Lorsqu'on prend leur complémentaire, on obtient les graphes suivants:
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_5_2.tex}
+
+            On voit alors clairement qu'on peut identifier dans ces graphes un unique chemin (respectivement cycle) qui passe par toutes les arêtes et tous les sommets.
+
+            Formellement, on peut définir les fonctions suivantes:
+            \begin{equation*}
+                f_{P_4} : 
+                \begin{cases}
+                    P_1 \mapsto P_2\\
+                    P_2 \mapsto P_4\\
+                    P_3 \mapsto P_1\\
+                    P_4 \mapsto P_3
+                \end{cases}
+                \quad
+                f_{C_5} : 
+                \begin{cases}
+                    C_1 \mapsto C_1\\
+                    C_2 \mapsto C_3\\
+                    C_3 \mapsto C_5\\
+                    C_4 \mapsto C_2\\
+                    C_5 \mapsto C_4
+                \end{cases}
+            \end{equation*}
+            qui sont des isomorphismes entre \(P_4\) et \(\ol{P_4}\) (respectivement \(C_5\) et \(\ol{C_5}\)).
+
+            Alors, ces graphes sont bien auto-complémentaires.
+
+            \item Soit \(G\) un graphe non connexe.
+            Alors, il existe une partition de \(V(G)\) en deux ensembles non vides \(A\) et \(B\) tels qu'il n'existe pas d'arête entre un sommet de \(A\) et un sommet de \(B\).
+            Dans le complémentaire \(\ol{G}\), tous les sommets de \(A\) sont reliés à tous les sommets de \(B\).
+            Donc \(\ol{G}\) est connexe.
+            Ainsi, \(G\) et \(\ol{G}\) ne peuvent pas être isomorphes (et donc auto-complémentaires).
+
+            Donc tout graphe auto-complémentaire est connexe.
+
+            \item Soit \(G\) un graphe auto-complémentaire à \(n\) sommets.
+            On note \(m\) le nombre d'arêtes de \(G\).
+            On remarque que le nombre total d'arêtes possibles dans un graphe à \(n\) sommets est \(\frac{n(n-1)}{2}\).
+            Comme \(G\) est isomorphe à \(\ol{G}\), on a forcément 
+            \begin{equation*}
+                \begin{aligned}
+                    m = \frac{n(n-1)}{2} - m
+                    &\iff 2m = \frac{n(n-1)}{2}\\
+                    &\iff m = \frac{n(n-1)}{4}.
+                \end{aligned}
+            \end{equation*}
+
+            \item Comme \(m\) est un entier, \(\frac{n(n-1)}{4}\) doit être un entier et donc 
+            on a forcément \(n(n-1) \equiv 0 \mod 4\), c'est à dire \(n \equiv 0 \text{ ou } 1 \mod 4\).
+
+            \item On se donne un graphe auto-complémentaire \(G\) à \(n\) sommets et un chemin \(P\) de longueur 3.
+            On note \(G'\) le graphe obtenu depuis \(G \cup P\) avec le procédé décrit dans l'énoncé~\eqref{exb:q5:1}.
+            On a:
+
+            % TODO: replace by the correct figure
+            % \vspace{0.2cm}
+            % \input{../assets/tikz/exam_blanc_ex_5_3.tex}
+
+            Observons ce qui se passe quand on passe au complémentaire \(\ol{G'}\):
+
+            % TODO: replace by the correct figure
+            % \vspace{0.2cm}
+            % \input{../assets/tikz/exam_blanc_ex_5_4.tex}
+
+            
+
+            \item Si \(n = 4\) ou \(n = 5\), on peut prendre \(G = P_4\) ou \(G = C_5\).
+            Sinon, on peut construire \(G'\) à partir de \(G\) en répétant le procédé 
+            décrit en~\eqref{exb:q5:1} pour obtenir un graphe de taille \(n\) (car l'opération 
+            ajoute 4 sommets à chaque fois et conserve la propriété d'auto-complémentarité).
+        \end{enumerate}
 	\end{td-sol}
 }{}
