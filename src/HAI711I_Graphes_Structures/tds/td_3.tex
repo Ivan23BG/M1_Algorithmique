@@ -43,8 +43,115 @@
 
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 3
+	\begin{td-sol}[]\, %
+		\begin{enumerate}
+			\item La décomposition est:
+			\begin{itemize}
+				\item On prend une fois le chemin \(scdp\).
+				\item On prend 3 fois le chemin \(sabp\).
+				\item On prend 2 fois le cycle \(abc\).
+			\end{itemize}
+
+			\item Si la somme vaut 0 alors on ne prend aucun chemin ou cycle.
+
+			Sinon, on a 
+			\begin{equation*}
+				\sum_{xy\in A(D)} f(xy) = S > 0
+			\end{equation*}
+			et on suppose que la propriété est vraie pour toute somme de flot \( < S\).
+
+			On note \(D_f\) le graphe orienté formé des arcs partant du flot 
+			\begin{equation*}
+				D_f = \left(
+					V, \{xy \in A(D) : f(xy) > 0\}.
+				\right)
+			\end{equation*}
+			Deux cas se présentent:
+			\begin{itemize}
+				\item Premier cas: \(|f| > 0 : \exists a \in N^+(s)\) avec \(f(sa) > 0\). 
+
+				Notons \(X = \big\{\)sommets de \(D_f\) tels qu'il existe un chemin de \(D_f\) de \(s\) à \(x\big\}\).
+
+				Par la propriété du cours, si \(p \notin X\), on a
+				\begin{equation*}
+					f(X, \ol X) = |f| + f(\ol X, X) \ge |f| > 0
+				\end{equation*}
+				et donc il existe \(uv \in A(D)\) tel que \(u \in X, v \in \ol X\) et \(f(uv) > 0\)
+				mais alors \(v\) doit appartenir à \(X\), contradiction.
+
+				Il existe donc un chemin \(P\) de \(s\) à \(p\) dans \(D_f\), c'est-à-dire:
+				\begin{equation*}
+					\forall xy \in P, f(xy) \geq 1 \quad ( > 0)
+				\end{equation*}
+
+				On définit le flot \(f'\) par 
+				\begin{equation*}
+					\begin{cases}
+						f'(uv) = f(uv) & \text{si } uv \notin P\\
+						f'(uv) = f(uv) - 1 & \text{si } uv \in P
+					\end{cases}
+				\end{equation*}
+				et on garde la conservation du flot.
+
+				On a 
+				\begin{equation*}
+					\begin{aligned}
+						\sum_{xy\in A(D)} f'(xy)
+						&= \sum_{xy\in A(D)} f(xy) - \mathsf{long}(P)\\
+						& < \sum_{xy\in A(D)} f(xy)
+					\end{aligned}
+				\end{equation*}
+				Par récurrence, il existe \(P_1, \ldots, P_k\) chemins dirigés de \(s\) à \(p\) et \(C_1, \ldots, C_l\) cycles dirigés tels que 
+				\begin{equation*}
+					\begin{aligned}
+						\forall xy \in A(D), f'(xy) 
+						&= \#\{i\in \{1,\ldots,k\}: xy\in P_i\} \\
+						&+ \#\{j\in \{1,\ldots,l\}: xy\in C_j\}
+					\end{aligned}
+				\end{equation*}
+				On pose alors \(P_{k+1} = P\) et on a la décomposition suivante:
+				\begin{equation*}
+					\begin{aligned}
+						\forall xy \in A(D), xy \notin P \quad f(xy) = f'(xy) 
+						&= \#\{i\in \{1,\ldots,k+1\}: xy\in P_i\} \\
+						&+ \#\{j\in \{1,\ldots,l\}: xy\in C_j\}
+					\end{aligned}
+				\end{equation*}
+				et 
+				\begin{equation*}
+					\begin{aligned}
+						\forall xy \in A(D), xy \in P \quad f(xy) = f'(xy) + 1 
+						&= \#\{i\in \{1,\ldots,k\}: xy\in P_i\} \\
+						&+ \#\{j\in \{1,\ldots,l\}: xy\in C_j\} + 1
+					\end{aligned}
+				\end{equation*}
+
+				\item Second cas: \(|f| = 0\). Comme on a \(\sum_{xy\in A(D)} f(xy) > 0\), il existe un arc \(uv \in A(D)\) tel que 
+				\begin{equation*}
+					f(uv) \geq 1
+				\end{equation*}
+				On note \(X = \big\{z\)sommets de \(D_f\) tels qu'il existe un chemin dirigé de \(z\) à \(u\) dans \(D_f\big\}\). Montrons que \(v\in X\).
+
+				On a \(s \notin X\) car \(|f| = 0\) donc aucun arc de \(D_f\) ne sort de \(s\). Alors 
+				% insert schema here 
+				et \(f(X, \ol X) = f(\ol X, X)\) donc si \(v \notin X\), on a
+				\begin{equation*}
+					f(X, \ol X) > 0 \implies f(\ol X, X) > 0
+				\end{equation*}
+				et il existerait \(a\notin X, b \in X\) tel que \(f(ab) > 0\) donc \(a \in X\), contradiction.
+
+				Donc \(v\in X\) et il existe un cycle dirigé \(C\) dans \(D_f\) contenant l'arc \(uv\).
+
+				Comme précédemment, on définit le flot \(f'\) par
+				\begin{equation*}
+					\begin{cases}
+						f'(xy) = f(xy) & \text{si } xy \notin C\\
+						f'(xy) = f(xy) - 1 & \text{si } xy \in C
+					\end{cases}
+				\end{equation*}
+				et on garde la conservation du flot. On applique la récurrence au flot \(f'\) et on conclut de la même manière en ajoutant le cycle \(C\) à la décomposition.
+			\end{itemize}
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
