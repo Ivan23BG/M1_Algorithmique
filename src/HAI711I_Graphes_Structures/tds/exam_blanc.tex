@@ -187,15 +187,69 @@
         \item Une \defemph{copie} d'un sommet \(x\) dans un graphe \(G\) est un sommet \(y\) non-adjacent à \(x\) et dont le voisinage est identique à celui de \(x\). A partir du graphe \(H_{(E, P)}\), on construit le graphe \(H_{(E, P)}'\) en ajoutant une copie pour chaque sommet \(E_i\). Sans preuve, quelle structure souhaite-t-on trouver dans \(H_{(E, P)}'\) pour garantir que les trois étudiants peuvent se répartir les six pizzas en respectant leurs choix?
         \item Résoudre le problème (en utilisant un algorithme du cours \(\ldots\)).
         \item Plus généralement, soit \(k\geq 2\) fixé, le \defemph{centre} d'un graphe biparti complet \(K_{1, k}\) est le sommet de ce graphe qui n'est pas une feuille. 
-        Etant donné un graphe biparti \(G = ((A, B), E)\), on souhaite déterminer si \(G\) peut être (sommet-)\~partitionné en graphes \(K_{1, k}\) dont les centres sont tous dans \(A\). 
+        Etant donné un graphe biparti \(G = ((A, B), E)\), on souhaite déterminer si \(G\) peut être (sommet-)~partitionné en graphes \(K_{1, k}\) dont les centres sont tous dans \(A\). 
         Donner un algorithme de résolution en temps polynomial pour ce problème. Prouver la validité de votre algorithme.
     \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 4
-		Exercice solution
+	\begin{td-sol}[]\, % 4
+		\begin{enumerate}
+            \item Le graphe biparti \(H_{(E, P)}\) est le suivant:
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_1.tex}
+
+            \item On souhaite trouver deux couplages disjoints saturant les sommets \(E_1, E_2\) et \(E_3\).
+
+            \item On souhaite trouver un couplage parfait dans le graphe \(H_{(E, P)}'\) suivant:
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_2.tex}
+
+            \item On utilise l'algorithme d'Edmonds pour trouver un couplage maximum dans \(H_{(E, P)}'\).
+            On commence par trouver un chemin augmentant à partir de \(E_1\):
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_3.tex}
+            
+            Dans la suite on omettra les arêtes à partir de sommets étudiants déjà dans le couplage.
+
+            Puis on trouve un chemin augmentant à partir de \(E_1'\):
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_4.tex}
+
+            Ensuite pour \(E_2\):
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_5.tex}
+
+            Et pour \(E_2'\):
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_6.tex}
+
+            Enfin pour \(E_3\):
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_7.tex}
+
+            Et pour \(E_3'\):
+
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_4_8.tex}
+
+            On a trouvé un couplage parfait dans \(H_{(E, P)}'\) donc les trois étudiants peuvent se répartir les six pizzas comme suit:
+            \begin{equation*}
+                \begin{cases}
+                    E_1 \text{ mange } P_1 \text{ et } P_4\\
+                    E_2 \text{ mange } P_2 \text{ et } P_5\\
+                    E_3 \text{ mange } P_3 \text{ et } P_6
+                \end{cases}
+            \end{equation*}
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
