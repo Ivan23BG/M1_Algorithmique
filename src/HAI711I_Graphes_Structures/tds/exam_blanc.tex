@@ -338,16 +338,37 @@
             On a:
 
             % TODO: replace by the correct figure
-            % \vspace{0.2cm}
-            % \input{../assets/tikz/exam_blanc_ex_5_3.tex}
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_5_3.tex}
 
             Observons ce qui se passe quand on passe au complémentaire \(\ol{G'}\):
 
             % TODO: replace by the correct figure
-            % \vspace{0.2cm}
-            % \input{../assets/tikz/exam_blanc_ex_5_4.tex}
+            \vspace{0.2cm}
+            \input{../assets/tikz/exam_blanc_ex_5_4.tex}
 
-            
+            On remarque alors que les arêtes internes à \(G\) ne posent pas de soucis car 
+            \(G\) est auto-complémentaire. De même pour les arêtes internes à \(P\).
+            Reste à vérifier que les arêtes entre \(G\) et \(P\) sont bien préservées par l'isomorphisme.
+            Dans \(G'\), les sommets \(p_1\) et \(p_4\) sont reliés à tous les sommets de \(G\).
+            Dans \(\ol{G'}\), les sommets \(p_2\) et \(p_3\) sont reliés à tous les sommets de \(\ol{G}\).
+            Comme \(G\) est isomorphe à \(\ol{G}\), on peut définir un isomorphisme entre \(G'\) et \(\ol{G'}\) en envoyant \(p_1\) sur \(p_2\), \(p_4\) sur \(p_3\) et en utilisant l'isomorphisme entre \(G\) et \(\ol{G}\) pour les autres sommets.
+            Plus formellement, on a
+            \begin{equation*}
+                f_{G'} : 
+                \begin{cases}
+                    p_1 \mapsto p_2\\
+                    p_2 \mapsto g_1\\
+                    p_3 \mapsto g_n\\
+                    p_4 \mapsto p_3\\
+                    g_i \mapsto f_G(g_i) & \text{ pour } i = 1, \ldots, n
+                \end{cases}
+            \end{equation*}
+            où \(f_G\) est un isomorphisme entre \(G\) et \(\ol{G}\).
+
+            Ainsi, \(G'\) est auto-complémentaire.
+
+
 
             \item Si \(n = 4\) ou \(n = 5\), on peut prendre \(G = P_4\) ou \(G = C_5\).
             Sinon, on peut construire \(G'\) à partir de \(G\) en répétant le procédé 

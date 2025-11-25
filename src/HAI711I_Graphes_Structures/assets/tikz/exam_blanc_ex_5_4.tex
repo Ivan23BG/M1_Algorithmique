@@ -1,5 +1,5 @@
 \ffigbox[\FBwidth]{%
-\caption{\centering Graphe \(G \cup P\)}\label{Fig:exam_blanc_ex_5_3}
+\caption{\centering Complémentaire du graphe \(G \cup P\)}\label{Fig:exam_blanc_ex_5_4}
 }{
     \fbox{
         \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
@@ -23,18 +23,18 @@
 
             % les aretes
             % dans P
-            \draw (p1) -- (p2);
-            \draw (p2) -- (p3);
-            \draw (p3) -- (p4);
+            \draw (p1) -- (p3);
+            \draw (p1) -- (p4);
+            \draw (p2) -- (p4);
             
             % entre G et P
-            \draw (p1) -- (g1);
-            \draw[dashed] (p1) -- (dots);
-            \draw (p1) -- (gn);
+            \draw (p2) -- (g1);
+            \draw[dashed] (p2) -- (dots);
+            \draw (p2) -- (gn);
 
-            \draw (p4) -- (g1);
-            \draw[dashed] (p4) -- (dots);
-            \draw (p4) -- (gn);
+            \draw (p3) -- (g1);
+            \draw[dashed] (p3) -- (dots);
+            \draw (p3) -- (gn);
         \end{tikzpicture}
     }
 }
