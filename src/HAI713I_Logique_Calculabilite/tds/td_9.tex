@@ -1,12 +1,47 @@
 % ----- Consignes exo 1 ----- %
 \begin{td-exo}[Théorie de l'incrément (TD logique 3)]\,\\ % 1
-    Dans
+    Dans le modèle \(\left( \bb N, S(x)\right)\) où \(S(x)\) est interprété comme ajoutant 1 au nombre \(x\).
+
+    \begin{enumerate}
+        \item Montrez qu'il existe une formule \(F_p(x,y)\) qui exprime la propriété \(x = y+p\).
+
+        \item Montrez qu'il existe une formule \(F_p(x,y)\) de taille \(O(\log(p))\) qui exprime la propriété \(x = y+p\).
+    \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 1
-		Exercice solution
+	\begin{td-sol}[]\, % 1
+		\begin{enumerate}
+            \item On pose 
+            \begin{equation*}
+                F_p(x,y) \equiv x = y + p
+            \end{equation*}
+            où
+            \begin{equation*}
+                x = \underbrace{S(S(\cdots(S(y))))}_{p \text{ fois}}
+            \end{equation*}
+            Alors, on a
+            \begin{equation*}
+                |F_p(x,y)| = O(p)
+            \end{equation*}
+
+            \item On a deux cas:
+            \begin{itemize}
+                \item Si \(p = 2k\), on pose 
+                \begin{equation*}
+                    x = y + p \iff  \exists z (F_k(x,y) \land F_k(z,y))
+                \end{equation*}
+                \item Si \(p = 2k+1\), in pose 
+                \begin{equation*}
+                    x = y + p \iff  \exists z (F_k(x,y) \land F_k(S(z),y))
+                \end{equation*}
+            \end{itemize}
+            On peut alors montrer par induction que 
+            \begin{equation*}
+                |F_p(x,y)| = O(\log(p))
+            \end{equation*}
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
@@ -20,7 +55,7 @@
         \begin{equation*}
             \theta(T) = \{\phi, T \vdash \phi\}.
         \end{equation*}
-        Montrez que \(T\) et \(\theta(T)\) ont les mêmes théorèmes
+        Montrez que \(T\) et \(\theta(T)\) ont les mêmes théorèmes.
     \end{enumerate}
 \end{td-exo}
 
