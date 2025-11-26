@@ -22,6 +22,8 @@
     On commence par étudier une théorie sur le langage avec uniquement un prédicat binaire \(<\).
     \begin{enumerate}
         \item Rappelez sous forme de formules closes les propriétés du prédicat \(<\) que l'on souhaite de façon à ce qu'il représente un ordre (strict) total.
+
+        \item Qu'exprime la formule \(\forall x\ \exists y (x<y)\)? Prouver que dans un modèle fini de la théorie de l'ordre total (exprimée à la question précédentre), la formule \(\forall x\ \exists y (x<y)\) est fausse.
     \end{enumerate}
 \end{td-exo}
 
@@ -57,9 +59,93 @@
             \end{itemize}
             car \(m = |M|\) et alors
 
-            \item On suppose \(T\cup G \vdash \perp\). Montrons qu'il existe \(F \subseteq T\cup G\) fini et tel que \(F \vdash \perp\).
+            \item On suppose \(T \cup G \vdash \perp\). Montrons qu'il existe \(F \subseteq T \cup G\) fini et tel que \(F \vdash \perp\).
             
             Il suffit de prendre \(M\) assez grand pour que \(|M| \geq n\) pour tout \(\varphi_n \in F \cap G\).
+
+            Supposons que \(T \cup G \vdash \perp\). Montrons qu'il existe \(F\) finie telle que \(F \vdash T\).
+
+            On a une preuve finie \(\{f_1,\ldots,f_n\}\) de \(\perp\). Alors, on pose 
+            \begin{equation*}
+                F = \{f_1,\ldots,f_n\}
+            \end{equation*}
+            et on cherche à déterminer si \(F\vdash \perp\). On a
+            \begin{equation*}
+                F = \underbrace{F_T}_{\subseteq T} \cup \underbrace{F_G}_{\subseteq G},\quad \text{finis}
+            \end{equation*}
+            Si \(F_G\) est fini, alors il existe un \(n_m\) maximal tel que \(\varphi_n\in F_G\).
+
+            On prend alors \(M\) un modèle de \(T\) de cardinalité \(|M| > n_m\) et il suit 
+            \begin{itemize}
+                \item \(M \models F_T\) car \(M\models T\)
+                \item \(M \models F_G\) car \(M\models \varphi_n\) pour tout \(n\) tel que \(\varphi_n \in F_G\)
+            \end{itemize}
+
+            On a donc montré que \(F \vdash \perp\) mais aussi que \(M \models F\). 
+            C'est absurde, donc \(T \cup G \nvdash \perp\).
+
+            \item On rappelle que d'après le théorème de la complétude:
+            \begin{center}
+                Si \(T \models F\) alors \(T \vdash F\).
+            \end{center}
+            De même, le \defemph{Model Existence Lemma} donne:
+            \begin{center}
+                Si \(T \nvdash \perp\) alors \(T\) a un modèle.
+            \end{center}\,
+
+            Alors, d'après la question précédente, on a \(T \cup G \nvdash \perp\).
+            Donc, par le \defemph{M.E.L.}, \(T \cup G\) a un modèle qu'on note \(M'\).
+
+            Si \(M'\) est fini, alors il existe m tel que \(m = |M'|\) et alors \(M' \not\models \phi_{n+1}\). Donc \(M'\) est infini.
+
+            \item D'après la question précédente, \(T \cup G\) a un modèle infini \(M'\). Comme ce modèle est infini, \(M' \models \psi\) donc \(M \models T \cup G \cup \{\psi\}\).
+
+            Comme \(T \cup G \cup \{\psi\}\) admet un modèle, elle est forcément cohérente, c'est-à-dire que 
+            \begin{equation*}
+                T \cup G \cup \{\psi\} \nvdash \perp
+            \end{equation*}
+            C'est aussi le cas pour toutes ses sous parties donc 
+            \begin{equation*}
+                T \cup \{\psi\} \nvdash  \perp
+            \end{equation*}
+
+            \item Montrons que \(T \cup \{\lnot \psi\}\) a un modèle.
+
+            Par hypothèse, \(T\) admet des modèles finis, donc des modèles de \(T \cup \{\lnot \psi\}\). Il en suit que \(T \cup \{\lnot \psi\} \nvdash \perp\).
+
+            \item Si \(\psi\) est prouvable alors \(T \vdash \psi\) et donc \(T \models \psi\). 
+            
+            Or d'après la question précédente, \(T \cup \{\lnot \psi\}\) a un modèle, donc \(T \not\models \psi\) et donc \(T \nvdash \psi\).
+
+            Si \(\psi\) est réfutable alors \(T \vdash \lnot \psi\) et donc \(T \models \lnot\psi\).
+
+            Or d'après la question 9, \(T \cup \{\psi\}\) a un modèle et donc \(T \not\models \lnot\psi\) et \(T \nvdash \lnot \psi\).
+
+            \item Si \(M \models T \cup G\) alors \(M \models G\) donc \(M\) infini. Donc par définition de \(\psi\), on a \(M \models \psi\).
+
+            Donc tout modèle de \(T \cup G\) est un modèle de \(\psi\) et \(T \cup G\models \psi\). Par le théorème de complétude, on a donc \(T \cup G \vdash \psi\).
+
+            \item Montrons que \(T \cup G \cup \{\lnot\psi\} \vdash \perp\). Il y a plusieurs cas à traiter:
+            \begin{enumerate}
+                \item Si \(T \cup G \cup \{\lnot \psi\}\) a un modèle \(M\) alors \(M\models G\) donc \(M\) est infini et \(M\models \lnot \psi\) donc \(M\) fini, contradiction.
+
+                \item Si \(T \cup G \vdash \psi\) alors \(T \cup G \cup \{\lnot\psi\} \vdash \psi\) et \(T \cup G \cup \{\lnot \psi\}\vdash \lnot \psi\), contradiction.
+            \end{enumerate}
+            Alors \(T \cup G \cup \{\lnot \psi\} \vdash \perp\).
+
+            \item Montrons qu'il existe un \(F \subseteq T \cup G\) tel que \(F \vdash \psi\). 
+            
+            D'après la question 12, on a \(T \cup G \vdash \psi\). Donc \(F = \{f_1,\ldots,f_n\}\) et \(F \vdash \psi\) avec \(F\) finie.
+
+            Donc par correction, \(F \models \psi\).
+
+            Montrons qu'il existe un modèle fini \(M\) de \(T \cup G\) tel que \(M \models \psi\). On a \(F = F_T \cup F_G\).
+
+            Comme à la question 7, on prend \(M\) tel que \(M \models T\) et \(M\) suffisamment grand pour que \(M \models F_G\).
+
+            On sait que \(M\) existe par hypothèse sur \(T\) et comme \(M \models F\), on a \(M \models \psi\).
+
+            On a supposé qu'il existe \(\psi\) tel que \(M \models \psi\) si et seulement si \(M\) infini. On vient de construire \(M\) fini tel que \(M \models \psi\). Alors, \(\psi\) ne peut pas exister et on ne peut pas représenter l'infini.
         \end{enumerate}
 	\end{td-sol}
 }{}
