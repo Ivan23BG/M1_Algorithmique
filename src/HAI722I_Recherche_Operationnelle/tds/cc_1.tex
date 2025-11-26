@@ -1,0 +1,178 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Points extrêmes]\,\\ % 1
+	Soit \(P = \{x \in \bb R^2 : A\leq b, x\geq 0 \}\) avec 
+    \begin{equation*}
+        A = 
+        \begin{pmatrix}
+            1 & 1\\
+            1 & -1
+        \end{pmatrix}\quad \text{et}\quad
+        b =
+        \begin{pmatrix}
+            3\\
+            0
+        \end{pmatrix}.
+    \end{equation*}
+    Combien y a-t-il de points extrêmes? Lister les points extrêmes et préciser si les points extrêmes sont des points dégénérés.
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Ensembles et fonctions convexes]\, % 2
+	\begin{enumerate}
+        \item Soit \(S = \left\{ (x,y,z) \in \bb R^3 : z \geq x^2 + y^2 \right\}\). Montrer que \(S\) est un ensemble convexe.
+
+        \item Soit \(C_1, C_2\) deux parties convexes d'un espace vectoriel réel \(E\) et soit \(s\in\ff{0,1}\).
+        On pose \(C = sC_1 + (1-s)C_2 = \{ sx_1 + (1-s)x_2 : x_1 \in C_1, x_2 \in C_2 \}\).
+        Montrer que \(C\) est convexe.
+
+        \item Soit \(C_1\) et \(C_2\) deux ensembles convexes de \(\bb R^n\).
+        On pose \(C = C_1 + C_2 = \{ x_1 + x_2 : x_1 \in C_1, x_2 \in C_2 \}\).
+        Montrer que \(C\) est convexe.
+
+        \item Soient \(f,g : \bb R \to \bb R\) deux fonctions convexes avec \(g\) croissante.
+        Montrer que \(g \circ f\) est convexe.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Modélisation de contraintes]\, % 3
+	Soient \(P_1,\ldots, P_n\) des propositions logiques, chécune étant vraie ou fausse.
+    En introduisant des variables binaires, représenter les relations suivantes par des contraintes linéaires:
+    \begin{enumerate}
+        \item La proposition \(P_1\) est vraie.
+        \item Toutes les propositions sont vraies.
+        \item Au moins \(k\) propositions sont vraies.
+        \item Si \(P_1\) est vraie, alors \(P_2\) est vraie.
+        \item Les propositions \(P_1\) et \(P_2\) sont équivalentes.
+        \item Si \(P_1\) ou \(P_2\) est vraie, alors au plus deux des propositions \(P_3,\ldots, P_n\) sont vraies.
+    \end{enumerate}
+    On pose \(x_i = 1\) si \(P_i\) est vraie, \(x_i = 0\) sinon.
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Résolution]\, % 4
+	Soit le programme linéaire \(\mathcal{P}_0\) suivant:
+    \begin{equation*}
+        \mathcal{P}_0 = 
+        \begin{cases}
+            \max z(x) 35x_1 + 50x_2\\
+            4x_1 + 6x_2 \leq 120\\
+            x_1 + x_2 \leq 20\\
+            2x_1 + 3x_2 \leq 40\\
+            x_1, x_2 \geq 0
+        \end{cases}
+    \end{equation*}\,
+    \begin{enumerate}
+        \item Résoudre le problème \(\mathcal{P}_0\). 
+        Donner les tableaux et les bases associées.
+
+        \item Donner le dual de \(\mathcal{P}_0\).
+
+        \item Donner la solution du dual à partir du tableau final du primal.
+
+        \item Vérifier les écarts complémentaires.
+
+        \item \texttt{Modification du vecteur} \(b\): le vecteur \(b\) devient \(b' = (75, 15, 50)\).
+
+        \begin{enumerate}
+            \item Que devient la solution optimale de \(\mathcal{P}_0\)?
+
+            \item Proposer deux méthodes pour résoudre ce nouveau problème,
+            sans tenter de résoudre le dit problème.
+        \end{enumerate}
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[Farkas]\, % 5
+	Est-ce que les systèmes suivants admettent une solution?
+    \begin{enumerate}
+        \item On résoud \(Ax \leq b, x \geq 0\) avec
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                1 & 1\\
+                -1 & 0\\
+                0 & -1
+            \end{pmatrix}\quad \text{et}\quad
+            b =
+            \begin{pmatrix}
+                1\\
+                0\\
+                0
+            \end{pmatrix}.
+        \end{equation*}
+
+        \item On résoud \(Ax \leq b, x \geq 0\) avec
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                1 & 1 & 1\\
+                1 & 0 & 0\\
+                0 & 3 & 1\\
+                0 & 0 & 1
+            \end{pmatrix}\quad \text{et}\quad
+            b =
+            \begin{pmatrix}
+                8\\
+                4\\
+                12\\
+                6
+            \end{pmatrix}.
+        \end{equation*}
+
+        \item On résoud \(Ax = b, x \geq 0\) avec
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                -2 & 3 & 0\\
+                1 & -1 & 2
+            \end{pmatrix}\quad \text{et}\quad
+            b =
+            \begin{pmatrix}
+                1\\
+                -1
+            \end{pmatrix}.
+        \end{equation*}
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\ %
+		
+	\end{td-sol}
+}{}
+

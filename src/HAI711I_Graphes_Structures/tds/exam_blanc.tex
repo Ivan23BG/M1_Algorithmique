@@ -3,7 +3,8 @@
     Calculer un flot maximal sur le réseau de transport ci-dessous, commençant par une augmentation de flot le long du chemin \(sadbep\).
     En expliquant comment l'obtenir, donner une coupe minimale du réseau.
 
-    \input{../assets/tikz/exam_blanc_ex_1_1.tex}
+    \vspace{0.2cm}
+    \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_1.pdf}
 \end{td-exo}
 
 % ----- Solutions exo 1 ----- %
@@ -11,19 +12,49 @@
 	\begin{td-sol}[]\,\\ % 1
 		Commençons par retirer \(sadbep\) au réseau pour obtenir le réseau résiduel suivant:
 
-        \input{../assets/tikz/exam_blanc_ex_1_2.tex}
+        \vspace{0.2cm}
+        \begin{figure}[H]
+            \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+            \begin{floatrow}
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_2_a.pdf}
+
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_2_b.pdf}
+            \end{floatrow}
+        \end{figure}
 
         Ensuite, on peut faire passer 2 de flot par \(sbdp\) et 1 de flot par \(scfp\) pour obtenir les graphes suivants:
 
-		\input{../assets/tikz/exam_blanc_ex_1_3.tex}
+        \vspace{0.2cm}
+		\begin{figure}[H]
+            \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+            \begin{floatrow}
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_3_a.pdf}
+
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_3_b.pdf}
+            \end{floatrow}
+        \end{figure}
 
         Ensuite, on peut faire passer 1 de flot par \(sadp\) et 3 par \(sbep\):
 
-        \input{../assets/tikz/exam_blanc_ex_1_4.tex}
+        \begin{figure}[H]
+            \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+            \begin{floatrow}
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_4_a.pdf}
+
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_4_b.pdf}
+            \end{floatrow}
+        \end{figure}
 
         Il ne reste plus qu'à faire passer une dernière fois 1 de flot par \(sadbep\) et on aura fini:
 
-        \input{../assets/tikz/exam_blanc_ex_1_5.tex}
+        \begin{figure}[H]
+            \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+            \begin{floatrow}
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_5_a.pdf}
+
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_1_5_b.pdf}
+            \end{floatrow}
+        \end{figure}
 
         On a trouvé un flot maximal de valeur 10.
         Une coupe minimale est donnée par l'ensemble des sommets atteignables depuis \(s\) dans le réseau résiduel final, soit \(\{s, c\}\).
@@ -99,7 +130,7 @@
             \begin{itemize}
                 \item Pour \(G_1\), on peut prendre une collection de copies du graphe suivant (le nombre de copies dépend de \(n\)):
                 
-                \input{../assets/tikz/exam_blanc_ex_2_1.tex}
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_2_1.pdf}
 
                 Chaque copie possède un indépendant de taille 1 (par exemple le sommet central) et le graphe est cubique.
                 Donc pour \(n\) suffisamment grand, on peut obtenir un graphe cubique à \(n\) sommets avec un indépendant de taille \(\frac{n}{4}\).
@@ -107,7 +138,7 @@
                 \item Pour \(G_2\), on peut prendre une collection de copies du graphe suivant (le nombre de copies dépend de \(n\)):
                 
                 \vspace{0.2cm}
-                \input{../assets/tikz/exam_blanc_ex_2_2.tex}
+                \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_2_2.pdf}
 
                 Chaque copie possède un indépendant de taille 3 (par exemple les trois sommets en haut) et le graphe est cubique.
                 Donc pour \(n\) suffisamment grand, on peut obtenir un graphe cubique à \(n\) sommets avec un indépendant de taille \(\frac{n}{2}\).
@@ -122,7 +153,7 @@
     Dans le graphe suivant, appliquer l'algorithme d'Edmonds pour calculer un couplage maximum, en sachant que le couplage \(\left\{ be, ci, hp \right\}\) a déjà été précalculé. Au cours de votre déroulement d'algorithme, vous devrez, à au moins une reprise, contracter un blossom.
 
     \vspace{0.2cm}
-    \input{../assets/tikz/exam_blanc_ex_3_1.tex}
+    \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_1.pdf}
 \end{td-exo}
 
 % ----- Solutions exo 3 ----- %
@@ -131,35 +162,35 @@
         On commence par rajouter le couplage initial:
 
         \vspace{0.2cm}
-        \input{../assets/tikz/exam_blanc_ex_3_2.tex}
+        \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_2.pdf}
 
         Contractons maintenant des blossoms. On peut commencer par le blossom \(cfi\):
 
         \vspace{0.2cm}
-        \input{../assets/tikz/exam_blanc_ex_3_3.tex}
+        \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_3.pdf}
 
         Ensuite on peut contracter le blossom \(cfijq\):
 
         \vspace{0.2cm}
-        \input{../assets/tikz/exam_blanc_ex_3_4.tex}
+        \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_4.pdf}
 
         Cherchons maintenant des chemins augmentants. 
         On part d'un sommet non saturé, ici \(a\), et on trouve le chemin augmentant \(ae-eb-bcfijq\).
         On augment alors le couplage:
 
         \vspace{0.2cm}
-        \input{../assets/tikz/exam_blanc_ex_3_5.tex}
+        \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_5.pdf}
 
         Il ne reste qu'un seul sommet non saturé \(o\) donc on a fini de trouver des chemins augmentants.
         Il faut maintenant décontracter nos blossoms pour retrouver le couplage maximum:
 
         \vspace{0.2cm}
-        \input{../assets/tikz/exam_blanc_ex_3_6.tex}
+        \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_6.pdf}
 
         Enfin, on décontracte le blossom \(cfi\) pour obtenir le couplage maximum final:
         
         \vspace{0.2cm}
-        \input{../assets/tikz/exam_blanc_ex_3_7.tex}
+        \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_3_7.pdf}
 
         On voit alors notre couplage maximum de taille 5:
         \begin{equation*}
@@ -199,47 +230,47 @@
             \item Le graphe biparti \(H_{(E, P)}\) est le suivant:
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_1.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_1.pdf}
 
             \item On souhaite trouver deux couplages disjoints saturant les sommets \(E_1, E_2\) et \(E_3\).
 
             \item On souhaite trouver un couplage parfait dans le graphe \(H_{(E, P)}'\) suivant:
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_2.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_2.pdf}
 
             \item On utilise l'algorithme d'Edmonds pour trouver un couplage maximum dans \(H_{(E, P)}'\).
             On commence par trouver un chemin augmentant à partir de \(E_1\):
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_3.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_3.pdf}
             
             Dans la suite on omettra les arêtes à partir de sommets étudiants déjà dans le couplage.
 
             Puis on trouve un chemin augmentant à partir de \(E_1'\):
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_4.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_4.pdf}
 
             Ensuite pour \(E_2\):
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_5.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_5.pdf}
 
             Et pour \(E_2'\):
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_6.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_6.pdf}
 
             Enfin pour \(E_3\):
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_7.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_7.pdf}
 
             Et pour \(E_3'\):
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_4_8.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_4_8.pdf}
 
             On a trouvé un couplage parfait dans \(H_{(E, P)}'\) donc les trois étudiants peuvent se répartir les six pizzas comme suit:
             \begin{equation*}
@@ -278,12 +309,26 @@
             \item Dessinons ces graphes et leurs complémentaires pour comprendre visuellement ce qui se passe:
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_5_1.tex}
+            \begin{figure}[H]
+                \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+                \begin{floatrow}
+                    \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_5_1_a.pdf}
+
+                    \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_5_1_b.pdf}
+                \end{floatrow}
+            \end{figure}
 
             Lorsqu'on prend leur complémentaire, on obtient les graphes suivants:
 
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_5_2.tex}
+            \begin{figure}[H]
+                \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+                \begin{floatrow}
+                    \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_5_2_a.pdf}
+
+                    \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_5_2_b.pdf}
+                \end{floatrow}
+            \end{figure}
 
             On voit alors clairement qu'on peut identifier dans ces graphes un unique chemin (respectivement cycle) qui passe par toutes les arêtes et tous les sommets.
 
@@ -339,13 +384,13 @@
 
             % TODO: replace by the correct figure
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_5_3.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_5_3.pdf}
 
             Observons ce qui se passe quand on passe au complémentaire \(\ol{G'}\):
 
             % TODO: replace by the correct figure
             \vspace{0.2cm}
-            \input{../assets/tikz/exam_blanc_ex_5_4.tex}
+            \includegraphics{../../../pdfs/HAI711I_Graphes_Structures/figures/exam_blanc_ex_5_4.pdf}
 
             On remarque alors que les arêtes internes à \(G\) ne posent pas de soucis car 
             \(G\) est auto-complémentaire. De même pour les arêtes internes à \(P\).
