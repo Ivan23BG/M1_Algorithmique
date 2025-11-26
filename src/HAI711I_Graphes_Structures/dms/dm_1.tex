@@ -16,8 +16,7 @@
     Il y a exactement 6 personnes et 4 associations avec l'arrangement qui suit:
 
     \vspace{0.5cm}
-    % \input{../assets/tikz/dm_1_exo_1.tex}
-    \includegraphics{../figures/dm_1_exo_1.pdf}
+    \input{../assets/tikz/dm_1_exo_1.tex}
 
     On peut bien vérifier qu'avec les associations
     \begin{itemize}
@@ -78,7 +77,14 @@
         sommet du cycle \(C\) seraient de la même couleur, ce qui est impossible
         car ils sont adjacents. Donc \(C\) ne peut pas être de longueur impaire.
 
-        \input{../assets/tikz/td_1_ex_3_1.tex}
+        \begin{figure}[H]
+            \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+            \begin{floatrow}
+                \input{../assets/tikz/td_1_ex_3_1_a.tex}
+
+                \input{../assets/tikz/td_1_ex_3_1_b.tex}
+            \end{floatrow}
+        \end{figure}
 
         \item Sens indirect: Supposons que \(G\) ne contient pas de cycle impair.
         On choisit un sommet racine \(r\) et on effectue un parcours en largeur à partir de \(r\).
@@ -86,7 +92,15 @@
         de niveau 1 (voisins de \(r\)) en bleu, tous les sommets de niveau 2 en rouge,
         tous les sommets de niveau 3 en bleu, et ainsi de suite.
 
-        \input{../assets/tikz/td_1_ex_3_2.tex}
+        
+        \begin{figure}[H]
+            \CenterFloatBoxes{}		% centers the floatrow contents horizontally
+            \begin{floatrow}
+                \input{../assets/tikz/td_1_ex_3_2_a.tex}
+
+                \input{../assets/tikz/td_1_ex_3_2_b.tex}
+            \end{floatrow}
+        \end{figure}
 
         Si il y avait une arête entre deux sommets du même niveau, cela formerait
         un cycle impair avec le chemin passant par leur parent commun \(r_i\). En effet,

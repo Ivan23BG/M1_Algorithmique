@@ -526,8 +526,9 @@ def main():
 
     if len(sys.argv) == 1:
         # Default: full build (figures then mains)
-        find_figure_files()
-        success = build_figures_parallel()
+        # find_figure_files()
+        # success = build_figures_parallel()
+        success = True  # Skip figure build for default run for speed
         if success:
             build_mains_parallel()
         return
