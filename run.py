@@ -148,11 +148,9 @@ def find_figure_files():
     figure_files = []
 
     for root, dirs, files in os.walk(SRC_DIR):
-        # Split the path to check the structure more precisely
-        parts = root.split(os.sep)
-        if len(parts) >= 4 and parts[-2] == "assets" and parts[-1] == "tikz":
+        if os.path.join("assets", "tikz") in root:
             for f in files:
-                if f.endswith(".tex"):
+                if f.endswith(".tex") and not f.endswith("_tikz.tex"):
                     full = os.path.join(root, f)
                     figure_files.append(full)
 
@@ -161,21 +159,8 @@ def find_figure_files():
         append_file(FIGURE_FILES_LIST, f)
 
     print(f"Found {len(figure_files)} TikZ figure files.")
-    
-    # Debug output
-    if figure_files:
-        print("First 5 figure files:")
-        for f in figure_files[:5]:
-            print(f"  - {f}")
-    else:
-        print("No figure files found. Current directory structure:")
-        for root, dirs, files in os.walk(SRC_DIR):
-            if "assets" in root:
-                print(f"  Found assets directory: {root}")
-                if "tikz" in dirs:
-                    print(f"    -> Contains tikz subdirectory!")
-    
     return figure_files
+
 # ================================================================
 # Step 2: Create simple dependency tree
 # ================================================================
@@ -232,60 +217,55 @@ def create_deps_tree():
         print(f"Deps for {mf}: {len(deps)} entries → {deps_filename}")
 
 # ================================================================
-# Step 3: Figure compilation with wrapper template
+# Step 3: Figure migration and compilation
 # ================================================================
 
-def create_figure_wrapper(tikz_file, temp_dir):
+def migrate_figure_to_figures_dir(tikz_file):
     """
-    Creates a standalone wrapper document for the TikZ figure.
-    Reads the TikZ content and embeds it directly in the wrapper.
+    Migrate a TikZ file from src/MODULE/assets/tikz/FILE.tex
+    to src/MODULE/figures/FILE.tex with appropriate wrapper.
+    Returns the path to the wrapper file.
     """
-    # Extract module path
+    # Parse the path: src/MODULE/assets/tikz/FILE.tex
     parts = tikz_file.split(os.sep)
-    module_idx = parts.index("src") + 1
-    module = parts[module_idx]
+    src_idx = parts.index("src")
+    module = parts[src_idx + 1]
+    filename = parts[-1]
     
-    # Read the actual TikZ content
-    tikz_content = read_file(tikz_file)
-    print(f"DEBUG: TikZ content from {tikz_file}:")
-    print("--- START ---")
-    print(tikz_content)
-    print("--- END ---")
+    # Create figures directory in source
+    figures_dir = os.path.join(SRC_DIR, module, "figures")
+    os.makedirs(figures_dir, exist_ok=True)
     
-    # Build the wrapper with the TikZ content embedded
-    wrapper_content = r"""\documentclass[tikz,border=0.5mm]{standalone}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{tikz}
-\usetikzlibrary{arrows,positioning,shapes,calc,patterns}
-
-% Include common headers
+    # Create wrapper file path
+    wrapper_name = filename.replace(".tex", "_wrapper.tex")
+    wrapper_path = os.path.join(figures_dir, wrapper_name)
+    
+    # Create wrapper content with correct relative paths
+    # From src/MODULE/figures/ we need to go to src/common/ and src/MODULE/assets/
+    wrapper_content = r"""\documentclass{standalone}
 \input{../../common/common_header.tex}
 \input{../../common/macros/math.tex}
 \input{../../common/macros/theorems.tex}
-% Include module-specific header if it exists
 \InputIfFileExists{../assets/module_header.tex}{}{}
-
 \begin{document}
-""" + tikz_content + r"""
+\input{../assets/tikz/""" + filename + r"""}
 \end{document}
 """
     
-    wrapper_path = os.path.join(temp_dir, "wrapper.tex")
     write_file(wrapper_path, wrapper_content)
-    
-    # Also write the wrapper content for debugging
-    debug_wrapper_path = os.path.join(temp_dir, "wrapper_debug.tex")
-    write_file(debug_wrapper_path, wrapper_content)
-    print(f"DEBUG: Wrapper written to {debug_wrapper_path}")
-    
     return wrapper_path
 
 def compile_figure(tikz_file):
     """
     Compile a single TikZ figure to PDF.
+    Process:
+    1. Migrate TikZ file to src/MODULE/figures/ with wrapper
+    2. Compile in an isolated build directory
+    3. Move artifacts to build/MODULE/figures/, logs/MODULE/figures/, pdfs/MODULE/figures/
     Returns (tikz_file, success, error_msg)
     """
     try:
+        # Get output directories
         build_path, log_path, pdf_path = ensure_output_dirs_for(tikz_file, is_figure=True)
         
         file_name = os.path.basename(tikz_file).replace(".tex", "")
@@ -296,55 +276,76 @@ def compile_figure(tikz_file):
             if os.path.getmtime(tikz_file) <= os.path.getmtime(pdf_output):
                 return (tikz_file, "skipped", None)
         
-        # Create temporary build directory for this figure
-        temp_build = os.path.join(build_path, file_name + "_temp")
-        os.makedirs(temp_build, exist_ok=True)
+        # Migrate figure and create wrapper
+        wrapper_path = migrate_figure_to_figures_dir(tikz_file)
+        wrapper_dir = os.path.dirname(wrapper_path)
+        wrapper_name = os.path.basename(wrapper_path)
+        wrapper_root = wrapper_name.replace(".tex", "")
         
-        # Create wrapper document
-        wrapper_path = create_figure_wrapper(tikz_file, temp_build)
+        # Create isolated build directory for this specific figure to avoid conflicts
+        isolated_build = os.path.join(build_path, file_name + "_build")
+        os.makedirs(isolated_build, exist_ok=True)
         
-        # Build command
+        # Build command - compile in the figures directory with isolated build dir
+        abs_build = os.path.abspath(isolated_build)
+        
         cmd = (
             f"{LATEXMK} "
             f"{' '.join(LATEXMK_FLAGS)} "
-            f"-auxdir=\"{temp_build}\" "
-            f"-outdir=\"{temp_build}\" "
-            f"wrapper.tex"
+            f"-auxdir=\"{abs_build}\" "
+            f"-outdir=\"{abs_build}\" "
+            f"\"{wrapper_name}\""
         )
         
         # Compile
         cwd = os.getcwd()
-        os.chdir(temp_build)
+        os.chdir(wrapper_dir)
         
-        exit_code = os.system(f"{cmd} > compile.log 2>&1")
-        
-        # Read the log to see what went wrong
-        log_content = read_file("compile.log")
+        # Use unique log file name to avoid conflicts
+        log_filename = f"_{file_name}_compile.log"
+        exit_code = os.system(f"{cmd} > {log_filename} 2>&1")
         
         os.chdir(cwd)
         
         if exit_code != 0:
             # Copy log for debugging
             log_file = os.path.join(log_path, file_name + ".log")
-            shutil.copy2(os.path.join(temp_build, "compile.log"), log_file)
-            
-            # Print first few lines of error for debugging
-            error_lines = [line for line in log_content.split('\n') if 'error' in line.lower() or '!' in line]
-            error_preview = '\n'.join(error_lines[:10])  # First 10 error lines
-            return (tikz_file, "failed", f"Exit code {exit_code}. Errors:\n{error_preview}")
+            log_src = os.path.join(wrapper_dir, log_filename)
+            if os.path.exists(log_src):
+                shutil.copy2(log_src, log_file)
+                try:
+                    os.remove(log_src)
+                except:
+                    pass
+            return (tikz_file, "failed", f"Exit code {exit_code}")
         
         # Move PDF to output
-        generated_pdf = os.path.join(temp_build, "wrapper.pdf")
+        generated_pdf = os.path.join(isolated_build, wrapper_root + ".pdf")
+        
         if os.path.exists(generated_pdf):
+            # Copy to pdfs with the original figure name (not wrapper name)
             shutil.copy2(generated_pdf, pdf_output)
             
-            # Copy log
+            # Copy main log
             log_file = os.path.join(log_path, file_name + ".log")
-            if os.path.exists(os.path.join(temp_build, "compile.log")):
-                shutil.copy2(os.path.join(temp_build, "compile.log"), log_file)
+            log_src = os.path.join(wrapper_dir, log_filename)
+            if os.path.exists(log_src):
+                shutil.copy2(log_src, log_file)
+                try:
+                    os.remove(log_src)
+                except:
+                    pass
             
-            # Clean up temp directory
-            shutil.rmtree(temp_build)
+            # Copy additional logs if they exist
+            wrapper_log = os.path.join(isolated_build, wrapper_root + ".log")
+            if os.path.exists(wrapper_log):
+                shutil.copy2(wrapper_log, os.path.join(log_path, file_name + "_latex.log"))
+            
+            # Clean up isolated build directory
+            try:
+                shutil.rmtree(isolated_build)
+            except:
+                pass  # Don't fail if cleanup fails
             
             return (tikz_file, "compiled", None)
         else:
@@ -352,6 +353,7 @@ def compile_figure(tikz_file):
             
     except Exception as e:
         return (tikz_file, "failed", str(e))
+
 # ================================================================
 # Step 4: Main document compilation
 # ================================================================
