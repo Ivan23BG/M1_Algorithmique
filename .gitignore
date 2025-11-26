@@ -13,3 +13,4 @@ src/HAI720I/tds/*/execs/
 .build_cache.json
 structure.txt
 data/
+*_wrapper.tex
