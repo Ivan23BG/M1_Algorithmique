@@ -47,39 +47,6 @@
 
             Donc \(K_n \setminus F\) contient toutes les arêtes entre \(C\) et \(V \setminus C\), donc il est connexe, ce qui est absurde.
             Donc \(|F| \geq n-1\).
-
-            Par le cours, on a
-            \begin{equation*}
-                \kappa(G) \leq \lambda(G) \leq \delta(G) = 3
-            \end{equation*}
-            donc le sens direct est évident, \(\kappa(G) = 3 \implies \lambda(G) = 3\).
-
-            Inversement, supposons que \(\lambda(G) = 3\) et traitons les cas:
-            \begin{itemize}
-                \item On a \(\kappa > 0\) car \(G\) est connexe.
-
-                \item Si \(\kappa(G) = 1\), alors il existe un sommet \(x\) tel que \(G \setminus \{x\}\) est déconnecté.
-                Alors \(G \setminus x\) possède une partition \((C, V \setminus C)\) telle qu'il n'existe pas d'arête entre \(C\) et \(V \setminus C\).
-
-                Sans perte de généralité, supposons que \(x\) a un voisin dans \(C\) et deux dans \(V \setminus C\).
-
-                Alors, en enlevant l'arête entre \(x\) et \(C\), le graphe n'est plus connexe, ce qui est absurde (car \(\lambda(G) = 3\)).
-
-                \item Si \(\kappa(G) = 2\), alors il existe deux sommets \(x,y\) tels que \(G \setminus \{x,y\}\) est déconnecté.
-                Alors \(G \setminus \{x,y\}\) possède une partition \((C, V \setminus C)\) telle qu'il n'existe pas d'arête entre \(C\) et \(V \setminus C\).
-                % insert nice graph here
-
-                Sans perte de généralité, supposons que \(x\) a un voisin dans \(C\) (sinon \(y\) sépare \(C\) de \(V \setminus C \cup \{x\}\), ce qui est absurde).
-
-                De même, \(x\) possède un voisin dans \(V \setminus C\) (sinon \(y\) sépare \(C \cup \{x\}\) de \(V \setminus C\), ce qui est absurde). Donc \(x\) possède un voisin dans chaque partie.
-
-                De même, \(y\) possède un voisin dans chaque partie.
-
-                Pour que \(\{xx_C, y y_C\}\) ne soit pas un arête-séparateur, il faut une arête de plus entre \(C\) et \(\{x,y\}\).
-                De même, pour que \(\{x x_{V \setminus C}, y y_{V \setminus C}\}\) ne soit pas un arête-séparateur, il faut une arête de plus entre \(V \setminus C\) et \(\{x,y\}\). Alors, en enlevant les arêtes \(x x_{C'}, y y_{C}\) on a bien trouvé un arête-séparateur de taille \(2\), ce qui est absurde.
-
-                \item Donc \(\kappa(G) \geq 3\). Comme \(\kappa(G) \leq \lambda(G) = 3\), on a bien \(\kappa(G) = 3\).
-            \end{itemize}
         \end{enumerate}
 	\end{td-sol}
 }{}
@@ -101,6 +68,39 @@
         \input{../assets/tikz/td_4_ex_3_1.tex}
 
         On voit alors clairement que chaque composante \(X\) et \(Y\), étant un graphe complet à \(n\) sommets est \(n\) régulier (car chaque sommet est aussi relié au sommet central \(c\)). Ainsi il faut enlever au moins \(n\) arêtes pour séparer un sommet de \(G\) mais en enlevant le sommet \(c\) on sépare le graphe en deux composantes connexes, donc \(\kappa(G) = 1\) et \(\lambda(G) = n\).
+
+        Par le cours, on a
+        \begin{equation*}
+            \kappa(G) \leq \lambda(G) \leq \delta(G) = 3
+        \end{equation*}
+        donc le sens direct est évident, \(\kappa(G) = 3 \implies \lambda(G) = 3\).
+
+        Inversement, supposons que \(\lambda(G) = 3\) et traitons les cas:
+        \begin{itemize}
+            \item On a \(\kappa > 0\) car \(G\) est connexe.
+
+            \item Si \(\kappa(G) = 1\), alors il existe un sommet \(x\) tel que \(G \setminus \{x\}\) est déconnecté.
+            Alors \(G \setminus x\) possède une partition \((C, V \setminus C)\) telle qu'il n'existe pas d'arête entre \(C\) et \(V \setminus C\).
+
+            Sans perte de généralité, supposons que \(x\) a un voisin dans \(C\) et deux dans \(V \setminus C\).
+
+            Alors, en enlevant l'arête entre \(x\) et \(C\), le graphe n'est plus connexe, ce qui est absurde (car \(\lambda(G) = 3\)).
+
+            \item Si \(\kappa(G) = 2\), alors il existe deux sommets \(x,y\) tels que \(G \setminus \{x,y\}\) est déconnecté.
+            Alors \(G \setminus \{x,y\}\) possède une partition \((C, V \setminus C)\) telle qu'il n'existe pas d'arête entre \(C\) et \(V \setminus C\).
+            % insert nice graph here
+
+            Sans perte de généralité, supposons que \(x\) a un voisin dans \(C\) (sinon \(y\) sépare \(C\) de \(V \setminus C \cup \{x\}\), ce qui est absurde).
+
+            De même, \(x\) possède un voisin dans \(V \setminus C\) (sinon \(y\) sépare \(C \cup \{x\}\) de \(V \setminus C\), ce qui est absurde). Donc \(x\) possède un voisin dans chaque partie.
+
+            De même, \(y\) possède un voisin dans chaque partie.
+
+            Pour que \(\{xx_C, y y_C\}\) ne soit pas un arête-séparateur, il faut une arête de plus entre \(C\) et \(\{x,y\}\).
+            De même, pour que \(\{x x_{V \setminus C}, y y_{V \setminus C}\}\) ne soit pas un arête-séparateur, il faut une arête de plus entre \(V \setminus C\) et \(\{x,y\}\). Alors, en enlevant les arêtes \(x x_{C'}, y y_{C}\) on a bien trouvé un arête-séparateur de taille \(2\), ce qui est absurde.
+
+            \item Donc \(\kappa(G) \geq 3\). Comme \(\kappa(G) \leq \lambda(G) = 3\), on a bien \(\kappa(G) = 3\).
+        \end{itemize}
 	\end{td-sol}
 }{}
 
