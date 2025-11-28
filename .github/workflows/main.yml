@@ -131,3 +131,22 @@ jobs:
               repo: context.repo.repo,
               body: message
             });
+
+      - name: Commit updated PDFs back into the repository
+        if: github.event_name == 'push' && success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add only the pdfs directory
+          git add pdfs
+
+          # Check if there is anything to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update generated PDFs [skip ci]"
+          git push
+
