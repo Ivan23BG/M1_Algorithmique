@@ -85,6 +85,27 @@ jobs:
           path: pdfs/**/*.pdf
           retention-days: 30
       
+      
+      - name: Commit updated PDFs back into the repository
+        if: github.event_name == 'push' && success()
+        run: |
+          cd "$GITHUB_WORKSPACE"   # Navigate to the repository root
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add only the pdfs directory
+          git add pdfs
+
+          # Check if there is anything to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update generated PDFs [skip ci]"
+          git push origin HEAD:${{ github.ref }}
+      
       - name: Upload build logs
         if: failure()
         uses: actions/upload-artifact@v4
@@ -132,21 +153,4 @@ jobs:
               body: message
             });
 
-      - name: Commit updated PDFs back into the repository
-        if: github.event_name == 'push' && success()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          # Add only the pdfs directory
-          git add pdfs
-
-          # Check if there is anything to commit
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-
-          git commit -m "Update generated PDFs [skip ci]"
-          git push
 
