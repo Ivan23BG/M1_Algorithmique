@@ -47,9 +47,9 @@ jobs:
       #       latexmk \
       #       python3-pygments
           
-          # Verify installation
-          latexmk -version
-          pdflatex -version
+      #     # Verify installation
+      #     latexmk -version
+      #     pdflatex -version
       
       - name: Make run.py executable
         run: chmod +x run.py
