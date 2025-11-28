@@ -174,8 +174,25 @@
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ %
+	\begin{td-sol}[]\, %
 		% inserer reseau de transport schema ici
+		\begin{enumerate}
+			\item Sinon, il existe une arête \(uv\) avec \(u \in X \cap A\) et \(v \in B \setminus X\).
+			% insert second small illustration here
+
+			On considère la \((s,p)\)-coupe \((X', \ol X') = (X \setminus \{u\}, \ol X \cup \{u\})\).
+
+			Les arcs qui traversent \(X', \ol X'\) sont ceux de \(X, \ol X\) moins les arcs sortant de \(u\) (dont au moins \(uv\)) plus les arcs entrants en \(u\) depuis \(X'\), c'est-à-dire \(su\).
+
+			Donc 
+			\begin{equation*}
+				c(X', \ol X') \leq c(X, \ol X) 
+			\end{equation*}
+
+			Commme \((X, \ol X)\) est une \((s,p)\)-coupe min, on a l'égalité et donc \((X', \ol X')\) est aussi une \((s,p)\)-coupe min. Mais \(|X' \cap A| = |X \cap A \setminus \{u\}| < |X \cap A|\), ce qui contredit la minimalité de \(|X \cap A|\).
+
+			Donc, il n'y a pas d'arc dans \(D\) de \(X \cap A\) vers \(B \setminus X\).
+		\end{enumerate}
 	\end{td-sol}
 }{}
 
