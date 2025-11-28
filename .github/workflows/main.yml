@@ -131,7 +131,7 @@ jobs:
           fi
 
           git commit -m "Update generated PDFs [skip ci]"
-          git push origin HEAD:${{ github.ref }}
+          git push origin HEAD
       
       - name: Upload build logs
         if: failure()
