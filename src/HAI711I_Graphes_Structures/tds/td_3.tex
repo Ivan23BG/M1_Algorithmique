@@ -158,13 +158,24 @@
 
 % ----- Consignes exo 4 ----- %
 \begin{td-exo}[Théorème de Hall]\,\\ % 4 
-	Soit \(G = ((A, B), E)\) un graphe biparti (de bipartition \((A, B)\)). On souhaite montrer. % TODO FINIR
+	Soit \(G = ((A, B), E)\) un graphe biparti (de bipartition \((A, B)\)).
+	On souhaite montrer le théorème de Hall en utilisant ldes résultats de flots.
+	Pour cela, on considère le réseau de transport \(\mathcal{N} = (D, s, p, c)\) où \(D\) est obtenu depuis \(G\) en ajoutant une source \(s\) dominant tous les sommets de \(A\), en orientant toutes les arêtes de \(G\) de \(A\) vers \(B\) puis en ajoutant un puits \(p\) dominé par tous les sommets de \(B\).
+	Finalement, pour obtenir \(\mathcal N\), on munit chaque arc de \(D\) d'une capacité de \(1\).
+	\begin{enumerate}
+		\item Soit \(X\) une \((s,p)\)-coupe de capacité minimum et telle que \(|X \cap A|\) soit minimal pour cela.
+		Montrer qu'il n'y a pas d'arc dans \(D\) de \(X \cap A\) vers \(B \setminus X\).
+
+		\item Montrer que pour tout entier \(k\), il y a une correspondance entre les flots entiers \(f\) de \(\mathcal{N}\) avec \(|f| = k\) et les couplages de \(G\) de taille \(k\).
+
+		\item Déduire le théorème de Hall du théorème \og{}\defemph{min cut = max flot}\fg{}.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ %
-		A remplir %TODO solve exercise 4
+		% inserer reseau de transport schema ici
 	\end{td-sol}
 }{}
 
