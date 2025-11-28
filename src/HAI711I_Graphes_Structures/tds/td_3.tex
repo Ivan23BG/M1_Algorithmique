@@ -177,7 +177,7 @@
 	\begin{td-sol}[]\, %
 		% inserer reseau de transport schema ici
 		\begin{enumerate}
-			\item Sinon, il existe une arête \(uv\) avec \(u \in X \cap A\) et \(v \in B \setminus X\).
+			\item\label{td3:ex4:1} Sinon, il existe une arête \(uv\) avec \(u \in X \cap A\) et \(v \in B \setminus X\).
 			% insert second small illustration here
 
 			On considère la \((s,p)\)-coupe \((X', \ol X') = (X \setminus \{u\}, \ol X \cup \{u\})\).
@@ -192,6 +192,45 @@
 			Commme \((X, \ol X)\) est une \((s,p)\)-coupe min, on a l'égalité et donc \((X', \ol X')\) est aussi une \((s,p)\)-coupe min. Mais \(|X' \cap A| = |X \cap A \setminus \{u\}| < |X \cap A|\), ce qui contredit la minimalité de \(|X \cap A|\).
 
 			Donc, il n'y a pas d'arc dans \(D\) de \(X \cap A\) vers \(B \setminus X\).
+
+			\item Supposons que \(\mathcal{N}\) admette un flot entier \(f\) de valeur \(k\).
+			Si \(x\) est un voisin de \(s\) avec \(f(sx) > 0\), alors 
+			\begin{equation*}
+				1 \leq f(sx) \leq c(sx) = 1
+			\end{equation*}
+			et donc \(f(sx) = 1\). Donc il existe \(x_1, \ldots, x_k\) \(k\) sommets distincts de \(A\) tels que \(f(sx_i) = 1\) pour tout \(i \in \{1, \ldots, k\}\) et pour tout autre voisin \(x\) de \(s\), \(f(sx) = 0\).
+
+			Pour tout sommet \(x_i\), le flot sortant de \(x_i\) doit être égal à \(1\) (car le flot entrant est \(1\) et la conservation du flot s'applique) donc il existe un voisin \(y_i\) de \(x_i\) dans \(B\) tel que \(f(x_i y_i) = 1\).
+
+			De plus, les \(y_i\) sont distincts car sinon on aurait \(f(x_i y_i) = 1\) et \(f(x_j y_i) = 1\) pour \(i \neq j\) et donc le flot entrant en \(y_i\) serait au moins de \(2\). Par conservation du flot, le flot sortant de \(y_i\) serait aussi au moins de \(2\) ce qui est impossible car le seul arc sortant de \(y_i\) est \(y_i p\) qui est de capacité \(1\).
+
+			Alors, les arêtes \(x_1 y_1, x_2 y_2, \ldots, x_k y_k\) forment un couplage de taille \(k\) dans \(G\).
+
+			Et inversement, si \(M\) est un couplage de taille \(k\) dans \(G\), on peut définir un flot \(f\) dans \(\mathcal{N}\) par
+			\begin{equation*}
+				f(xy) = 
+				\begin{cases}
+					1 & \text{si } x = s \text{ et } y \in A \text{ avec } (y,\cdot) \in M\\
+					1 & \text{si } x \in A, y \in B \text{ avec } xy \in M\\
+					1 & \text{si } x \in B \text{ et } y = p \text{ avec } (\cdot,x) \in M\\
+					0 & \text{sinon}
+				\end{cases}
+			\end{equation*}
+			et on vérifie facilement que \(f\) est un flot de valeur \(k\).
+
+			\item On va montrer la contraposée du théorème de Hall:
+			
+			Si la taille d'un couplage maximum du \(G\) est strictement inférieure à \(|A|\), alors il existe \(S \subseteq A\) tel que \(|N(S)| < |S|\).
+
+			Dans ce cas, le flot maximum dans \(\mathcal{N}\) est de valeur \(k < |A|\) (par le point précédent).
+
+			Alors, par le théorème \og{}min cut = max flot\fg{}, il existe une \((s,p)\)-coupe \((X, \ol X)\) de capacité \(k < |A|\).
+
+			De plus, par le point~\ref{td3:ex4:1}, il existe une coupe minimale \((X, \ol X)\) avec aucune arête de \(X \cap A\) vers \(B \setminus X\). Il en suit 
+			\begin{equation*}
+				c(X, \ol X) = |A \setminus X| + |B \cap X| < |A| \implies |B \cap X| < |X \cap A|
+			\end{equation*}
+			Alors, en posant \(S = X \cap A\), on a bien \(|N(S)| \leq |B \cap X| < |X \cap A| = |S|\).
 		\end{enumerate}
 	\end{td-sol}
 }{}
