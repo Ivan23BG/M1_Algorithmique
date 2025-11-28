@@ -1,0 +1,50 @@
+% Figure BFS 1
+\ffigbox[\FBwidth]{
+\caption{\centering Graphe \(G\) vérifiant \\\(\lambda(G) = n\) et \(\kappa(G) = 1\)}\label{Fig:td_4_ex_3_1}
+}{
+    \fbox{
+       \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
+            % les sommets de X
+            \node[main node] (x1) at (-2, 2) {\(x_1\)};
+            \node[] (xdots1) at (-1, 2) {\(\cdots\)};
+            \node[] (xdots2) at (0, 2) {\(\cdots\)};
+            \node[] (xdots3) at (1, 2) {\(\cdots\)};
+            \node[main node] (xn) at (2, 2) {\(x_n\)};
+
+            % les sommets de Y
+            \node[main node] (y1) at (-2, -2) {\(y_1\)};
+            \node[] (ydots1) at (-1, -2) {\(\cdots\)};
+            \node[] (ydots2) at (0, -2) {\(\cdots\)};
+            \node[] (ydots3) at (1, -2) {\(\cdots\)};
+            \node[main node] (yn) at (2, -2) {\(y_n\)};
+
+            % le sommet central
+            \node[main node] (c) at (0, 0) {\(c\)};
+            
+            % on entoure X
+            \node[inner sep=12pt, fit=(x1) (xn), name=XFIT] {};
+            \node[inner sep=12pt, fit=(y1) (yn), name=YFIT] {};
+
+            \draw[green!60, thick, fill=green!20, opacity=0.4, rotate around={90:(XFIT.center)}]
+                (XFIT.center) ellipse [x radius=0.8cm, y radius=2.5cm];
+            \node at (XFIT.north) [yshift=11pt] {\(X = K_n\)};
+
+            \draw[green!60, thick, fill=green!20, opacity=0.4, rotate around={90:(YFIT.center)}]
+                (YFIT.center) ellipse [x radius=0.8cm, y radius=2.5cm];
+            \node at (YFIT.south) [yshift=-11pt] {\(Y = K_n\)};
+            % les aretes entre X et c
+            \draw (x1) -- (c);
+            \draw[dotted] (xdots1) -- (c);
+            \draw[dotted] (xdots2) -- (c);
+            \draw[dotted] (xdots3) -- (c);
+            \draw (xn) -- (c);
+
+            % les aretes entre Y et c
+            \draw (y1) -- (c);
+            \draw[dotted] (ydots1) -- (c);
+            \draw[dotted] (ydots2) -- (c);
+            \draw[dotted] (ydots3) -- (c);
+            \draw (yn) -- (c);
+        \end{tikzpicture}
+    }
+}

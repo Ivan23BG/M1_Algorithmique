@@ -1,0 +1,171 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Echauffement]\,\\ % 1
+    Calculer la sommet-connectivité et l'arête-connectivité du graphe suivant:
+
+    \vspace{0.2cm}
+    \input{../assets/tikz/td_4_ex_1_1.tex}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 1
+		On peut remarquer que la partie centrale du graph est surement la plus facile à séparer du reste du graphe.
+        On peut alors voir que la sommet-connectivité est de \(2\) en enlevant les sommets \(g\) et \(h\), et 
+        que l'arête-connectivité est de \(3\) en enlevant les arêtes \(\{(e, g), (c, h), (f, h)\}\):
+
+        \vspace{0.2cm}
+        \begin{figure}[H]
+            \CenterFloatBoxes{}
+            \begin{floatrow}
+                \input{../assets/tikz/td_4_ex_1_2.tex}
+
+                \input{../assets/tikz/td_4_ex_1_3.tex}
+            \end{floatrow}
+        \end{figure}
+
+        Il n'y a pas de méthode simple pour prouver ce résultat, pour la sommet-connectivité on peut noter qu'il existe un cycle hamiltonien dans le graphe \(G\) de départ, donc la sommet-connectivité est au moins de \(2\).
+
+        Pour la sommet-connectivité il n'existe pas de méthode simple non plus, on peut juste montrer que toute paire d'arêtes ne sépare pas le graphe en deux composantes connexes.
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Echauffement (plus dur)]\,\\ % 2
+    Calculer \(\kappa(P)\) (où \(P\) est le graphe de Petersen), \(\lambda(K_n)\) (où \(K_n\) est le graphe complet à \(n\) sommets; on pourra utiliser le fait que si \(F\) est un ensemble d'arêtes de taille \(\leq n-2\) de \(K_n\), alors\(V(K_n), F\) n'est pas connexe), et \(\kappa(Q_d)\) (où \(Q_d\) est le graphe hypercube de dimension \(d\), de sommets \({\left\{0,1\right\}}^d\) avec \(x_1,\ldots, x_d\) et \(y_1,\ldots,y_d\) reliés si et seulement si \(\sum_{i=1}^d |x_i - y_i| = 1\); on pourra raisonner par récurrence sur \(d\)).
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 2
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Connectivité des cubiques]\,\\ % 3
+    Trouver un graphe \(G\) vérifiant \(\lambda(G) = 3\) et \(\kappa(G) = 1\).
+
+    Soit \(G\) un graphe cubique (i.e. \(3\)-régulier). Montrer que \(G\) est \(3\)-arête-connexe si et seulement si il est \(3\)-sommet-connexe.
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 3
+		On peut même résoudre ce problème pour \(\lambda(G) = n\) avec le graphe suivant:
+
+        \vspace{0.2cm}
+        \input{../assets/tikz/td_4_ex_3_1.tex}
+
+        On voit alors clairement que chaque composante \(X\) et \(Y\), étant un graphe complet à \(n\) sommets est \(n\) régulier (car chaque sommet est aussi relié au sommet central \(c\)). Ainsi il faut enlever au moins \(n\) arêtes pour séparer un sommet de \(G\) mais en enlevant le sommet \(c\) on sépare le graphe en deux composantes connexes, donc \(\kappa(G) = 1\) et \(\lambda(G) = n\).
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[Treillis des séparateurs]\,\\ % 4
+    Soient \(G = (V,E)\) un graphe connexe et \(x,y\) deux sommets de \(G\).
+    Pour \(X\) un \((x,y)\)-(sommet-)séparateur de \(G\), on note \(C(X,x)\) la composante connexe de \(G\setminus X\) contenant \(x\). % chktex 36
+
+    Soient \(X\) et \(Y\) deux \((x,y)\)-(sommets-)séparateurs, montrer que \(A = (X \cap C(Y,x)) \cup (X \cap Y) \cup (Y \cap C(X,x))\) et \(B = (X \cap C(Y,y)) \cup (X \cap Y) \cup (Y \cap C(X,y))\) sont aussi des \((x,y)\)-(sommets-)séparateurs de \(G\). % chktex 36 % chktex 10
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 4
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[Graphes \(2\)-connexes]\,\\ % 5
+    Exercise 5 content
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 5
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[Menger étendu]\,\\ % 6
+    Exercise 6 content
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 6
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 7 ----- %
+\begin{td-exo}[Plein de cycles]\,\\ % 7
+    Exercise 7 content
+\end{td-exo}
+
+% ----- Solutions exo 7 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 7
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 8 ----- %
+\begin{td-exo}[Gros cycle]\,\\ % 8
+    Exercise 8 content
+\end{td-exo}
+
+% ----- Solutions exo 8 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 8
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 9 ----- %
+\begin{td-exo}[Arbres couvrants disjoints]\,\\ % 9
+    Exercise 9 content
+\end{td-exo}
+
+% ----- Solutions exo 9 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 9
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 10 ----- %
+\begin{td-exo}[Pas plus de deux\(\ldots\)]\,\\ % 10
+    Exercise 10 content
+\end{td-exo}
+
+% ----- Solutions exo 10 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 10
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 11 ----- %
+\begin{td-exo}[Jeu de Shannon]\,\\ % 11
+    Exercise 11 content
+\end{td-exo}
+
+% ----- Solutions exo 11 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 11
+		Exercice solution
+	\end{td-sol}
+}{}
+
