@@ -37,8 +37,17 @@
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 2
-		Exercice solution
+	\begin{td-sol}[]\, % 2
+		\begin{enumerate}
+            \item On peut constater graphiquement que \(\kappa(P) = 3\).
+
+            \item Soit \(F\) un arête-séparateur minimum de \(K_n\).
+            Si \(|F| \leq n-2\), alors \((V(K_n), F)\) n'est pas connexe.
+            Il admet donc une partition \((C,V \setminus C)\) sans arête entre les deux parties.
+
+            Donc \(K_n \setminus F\) contient toutes les arêtes entre \(C\) et \(V \setminus C\), donc il est connexe, ce qui est absurde.
+            Donc \(|F| \geq n-1\).
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
