@@ -85,53 +85,53 @@ jobs:
           path: pdfs/**/*.pdf
           retention-days: 30
       
-      - name: Debug working directory
-        run: |
-          echo "PWD = $(pwd)"
-          echo "HOME = $HOME"
-          echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
+      # - name: Debug working directory
+      #   run: |
+      #     echo "PWD = $(pwd)"
+      #     echo "HOME = $HOME"
+      #     echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
           
-          echo "--- Listing PWD ---"
-          ls -a
+      #     echo "--- Listing PWD ---"
+      #     ls -a
           
-          echo "--- Listing GITHUB_WORKSPACE ---"
-          ls -a "$GITHUB_WORKSPACE"
+      #     echo "--- Listing GITHUB_WORKSPACE ---"
+      #     ls -a "$GITHUB_WORKSPACE"
           
-          # Check for .git folder
-          echo "--- Checking for .git directory ---"
-          if [ -d ".git" ]; then
-            echo "Found .git in PWD"
-          else
-            echo "No .git in PWD"
-          fi
+      #     # Check for .git folder
+      #     echo "--- Checking for .git directory ---"
+      #     if [ -d ".git" ]; then
+      #       echo "Found .git in PWD"
+      #     else
+      #       echo "No .git in PWD"
+      #     fi
 
-          if [ -d "$GITHUB_WORKSPACE/.git" ]; then
-            echo "Found .git in GITHUB_WORKSPACE"
-          else
-            echo "No .git in GITHUB_WORKSPACE"
-          fi
+      #     if [ -d "$GITHUB_WORKSPACE/.git" ]; then
+      #       echo "Found .git in GITHUB_WORKSPACE"
+      #     else
+      #       echo "No .git in GITHUB_WORKSPACE"
+      #     fi
 
 
 
-      - name: Commit updated PDFs back into the repository
-        if: github.event_name == 'push' && success()
-        run: |
-          cd "$GITHUB_WORKSPACE"   # Navigate to the repository root
+      # - name: Commit updated PDFs back into the repository
+      #   if: github.event_name == 'push' && success()
+      #   run: |
+      #     cd "$GITHUB_WORKSPACE"   # Navigate to the repository root
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Add only the pdfs directory
-          git add pdfs
+      #     # Add only the pdfs directory
+      #     git add pdfs
 
-          # Check if there is anything to commit
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
+      #     # Check if there is anything to commit
+      #     if git diff --cached --quiet; then
+      #       echo "No changes to commit."
+      #       exit 0
+      #     fi
 
-          git commit -m "Update generated PDFs [skip ci]"
-          git push origin HEAD
+      #     git commit -m "Update generated PDFs [skip ci]"
+      #     git push origin HEAD
       
       - name: Upload build logs
         if: failure()
