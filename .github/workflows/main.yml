@@ -16,6 +16,8 @@ on:
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest
     
     steps:
       - name: Checkout repository
@@ -42,7 +44,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            texlive-full \
             latexmk \
             python3-pygments
           
