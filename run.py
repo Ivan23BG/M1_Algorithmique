@@ -296,6 +296,11 @@ def compile_figure(tikz_file):
             f"-outdir=\"{abs_build}\" "
             f"\"{wrapper_name}\""
         )
+        # Figure directory doesn't exist fix
+        # Ensure TikZ externalize target dir exists inside the figures wrapper dir.
+        tikz_external_cache_dir = os.path.join(wrapper_dir, "figures")
+        os.makedirs(tikz_external_cache_dir, exist_ok=True)
+
         
         # Compile
         cwd = os.getcwd()
