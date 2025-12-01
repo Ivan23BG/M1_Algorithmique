@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Get full history for better caching
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -39,17 +40,6 @@ jobs:
           key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
           restore-keys: |
             texlive-${{ runner.os }}-
-      
-      # - name: Install LaTeX dependencies
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y \
-      #       latexmk \
-      #       python3-pygments
-          
-      #     # Verify installation
-      #     latexmk -version
-      #     pdflatex -version
       
       - name: Make run.py executable
         run: chmod +x run.py
@@ -77,61 +67,32 @@ jobs:
           echo "Generated PDFs:"
           find pdfs -name "*.pdf" -type f | sort
       
-      - name: Upload PDFs
-        if: success()
+      - name: Commit updated PDFs back to repository
+        if: github.event_name == 'push' && success()
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add only the pdfs directory
+          git add pdfs
+
+          # Check if there is anything to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update generated PDFs [skip ci]"
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
+      
+      - name: Upload PDFs (fallback for PRs)
+        if: github.event_name == 'pull_request' && success()
         uses: actions/upload-artifact@v4
         with:
           name: latex-pdfs-${{ github.sha }}
           path: pdfs/**/*.pdf
           retention-days: 30
-      
-      # - name: Debug working directory
-      #   run: |
-      #     echo "PWD = $(pwd)"
-      #     echo "HOME = $HOME"
-      #     echo "GITHUB_WORKSPACE = $GITHUB_WORKSPACE"
-          
-      #     echo "--- Listing PWD ---"
-      #     ls -a
-          
-      #     echo "--- Listing GITHUB_WORKSPACE ---"
-      #     ls -a "$GITHUB_WORKSPACE"
-          
-      #     # Check for .git folder
-      #     echo "--- Checking for .git directory ---"
-      #     if [ -d ".git" ]; then
-      #       echo "Found .git in PWD"
-      #     else
-      #       echo "No .git in PWD"
-      #     fi
-
-      #     if [ -d "$GITHUB_WORKSPACE/.git" ]; then
-      #       echo "Found .git in GITHUB_WORKSPACE"
-      #     else
-      #       echo "No .git in GITHUB_WORKSPACE"
-      #     fi
-
-
-
-      # - name: Commit updated PDFs back into the repository
-      #   if: github.event_name == 'push' && success()
-      #   run: |
-      #     cd "$GITHUB_WORKSPACE"   # Navigate to the repository root
-
-      #     git config user.name "github-actions[bot]"
-      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      #     # Add only the pdfs directory
-      #     git add pdfs
-
-      #     # Check if there is anything to commit
-      #     if git diff --cached --quiet; then
-      #       echo "No changes to commit."
-      #       exit 0
-      #     fi
-
-      #     git commit -m "Update generated PDFs [skip ci]"
-      #     git push origin HEAD
       
       - name: Upload build logs
         if: failure()
@@ -140,14 +101,6 @@ jobs:
           name: build-logs-${{ github.sha }}
           path: logs/**/*.log
           retention-days: 7
-      
-      - name: Upload specific PDFs (optional)
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: main-documents
-          path: pdfs/**/*_main.pdf
-          if-no-files-found: warn
       
       - name: Comment PR with build results
         if: github.event_name == 'pull_request'
@@ -179,5 +132,3 @@ jobs:
               repo: context.repo.repo,
               body: message
             });
-
-
