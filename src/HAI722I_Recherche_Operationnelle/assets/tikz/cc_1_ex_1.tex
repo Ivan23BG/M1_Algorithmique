@@ -1,23 +1,30 @@
 \ffigbox[\FBwidth]{%
-\label{Fig:dm1ex1}
+\caption{\centering Représentation graphique des contraintes sur \(P\)}\label{Fig:cc_1_ex_1}
 }{
     \fbox{
         \begin{tikzpicture}[scale=1]
+                % Feasible region
+                \fill[black!10] (0,0) -- (1.5,1.5) -- (3,0) -- cycle;
+                
                 % Axes
                 \draw[->] (-1,0) -- (5,0) node[right] {\(x_1\)};
+                \draw[->, draw=green!60!black, thick] (0,0) -- (5,0) node[right] {};
                 \draw[->] (0,-1) -- (0,5) node[above] {\(x_2\)};
+                \draw[->, draw=orange, thick] (0,0) -- (0,5) node[above] {};
+                
                 
                 % Constraints
-                \draw[thick] (0,3) -- (3,0) node[midway, above right] {\(x_1 + x_2 = 3\)};
-                \draw[thick] (0,0) -- (1.5,1.5) node[midway, above left] {\(x_1 - x_2 = 0\)};
+                \draw[thick, draw=red] (0,3) -- (3,0) node[midway, above right] {};
+                \draw[thick, draw=blue] (0,0) -- (1.5,1.5) node[midway, above left] {};
                 
-                % Feasible region
-                \fill[blue!20] (0,0) -- (1.5,1.5) -- (3,0) -- cycle;
                 
-                % Points extrêmes
-                \filldraw[red] (0,0) circle (2pt) node[below left] {\((0,0)\)};
-                \filldraw[red] (1.5,1.5) circle (2pt) node[above left] {\((1.5,1.5)\)};
-                \filldraw[red] (3,0) circle (2pt) node[below right] {\((3,0)\)};
+                % Points extrêmes 
+                \filldraw[] (0,0) circle (2pt) node[below left] {\((0,0)\)};
+                \filldraw[] (1.5,1.5) circle (2pt) node[above right] {\((1.5,1.5)\)};
+                \filldraw[] (3,0) circle (2pt) node[below right] {\((3,0)\)};
+
+                % Centre du polytope
+                \node at (1.5,0.5) {\(P\)};
             \end{tikzpicture}
     }
 }

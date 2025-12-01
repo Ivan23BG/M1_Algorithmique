@@ -21,15 +21,16 @@
 	\begin{td-sol}[]\ %
         Le polygone \(P\) est défini par les contraintes:
         \begin{equation*}
-            \begin{aligned}
-                x_1 + x_2 &\leq 3\\
-                x_1 - x_2 &\leq 0\\
-                x_1 &\geq 0\\
-                x_2 &\geq 0
-            \end{aligned}
+            \begin{alignedat}{2}
+                \textcolor{red}{(1)}\quad & x_1 + x_2 &&\le 3 \\
+                \textcolor{blue}{(2)}\quad & x_1 - x_2 &&\le 0 \\
+                \textcolor{green!60!black}{(3)}\quad & x_1 &&\ge 0 \\
+                \textcolor{orange}{(4)}\quad & x_2 &&\ge 0
+            \end{alignedat}
         \end{equation*}
         Graphiquement, cela donne:
         
+        \vspace{0.2cm}
         \input{../assets/tikz/cc_1_ex_1.tex}
 
         Les points extrêmes de \(P\) sont donc:
@@ -38,7 +39,12 @@
             \item \((1.5,1.5)\)
             \item \((3,0)\)
         \end{itemize}
-        Aucun de ces points n'est dégénéré car à chaque point extrême, le nombre de contraintes actives est de 2.
+        On voit alors clairement que 
+        \begin{itemize}
+            \item le point \((0,0)\) est dégénéré car trois contraintes sont actives en ce point, les contraintes \(\textcolor{blue}{(2)}\), \(\textcolor{green!60!black}{(3)}\) et \(\textcolor{orange}{(4)}\).
+            \item le point \((1.5,1.5)\) n'est pas dégénéré car seules les contraintes \(\textcolor{red}{(1)}\) et \(\textcolor{blue}{(2)}\) sont actives en ce point.
+            \item le point \((3,0)\) n'est pas dégénéré car seules les contraintes \(\textcolor{red}{(1)}\) et \(\textcolor{green!60!black}{(3)}\) sont actives en ce point.
+        \end{itemize}
 	\end{td-sol}
 }{}
 
@@ -64,7 +70,19 @@
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+            \item Soient \((x_1,y_1,z_1), (x_2,y_2,z_2) \in S\) et \(\lambda \in [0,1]\).
+            Montrons que le point \(\lambda (x_1,y_1,z_1) + (1-\lambda)(x_2,y_2,z_2)\) appartient à \(S\):
+            \begin{equation*}
+                \begin{aligned}
+                    z &= \lambda z_1 + (1-\lambda) z_2 \\
+                    &\geq \lambda (x_1^2 + y_1^2) + (1-\lambda)(x_2^2 + y_2^2) \\
+                    &\geq \lambda x_1^2 + (1-\lambda)x_2^2 + \lambda y_1^2 + (1-\lambda)y_2^2 \\
+                    &\geq (\lambda x_1 + (1-\lambda)x_2)^2 + (\lambda y_1 + (1-\lambda)y_2)^2 \\
+                    &= x^2 + y^2
+                \end{aligned}
+            \end{equation*}
+        \end{enumerate}
 	\end{td-sol}
 }{}
 

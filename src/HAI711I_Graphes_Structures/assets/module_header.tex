@@ -45,28 +45,3 @@
 \usepackage{floatrow}
 \usepackage{caption}
 
-% % failed attempt to have dynamic exercise/solution referencing
-% \NewDocumentCommand{\tdsection}{sm}{%
-%     \IfBooleanTF{#1}
-%         {\section*{#2}}
-%         {\section{#2}}%
-%     \label{sec:td\thesection}%
-%     \iftoggle{showquestions}{%
-%         \addcontentsline{toc}{section}{\nameref{sec:td\thesection}}%
-%     }{%
-%         % When questions are hidden, point to solutions
-%         \addcontentsline{toc}{section}{\nameref{sec:td\thesection-sol}}%
-%     }%
-% }
-
-% \NewDocumentCommand{\tdexercise}{o m}{%
-%     \iftoggle{showquestions}{%
-%         \begin{td-exo}[#1]#2\end{td-exo}%
-%         \label{exo:td\thesection}%
-%     }{}%
-% }
-
-% \NewDocumentCommand{\tdsolution}{o m}{%
-%     \begin{td-sol}[#1]#2\end{td-sol}%
-%     \label{exo:td\thesection-sol}%
-% }
