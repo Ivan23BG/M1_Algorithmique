@@ -108,6 +108,65 @@
             
             Ainsi, (I) est vérifiée. En l'appliquant à \(a=x_1, b=x_2\) puis à \(a=y_1, b=y_2\), 
             on obtient les inégalités nécessaires pour conclure que \(S\) est convexe.
+
+            \item Soient \(x,y \in C\). Par définition de \(C\), il existe \(x_1,x_2 \in C_1\) et \(y_1,y_2 \in C_2\) tels que
+            \begin{equation*}
+                \begin{aligned}
+                    x &= s x_1 + (1-s) x_2, \\
+                    y &= s y_1 + (1-s) y_2.
+                \end{aligned}
+            \end{equation*}
+            Soit \(\lambda \in [0,1]\). On a:
+            \begin{equation*}
+                \begin{aligned}
+                    \lambda x + (1-\lambda) y 
+                    &= \lambda \big( s x_1 + (1-s) x_2 \big) + (1-\lambda) \big( s y_1 + (1-s) y_2 \big) \\
+                    &= \lambda s x_1 + \lambda (1-s) x_2 + (1-\lambda) s y_1 + (1-\lambda)(1-s) y_2 \\
+                    &= s \big( \underbrace{\lambda x_1 + (1-\lambda) y_1}_{= x_0\in C_1} \big) + (1-s) \big( \underbrace{\lambda x_2 + (1-\lambda) y_2}_{= y_0\in C_2} \big)\\
+                    &= s x_0 + (1-s) y_0 \in C.
+                \end{aligned}
+            \end{equation*}
+            Ainsi, \(C\) est convexe.
+
+            \item Soient \(x,y \in C\). Par définition de \(C\), il existe \(x_1,x_2 \in C_1\) et \(y_1,y_2 \in C_2\) tels que
+            \begin{equation*}
+                \begin{aligned}
+                    x &= x_1 + x_2, \\
+                    y &= y_1 + y_2.
+                \end{aligned}
+            \end{equation*}
+            Soit \(\lambda \in [0,1]\). On a:
+            \begin{equation*}
+                \begin{aligned}
+                    \lambda x + (1-\lambda) y 
+                    &= \lambda (x_1 + x_2) + (1-\lambda)(y_1 + y_2) \\
+                    &= \lambda x_1 + \lambda x_2 + (1-\lambda) y_1 + (1-\lambda) y_2 \\
+                    &= \big( \underbrace{\lambda x_1 + (1-\lambda) y_1}_{= x_0\in C_1} \big) + \big( \underbrace{\lambda x_2 + (1-\lambda) y_2}_{= y_0\in C_2} \big)\\
+                    &= x_0 + y_0 \in C.
+                \end{aligned}
+            \end{equation*}
+            Ainsi, \(C\) est convexe.
+
+            \item On rappelle que si \(f\) est convexe, alors pour tous \(x,y \in \bb R\) et \(\lambda \in [0,1]\), on a
+            \begin{equation*}
+                f \big( \lambda x + (1-\lambda) y \big) \leq \lambda f(x) + (1-\lambda) f(y).
+            \end{equation*}
+            Visuellement, la courbe de \(f\) est en dessous de la corde reliant les points \((x,f(x))\) et \((y,f(y))\).
+            
+            Soient \(x,y \in \bb R\) et \(\lambda \in [0,1]\).
+            On a:
+            \begin{equation*}
+                \begin{aligned}
+                    g \circ f \big( \lambda x + (1-\lambda) y \big) 
+                    &= g \big( f(\lambda x + (1-\lambda) y) \big) \\
+                    &\leq g \big( \lambda f(x) + (1-\lambda) f(y) \big) 
+                    \quad \text{(car \(f\) est convexe)} \\
+                    &\leq \lambda g(f(x)) + (1-\lambda) g(f(y)) 
+                    \quad \text{(car \(g\) est convexe et croissante)} \\
+                    &\leq \lambda (g \circ f)(x) + (1-\lambda)(g \circ f)(y).
+                \end{aligned}
+            \end{equation*}
+            Ainsi, \(g \circ f\) est convexe.
         \end{enumerate}
     \end{td-sol}
 }{}
