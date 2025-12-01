@@ -53,7 +53,7 @@ To generate them locally, use the following commands
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## License
-This project is licensed under the [LICENSE-NAME] - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [CC-BY-SA-4.0 LICENSE] - see the [LICENSE](LICENSE) file for details.
 
 ## Authors
 - [Ivan Lejeune]
