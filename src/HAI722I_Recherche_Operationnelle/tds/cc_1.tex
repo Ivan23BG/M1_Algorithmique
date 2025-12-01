@@ -190,7 +190,32 @@
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+        \begin{enumerate}
+            \item \(x_1 = 1\).
+            \item \(\sum_{i=1}^n x_i = n\).
+            \item \(\sum_{i=1}^n x_i \geq k\).
+            \item \(x_1 \leq x_2\) ou encore \(x_1 - x_2 \leq 0\).
+            \item \(x_1 = x_2\) ou \(x_1 - x_2 = 0\).
+            \item On peut utiliser une des deux formulations suivantes:
+            \begin{itemize}
+                \item On introduit une variable binaire \(y\) qui vaut 1 si \(P_1\) ou \(P_2\) est vraie, 0 sinon. On peut l'écrire comme suit:
+                \begin{equation*}
+                    y \geq x_1, \quad y \geq x_2, \quad y \leq x_1 + x_2.
+                \end{equation*}
+                La contrainte demandée s'écrit alors:
+                \begin{equation*}
+                    \sum_{i=3}^n x_i \leq 2 + (n-2)(1-y).
+                \end{equation*}
+                Si \(y=1\), alors la contrainte devient \(\sum_{i=3}^n x_i \leq 2\). Si \(y=0\), la contrainte devient \(\sum_{i=3}^n x_i \leq n\), qui est toujours vérifiée.
+
+                \item On peut aussi écrire directement la contrainte:
+                \begin{equation*}
+                    \sum_{i=3}^n x_i \leq 2 + (n-2)(1 - x_1)(1 - x_2).
+                \end{equation*}
+                Si \(x_1=1\) ou \(x_2=1\), alors \((1 - x_1)(1 - x_2) = 0\) et la contrainte devient \(\sum_{i=3}^n x_i \leq 2\).
+                Si \(x_1=0\) et \(x_2=0\), alors \((1 - x_1)(1 - x_2) = 1\) et la contrainte devient \(\sum_{i=3}^n x_i \leq n\), qui est toujours vérifiée.
+            \end{itemize}
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
