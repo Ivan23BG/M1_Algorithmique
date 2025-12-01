@@ -136,13 +136,25 @@
 
 % ----- Consignes exo 6 ----- %
 \begin{td-exo}[Menger étendu]\,\\ % 6
-    Exercise 6 content
+    Soient \(G = (V,E)\) un graphe \(k\)-sommet-connexe (c'est-à-dire \(\kappa(G) \geq k\)).
+
+    \begin{enumerate}
+        \item On ajoute à \(G\) un sommet \(u\) de degré \(k\). Montrer que le graphe \(G'\) ainsi obtenu est encore \(k\)-sommet-connexe.
+
+        \item Pour le reste de l'exercice, on revient au graphe \(G\) de départ. Soient \(X\) et \(Y\) deux sous-ensembles de \(V\) de taille au moins \(k\). Montrer qu'il existe \(k\) chemins sommet-disjoints de \(X\) à \(Y\).
+
+        \item Soit maintenant \(z\) un sommet de \(G\) n'appartenant pas à \(X\), montrer de même que \(G\) contient \(k\) chemins sommet-disjoints (sauf en \(z\)) de \(z\) à \(X\).
+    \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 6 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 6
-		Exercice solution
+	\begin{td-sol}[]\, % 6
+		\begin{enumerate}
+            \item Soit \(X\) un ensemble de \(k-1\) sommets de \(G'\). Si \(X \subseteq V\), alors \(G' \setminus X\) est connexe car \(G\) est \(k\)-sommet-connexe et \(u\) a au moins un voisin dans \(G' \setminus X\).
+
+            Si \(u \in X\), alors \(X \setminus \{u\}\) est un ensemble de \(k-2\) sommets de \(G\), donc \(G' \setminus X = G \setminus (X \setminus \{u\})\) est connexe car \(G\) est \(k\)-sommet-connexe et \(k-2 < k\).
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
