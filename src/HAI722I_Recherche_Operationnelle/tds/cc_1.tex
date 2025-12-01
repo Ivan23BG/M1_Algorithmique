@@ -1,6 +1,6 @@
 % ----- Consignes exo 1 ----- %
 \begin{td-exo}[Points extrêmes]\,\\ % 1
-	Soit \(P = \{x \in \bb R^2 : A\leq b, x\geq 0 \}\) avec 
+	Soit \(P = \{x \in \bb R^2 : Ax\leq b, x\geq 0 \}\) avec 
     \begin{equation*}
         A = 
         \begin{pmatrix}
@@ -19,7 +19,26 @@
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+        Le polygone \(P\) est défini par les contraintes:
+        \begin{equation*}
+            \begin{aligned}
+                x_1 + x_2 &\leq 3\\
+                x_1 - x_2 &\leq 0\\
+                x_1 &\geq 0\\
+                x_2 &\geq 0
+            \end{aligned}
+        \end{equation*}
+        Graphiquement, cela donne:
+        
+        \input{../assets/tikz/cc_1_ex_1.tex}
+
+        Les points extrêmes de \(P\) sont donc:
+        \begin{itemize}
+            \item \((0,0)\)
+            \item \((1.5,1.5)\)
+            \item \((3,0)\)
+        \end{itemize}
+        Aucun de ces points n'est dégénéré car à chaque point extrême, le nombre de contraintes actives est de 2.
 	\end{td-sol}
 }{}
 

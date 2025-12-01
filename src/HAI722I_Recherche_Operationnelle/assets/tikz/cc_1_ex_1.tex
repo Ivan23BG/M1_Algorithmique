@@ -1,0 +1,23 @@
+\ffigbox[\FBwidth]{%
+\label{Fig:dm1ex1}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1]
+                % Axes
+                \draw[->] (-1,0) -- (5,0) node[right] {\(x_1\)};
+                \draw[->] (0,-1) -- (0,5) node[above] {\(x_2\)};
+                
+                % Constraints
+                \draw[thick] (0,3) -- (3,0) node[midway, above right] {\(x_1 + x_2 = 3\)};
+                \draw[thick] (0,0) -- (1.5,1.5) node[midway, above left] {\(x_1 - x_2 = 0\)};
+                
+                % Feasible region
+                \fill[blue!20] (0,0) -- (1.5,1.5) -- (3,0) -- cycle;
+                
+                % Points extrêmes
+                \filldraw[red] (0,0) circle (2pt) node[below left] {\((0,0)\)};
+                \filldraw[red] (1.5,1.5) circle (2pt) node[above left] {\((1.5,1.5)\)};
+                \filldraw[red] (3,0) circle (2pt) node[below right] {\((3,0)\)};
+            \end{tikzpicture}
+    }
+}
