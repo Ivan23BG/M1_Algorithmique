@@ -69,21 +69,47 @@
 
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\ %
-		\begin{enumerate}
+    \begin{td-sol}[]\ %
+        \begin{enumerate}
             \item Soient \((x_1,y_1,z_1), (x_2,y_2,z_2) \in S\) et \(\lambda \in [0,1]\).
             Montrons que le point \(\lambda (x_1,y_1,z_1) + (1-\lambda)(x_2,y_2,z_2)\) appartient à \(S\):
             \begin{equation*}
                 \begin{aligned}
                     z &= \lambda z_1 + (1-\lambda) z_2 \\
-                    &\geq \lambda (x_1^2 + y_1^2) + (1-\lambda)(x_2^2 + y_2^2) \\
-                    &\geq \lambda x_1^2 + (1-\lambda)x_2^2 + \lambda y_1^2 + (1-\lambda)y_2^2 \\
-                    &\geq (\lambda x_1 + (1-\lambda)x_2)^2 + (\lambda y_1 + (1-\lambda)y_2)^2 \\
+                    &\geq \lambda (x_1^2 + y_1^2) + (1-\lambda)(x_2^2 + y_2^2) 
+                    \quad \text{(car } z_1 \geq x_1^2+y_1^2 \text{ et } z_2 \geq x_2^2+y_2^2\text{)} \\ % chktex 9 chktex 1
+                    &= \lambda x_1^2 + (1-\lambda)x_2^2 + \lambda y_1^2 + (1-\lambda)y_2^2 \\
+                    &\geq {(\lambda x_1 + (1-\lambda)x_2)}^2 + {(\lambda y_1 + (1-\lambda)y_2)}^2 
+                    \quad \text{(par l'inégalité (I))} \\
                     &= x^2 + y^2
                 \end{aligned}
             \end{equation*}
+            où \(x = \lambda x_1 + (1-\lambda)x_2\) et \(y = \lambda y_1 + (1-\lambda)y_2\). 
+
+            On prouve en plus grand détail l'inégalité utilisée ci-dessus:
+            
+            \subsubsection*{Preuve de l'inégalité (I)}
+            Pour tout \(\lambda \in [0,1]\) et tous réels \(a,b\), on a:
+            \begin{equation*}
+                \lambda a^2 + (1-\lambda) b^2 \geq {(\lambda a + (1-\lambda)b)}^2. \tag{I}
+            \end{equation*}
+            
+            On a
+            \begin{align*}
+                &\lambda a^2 + (1-\lambda) b^2 - {(\lambda a + (1-\lambda)b)}^2 \\
+                &= \lambda a^2 + (1-\lambda)b^2 - \left[ \lambda^2 a^2 + 2\lambda(1-\lambda)ab + {(1-\lambda)}^2 b^2 \right] \\
+                &= \big(\lambda - \lambda^2\big) a^2 + \big((1-\lambda) - {(1-\lambda)}^2\big) b^2 - 2\lambda(1-\lambda)ab \\
+                &= \lambda(1-\lambda) a^2 + \lambda(1-\lambda) b^2 - 2\lambda(1-\lambda)ab \\
+                &= \lambda(1-\lambda) \left( a^2 + b^2 - 2ab \right) \\
+                &= \lambda(1-\lambda) {(a-b)}^2 \geq 0.
+            \end{align*}
+            La dernière inégalité vient du fait que \(\lambda(1-\lambda) \geq 0\) pour \(\lambda \in [0,1]\), 
+            et que \({(a-b)}^2 \geq 0\). 
+            
+            Ainsi, (I) est vérifiée. En l'appliquant à \(a=x_1, b=x_2\) puis à \(a=y_1, b=y_2\), 
+            on obtient les inégalités nécessaires pour conclure que \(S\) est convexe.
         \end{enumerate}
-	\end{td-sol}
+    \end{td-sol}
 }{}
 
 
