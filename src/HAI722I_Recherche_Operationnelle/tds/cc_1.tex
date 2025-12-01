@@ -319,7 +319,46 @@
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\ %
-		
+		\begin{enumerate}
+            \item Le système revient à résoudre:
+            \begin{equation*}
+                \begin{cases}
+                    x_1 + x_2 \leq 1\\
+                    -x_1 \leq 0\\
+                    -x_2 \leq 0
+                \end{cases}
+            \end{equation*}
+            Il admet la solution \(x = (0,0)\).
+
+            \item Le système revient à résoudre:
+            \begin{equation*}
+                \begin{cases}
+                    x_1 + x_2 + x_3 \leq 8\\
+                    x_1 \leq 4\\
+                    3x_2 + x_3 \leq 12\\
+                    x_3 \leq 6
+                \end{cases}
+            \end{equation*}
+            Il admet la solution \(x = (0,0,0)\).
+
+            \item Le système revient à résoudre:
+            \begin{equation*}
+                \begin{cases}
+                    -2x_1 + 3x_2 = 1\\
+                    x_1 - x_2 + 2x_3 = -1\\
+                    x_1, x_2, x_3 \geq 0
+                \end{cases}
+            \end{equation*}
+            En éliminant \(x_1\) à partir de la seconde équation, on obtient
+            \[
+                x_1 = -1 + x_2 - 2x_3.
+            \]
+            Substituant dans la première équation on obtient
+            \[
+                x_2 + 4x_3 = -1,
+            \]
+            donc \(x_2 = -1 - 4x_3\) et \(x_1 = -2 - 6x_3\). On a donc \(x_1 < 0\) et \(x_2 < 0\) pour tout \(x_3 \ge 0\). Ainsi il n'existe pas de \(x \ge 0\) tel que \(Ax=b\).
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
