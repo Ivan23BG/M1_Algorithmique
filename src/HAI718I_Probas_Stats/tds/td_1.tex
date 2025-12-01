@@ -1,5 +1,5 @@
-% \subsection*{Optional Sheet section 1}\label{subsec:ss_1}
-% \addcontentsline{toc}{subsection}{\nameref{subsec:ss_1}}
+\subsection*{Combinatoire et premiers calculs de probabilités}\label{subsec:ss_1}
+\addcontentsline{toc}{subsection}{\nameref{subsec:ss_1}}
 
 
 % ----- Consignes exo 1 ----- %
@@ -38,7 +38,8 @@
         \item Etudier le sens de variation de la suite \(p_n\) et calculer \(\lim_{n \to +\infty} p_n\).
     \end{enumerate}
 \end{td-exo}
-%helix
+
+
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{
 	\begin{td-sol}[]\,\\ % 2
@@ -48,10 +49,168 @@
 	\end{td-sol}
 }{}
 
+\subsection*{Loi binomiale}\label{subsec:ss_2}
+\addcontentsline{toc}{subsection}{\nameref{subsec:ss_2}}
+
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[]\,\\ % xx
+    On jette une fois un dé non truqué.
+    \begin{enumerate}
+        \item Quelle est la probabilité d'obtenir la face 1?
+        Quelle est la loi de cet événement?
+
+        On jette 18 fois le dé en question, quelles sont les probabilités 
+        des événements suivants:
+        \item Obtenir la face 1 exactement 3 fois.
+        \item Obtenir la face 1 au moins 3 fois.
+        \item Obtenir la face 1 au plus 16 fois.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx
+		Exercice solution
+	\end{td-sol}
+}{}
+
+\subsection*{La loi normale (gaussienne)}\label{subsec:ss_3}
+\addcontentsline{toc}{subsection}{\nameref{subsec:ss_3}}
+
+On suppose dans cette section que \(U \sim \mathcal{N}(0,1)\) (loi normale centrée réduite).
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[]\,\\ % xx
+    Calculer les probabilités suivantes:
+    \begin{enumerate}
+        \item \(P(U < 1.5)\)
+        \item \(P(U > 2.5)\)
+        \item \(P(U < -1.5)\)
+        \item \(P(-1.5 < U < 2.5)\)
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx
+		Exercice solution
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[]\,\\ % xx
+    Trouver la valeur de \(u\) telle que:
+    \begin{enumerate}
+        \item \(P(U < u) = 0.95\)
+        \item \(P(U < u) = 0.1\)
+        \item \(P(U > u) = 0.99\)
+        \item \(P(-u < U < u) = 0.95\)
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx
+		Exercice solution
+	\end{td-sol}
+}{}
+
+On suppose dans la suite que \(X \sim \mathcal{N}(\mu = 2, \sigma^2 = 5^2)\) (loi normale de moyenne 2 et d'écart-type 5).
+On a alors \( \frac{X - \mu}{\sigma} = \frac{X - 2}{5} \sim \mathcal{N}(0,1) \).
+
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[]\,\\ % xx
+    Calculer les probabilités suivantes:
+    \begin{enumerate}
+        \item \(P(X < 10)\)
+        \item \(P(0 < X < 10)\)
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx
+		Exercice solution
+	\end{td-sol}
+}{}
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[]\,\\ % xx
+    Trouver la valeur de \(x\) telle que:
+    \begin{enumerate}
+        \item \(P(X < x) = 0.95\)
+        \item \(P(X < x) = 0.05\)
+        \item \(P(2 - x < X < 2 + x) = 0.95\)
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx
+		Exercice solution
+	\end{td-sol}
+}{}
+
+\subsection*{La loi du Chi-deux \(\chi^2\) (ou loi de Pearson)}\label{subsec:ss_4}
+\addcontentsline{toc}{subsection}{\nameref{subsec:ss_4}}
+
+Pour \(U_1, \ldots, U_p\) des variables \(\mathcal{N}(0,1)\) indépendantes,
+on appelle loi du Chi-deux à \(p\) degrés de liberté \((\chi^2_p)\) la loi de la variable aléatoire
+\(\sum_{i=1}^p U_i^2\).
+
+% ----- Consignes exo xx ----- %
+\begin{td-exo}[]\, % xx
+    \begin{enumerate}
+        \item Que vaut la somme de deux variables de loi \(\chi^2\) indépendantes de degrés de liberté respectifs \(p\) et \(q\)?
+
+        \item Soit \(X \sim \chi^2_{15}\) et \(Y \sim \chi^2_{10}\). Calculer:
+        \begin{enumerate}
+            \item \(P(X < 6.26)\) 
+            \item \(P(Y > 3.25)\)
+            \item \(P(X + Y > 11.52)\)
+        \end{enumerate}
+
+        \item Soit \(X \sim \chi^2_{15}\). Trouver la valeur de \(x\) telle que:
+        \begin{enumerate}
+            \item \(P(X < x) = 0.01\)
+            \item \(P(X < x) = 0.05\)
+            \item \(P(X < x) = 0.99\)
+        \end{enumerate}
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo xx ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % xx
+		Exercice solution
+	\end{td-sol}
+}{}
+
+\subsection*{Théorème de la limite centrale}\label{subsec:ss_5}
+\addcontentsline{toc}{subsection}{\nameref{subsec:ss_5}}
+
+On rappelle quelques propriétés de la loi normale.
+
+
 
 % % ----- Consignes exo xx ----- %
-% \begin{td-exo}[Optional title xx]\,\\ % xx
-% Exercise xx content
+% \begin{td-exo}[]\,\\ % xx
+%   
+% \end{td-exo}
+
+% % ----- Solutions exo xx ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\,\\ % xx
+% 		Exercice solution
+% 	\end{td-sol}
+% }{}
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[]\,\\ % xx
+%   
 % \end{td-exo}
 
 % % ----- Solutions exo xx ----- %
