@@ -258,7 +258,34 @@ soit en déposant votre devoir durant le cours
 
 % ----- Solutions exo 3 ----- %
 \begin{td-sol}[]\ %
-    % TODO: completer solution exercice 3
+    Soient \((x^1, y^1)\) et \((x^2, y^2)\) deux points de \(C\). Par définition de \(C\), il existe \(y_1^1, y_2^1, y_1^2, y_2^2\) tels que
+    \begin{equation*}
+        (x^1, y_1^1) \in C_1, \quad (x^1, y_2^1) \in C_2, \quad (x^2, y_1^2) \in C_1, \quad (x^2, y_2^2) \in C_2,
+    \end{equation*}
+    et
+    \begin{equation*}
+        y^1 = y_1^1 + y_2^1, \quad y^2 = y_1^2 + y_2^2.
+    \end{equation*}
+    Soit \(\lambda \in [0,1]\). Considérons le point
+    \begin{equation*}
+        (x^\lambda, y^\lambda) = \lambda (x^1, y^1) + (1-\lambda)(x^2, y^2).
+    \end{equation*}
+    On a
+    \begin{equation*}
+        \begin{aligned}
+            x^\lambda 
+            &= \lambda x^1 + (1-\lambda)x^2, \\
+            y^\lambda 
+            &= \lambda y^1 + (1-\lambda)y^2 \\
+            &= \lambda (y_1^1 + y_2^1) + (1-\lambda)(y_1^2 + y_2^2) \\
+            &= (\lambda y_1^1 + (1-\lambda)y_1^2) + (\lambda y_2^1 + (1-\lambda)y_2^2).
+        \end{aligned}
+    \end{equation*}
+    Notons \(y_1^\lambda = \lambda y_1^1 + (1-\lambda)y_1^2\) et \(y_2^\lambda = \lambda y_2^1 + (1-\lambda)y_2^2\). Par convexité de \(C_1\) et \(C_2\), on a
+    \begin{equation*}
+        (x^\lambda, y_1^\lambda) \in C_1, \quad (x^\lambda, y_2^\lambda) \in C_2.
+    \end{equation*}
+    Ainsi, par définition de \(C\), on a \((x^\lambda, y^\lambda) \in C\). Donc \(C\) est convexe.
 \end{td-sol}
 
 % ----- Consignes exo 4 ----- %
@@ -275,8 +302,44 @@ soit en déposant votre devoir durant le cours
 
 % ----- Solutions exo 4 ----- %
 \begin{td-sol}[]\ %
-    % TODO: completer solution exercice 4
+    \begin{enumerate}
+        \item On introduit les variables \(x_{ij}\) qui valent 1 si le job \(i\) est affecté au travailleur \(j\), et 0 sinon. Le programme linéaire s'écrit alors:
+
+        \begin{numcases}{P_0 = }
+            \max z = \sum_{i=1}^m \sum_{j=1}^n p_{ij} x_{ij}\label{C1}\\ % chktex 1
+            \sum_{j=1}^n x_{ij} = 1, \quad \forall i \in \{1,\ldots,m\}\label{C2}\\ % chktex 1
+            \sum_{i=1}^m x_{ij} \leq 1, \quad \forall j \in \{1,\ldots,n\}\label{C3}\\ % chktex 1
+            x_{ij} \in \{0,1\}, \quad \forall i,j\label{C4} % chktex 1
+        \end{numcases}
+
+        où les contraintes correspondent à:
+
+        \begin{itemize}
+            \item[\eqref{C1}] on maximise le rendement total
+            \item[\eqref{C2}] chaque job est affecté à un travailleur
+            \item[\eqref{C3}] chaque travailleur a au plus un job
+            \item[\eqref{C4}] les variables sont binaires
+        \end{itemize}
+
+        \item Pour obtenir la formulation du dual, on relâche la contrainte de binarité sur les variables \(x_{ij}\). On introduit les variables duales \(u_i\) (une par job) et \(v_j\) (une par travailleur). Le dual s'écrit alors:
+
+        \begin{numcases}{D_0 = }
+            \min w = \sum_{i=1}^m u_i + \sum_{j=1}^n v_j\label{D1}\\ % chktex 1
+            u_i + v_j \geq p_{ij}, \quad \forall i,j\label{D2}\\ % chktex 1
+            v_j \geq 0, \quad \forall j\label{D3} % chktex 1
+        \end{numcases}
+
+        où les contraintes correspondent à:
+
+        \begin{itemize}
+            \item[\eqref{D1}] on minimise la somme des coûts
+            \item[\eqref{D2}] les coûts doivent couvrir les rendements
+            \item[\eqref{D3}] les variables duales associées aux inégalités sont positives
+        \end{itemize}
+
+    \end{enumerate}
 \end{td-sol}
+
 
 % ----- Consignes exo 5 ----- %
 \iftoggle{showquestions}{
