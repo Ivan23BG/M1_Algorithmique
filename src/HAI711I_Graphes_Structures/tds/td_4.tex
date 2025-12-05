@@ -154,6 +154,14 @@
             \item Soit \(X\) un ensemble de \(k-1\) sommets de \(G'\). Si \(X \subseteq V\), alors \(G' \setminus X\) est connexe car \(G\) est \(k\)-sommet-connexe et \(u\) a au moins un voisin dans \(G' \setminus X\).
 
             Si \(u \in X\), alors \(X \setminus \{u\}\) est un ensemble de \(k-2\) sommets de \(G\), donc \(G' \setminus X = G \setminus (X \setminus \{u\})\) est connexe car \(G\) est \(k\)-sommet-connexe et \(k-2 < k\).
+
+            \item On rajoute un point \(x\) qui domine \(X\) et un point \(y\) dominé par \(Y\). Alors, par le point précédent, le graphe \(G''\) ainsi obtenu est encore \(k\)-sommet-connexe.
+            Donc, par le théorème de Menger, il existe \(k\) chemins sommet-disjoints de \(x\) à \(y\) dans \(G''\).
+            En enlevant \(x\) et \(y\) de ces chemins, on obtient bien \(k\) chemins sommet-disjoints de \(X\) à \(Y\) dans \(G\).
+
+            \item On rajoute un point \(x\) qui domine \(X\). Alors, par le point précédent, le graphe \(G''\) ainsi obtenu est encore \(k\)-sommet-connexe.
+            Donc, par le théorème de Menger, il existe \(k\) chemins sommet-disjoints de \(z\) à \(x\) dans \(G''\).
+            En enlevant \(x\) de ces chemins, on obtient bien \(k\) chemins sommet-disjoints (sauf en \(z\)) de \(z\) à \(X\) dans \(G\).
         \end{enumerate}
 	\end{td-sol}
 }{}
@@ -161,7 +169,12 @@
 
 % ----- Consignes exo 7 ----- %
 \begin{td-exo}[Plein de cycles]\,\\ % 7
-    Exercise 7 content
+    Soit \(G = (V,E)\) un graphe \(k\)-sommet-connexe, avec \(k\geq 2\).
+    \begin{enumerate}
+        \item Soient \(x_1\) et \(x_2\) deux sommets distincts de \(G\). Montrer qu'il existe un cycle contenant \(x_1\) et \(x_2\).
+
+        \item On veut généraliser le résultat précédent. Soient \(\{x_1,\ldots,x_k\}\) un ensemble de \(k\) sommets distincts de \(G\). Montrer qu'il existe un cycle de \(G\) contenant tous les \(x_i\) (on pourra considérer un cycle qui contient le plus grand nombre possible de sommets \(x_i\) puis appliquer le résultat de l'exercice précédent).
+    \end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 7 ----- %
