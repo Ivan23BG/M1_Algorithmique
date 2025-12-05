@@ -179,8 +179,18 @@
 
 % ----- Solutions exo 7 ----- %
 \iftoggle{showsolutions}{
-	\begin{td-sol}[]\,\\ % 7
-		Exercice solution
+	\begin{td-sol}[]\, % 7
+		\begin{enumerate}
+            \item Le graphe \(G\) étant \(k\)-sommet-connexe avec \(k \geq 2\), il est en particulier \(2\)-sommet-connexe.
+            Donc, par le théorème de Menger, il existe deux chemins sommet-disjoints entre \(x_1\) et \(x_2\).
+            En combinant ces deux chemins, on obtient bien un cycle contenant \(x_1\) et \(x_2\).
+
+            \item Considérons un cycle \(C\) qui contient un nombre maximum de sommets \(\{x_1,\ldots,x_k\}\). On suppose qu'il ne contient pas tous ces sommets (sinon la preuve est triviale). Supposons qu'il contient \(x_1,\ldots,x_i\) avec \(i<k\).
+
+            Si \(C = x_1,\ldots,x_i\) alors on applique Menger entre \(x_{i+1}\) et \(C\) pour obtenir \(i\) chemins sommet-disjoints entre \(x_{i+1}\) et \(C\). Alors, \((C - x_1 x_2) \cup P_1 \cup P_2\) est un cycle contenant \(x_1,\ldots,x_{i+1}\).
+
+            Sinon, \(C\) contient au moins \(i+1\) sommets. On applique Menger entre \(x_{i+1}\) et \(C\) pour obtenir \(i+1\) chemins sommet-disjoints entre \(x_{i+1}\) et \(C\). Par le principe des tiroirs, au moins deux de ces chemins aboutissent entre deux sommets consécutifs de \(C\). En remplaçant le segment de \(C\) entre ces deux sommets par les deux chemins, on obtient un cycle contenant \(x_1,\ldots,x_{i+1}\).
+        \end{enumerate}
 	\end{td-sol}
 }{}
 
