@@ -1,0 +1,10 @@
+% faits connus
+b. % benoit vient
+c. % cloe vient
+
+% regles
+d :- c.
+a :- f.
+x :- e.
+f :- b.
+x :- b, not a.

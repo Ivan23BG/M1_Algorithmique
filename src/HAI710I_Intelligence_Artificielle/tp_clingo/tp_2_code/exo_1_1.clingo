@@ -1,0 +1,4 @@
+% generation de toutes les affectations
+colored(X,red):- node(X),not colored(X,blue),not colored(X,green).
+colored(X,blue):- node(X),not colored(X,red),not colored(X,green).
+colored(X,green):- node(X),not colored(X,blue),not colored(X,red).

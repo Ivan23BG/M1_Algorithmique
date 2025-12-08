@@ -1,0 +1,1 @@
+answer(X) :- requete sur X et autres variables

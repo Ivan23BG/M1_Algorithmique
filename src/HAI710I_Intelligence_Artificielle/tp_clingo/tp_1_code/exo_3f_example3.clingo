@@ -1,0 +1,1 @@
+sexe_inconnu(X) :- personnage(X), not sexe_connu(X). % safe

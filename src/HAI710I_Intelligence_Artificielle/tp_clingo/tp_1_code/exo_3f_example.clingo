@@ -1,0 +1,2 @@
+sexe_connu(X) :- femme(X).
+sexe_connu(X) :- homme(X).

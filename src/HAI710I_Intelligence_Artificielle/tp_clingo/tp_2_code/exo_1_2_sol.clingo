@@ -1,0 +1,12 @@
+% generation de toutes les affectations
+colored(X,red):- node(X), not colored(X,blue), not colored(X,green).
+colored(X,blue):- node(X), not colored(X,red), not colored(X,green).
+colored(X,green):- node(X), not colored(X,blue), not colored(X,red).
+
+% deux sommets adjacents ne peuvent avoir la meme couleur
+:- edge(X,Y), colored(X,Z), colored(Y,Z).
+
+% 7 sommets (atomes unaires)
+node(wa;nt;sa;q;nsw;v;t).
+% 9 aretes (atomes binaires)
+edge(sa,wa;sa,nt;sa,q;sa,nsw;sa,v;wa,nt;nt,q;q,nsw;nsw,v).

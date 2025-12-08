@@ -1,0 +1,5 @@
+% generation de toutes les affectations
+aCouleur(X,b):- objet(X),not aCouleur(X,j),not aCouleur(X,r),not aCouleur(X,n).
+aCouleur(X,j):- objet(X),not aCouleur(X,b),not aCouleur(X,r),not aCouleur(X,n).
+aCouleur(X,r):- objet(X),not aCouleur(X,j),not aCouleur(X,b),not aCouleur(X,n).
+aCouleur(X,n):- objet(X),not aCouleur(X,j),not aCouleur(X,r),not aCouleur(X,b).

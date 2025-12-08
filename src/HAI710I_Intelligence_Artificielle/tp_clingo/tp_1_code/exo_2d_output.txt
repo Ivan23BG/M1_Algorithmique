@@ -1,0 +1,4 @@
+Answer: 1
+carnivore(loup) animal(loup) animal(chevre) animal(chaperon) 
+herbivore(chevre) omnivore(chaperon) humain(chaperon) mange(loup,chevre)
+SATISFIABLE

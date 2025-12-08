@@ -1,0 +1,41 @@
+\documentclass[french,a4paper,10pt]{article}
+% uncomment the following lines after copying the template
+\input{../../common/common_header.tex}
+\input{../../common/macros/math.tex}
+\input{../../common/macros/theorems.tex}
+\input{../assets/module_header.tex}
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
+
+
+\title{\color{astral} \sffamily \bfseries Introduction à l'IA symbolique  --- TPs}
+\author{Ivan Lejeune}
+\date{\today}
+
+\toggletrue{showsolutions} % Allows showing/hiding solutions
+% uncomment the following line to hide solutions
+% \togglefalse{showsolutions}
+
+
+
+\usepackage{fancyvrb} % for \VerbatimEnvironment
+% \setLR % for listings in verbatim
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+
+    \newpage
+    \section*{TP1 --- Introduction à Clingo}\label{sec:TP1}
+    \addcontentsline{toc}{section}{\nameref{sec:TP1}}
+    \setcounter{section}{1}
+    \setcounter{tdcounter}{0}
+    \input{../tp_clingo/tp_1.tex}
+
+    \newpage
+    \section*{TP2 --- Clingo avancé}\label{sec:TP2}
+    \addcontentsline{toc}{section}{\nameref{sec:TP2}}
+    \setcounter{section}{2}
+    \setcounter{tdcounter}{0}
+    \input{../tp_clingo/tp_2.tex}
+\end{document}
+

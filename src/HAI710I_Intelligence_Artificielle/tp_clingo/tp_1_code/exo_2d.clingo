@@ -1,0 +1,3 @@
+% carnivore(X) :- omnivore(X). % (e1)
+% herbivore(X) :- omnivore(X). % (e2)
+animal(X) :- omnivore(X). % (k / e3)

@@ -1,0 +1,4 @@
+% 7 sommets (atomes unaires)
+node(wa;nt;sa;q;nsw;v;t).
+% 9 aretes (atomes binaires)
+edge(sa,wa;sa,nt;sa,q;sa,nsw;sa,v;wa,nt;nt,q;q,nsw;nsw,v).

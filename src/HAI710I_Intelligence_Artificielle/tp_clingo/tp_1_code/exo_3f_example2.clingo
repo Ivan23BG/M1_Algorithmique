@@ -1,0 +1,1 @@
+sexe_inconnu(X) :- not sexe_connu(X). % unsafe

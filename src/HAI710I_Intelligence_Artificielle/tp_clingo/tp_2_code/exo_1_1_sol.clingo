@@ -1,0 +1,2 @@
+% deux sommets adjacents ne peuvent avoir la meme couleur
+:- edge(X,Y), colored(X,Z), colored(Y,Z).

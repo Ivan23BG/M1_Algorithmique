@@ -1,0 +1,4 @@
+% C1
+:- aCouleur(carrosserie,U), aCouleur(portiere,V), U!=V.
+:- aCouleur(carrosserie,U), aCouleur(capot,V), U!=V.
+:- aCouleur(portiere,U), aCouleur(capot,V), U!=V.

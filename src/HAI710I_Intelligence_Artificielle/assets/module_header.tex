@@ -1,0 +1,32 @@
+\usepackage{floatrow}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{xcolor}
+% ----- Clingo / ASP language definition -----
+\lstdefinelanguage{clingo}{
+    keywords={not},
+    sensitive=true,
+    comment=[l]{\%},
+}
+\definecolor{codebg}{RGB}{245,245,245}   % very light gray
+\definecolor{codeborder}{RGB}{220,220,220}
+\definecolor{keywordcolor}{RGB}{0,0,150}
+\definecolor{commentcolor}{RGB}{120,120,120}
+\lstdefinestyle{clingo-style}{
+    language=clingo, % new language
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    literate={:-}{{\textcolor{keywordcolor}{\textbf{:-}}}}2
+}
+
+% convenience macro
+\newcommand{\clingoFile}[1]{\lstinputlisting[style=clingo-style]{#1}}

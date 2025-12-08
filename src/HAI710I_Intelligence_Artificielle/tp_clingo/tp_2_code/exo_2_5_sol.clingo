@@ -1,0 +1,14 @@
+% C3
+% Lille
+:- aCouleur(portiere, b). :- aCouleur(capot, b). 
+
+% Hambourg, aucune contrainte
+
+% Palerme
+:- aCouleur(parechoc, j). :- aCouleur(parechoc, r). :- aCouleur(parechoc,n).
+
+% Madrid
+:- aCouleur(bache, n).
+
+% Athenes
+:- aCouleur(enjoliveur,b). :- aCouleur(enjoliveur, n).

@@ -1,0 +1,194 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Pour commencer en logique des propositions]\,\\ % 1
+    Commençons par un exemple simple en logique des propositions (tous les symboles devront commencer par une minuscule puisqu’il n’y a pas de variable): Benoît et Cloé une réunion d'amis; Cloé veut absolument inviter Djamel; si Félix vient, il faut inviter Amandine; si Emma vient, il faut inviter Xéna; Benoît voudrait inviter Félix et Xéna, mais Xéna ne supporte pas Amandine, donc Benoît n'invite Xéna que si Amandine ne vient pas.
+    On modélise cette situation en utilisant des symboles propositionnels associés à l’initiale de chaque prénom (par exemple, le symbole \(b\) signifie \og{}Benoît vient\fg{}). On obtient 2 faits (\(b\) et \(c\)) et 5 règles:
+    \begin{itemize}
+        \item Si \(c\) alors \(d\) (ou plutôt \og{}\(d\) si \(c\)\fg{}, ce qu'on note \(d \coloneq c\)),
+        \item Si \(f\) alors \(a\),
+        \item Si \(e\) alors \(x\),
+        \item Si \(b\) alors \(f\),
+        \item Si \(b\) et \(\text{not } a\) alors \(x\).
+    \end{itemize}
+
+    Qui viendra à la réunion. La base de connaissances est satisfiable (ouf!) et Clingo fait remarquer au passage qu'Emme ne sera de toute façon pas invitée, car \(e\) n'apparaît dans aucune tête de règle, c'est-à-dire ni dans un fait --- vu comme une règle à corps vide --- ni dans une conclusion de \og{}vraie\fg{} règle.
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 1
+		On se sert de l'outil \href{https://potassco.org/clingo/run/}{Clingo} présenté dans le TP pour modéliser le problème.
+
+        \clingoFile{./tp_1_code/exo_1.clingo}
+
+        On lance Clingo sur ce programme et on obtient la sortie suivante:
+
+        \clingoFile{./tp_1_code/exo_1_output.txt}
+
+        On constate que la base de connaissances est satisfiable et que les invités sont Cloé, Djamel, Félix, Amandine et Benoît.
+	\end{td-sol}
+}{}
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Pour commencer en logique du premier ordre]\,\\ % 2
+    Passons à la logique du premier ordre. En réalité, Clingo instancie chaque règle par toutes les constantes apparaissant dans la base de connaissances (mais avec plus de discernement que la méthode brutale vue en cours), il se ramène donc à la logique des propositions, même si l'utilisateur ne le voit pas
+
+    \begin{enumerate}
+        \item Modéliser les connaissances suivantes (en 3 faits et 8 règles) en utilisant les prédicats unaires \defemph{animal}, \defemph{plante}, \defemph{carnivore}, \defemph{herbivore}, \defemph{omnivore} et \defemph{humain}, et le prédicat binaire \defemph{mange} (\og{}\(x\) mange \(y\)\fg{}):
+        \begin{enumerate}
+            \item La chèvre de Monsieur Seguin est un herbivore.
+            \item Le loup de Monsieur Seguin est un carnivore.
+            \item Le petit chaperon rouge est un humain.
+            \item Les carnivores et les herbivores sont des animaux.
+            \item Les omnivores sont à la fois des carnivores et des herbivores (\og{}si on est un omnivore alors on est un carnivore et un herbivore\fg{}).
+            \item Les humains sont des omnivores.
+            \item Tout animal carnivore ne mange que des animaux.
+            \item Tout animal herbivore ne mange que des plantes.
+            \item Tout animal carnivore mange n’importe quel animal herbivore.
+        \end{enumerate}
+        Vous constaterez que Clingo produit des faits étranges: le petit chaperon rouge se mange lui-même, la chèvre est une plante, ainsi que le petit chaperon rouge.
+
+        \item On modifie la phrase 9: Tout animal carnivore mange n’importe quel animal herbivore \textbf{différemment de lui-même}. Prendre en compte cette modification: le symbole de différence est \(!=\) et c'est une macro pour \texttt{not ==}, autrement dit \((X \neq Y)\) est vrai si rien n'indique que \(X\) est égal à \(Y\). Le petit chaperon rouge devrait aller mieux.
+
+        \item Nous savons que les animaux ne sont pas des plantes (ou l'inverse), autrement dit les deux ensembles d'entités sont disjoints. Ceci peut s'exprimer sous la forme d'une règle appelée \og{}\defemph{contrainte négative}\fg{}: 
+        \begin{equation*}
+            \forall X.\ \text{animal}(X) \land \text{plante}(X) \rightarrow \bot
+        \end{equation*}
+        Avec la syntaxe de Clingo, ceci s'écrit comme une règle à tête vide (un corps vide est considéré comme toujours vrai, une tête vide comme toujours fausse):
+        
+        \clingoFile{./tp_1_code/exo_2c.clingo}
+
+        Ajouter cette contrainte. Que répond Clingo.
+
+        \item Bien sûr, c'est la définition d'omnivore qui ne convient pas: un omnivore n’est ni un carnivore ni un herbivore. Commenter les règles qui définissent omnivore, et indiquer simplement qu'un omnivore est un animal. Exécuter à nouveau Clingo et analyser le résultat.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 2
+		\begin{enumerate}
+            \item On modélise les connaissances en Clingo comme suit:
+
+            \clingoFile{./tp_1_code/exo_2a.clingo}
+
+            En lançant Clingo, on obtient la sortie suivante:
+
+            \clingoFile{./tp_1_code/exo_2a_output.txt}
+
+            En effet, on a quelques résultats étranges, comme le petit chaperon rouge qui se mange lui-même.
+
+            \item On modélise la modification de la phrase 9 en Clingo comme suit:
+
+            \clingoFile{./tp_1_code/exo_2b.clingo}
+
+            En lançant Clingo, on obtient la sortie suivante:
+
+            \clingoFile{./tp_1_code/exo_2b_output.txt}
+
+            C'est plus raisonnable.
+
+            \item On ajoute la contrainte négative dans le fichier Clingo:
+
+            \clingoFile{./tp_1_code/exo_2c2.clingo}
+
+            En lançant Clingo, on obtient la sortie suivante:
+
+            \clingoFile{./tp_1_code/exo_2c2_output.txt}
+
+            La base de connaissances est insatisfiable, car on a par exemple la chèvre qui est à la fois un animal et une plante.
+
+            \item On modélise la nouvelle définition d'omnivore en Clingo comme suit:
+
+            \clingoFile{./tp_1_code/exo_2d.clingo}
+
+            En lançant Clingo, on obtient la sortie suivante:
+
+            \clingoFile{./tp_1_code/exo_2d_output.txt}
+
+            La base de connaissances est maintenant satisfiable, et les résultats sont plus cohérents.
+        \end{enumerate}
+
+        Le code final est le suivant:
+        \clingoFile{./tp_1_code/exo_2_final.clingo}
+	\end{td-sol}
+}{}
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[La famille d'Oedipe]\,\\ % 3
+    Le fichier oedipe-family-facts.lp (voir moodle) fournit une base de faits décrivant la famille d'Oedipe, personnage de la mythologie grecque. Vous pouvez copier-coller ce fichier dans la fenêtre de Clingo. Les prédicats utilisés sont les suivants (où / indique l'arité du prédicat): personnage/1, homme/1, femme/1, aEnfant/2 (qui lie un parent à l'un de ses enfants), roi/2 (qui lie un roi à la ville dont il est roi). La figure ci- dessous donne une vue d'ensemble de cette base de faits:
+
+    \begin{equation*}
+        \text{ non je ne vais pas redissiner ca xD}
+    \end{equation*}
+
+    Important: pour éviter d'être submergé sous l'ensemble des faits produits, vous pouvez demander à Clingo de visualiser seulement les atomes ayant un certain prédicat, grâce à la commande \defemph{\#show} par exemple:
+
+    \clingoFile{./tp_1_code/exo_3_show_example.clingo}
+
+    On doit indiquer l’arité du prédicat dans la commande car Clingo admet qu’on ait plusieurs prédicats de même nom (et d’arité différente). Vous pouvez ajouter plusieurs commandes \texttt{\#show} à la fin de votre base de connaissances.
+
+    \begin{enumerate}
+        \item Définir les prédicats binaires \defemph{père} (\(X\) est père de \(Y\)), \defemph{mère} (\(X\) est mère de \(Y\)), \defemph{parent} (\(X\) est parent de \(Y\)). À chaque fois, vérifier que les faits déduits sont ceux attendus. Bien sûr, \defemph{parent} et \defemph{aEnfant} sont des synonymes.
+
+        \item Écrire une règle permettant de répondre à la question: qui sont les rois dont le père était déjà roi? On n'a pas la notion de requête proprement dite, on la remplace par une règle dont le prédicat de tête fournit les réponses:
+        
+        \clingoFile{./tp_1_code/exo_3b_example.clingo}
+
+        En affichant les atomes qui ont ce prédicat (\defemph{\#show}), on obtient les réponses.
+
+        \item Écrire une règle permettant de répondre à la question: qui sont les rois dont le père était déjà roi du même lieu?
+
+        \item Définir le prédicat \defemph{grand-parent} (\(X\) est grand-parent de \(Y\)), puis écrire une règle permettant de répondre à la question: qui sont les grands-parents d'Oedipe?
+
+        \item Définir le prédicat \defemph{ancêtre} (\(X\) est ancêtre de \(Y\)) puis écrire une règle permettant de répondre à la question: qui sont les ancêtres d'Oedipe? On  considère que tout ascendant est un ancêtre.
+
+        \item Qui sont les personnages de sexe inconnu? Vous aurez besoin ici de négation (\(\text{not}\)).
+
+        On définit d'abord le prédicat \defemph{sexe\_connu}:
+
+        \clingoFile{./tp_1_code/exo_3f_example.clingo}
+
+        Ensuite on voudrait écrire:
+        
+        \clingoFile{./tp_1_code/exo_3f_example2.clingo}
+
+        Cependant, Clingo n'admet que des règles dites sûres (safe): toute variable apparaissant dans un littéral négatif doit aussi apparaitre dans un littéral positif du corps de la règle. Ici, \(X\) n'apparait pas dans un littéral positif du corps de la règle, Clingo ne sait donc pas quelles sont les valeurs possibles pour X.
+
+        On va lui dire que \(X\) est un personnage:
+
+        \clingoFile{./tp_1_code/exo_3f_example3.clingo}
+
+        Tous nos personnages ont un sexe connu, mais vous pouvez commenter cette information pour certains personnages et vérifier que vos règles les retrouvent.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\,\\ % 3
+		Exercice solution
+	\end{td-sol}
+}{}
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[Optional title xx]\,\\ % xx
+% Exercise xx content
+% \end{td-exo}
+
+% % ----- Solutions exo xx ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\,\\ % xx
+% 		Exercice solution
+% 	\end{td-sol}
+% }{}
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[Optional title xx]\,\\ % xx
+% Exercise xx content
+% \end{td-exo}
+
+% % ----- Solutions exo xx ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\,\\ % xx
+% 		Exercice solution
+% 	\end{td-sol}
+% }{}

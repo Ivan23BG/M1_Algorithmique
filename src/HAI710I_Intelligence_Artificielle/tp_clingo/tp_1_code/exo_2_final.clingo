@@ -1,0 +1,21 @@
+% faits connus
+herbivore(chevre). % (a)
+carnivore(loup).   % (b)
+humain(chaperon).  % (c)
+
+% regles
+animal(X) :- carnivore(X).   % (d1)
+animal(X) :- herbivore(X).   % (d2)
+
+% carnivore(X) :- omnivore(X). % (e1)
+% herbivore(X) :- omnivore(X). % (e2)
+animal(X) :- omnivore(X). % (k / e3)
+
+omnivore(X) :- humain(X).    % (f)
+
+animal(Y) :- animal(X), carnivore(X), mange(X,Y). % (g)
+plante(Y) :- animal(X), herbivore(X), mange(X,Y). % (h)
+
+mange(X,Y) :- animal(X), animal(Y), carnivore(X), herbivore(Y), X!=Y. % (i)
+
+:- animal(X), plante(X). % (j) -- contrainte negative

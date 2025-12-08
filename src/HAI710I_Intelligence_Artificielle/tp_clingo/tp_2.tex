@@ -1,0 +1,123 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Coloration de graphes]\,\\ % 1
+    Nous nous intéressons maintenant à la modélisation de problèmes de satisfaction de contraintes, en commençant par la coloration de graphe. Un graphe est décrit grâce aux prédicats \texttt{node} et \texttt{edge}.
+
+    On rappelle les règles vues en cours permettant de générer toutes les assignations des noeuds à l'une des 3 couleurs red, green ou blue.
+
+    \clingoFile{./tp_2_code/exo_1_1.clingo}
+
+    \begin{enumerate}
+        \item Ajouter la contrainte négative indiquant que deux sommets \defemph{adjacents} ne peuvent pas être colorés par la même couleur.
+
+        \item Appliquer le programme obtenu à la carte de l'Australie décrite par un graphe:
+
+        \clingoFile{./tp_2_code/exo_1_2.clingo}
+    \end{enumerate}
+    Vérifier que vous obtenez bien 18 solutions.
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 1
+		\begin{enumerate}
+            \item On commence par ajouter la contrainte négative:
+
+            \clingoFile{./tp_2_code/exo_1_1_sol.clingo}
+
+            \item En appliquant le programme à la carte de l'Australie, on obtient bien 18 solutions:
+
+            \clingoFile{./tp_2_code/exo_1_2_sol.clingo}
+
+            On peut visualiser chacune de ces solutions en utilisant l'option \defemph{enumerate all} de Clingo.
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Configuration automobile]\,\\ % 2
+    On considère le problème de configuration suivant (cf. TD problèmes de satisfaction de contraintes). On rappelle ci-dessous l’énoncé global, mais dans les questions qui suivent on va résoudre ce problème étape par étape.
+
+    Une firme automobile élabore un nouveau modèle de voiture fabriquée dans toute l’Europe:
+    \begin{itemize}
+        \item les portières et le capot sont fabriqués à Lille où l’on ne dispose que de peinture rouge, jaune et noire;
+        \item la carrosserie est faite à Hambourg où l’on a de la peinture blanche, jaune, rouge et noire;
+        \item les pare-chocs, réalisés à Palerme, sont toujours blancs;
+        \item la bâche du toit ouvrant, faite à Madrid, ne peut être que blanche, jaune ou rouge;
+        \item les enjoliveurs sont fabriqués à Athènes où l’on a de la peinture rouge et jaune.
+    \end{itemize}
+
+    Le constructeur de la voiture a les exigences suivantes:
+    \begin{itemize}
+        \item la carrosserie, les portières et le capot sont de la même couleur;
+        \item les enjoliveurs, les pare-chocs et la bâche du toit ouvrant doivent être (strictement) plus clairs que la carrosserie (on considère que jaune est plus clair que rouge; blanc et noir étant les deux extrêmes).
+    \end{itemize}
+
+    On souhaite déterminer l’ensemble des configurations possibles pour ce modèle. On se donne le prédicat unaire \defemph{objet} et les faits suivants pour énumérer les composants de la voiture:
+    \clingoFile{./tp_2_code/exo_2_1.clingo}
+
+    On considère les couleurs blanc, jaune, rouge et noir, qu’on représente par les constantes \(b, j, r, n\).
+
+    \begin{enumerate}
+        \item En admettant que chacun des 6 composants puisse être peint avec chacune des 4 couleurs, combien y a-t-il de configurations différentes possibles?
+
+        Écrire les règles qui permettent de générer toutes ces configurations (on utilisera un prédicat binaire \defemph{aCouleur}). Vérifier que vous obtenez bien le nombre de configurations voulu.
+
+        \item Représenter la condition \og{}carrosserie, portières et capot sont de la même couleur\fg{} sous la forme de contraintes négatives. Combien de modèles (configurations) obtenez-vous maintenant?
+
+        \item On s'intéresse maintenant à la notion de \og{}plus clair\fg{}. On utilise le prédicat binaire \(\text{plusClair}(X,Y)\) pour dire que la couleur \(X\) est plus claire que la couleur \(Y\). Ajoutez des faits, et peut-être des règles, pour définir cette notion sur les 4 couleurs.
+
+        \item Représenter la condition \og{}enjoliveur, parechoc et bâche sont plus clairs que la carrosserie\fg{} sous forme de contraintes négatives. Combien de modèles obtenez-vous?
+
+        \item Gérer maintenant les domaines sous forme de contraintes négatives qui interdisent certaines couleurs selon les composants d’une voiture.
+    \end{enumerate}
+    Vous devriez obtenir 8 solutions au problème.
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{
+	\begin{td-sol}[]\, % 2
+		\begin{enumerate}
+            \item Chacun des 6 composants pouvant avoir une de 4 couleurs, on a \(4^6 = 4096\) configurations possibles. Le programme suivant génère toutes ces configurations:
+
+            \clingoFile{./tp_2_code/exo_2_1_sol.clingo}
+
+            \item On ajoute la contrainte négative suivante pour représenter la condition \og{}carrosserie, portières et capot sont de la même couleur\fg{}:
+
+            \clingoFile{./tp_2_code/exo_2_2_sol.clingo}
+
+            On obtient alors 256 configurations.
+
+            \item On ajoute les faits suivants pour définir la notion de \og{}plus clair\fg{}:
+
+            \clingoFile{./tp_2_code/exo_2_3_sol.clingo}
+
+            \item On ajoute la contrainte négative suivante pour représenter la condition \og{}enjoliveur, parechoc et bâche sont plus clairs que la carrosserie\fg{}:
+
+            \clingoFile{./tp_2_code/exo_2_4_sol.clingo}
+
+            On obtient alors 36 configurations.
+
+            \item On ajoute les contraintes négatives suivantes pour gérer les domaines:
+            \clingoFile{./tp_2_code/exo_2_5_sol.clingo}
+
+            On obtient alors 8 configurations, comme attendu.
+        \end{enumerate}
+
+        Le programme complet est le suivant:
+        \clingoFile{./tp_2_code/exo_2_complete.clingo}
+	\end{td-sol}
+}{}
+
+
+% % ----- Consignes exo xx ----- %
+% \begin{td-exo}[Optional title xx]\,\\ % xx
+% Exercise xx content
+% \end{td-exo}
+
+% % ----- Solutions exo xx ----- %
+% \iftoggle{showsolutions}{
+% 	\begin{td-sol}[]\,\\ % xx
+% 		Exercice solution
+% 	\end{td-sol}
+% }{}
