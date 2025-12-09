@@ -117,9 +117,10 @@
 \begin{td-exo}[La famille d'Oedipe]\,\\ % 3
     Le fichier oedipe-family-facts.lp (voir moodle) fournit une base de faits décrivant la famille d'Oedipe, personnage de la mythologie grecque. Vous pouvez copier-coller ce fichier dans la fenêtre de Clingo. Les prédicats utilisés sont les suivants (où / indique l'arité du prédicat): personnage/1, homme/1, femme/1, aEnfant/2 (qui lie un parent à l'un de ses enfants), roi/2 (qui lie un roi à la ville dont il est roi). La figure ci- dessous donne une vue d'ensemble de cette base de faits:
 
-    \begin{equation*}
-        \text{ non je ne vais pas redissiner ca xD}
-    \end{equation*}
+    \vspace{0.2cm}
+    \input{../assets/tikz/oedipe_tree.tex}
+
+    Où 
 
     Important: pour éviter d'être submergé sous l'ensemble des faits produits, vous pouvez demander à Clingo de visualiser seulement les atomes ayant un certain prédicat, grâce à la commande \defemph{\#show} par exemple:
 
