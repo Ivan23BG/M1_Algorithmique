@@ -1,0 +1,4 @@
+% C2
+:- aCouleur(enjoliveur, U), aCouleur(carrosserie, V), not plusClair(U,V).
+:- aCouleur(parechoc, U), aCouleur(carrosserie, V), not plusClair(U,V).
+:- aCouleur(bache, U), aCouleur(carrosserie, V), not plusClair(U,V).

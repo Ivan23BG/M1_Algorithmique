@@ -1,0 +1,4 @@
+Answer: 1
+sansEnfant(ino) sansEnfant(hemon) sansEnfant(antigone) 
+sansEnfant(ismene) sansEnfant(thersandre) sansEnfant(ladamos)
+SATISFIABLE

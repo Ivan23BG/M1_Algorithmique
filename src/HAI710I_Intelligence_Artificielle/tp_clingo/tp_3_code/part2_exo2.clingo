@@ -1,0 +1,3 @@
+plusClair(b,j). plusClair(b,r). plusClair(b, n).
+plusClair(j,r). plusClair(j,n).
+plusClair(r,n).

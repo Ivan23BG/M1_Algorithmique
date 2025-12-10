@@ -1,0 +1,7 @@
+% predicat unaire guest, les 6 invites sont:
+% a, b, c, d, e, f
+guest(a;b;c;d;e;f).
+
+% tout invite a exactement une place prise entre 1 et 6
+1 { at (X,1..6)} 1 :- guest(X).
+#show at/2

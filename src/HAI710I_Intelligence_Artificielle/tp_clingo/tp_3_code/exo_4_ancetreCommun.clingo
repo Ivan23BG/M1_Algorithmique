@@ -1,0 +1,3 @@
+% Question 4 - 2 
+ancetreCommun(Z,X,Y) :- ancetre(Z,X), ancetre(Z,Y), X != Y.
+#show ancetreCommun/3.

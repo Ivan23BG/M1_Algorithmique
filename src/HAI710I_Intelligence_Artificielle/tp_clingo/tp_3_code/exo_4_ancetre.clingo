@@ -1,0 +1,4 @@
+% Question 4 - 1 
+ancetre(X,Y) :- aEnfant(X,Y). 
+ancetre(X,Y) :- ancetre(X,Z), ancetre(Z,Y).
+#show ancetre/2.

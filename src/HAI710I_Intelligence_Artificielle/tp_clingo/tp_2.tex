@@ -36,15 +36,15 @@
 
 % ----- Consignes exo 2 ----- %
 \begin{td-exo}[Configuration automobile]\,\\ % 2
-    On considère le problème de configuration suivant (cf. TD problèmes de satisfaction de contraintes). On rappelle ci-dessous l’énoncé global, mais dans les questions qui suivent on va résoudre ce problème étape par étape.
+    On considère le problème de configuration suivant (cf. TD problèmes de satisfaction de contraintes). On rappelle ci-dessous l'énoncé global, mais dans les questions qui suivent on va résoudre ce problème étape par étape.
 
-    Une firme automobile élabore un nouveau modèle de voiture fabriquée dans toute l’Europe:
+    Une firme automobile élabore un nouveau modèle de voiture fabriquée dans toute l'Europe:
     \begin{itemize}
-        \item les portières et le capot sont fabriqués à Lille où l’on ne dispose que de peinture rouge, jaune et noire;
-        \item la carrosserie est faite à Hambourg où l’on a de la peinture blanche, jaune, rouge et noire;
+        \item les portières et le capot sont fabriqués à Lille où l'on ne dispose que de peinture rouge, jaune et noire;
+        \item la carrosserie est faite à Hambourg où l'on a de la peinture blanche, jaune, rouge et noire;
         \item les pare-chocs, réalisés à Palerme, sont toujours blancs;
         \item la bâche du toit ouvrant, faite à Madrid, ne peut être que blanche, jaune ou rouge;
-        \item les enjoliveurs sont fabriqués à Athènes où l’on a de la peinture rouge et jaune.
+        \item les enjoliveurs sont fabriqués à Athènes où l'on a de la peinture rouge et jaune.
     \end{itemize}
 
     Le constructeur de la voiture a les exigences suivantes:
@@ -53,10 +53,10 @@
         \item les enjoliveurs, les pare-chocs et la bâche du toit ouvrant doivent être (strictement) plus clairs que la carrosserie (on considère que jaune est plus clair que rouge; blanc et noir étant les deux extrêmes).
     \end{itemize}
 
-    On souhaite déterminer l’ensemble des configurations possibles pour ce modèle. On se donne le prédicat unaire \defemph{objet} et les faits suivants pour énumérer les composants de la voiture:
+    On souhaite déterminer l'ensemble des configurations possibles pour ce modèle. On se donne le prédicat unaire \defemph{objet} et les faits suivants pour énumérer les composants de la voiture:
     \clingoFile{./tp_2_code/exo_2_1.clingo}
 
-    On considère les couleurs blanc, jaune, rouge et noir, qu’on représente par les constantes \(b, j, r, n\).
+    On considère les couleurs blanc, jaune, rouge et noir, qu'on représente par les constantes \(b, j, r, n\).
 
     \begin{enumerate}
         \item En admettant que chacun des 6 composants puisse être peint avec chacune des 4 couleurs, combien y a-t-il de configurations différentes possibles?
@@ -69,7 +69,7 @@
 
         \item Représenter la condition \og{}enjoliveur, parechoc et bâche sont plus clairs que la carrosserie\fg{} sous forme de contraintes négatives. Combien de modèles obtenez-vous?
 
-        \item Gérer maintenant les domaines sous forme de contraintes négatives qui interdisent certaines couleurs selon les composants d’une voiture.
+        \item Gérer maintenant les domaines sous forme de contraintes négatives qui interdisent certaines couleurs selon les composants d'une voiture.
     \end{enumerate}
     Vous devriez obtenir 8 solutions au problème.
 \end{td-exo}

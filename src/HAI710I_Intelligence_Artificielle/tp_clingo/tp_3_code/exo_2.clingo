@@ -1,0 +1,4 @@
+% Question 2
+aAuMoinsDeuxEnfants(X) :- personnage(A), personnage(B), personnage(X), 
+A != B, A != X, B != X, aEnfant(X, A), aEnfant(X, B).
+#show aAuMoinsDeuxEnfants/1.

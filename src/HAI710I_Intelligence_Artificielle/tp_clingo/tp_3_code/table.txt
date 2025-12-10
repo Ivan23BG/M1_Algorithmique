@@ -1,0 +1,35 @@
+% predicat unaire guest, les 6 invites sont a b c d e f
+guest(a;b;c;d;e;f).
+
+% tout invite a exactement une place prise entre 1 et 6
+1 { at (X,1..6) } 1 :- guest(X).
+
+% Question 1 v
+:- at(X,A), at(Y,A), X != Y.
+
+% Question 2 v
+% La premiere personne peut prendre une de 6 places, la prochaine 5 etc etc donc
+% 6*5*4*3*2 = 30*24=720
+
+% Question 3 v
+aGauche(X,Y) :- at(X,A), at(Y,B), A == B + 1.
+aDroite(X,Y) :- at(X,A), at(Y,B), A == B - 1.
+cas1(X,Y) :- at(X,A), at(Y,B), A == 1, B == 6.
+cas2(X,Y) :- at(X,A), at(Y,B), A == 6, B == 1.
+nextTo(X,Y) :- aGauche(X,Y).
+nextTo(X,Y) :- aDroite(X,Y).
+nextTo(X,Y) :- cas1(X,Y).
+nextTo(X,Y) :- cas2(X,Y).
+% #show nextTo/2.
+
+% Question 4
+like(a,b). like(c,d).
+dislike(b,c). dislike(a,c).
+
+:- like(X,Y), not nextTo(X,Y).
+:- like(Y,X), not nextTo(X,Y).
+
+:- dislike(X,Y), nextTo(X,Y).
+:- dislike(Y,X), nextTo(X,Y).
+
+#show at/2.

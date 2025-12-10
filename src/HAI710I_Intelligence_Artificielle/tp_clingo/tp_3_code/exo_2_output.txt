@@ -1,0 +1,4 @@
+Answer: 1
+aAuMoinsDeuxEnfants(cadmos) aAuMoinsDeuxEnfants(harmonie) 
+aAuMoinsDeuxEnfants(menecee) aAuMoinsDeuxEnfants(jocaste) aAuMoinsDeuxEnfants(oedipe)
+SATISFIABLE

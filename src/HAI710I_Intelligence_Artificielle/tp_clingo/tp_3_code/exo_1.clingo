@@ -1,0 +1,5 @@
+% Question 1
+parent(X) :- personnage(X), personnage(Y), aEnfant(X,Y), X != Y.
+sansEnfant(X) :- personnage(X), not parent(X).
+% #show parent/1.
+#show sansEnfant/1.

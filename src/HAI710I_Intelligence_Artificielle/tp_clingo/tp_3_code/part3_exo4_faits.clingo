@@ -1,0 +1,2 @@
+like(a,b). like(c,d).
+dislike(b,c). dislike(a,c).

@@ -1,0 +1,5 @@
+% Question 4 - 3 
+aUnParent(X) :- personnage(Y), aEnfant(Y,X), X != Y.
+answer(Z) :- personnage(Z), personnage(U), 
+ancetreCommun(Z,antigone,laios), not aUnParent(Z).
+#show answer/1.

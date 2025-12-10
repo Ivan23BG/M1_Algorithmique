@@ -1,0 +1,41 @@
+% faits
+objet(portiere; capot; carrosserie; parechoc; bache; enjoliveur).
+plusClair(b,j). plusClair(b,r). plusClair(b, n).
+plusClair(j,r). plusClair(j,n).
+plusClair(r,n).
+
+
+% generation de toutes les affectations
+aCouleur(X,b):- objet(X),not aCouleur(X,j),not aCouleur(X,r),not aCouleur(X,n).
+aCouleur(X,j):- objet(X),not aCouleur(X,b),not aCouleur(X,r),not aCouleur(X,n).
+aCouleur(X,r):- objet(X),not aCouleur(X,j),not aCouleur(X,b),not aCouleur(X,n).
+aCouleur(X,n):- objet(X),not aCouleur(X,j),not aCouleur(X,r),not aCouleur(X,b).
+
+% regles
+
+% C1
+:- aCouleur(carrosserie,U), aCouleur(portiere,V), U!=V.
+:- aCouleur(carrosserie,U), aCouleur(capot,V), U!=V.
+:- aCouleur(portiere,U), aCouleur(capot,V), U!=V.
+
+% C2
+:- aCouleur(enjoliveur, U), aCouleur(carrosserie, V), not plusClair(U,V).
+:- aCouleur(parechoc, U), aCouleur(carrosserie, V), not plusClair(U,V).
+:- aCouleur(bache, U), aCouleur(carrosserie, V), not plusClair(U,V).
+
+% C3
+% Lille
+:- aCouleur(portiere, b). :- aCouleur(capot, b). 
+
+% Hambourg, aucune contrainte
+
+% Palerme
+:- aCouleur(parechoc, j). :- aCouleur(parechoc, r). :- aCouleur(parechoc,n).
+
+% Madrid
+:- aCouleur(bache, n).
+
+% Athenes
+:- aCouleur(enjoliveur,b). :- aCouleur(enjoliveur, n).
+
+#show objet/1.

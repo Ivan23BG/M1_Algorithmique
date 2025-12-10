@@ -1,0 +1,10 @@
+% Question 3
+aGauche(X,Y) :- at(X,A), at(Y,B), A == B + 1.
+aDroite(X,Y) :- at(X,A), at(Y,B), A == B - 1.
+cas1(X,Y) :- at(X,A), at(Y,B), A == 1, B == 6.
+cas2(X,Y) :- at(X,A), at(Y,B), A == 6, B == 1.
+nextTo(X,Y) :- aGauche(X,Y).
+nextTo(X,Y) :- aDroite(X,Y).
+nextTo(X,Y) :- cas1(X,Y).
+nextTo(X,Y) :- cas2(X,Y).
+% #show nextTo/2.

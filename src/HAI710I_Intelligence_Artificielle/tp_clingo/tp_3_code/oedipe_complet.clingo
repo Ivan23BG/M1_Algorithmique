@@ -1,0 +1,103 @@
+% oedipe-family-factbase.lp
+
+% les caracteres accentues ne sont pas admis par clingo
+% ou alors il faut les mettre entre guillemets
+
+% BASE DE FAITS 
+
+% personnage est un predicat unaire
+% on utilise une ecriture raccourcie permise par Clingo: 
+% p(a;b). est un raccourci pour p(a). p(b). 
+% Ne pas confondre p(a;b) et p(a,b)
+personnage(agenor;cadmos;harmonie;ino;agave;polydore;labdacos;nicteis;penthe;oclasos).
+personnage(menecee;jocaste;creon;hemon;eurydice;laios;oedipe).
+personnage(antigone;ismene;eteocle;polynice;thersandre;ladamos).
+
+% sexe des personnages
+homme(agenor). % agenor
+homme(cadmos).
+femme(harmonie).
+femme(ino).
+femme(agave).	  % agave
+homme(polydore).
+homme(labdacos).
+femme(nicteis).   % nicteis
+homme(penthe). % penthe
+homme(oclasos). 
+homme(menecee). % menecee
+femme(jocaste).
+homme(creon).   % creon
+homme(hemon). % hemon
+femme(eurydice).
+homme(laios).
+homme(oedipe).
+femme(antigone).
+femme(ismene).   % ismene
+homme(eteocle). % eteocle
+homme(polynice).
+homme(thersandre).
+homme(ladamos).
+
+% relations parent-enfant
+aEnfant(agenor,cadmos).
+aEnfant(cadmos,ino).
+aEnfant(cadmos,agave).
+aEnfant(cadmos,polydore).
+aEnfant(harmonie,ino).
+aEnfant(harmonie,agave).
+aEnfant(harmonie,polydore).
+aEnfant(polydore,labdacos).
+aEnfant(nicteis,labdacos).
+aEnfant(agave,penthe).
+aEnfant(labdacos,laios).
+aEnfant(penthe,oclasos).
+aEnfant(oclasos,menecee).
+aEnfant(menecee,jocaste).
+aEnfant(menecee,creon).
+aEnfant(creon,hemon).
+aEnfant(eurydice,hemon). 
+aEnfant(laios,oedipe).
+aEnfant(jocaste,oedipe).
+aEnfant(jocaste,antigone).
+aEnfant(jocaste,eteocle).
+aEnfant(jocaste,ismene).
+aEnfant(jocaste,polynice).
+aEnfant(oedipe,antigone).
+aEnfant(oedipe,eteocle).
+aEnfant(oedipe,ismene).
+aEnfant(oedipe,polynice).
+aEnfant(polynice, thersandre). 
+aEnfant(eteocle,ladamos). 
+
+% -------------------------------------------------
+
+% Question 1
+parent(X) :- personnage(X), personnage(Y), aEnfant(X,Y), X != Y.
+sansEnfant(X) :- personnage(X), not parent(X).
+% #show parent/1.
+% #show sansEnfant/1.
+
+% Question 2 
+aAuMoinsDeuxEnfants(X) :- personnage(A), personnage(B), personnage(X), 
+A != B, A != X, B != X, aEnfant(X, A), aEnfant(X, B).
+% #show aAuMoinsDeuxEnfants/1.
+
+
+% Question 3 
+femmeEnfantUnique(X) :- personnage(X), not sansEnfant(X), 
+not aAuMoinsDeuxEnfants(X), femme(X).
+% #show femmeEnfantUnique/1.
+
+% Question 4 
+% Question 4 - 1 
+ancetre(X,Y) :- aEnfant(X,Y).
+ancetre(X,Y) :- ancetre(X,Z), ancetre(Z,Y).
+% #show ancetre/2.
+% Question 4 - 2 
+ancetreCommun(Z,X,Y) :- ancetre(Z,X), ancetre(Z,Y), X != Y.
+% #show ancetreCommun/3.
+% Question 4 - 3 
+aUnParent(X) :- personnage(Y), aEnfant(Y,X), X != Y.
+answer(Z) :- personnage(Z), personnage(U), 
+ancetreCommun(Z,antigone,laios), not aUnParent(Z).
+% #show answer/1.

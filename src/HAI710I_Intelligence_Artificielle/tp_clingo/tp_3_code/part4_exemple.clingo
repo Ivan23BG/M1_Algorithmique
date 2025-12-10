@@ -1,0 +1,1 @@
+aColPossible(portiere, j). aColPossible(portiere, r). aColPossible(portiere, n). 

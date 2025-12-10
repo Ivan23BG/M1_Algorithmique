@@ -1,0 +1,4 @@
+% Question 3
+femmeEnfantUnique(X) :- personnage(X), not sansEnfant(X), 
+not aAuMoinsDeuxEnfants(X), femme(X).
+#show femmeEnfantUnique/1.

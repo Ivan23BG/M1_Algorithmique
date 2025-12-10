@@ -1,0 +1,5 @@
+:- like(X,Y), not nextTo(X,Y).
+:- like(Y,X), not nextTo(X,Y).
+
+:- dislike(X,Y), nextTo(X,Y).
+:- dislike(Y,X), nextTo(X,Y).
