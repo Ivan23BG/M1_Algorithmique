@@ -9,7 +9,7 @@ soit en déposant votre devoir durant le cours
 \section{Partie théorique}
 % ----- Consignes exo 1 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[Algorithmes pour la programmation linéaire]\, % 1
+    \begin{td-exo}[Algorithmes pour la programmation linéaire]\,\\ % 1
         Considérons la formulation suivante:
         \begin{equation*}
             P_\beta =
@@ -225,7 +225,7 @@ soit en déposant votre devoir durant le cours
 
 % ----- Consignes exo 2 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[Dualité]
+    \begin{td-exo}[Dualité]\,\\
         Considérez le programme linéaire le plus général envisageable donné ci-dessous:
         \begin{equation*}
             \begin{cases}
@@ -248,7 +248,7 @@ soit en déposant votre devoir durant le cours
 
 % ----- Consignes exo 3 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[Ensemble convexe]\,
+    \begin{td-exo}[Ensemble convexe]\,\\
         Soit \(C_1\) et \(C_2\) deux convexes de \(\bb R^{m+n}\). Montrer que l'ensemble 
         \begin{equation*}
             C = \left\{\left(x, y_1 + y_2\right) \mid x\in\bb R^m, y_1\in \bb R^n, y_2\in\bb R^n, (x,y_1)\in C_1, (x, y_2)\in C_2\right\}
@@ -290,7 +290,7 @@ soit en déposant votre devoir durant le cours
 
 % ----- Consignes exo 4 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[Modélisation et dualité]
+    \begin{td-exo}[Modélisation et dualité]\,\\
     Considérons un problème d'affectation avec \(m\) jobs et \(n\) travailleurs (\(n\geq m\)). Chaque job doit être affecté à exactement un travailleur.
     Soit \(p_{ij}\) le rendement obtenu si on affecte le job \(i\) au travailleur \(j\), où \(i\in\{1,\ldots,m\}\) et \(j\in\{1,\ldots,n\}\). On cherche une affectation qui maximise le rendement total.
     \begin{enumerate}
@@ -318,10 +318,10 @@ soit en déposant votre devoir durant le cours
             \item[\eqref{C1}] on maximise le rendement total
             \item[\eqref{C2}] chaque job est affecté à un travailleur
             \item[\eqref{C3}] chaque travailleur a au plus un job
-            \item[\eqref{C4}] les variables sont binaires
+            \item[\eqref{C4}] les variables sont \(0\) ou \(1\)
         \end{itemize}
 
-        \item Pour obtenir la formulation du dual, on relâche la contrainte de binarité sur les variables \(x_{ij}\). On introduit les variables duales \(u_i\) (une par job) et \(v_j\) (une par travailleur). Le dual s'écrit alors:
+        \item Pour obtenir la formulation du dual, on introduit les variables duales \(u_i\) (une par job) et \(v_j\) (une par travailleur). Le dual s'écrit alors:
 
         \begin{numcases}{D_0 = }
             \min w = \sum_{i=1}^m u_i + \sum_{j=1}^n v_j\label{D1}\\ % chktex 1
@@ -334,7 +334,7 @@ soit en déposant votre devoir durant le cours
         \begin{itemize}
             \item[\eqref{D1}] on minimise la somme des coûts
             \item[\eqref{D2}] les coûts doivent couvrir les rendements
-            \item[\eqref{D3}] les variables duales associées aux inégalités sont positives
+            \item[\eqref{D3}] les variables sont positives
         \end{itemize}
 
     \end{enumerate}
@@ -343,7 +343,7 @@ soit en déposant votre devoir durant le cours
 
 % ----- Consignes exo 5 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[Programmation linéaire: Farkas]\,
+    \begin{td-exo}[Programmation linéaire: Farkas]\,\\
         Considérons le programme linéaire suivant, qui dépend de \(\varepsilon\in\bb R\):
         \begin{equation*}
             \begin{cases}
@@ -367,7 +367,7 @@ soit en déposant votre devoir durant le cours
 
 % ----- Consignes exo 6 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[Résolution numérique]\,
+    \begin{td-exo}[Résolution numérique]\,\\
         Résoudre le programme linéaire suivant par la méthode Primal-Dual:
         \begin{equation*}
             \text{Primal} = 
@@ -388,9 +388,75 @@ soit en déposant votre devoir durant le cours
 
 \section{Partie pratique}
 
+% ----- Consignes exo 7 ----- %
+\iftoggle{showquestions}{
+    \begin{td-exo}[Résolution d'un programme linéaire avec Julia]\,
+        \begin{enumerate}
+            \item Dans un premier temps nous allons regarder quelques commandes de base en Julia.
+            \begin{enumerate}
+                \item Pour lancer Julia:
+                \bashFile{./julia_code/julia_launch.sh}
+
+                \item Introduction à la syntaxe. La syntaxe est assez simple:
+                \juliaFile{./julia_code/julia_syntax.jl}
+
+                \item les fonctions sont bien définies:
+                \juliaFile{./julia_code/julia_functions.jl}
+
+                Renseignements obligatoires sur la syntaxe de Julia peuvent être trouvés sur les pages suivantes:
+                \begin{itemize}
+                    \item \url{https://julialang.org/}
+                    \item \url{https://zestedesavoir.com/articles/78/a-la-decouverte-de-julia/}
+                \end{itemize}
+
+                \item Le package \texttt{JuMP} et le solveur \texttt{Cbe JuMP} sont des langages de modélisation pour l'optimisation mathématique intégré dans Julia.
+                Pour l'utiliser il faut d'abord ajouter le package associé:
+                \juliaFile{./julia_code/julia_jump_install.sh}
+
+                Julia est un langage de modélisation et ne possède pas un solveur de programmation mathématique intégré. \texttt{CPLEX} est un solveur de programmation mathématique de haute performance, puissant pour la programmation linéaire, la programmation en nombres entiers et la programmation quadratique.
+                Mais le solveur \texttt{CPLEX} n'est pas gratuit et requiert une license (facile à obtenir pour les étudiants mais le système est bridé).
+                Nou sutiliserons donc plutôt \texttt{Cbc} qui est un solveur de programmation mathématique open-source moins puissant intégré dans Julia.
+                Dans la suite, nous présentons les commandes pour utiliser \texttt{Cbc}.
+                Pour utiliser un solveur à partir de Julia il faut ajouter le package associé.
+
+                \item Création du modèle:
+
+                Utiliser les commandes présentées dans cette section pour définir dans Julia un modèle associé au programme linéaire \(P_1\).
+                Les variables \(x_1\) et \(x_2\) représentent respectivement la quantité de deux types différents de yaourt produits.
+                La fonction objectif maximise le profit de la production:
+                \juliaFile{./julia_code/julia_jump_model_P1.jl}
+
+                \item Packages:
+                \juliaFile{./julia_code/julia_jump_packages.jl}
+
+                \item Définition du modèle:
+                \juliaFile{./julia_code/julia_jump_define_model_P1.jl}
+
+                \item Définition des variables, exemples de définition de variables:
+                \juliaFile{./julia_code/julia_jump_variables_P1.jl}
+                Ajouter à votre modèle les contraintes de \(P_1\).
+
+                \item Pour résoudre le modèle, il faut exécuter:
+                \juliaFile{./julia_code/julia_jump_solve_model_P1.jl}
+
+                La valeur de la solution optimale du modèle, le temps d'exécution et la solutoin optimale, peuvent etre récupérés en utilisant les commandes suivantes:
+                \juliaFile{./julia_code/julia_jump_solution_P1.jl}
+
+                Voici un exemple, en supposant que \(x\) est le vecteur de variables, \(\text{profit}\) et \(\text{weight}\) sont des vecteurs de coefficients:
+                \juliaFile{./julia_code/julia_jump_example_solution_P1.jl}
+            \end{enumerate}
+        \end{enumerate}
+    \end{td-exo}
+}{}
+
+% ----- Solutions exo 7 ----- %
+\begin{td-sol}[]\ %
+    % TODO: completer solution exercice xx
+\end{td-sol}
+
 % ----- Consignes exo xx ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[]
+    \begin{td-exo}[]\,\\
 
     \end{td-exo}
 }{}
@@ -402,19 +468,7 @@ soit en déposant votre devoir durant le cours
 
 % ----- Consignes exo xx ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[]
-
-    \end{td-exo}
-}{}
-
-% ----- Solutions exo xx ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice xx
-\end{td-sol}
-
-% ----- Consignes exo xx ----- %
-\iftoggle{showquestions}{
-    \begin{td-exo}[]
+    \begin{td-exo}[]\,\\
 
     \end{td-exo}
 }{}

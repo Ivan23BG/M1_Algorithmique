@@ -49,3 +49,61 @@
 \usepackage{caption}
 \usepackage{cases}
 
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% ----- Julia language definition -----
+\lstdefinelanguage{julia}{
+    keywords={function, end, if, else, elseif, while, for, in, return, break, continue, struct, 
+    mutable, using, import, module, export, const, let, global, local, abstract, typealias, 
+    sin, atan, true, add},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]",
+}
+\definecolor{codebg}{RGB}{245,245,245}   % very light gray
+\definecolor{codeborder}{RGB}{220,220,220} 
+\definecolor{keywordcolor}{RGB}{0,0,150}
+\definecolor{commentcolor}{RGB}{120,120,120}
+\lstdefinestyle{julia-style}{
+    language=julia, % new language
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{verdant},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+}
+% convenience macro
+\newcommand{\juliaFile}[1]{\lstinputlisting[style=julia-style]{#1}}
+
+% custom bash environment with same style as julia
+\lstdefinelanguage{bash}{
+    keywords={sudo, apt-get, install, update, upgrade, cd, ls, mkdir, rm, rmdir, touch, nano, vim, cat, echo, pwd, cp, mv},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]",
+}
+\lstdefinestyle{bash-style}{
+    language=bash,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+}
+% convenience macro
+\newcommand{\bashFile}[1]{\lstinputlisting[style=bash-style]{#1}}
