@@ -45,7 +45,7 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 1 ----- %
-\begin{td-sol}[]\ %
+\begin{td-sol}[]\, %
     \begin{enumerate}
         \item Commençons par poser le problème sous forme standard:
         \begin{equation*}
@@ -144,8 +144,8 @@ soit en déposant votre devoir durant le cours
                 \hline % chktex 44
             \end{tabular}
         \end{center}
-        A ce stade, il est clair que les variables artificielles ne pourront plus entrer en base.
-        On peut donc les retirer et procéder sur le tableau réduit suivant:
+        A ce stade, il est clair que les variables artificielles ne pourront plus entrer en base. Elles ont un coût dépendant de \(M\) et toutes les autres variables ont un coût indépendant de \(M\).
+        On peut donc les retirer et procéder sur le tableau réduit suivant (c'est surtout pour des raisons de clarté):
         \begin{center}
             \begin{tabular}{|ccc|ccccc|} % chktex 44
                 \hline  % chktex 44
@@ -220,6 +220,167 @@ soit en déposant votre devoir durant le cours
 
         \item Résolvons maintenant le problème \(P_\theta\) par la méthode à deux phases.
 
+        Commençons par modifier le problème comme il faut pour la phase 1:
+        \begin{equation*}
+            P_\theta' =
+            \begin{cases}
+                \max z' = 0x_1 + 0x_2 + 0x_3 + 0x_4 + 0x_5 - (y_1 + y_2 + y_3)\\
+                6x_1 + x_2 - x_3 + y_1 = 6\\
+                4x_1 + 4x_2 - x_4 + y_2 = 12\\
+                x_1 + 2x_2 - x_5 + y_3 = 4\\
+                x_i\geq 0, y_j \geq 0,\quad \forall i \in \{1,\ldots,5\}, \forall j \in \{1,2,3\}.
+            \end{cases}
+        \end{equation*}
+        Ensuite on construit notre tableau du simplexe:
+        \begin{center}
+            \begin{tabular}{|ccc|cccccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(0\)&\(0\)&\(0\)&\(0\)&\(0\)&\(-1\)&\(-1\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(y_1\)&\(y_2\)&\(y_3\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-1\)}& \multicolumn{1}{c|}{\(x_1^{1}=y_1\)} &\(6\)&\(6\)&\(1\)&\(-1\)&\(0\)&\(0\)&\(1\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-1\)}& \multicolumn{1}{c|}{\(x_2^{1}=y_2\)} &\(12\)&\(4\)&\(4\)&\(0\)&\(-1\)&\(0\)&\(0\)&\(1\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-1\)}& \multicolumn{1}{c|}{\(x_3^{1}=y_3\)} &\(4\)&\(1\)&\(2\)&\(0\)&\(0\)&\(-1\)&\(0\)&\(0\)&\(1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z'(x)\)& \multicolumn{1}{|c|}{\(-22\)} &\(-11\)&\(-7\)&\(1\)&\(1\)&\(1\)&\(0\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+        et on déroule l'algorithme:
+        \begin{itemize}
+            \item on rentre \(x_1\),
+            \item on sort \(y_1\) car \(1 < 3 < 4\),
+        \end{itemize}
+        \becomes{}
+        \begin{center}
+            \begin{tabular}{|ccc|cccccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(0\)&\(0\)&\(0\)&\(0\)&\(0\)&\(-1\)&\(-1\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(y_1\)&\(y_2\)&\(y_3\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{2}=x_1\)} &\(\vphantom{\dfrac16}1\)&\(1\)&\(\frac16\)&\(-\frac16\)&\(0\)&\(0\)&\(\frac16\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-1\)}& \multicolumn{1}{c|}{\(x_2^{2}=y_2\)} &\(\vphantom{\dfrac16}8\)&\(0\)&\(\frac{10}{3}\)&\(\frac46\)&\(-1\)&\(0\)&\(-\frac46\)&\(1\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-1\)}& \multicolumn{1}{c|}{\(x_3^{2}=y_3\)} &\(\vphantom{\dfrac16}3\)&\(0\)&\(\frac{11}{6}\)&\(\frac16\)&\(0\)&\(-1\)&\(-\frac16\)&\(0\)&\(1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z'(x)\)& \multicolumn{1}{|c|}{\(-11\)} &\(\vphantom{\dfrac16}0\)&\(-\frac{31}6\)&\(-\frac56\)&\(1\)&\(1\)&\(\frac{11}{6}\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+
+        \begin{itemize}
+            \item on rentre \(x_2\),
+            \item on sort \(y_3\),
+        \end{itemize}
+        \becomes{}
+        \begin{center}
+            \begin{tabular}{|ccc|cccccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(0\)&\(0\)&\(0\)&\(0\)&\(0\)&\(-1\)&\(-1\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(y_1\)&\(y_2\)&\(y_3\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{3}=x_1\)} &\(\vphantom{\dfrac16}\frac{8}{11}\)&\(1\)&\(0\)&\(-\frac{2}{11}\)&\(0\)&\(\frac{1}{11}\)&\(\frac{2}{11}\)&\(0\)&\(-\frac{1}{11}\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(-1\)}& \multicolumn{1}{c|}{\(x_2^{3}=y_2\)} &\(\vphantom{\dfrac16}\frac{28}{11}\)&\(0\)&\(0\)&\(\frac{4}{11}\)&\(-1\)&\(\frac{20}{11}\)&\(-\frac{4}{11}\)&\(1\)&\(-\frac{20}{11}\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_3^{3}=x_2\)} &\(\vphantom{\dfrac16}\frac{18}{11}\)&\(0\)&\(1\)&\(\frac{1}{11}\)&\(0\)&\(-\frac{6}{11}\)&\(-\frac{1}{11}\)&\(0\)&\(\frac{6}{11}\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z'(x)\)& \multicolumn{1}{|c|}{\(-\frac{28}{11}\)} &\(\vphantom{\dfrac16}0\)&\(0\)&\(-\frac{4}{11}\)&\(-1\)&\(-\frac{20}{11}\)&\(\frac{15}{11}\)&\(0\)&\(\frac{31}{11}\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+
+        \begin{itemize}
+            \item on rentre \(x_5\),
+            \item on sort \(y_2\),
+        \end{itemize}
+        \becomes{}
+        \begin{center}
+            \begin{tabular}{|ccc|cccccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(0\)&\(0\)&\(0\)&\(0\)&\(0\)&\(-1\)&\(-1\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(y_1\)&\(y_2\)&\(y_3\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{4}=x_1\)} &\(\vphantom{\dfrac16}\frac{3}{5}\)&\(1\)&\(0\)&\(-\frac{1}{5}\)&\(\frac{1}{20}\)&\(0\)&\(\frac{1}{5}\)&\(-\frac{1}{20}\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{4}=x_5\)} &\(\vphantom{\dfrac16}\frac{7}{5}\)&\(0\)&\(0\)&\(\frac{1}{5}\)&\(-\frac{11}{20}\)&\(1\)&\(-\frac{1}{5}\)&\(\frac{11}{20}\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_3^{4}=x_2\)} &\(\vphantom{\dfrac16}\frac{12}{5}\)&\(0\)&\(1\)&\(\frac{1}{5}\)&\(-\frac{3}{10}\)&\(0\)&\(-\frac{1}{5}\)&\(\frac{3}{10}\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z'(x)\)& \multicolumn{1}{|c|}{\(0\)} &\(0\)&\(0\)&\(0\)&\(0\)&\(0\)&\(1\)&\(1\)&\(1\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+        A ce stade, toutes les variables artificielles sont sorties de base et la valeur optimale de \(z'\) est nulle. On peut donc passer à la phase 2 en retirant les variables artificielles du tableau avec la fonction objectif originale:
+        \begin{center}
+            \begin{tabular}{|ccc|ccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(5\)&\(2\)&\(0\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(5\)}& \multicolumn{1}{c|}{\(x_1^{4}=x_1\)} &\(\vphantom{\dfrac16}\frac{3}{5}\)&\(1\)&\(0\)&\(-\frac{1}{5}\)&\(\frac{1}{20}\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{4}=x_5\)} &\(\vphantom{\dfrac16}\frac{7}{5}\)&\(0\)&\(0\)&\(\frac{1}{5}\)&\(-\frac{11}{20}\)&\(1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_3^{4}=x_2\)} &\(\vphantom{\dfrac16}\frac{12}{5}\)&\(0\)&\(1\)&\(\frac{1}{5}\)&\(-\frac{3}{10}\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(\frac{39}{5}\)} &\(0\)&\(0\)&\(-\frac{3}{5}\)&\(-\frac{7}{20}\)&\(0\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+        \begin{itemize}
+            \item on rentre \(x_3\),
+            \item on sort \(x_5\),
+        \end{itemize}
+        \becomes{}
+        \begin{center}
+            \begin{tabular}{|ccc|ccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(5\)&\(2\)&\(0\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(5\)}& \multicolumn{1}{c|}{\(x_1^{5}=x_1\)} &\(\vphantom{\dfrac16}2\)&\(1\)&\(0\)&\(0\)&\(-\frac{1}{2}\)&\(1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{5}=x_3\)} &\(\vphantom{\dfrac16}7\)&\(0\)&\(0\)&\(1\)&\(-\frac{11}{4}\)&\(5\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_3^{5}=x_2\)} &\(\vphantom{\dfrac16}1\)&\(0\)&\(1\)&\(0\)&\(\frac{1}{4}\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(12\)} &\(0\)&\(0\)&\(0\)&\(-2\)&\(3\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+        \begin{itemize}
+            \item on rentre \(x_4\),
+            \item on sort \(x_2\), c'est la seule valeur positive,
+        \end{itemize}
+        \becomes{}
+        \begin{center}
+            \begin{tabular}{|ccc|ccccc|} % chktex 44
+                \hline  % chktex 44
+                & \ &\(c\)&\(5\)&\(2\)&\(0\)&\(0\)&\(0\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(5\)}& \multicolumn{1}{c|}{\(x_1^{6}=x_1\)} &\(4\)&\(1\)&\(2\)&\(0\)&\(0\)&\(-1\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{6}=x_3\)} &\(18\)&\(0\)&\(11\)&\(1\)&\(0\)&\(-6\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_3^{6}=x_4\)} &\(4\)&\(0\)&\(4\)&\(0\)&\(1\)&\(-4\)\\
+                \hline % chktex 44
+                \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(20\)} &\(0\)&\(8\)&\(0\)&\(0\)&\(-5\)\\
+                \hline % chktex 44
+            \end{tabular}
+        \end{center}
+        Il ne resterait plus qu'à faire rentrer \(x_5\) pour obtenir la solution optimale mais on a aucune variable qui correspond à un critère d'entrée, elles sont toutes negatives. Donc \(x_5\) ne peut pas rentrer en base et le problème est non borné.
     \end{enumerate}
 \end{td-sol}
 
@@ -242,8 +403,18 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 2 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 2
+\begin{td-sol}[]\,\\ %
+    Pour chaque contrainte de type \(\leq\) on associe une variable duale \(y_i \geq 0\) et pour chaque contrainte de type \(=\) on associe une variable duale \(y_j\) pas forcément positive. Le dual est donc:
+    \begin{equation*}
+        \begin{cases}
+            \max w = b_1 y_1 + b_2 y_2 \\
+            A_{11} y_1 + A_{21} y_2 \geq c_1 \\
+            A_{12} y_1 + A_{22} y_2 = c_2 \\
+            y_1 \geq 0
+        \end{cases}
+    \end{equation*}
+
+    Au départ on avait \(m_1\) contraintes de type \(\leq\) et \(m_2\) contraintes de type \(=\), donc le dual a \(m_1 + m_2\) variables (c'est le cas car \(b_1\) (respectivement \(b_2\)) est un vecteur de taille \(m_1\) (respectivement \(m_2\))). De plus, on avait \(n_1 + n_2\) variables dans le primal, donc le dual a \(n_1 + n_2\) contraintes (c'est le cas car \(A\) est une matrice \((m_1 + m_2) \times (n_1 + n_2)\), donc \(c\) est un vecteur de taille \(n_1 + n_2\)).
 \end{td-sol}
 
 % ----- Consignes exo 3 ----- %
@@ -257,7 +428,7 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 3 ----- %
-\begin{td-sol}[]\ %
+\begin{td-sol}[]\,\\ %
     Soient \((x^1, y^1)\) et \((x^2, y^2)\) deux points de \(C\). Par définition de \(C\), il existe \(y_1^1, y_2^1, y_1^2, y_2^2\) tels que
     \begin{equation*}
         (x^1, y_1^1) \in C_1, \quad (x^1, y_2^1) \in C_2, \quad (x^2, y_1^2) \in C_1, \quad (x^2, y_2^2) \in C_2,
@@ -301,7 +472,7 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 4 ----- %
-\begin{td-sol}[]\ %
+\begin{td-sol}[]\, %
     \begin{enumerate}
         \item On introduit les variables \(x_{ij}\) qui valent 1 si le job \(i\) est affecté au travailleur \(j\), et 0 sinon. Le programme linéaire s'écrit alors:
 
@@ -316,9 +487,9 @@ soit en déposant votre devoir durant le cours
 
         \begin{itemize}
             \item[\eqref{C1}] on maximise le rendement total
-            \item[\eqref{C2}] chaque job est affecté à un travailleur
+            \item[\eqref{C2}] chaque job est affecté (à un travailleur)
             \item[\eqref{C3}] chaque travailleur a au plus un job
-            \item[\eqref{C4}] les variables sont \(0\) ou \(1\)
+            \item[\eqref{C4}] les jobs ne sont pas partiellement affectés
         \end{itemize}
 
         \item Pour obtenir la formulation du dual, on introduit les variables duales \(u_i\) (une par job) et \(v_j\) (une par travailleur). Le dual s'écrit alors:
@@ -336,6 +507,8 @@ soit en déposant votre devoir durant le cours
             \item[\eqref{D2}] les coûts doivent couvrir les rendements
             \item[\eqref{D3}] les variables sont positives
         \end{itemize}
+
+        c'est une autre manière intéressante de voir le problème.
 
     \end{enumerate}
 \end{td-sol}
@@ -361,8 +534,30 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 5 ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice 5
+\begin{td-sol}[]\, %
+    \begin{enumerate}
+        \item On remarque tout de suite que le point \(x = (0,0)\) satisfait les contraintes du programme linéaire pour toute valeur de \(\varepsilon\). Donc le problème est réalisable pour tout \(\varepsilon\in\bb R\).
+
+        \item Pour étudier la borne de la valeur optimale, on peut regarder le dual du programme linéaire:
+        \begin{equation*}
+            \begin{cases}
+                \max w = 3y_1 + 4y_2\\
+                \varepsilon y_2 \geq 4\\
+                y_1 + (2-\varepsilon) y_2 \geq -2\\
+                y_i \geq 0
+            \end{cases}
+        \end{equation*}
+        D'après le théorème de dualité de la programmation linéaire (4.4.2, n. 3), si le dual est irréalisable alors le primal est non borné. Étudions donc l'irréalisabilité du dual:
+        \begin{itemize}
+            \item Si \(\varepsilon \leq 0\), la première contrainte du dual ne peut pas être satisfaite car \(y_2 \geq 0\) et donc le dual est irréalisable. Donc le primal est non borné.
+            \item Si \(\varepsilon > 0\), la première contrainte du dual impose \(y_2 \geq \frac{4}{\varepsilon} > 0\). En remplaçant dans la deuxième contrainte on obtient:
+            \begin{equation*}
+                y_1 + (2-\varepsilon) \frac{4}{\varepsilon} \geq -2 \iff y_1 \geq -2 - \frac{8}{\varepsilon} + 4 = 2 - \frac{8}{\varepsilon}.
+            \end{equation*}
+            Comme \(\varepsilon > 0\), on a \(2 - \frac{8}{\varepsilon} < 2\). Donc on peut toujours choisir \(y_1\) suffisamment grand pour satisfaire cette contrainte. Donc le dual est réalisable et le primal est donc borné.
+        \end{itemize}
+        En conclusion, la valeur optimale est non bornée pour \(\varepsilon \leq 0\).
+    \end{enumerate}
 \end{td-sol}
 
 % ----- Consignes exo 6 ----- %
@@ -382,7 +577,7 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 6 ----- %
-\begin{td-sol}[]\ %
+\begin{td-sol}[]\,\\ %
     % TODO: completer solution exercice 6
 \end{td-sol}
 
@@ -444,36 +639,113 @@ soit en déposant votre devoir durant le cours
 
                 Voici un exemple, en supposant que \(x\) est le vecteur de variables, \(\text{profit}\) et \(\text{weight}\) sont des vecteurs de coefficients:
                 \juliaFile{./julia_code/julia_jump_example_solution_P1.jl}
+
+                Nous pouvons à tout moment visualiser le modèle en utilisant la commande suivante:
+                \juliaFile{./julia_code/julia_jump_print_model_P1.jl}
+                Nous pouvons aussi écrire la totalité du modèle dans un fichier nommé \texttt{ex1.jl} et exéctuer la commande suivante:
+                \juliaFile{./julia_code/julia_jump_write_model_P1.jl}
+
+                \item Lecture de fichier:
+
+                La commande suivante place le contenu du fichier dans un tableau:
+                \juliaFile{./julia_code/julia_jump_read_file_P1.jl}
+
+                On peut ensuite extraire une partie du tableau. Par exemple, la commande suivante place les lignes 5 à 10 de la seconde colonne de data dans le vecteur \texttt{cost}:
+                \juliaFile{./julia_code/julia_jump_extract_data_P1.jl}
+
+                \item Pour afficher le nombre de noeuds dans un arbre:
+                \juliaFile{./julia_code/julia_jump_display_nodes_P1.jl}
+            \end{enumerate}
+
+            \item Sur le problème de \defemph{Bin Packing Problem}.
+
+            On considère le problème \(P_1\) et sa variante \(P_2\): 
+            \(P_1 : x_{ij} \in \{0,1\}\) avec \(x_{ij} = 1\) si et seulement si l'objet \(i\) est placé dans la boîte \(j\)
+            et \(y_j \in \{0,1\}\) avec \(y_j = 1\) si et seulement si la boîte \(j\) contient au moins un objet. On a \(n\) objets et \(m\) boîtes.
+
+            \begin{equation*}
+                PNLE_{\text{bin packing}} =
+                \begin{cases}
+                    \min z = \sum_{j=1}^{m} y_j \\
+                    \sum_{j=1}^{m} x_{ij} = 1, \quad \forall i \in \{1,\ldots,n\} \\
+                    \sum_{i=1}^{n} a_i x_{ij} \leq  W, \quad \forall j \in \{1,\ldots,m\} \\
+                    x_{ij} \leq y_j, \quad \forall i,j \\
+                    x_{ij} \in \{0,1\}, \quad \forall i,j \\
+                    y_j \in \{0,1\}, \quad \forall j
+                \end{cases}
+            \end{equation*}
+            Noter que l'on peut combiner les deux contraintes \(\sum_{i=1}^{n} a_i x_{ij} \leq  W\) et \(x_{ij} \leq y_j\) en une seule contrainte:
+            \begin{equation*}
+                \sum_{i=1}^{n} a_i x_{ij} \leq  W y_j, \quad \forall j \in \{1,\ldots,m\}
+            \end{equation*}
+            c'est ce qu'on utilise dans \(P_2\)
+
+            \begin{enumerate}
+                \item Considérer les instances \(\text{Bin Packing Problem}\) se trouvant à l'adresse \url{https://site.unibo.it/operations-research/en/research/bpplib-a-bin-packing-problem-library} (prendre Falkenaeur et Scholl).
+
+                A noter que le format est le suivant:
+                \begin{itemize}
+                    \item \(n\): nombre d'objets
+                    \item \(c\): capacité des boîtes
+                    \item \(w_j\): poids de l'objet \(j\) pour \(j \in \{1,\ldots,n\}\)
+                \end{itemize}
+                Comparer les valeurs des relaxations linéaires des deux modèles précédents pour les instances précédentes. Comparer le temps de calcul pour obtenir les solutions optimales.
+
+                \item Ajouter des coupes pour accélérer les temps de calcul. Reprendre les tests avec les jeux de données.
             \end{enumerate}
         \end{enumerate}
     \end{td-exo}
 }{}
 
 % ----- Solutions exo 7 ----- %
-\begin{td-sol}[]\ %
+\begin{td-sol}[]\,\\ %
     % TODO: completer solution exercice xx
 \end{td-sol}
 
-% ----- Consignes exo xx ----- %
+% ----- Consignes exo 8 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[]\,\\
+    \begin{td-exo}[Résolution du pire cas: problème Klee-Minty]\,\\
+        Soit le problème linéaire suivant:
+        \begin{equation*}
+            \begin{cases}
+                \max z = \sum_{j=1}^{n} 10^{n-j} x_j \\
+                2 \sum_{j=1}^{i-1} 10^{i-j} x_j + x_i \leq 100^{i-1}, \quad \forall i \in \{1,\ldots,n\} \\
+                x_j \geq 0, \quad \forall j \in \{1,\ldots,n\}
+            \end{cases}
+        \end{equation*}\,
+        \begin{enumerate}
+            \item Résoudre pour \(n=1,2,3\) avec la méthode des tableaux.
 
+            \item Utiliser Julia pour résoudre le problème avec \(n \geq 4\). 
+            Pour cela vous procéderez à des tests. Soit \(T\) la borne de temps maximum autorisé (par exemple 60 secondes).
+            \begin{enumerate}
+                \item Faire varier \(n \in \{5, 10, 15, 200, 30, 50, 100, 150, 200, 250, \ldots\}\) tout en respectant la borne \(T\).
+
+                \item Afficher les temps de calcul en fonction de \(n\).
+
+                \item Vérifier que les temps de calcul sibt similaires à \(\mathsf{O}(2^n)\)
+            \end{enumerate}
+        \end{enumerate}
     \end{td-exo}
 }{}
 
-% ----- Solutions exo xx ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice xx
+% ----- Solutions exo 8 ----- %
+\begin{td-sol}[]\,\\ %
+    % TODO: completer solution exercice 8
 \end{td-sol}
 
-% ----- Consignes exo xx ----- %
+% ----- Consignes exo 9 ----- %
 \iftoggle{showquestions}{
-    \begin{td-exo}[]\,\\
+    \begin{td-exo}[Formulation: trajets d'un convoyeur dans un entrepôt]\,\\
+        Dans un grand entrepôt, un convoyeur électrique est utilisé pour acheminer les arrivages (sous forme de palettes) de la zone d'entrée jusqu'à leur place propre de stockage dans l'entrepôt. Ayant placé une palette dans le stock, le convoyeur peut ensuite aller puiser dans le stock une palette d'un article demandé pour la transporter à la zone de sortie. Il retourne ensuite à la zone d'entrée et recommence avec une nouvelle palette à placer dans le stock.
 
+        Appelons \(a_i\) (avec \(i=1,\ldots,m\)) le nombre de palettes à transporter de la zone d'entrée à la zone \(i\) de stockage et \(b_j\) (avec \(j=1,\ldots,n\)) le nombre de palettes à transporter de la zone \(j\) de stockage à la zone de sortie. Soit enfin \(t_{ij}\) le temps nécessaire pour aller de la zone \(i\) à la zone \(j\) (où \(a_i > 0\) et \(b_j > 0\)). Nous pouvons admettre que \(\{i\ \mid\ a_i > 0\} \cap \{j\ \mid\ b_j > 0\} = \varnothing\) et que \(\sum_{i=1}^{m} a_i = \sum_{j=1}^{n} b_j\) (sans restriction de généralité).
+        
+        Déterminer dans quel ordre les palettes doivent être transportées dans l'entrepôt de manière à minimiser le temps total de transport.
     \end{td-exo}
 }{}
 
-% ----- Solutions exo xx ----- %
-\begin{td-sol}[]\ %
-    % TODO: completer solution exercice xx
+% ----- Solutions exo 9 ----- %
+\begin{td-sol}[]\,\\ %
+    % TODO: completer solution exercice 9
 \end{td-sol}
