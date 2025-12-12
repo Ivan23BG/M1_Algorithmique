@@ -14,3 +14,4 @@ src/HAI720I/tds/*/execs/
 structure.txt
 data/
 *_wrapper.tex
+src/HAI722I_Recherche_Operationnelle/dms/instances/*
