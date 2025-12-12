@@ -678,7 +678,7 @@ soit en déposant votre devoir durant le cours
                 \item Pour résoudre le modèle, il faut exécuter:
                 \juliaFile{./julia_code/julia_jump_solve_model_P1.jl}
 
-                La valeur de la solution optimale du modèle, le temps d'exécution et la solutoin optimale, peuvent etre récupérés en utilisant les commandes suivantes:
+                La valeur de la solution optimale du modèle, le temps d'exécution et la solution optimale, peuvent etre récupérés en utilisant les commandes suivantes:
                 \juliaFile{./julia_code/julia_jump_solution_P1.jl}
 
                 Voici un exemple, en supposant que \(x\) est le vecteur de variables, \(\text{profit}\) et \(\text{weight}\) sont des vecteurs de coefficients:
@@ -742,8 +742,39 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 7 ----- %
-\begin{td-sol}[]\,\\ %
-    % TODO: completer solution exercice xx
+\begin{td-sol}[]\, %
+    \begin{enumerate}
+        \item Commencons par la modélisation du problème \(P_1\):
+        \juliaFile{./julia_code/julia_jump_bin_packing_P1.jl}
+        Le programme a l'air de fonctionner, les résultats sont cohérents:
+        \bashFile{./julia_code/julia_jump_bin_packing_P1_solution.txt}
+
+        \item On passe maintenant au problème de \(\text{Bin Packing Problem}\):
+        \begin{enumerate}
+            \item On commence par créer une fonction qui lit les données d'un fichier et crée le modèle associé:
+            \juliaFile{./julia_code/julia_jump_bin_packing_read_data.jl}
+            Ensuite on construit les modèles pour \(P_1\):
+            \juliaFile{./julia_code/julia_jump_bin_packing_model_P1.jl}
+            et pour \(P_2\):
+            \juliaFile{./julia_code/julia_jump_bin_packing_model_P2.jl}
+            Le code complet utilisé dans cette partie est présent en annexe~\ref{annexe:bin_packing}.
+
+            Les résultats même pour un petit sous ensemble de problèmes mettent plus de 2500 secondes à être calculés. 
+
+            \item On ajoute maintenant des coupes pour accélérer les temps de calcul.
+            On ajoute les coupes de type \emph{covering inequalities}:
+            \begin{equation*}
+                \sum_{i \in C} x_{ij} \leq |C| - 1 y_j, \quad \forall j \in \{1,\ldots,m\}, \forall C \subseteq \{1,\ldots,n\} \text{ tel que } \sum_{i \in C} a_i > W
+            \end{equation*}
+            Le code pour cette partie est le suivant:
+            \juliaFile{./julia_code/julia_jump_bin_packing_cuts.jl}
+            % On obtient les résultats suivants:
+            % TODO: ajouter les resultats
+            % \bashFile{./julia_code/julia_jump_bin_packing_cuts_results.txt}
+
+
+        \end{enumerate}
+    \end{enumerate}
 \end{td-sol}
 
 % ----- Consignes exo 8 ----- %
@@ -757,13 +788,13 @@ soit en déposant votre devoir durant le cours
                 x_j \geq 0, \quad \forall j \in \{1,\ldots,n\}
             \end{cases}
         \end{equation*}\,
-        \begin{enumerate}
+        \begin{enumerate} 
             \item Résoudre pour \(n=1,2,3\) avec la méthode des tableaux.
 
             \item Utiliser Julia pour résoudre le problème avec \(n \geq 4\). 
             Pour cela vous procéderez à des tests. Soit \(T\) la borne de temps maximum autorisé (par exemple 60 secondes).
             \begin{enumerate}
-                \item Faire varier \(n \in \{5, 10, 15, 200, 30, 50, 100, 150, 200, 250, \ldots\}\) tout en respectant la borne \(T\).
+                \item Faire varier \(n \in \{5, 10, 15, 20, 30, 50, 100, 150, 200, 250, \ldots\}\) tout en respectant la borne \(T\).
 
                 \item Afficher les temps de calcul en fonction de \(n\).
 
@@ -774,8 +805,182 @@ soit en déposant votre devoir durant le cours
 }{}
 
 % ----- Solutions exo 8 ----- %
-\begin{td-sol}[]\,\\ %
-    % TODO: completer solution exercice 8
+\begin{td-sol}[]\, %
+    \begin{enumerate}
+        \item 
+        \begin{itemize}
+            \item Pour \(n=1\):
+            \begin{center}
+                \begin{tabular}{|ccc|c|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_1^{1}=s_1\)} &\(1\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(0\)} &\(0\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            La solution optimale est \(x_1 = 1\) avec \(z = 1\).
+
+            \item Pour \(n=2\), le problème devient:
+            \begin{equation*}
+                \begin{cases}
+                    \max z = 10 x_1 + x_2 \\
+                    x_1 \leq 1 \\
+                    20 x_1 + x_2 \leq 100 \\
+                    x_j \geq 0, \quad \forall j \in \{1,2\}
+                \end{cases}
+            \end{equation*}
+            Sous forme standard on a
+            \begin{equation*}
+                \begin{cases}
+                    \max z = 10 x_1 + x_2 + 0 x_3 + 0 x_4 \\
+                    x_1 + x_3 = 1 \\
+                    20 x_1 + x_2 + x_4 = 100 \\
+                    x_j \geq 0, \quad \forall j \in \{1,2,3,4\}
+                \end{cases}
+            \end{equation*}
+            Le tableau initial est:
+            \begin{center}
+                \begin{tabular}{|ccc|cccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(10\)&\(1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1}=x_3\)} &\(1\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1}=x_4\)} &\(100\)&\(20\)&\(1\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(0\)} &\(-10\)&\(-1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            On a \(x_1\) qui entre et \(x_3\) qui sort, on effectue le pivot:
+            \begin{center}
+                \begin{tabular}{|ccc|cccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(10\)&\(1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(10\)}& \multicolumn{1}{c|}{\(x_1^{2}=x_1\)} &\(1\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{2}=x_4\)} &\(80\)&\(0\)&\(1\)&\(-20\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(10\)} &\(0\)&\(-1\)&\(10\)&\(0\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+
+            On a \(x_2\) qui entre et \(x_4\) qui sort, on effectue le pivot:
+            \begin{center}
+                \begin{tabular}{|ccc|cccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(10\)&\(1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(10\)}& \multicolumn{1}{c|}{\(x_1^{3}=x_1\)} &\(1\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_2^{3}=x_2\)} &\(80\)&\(0\)&\(1\)&\(-20\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(90\)} &\(0\)&\(0\)&\(-10\)&\(1\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            On a \(x_3\) qui entre et \(x_1\) qui sort, on effectue le pivot:
+            \begin{center}
+                \begin{tabular}{|ccc|cccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(10\)&\(1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{4}=x_3\)} &\(1\)&\(1\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_2^{4}=x_2\)} &\(100\)&\(20\)&\(1\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(100\)} &\(10\)&\(0\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            La solution optimale est \(x_1 = 0\), \(x_2 = 100\) avec \(z = 100\).
+
+            \item Pour \(n=3\), le problème devient:
+            \begin{equation*}
+                \begin{cases}
+                    \max z = 100 x_1 + 10 x_2 + x_3 \\
+                    x_1 \leq 1 \\
+                    20 x_1 + x_2 \leq 100 \\
+                    200 x_1 + 20 x_2 + x_3 \leq 10000 \\
+                    x_j \geq 0, \quad \forall j \in \{1,2,3\}
+                \end{cases}
+            \end{equation*}
+            Sous forme standard on a
+            \begin{equation*}
+                \begin{cases}
+                    \max z = 100 x_1 + 10 x_2 + x_3 + 0 x_4 + 0 x_5 + 0 x_6 \\
+                    x_1 + x_4 = 1 \\
+                    20 x_1 + x_2 + x_5 = 100 \\
+                    200 x_1 + 20 x_2 + x_3 + x_6 = 10000 \\
+                    x_j \geq 0, \quad \forall j \in \{1,2,3,4,5,6\}
+                \end{cases}
+            \end{equation*}
+            Le tableau initial est:
+            \begin{center}
+                \begin{tabular}{|ccc|cccccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(100\)&\(10\)&\(1\)&\(0\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(x_6\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1}=x_4\)} &\(1\)&\(1\)&\(0\)&\(0\)&\(1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1}=x_5\)} &\(100\)&\(20\)&\(1\)&\(0\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_3^{1}=x_6\)} &\(10000\)&\(200\)&\(20\)&\(1\)&\(0\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(0\)} &\(-100\)&\(-10\)&\(-1\)&\(0\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            Il y a beaucoup d'autres tableaux (8 au total), le dernier est:
+            \begin{center}
+                \begin{tabular}{|ccc|cccccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(100\)&\(10\)&\(1\)&\(0\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)&\(x_6\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{8}=x_4\)} &\(1\)&\(1\)&\(0\)&\(0\)&\(1\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{8}=x_5\)} &\(100\)&\(20\)&\(1\)&\(0\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_3^{8}=x_3\)} &\(10000\)&\(200\)&\(20\)&\(1\)&\(0\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(z(x)\)& \multicolumn{1}{|c|}{\(10000\)} &\(100\)&\(10\)&\(0\)&\(0\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            La solution optimale est \(x_1 = 0\), \(x_2 = 0\), \(x_3 = 10000\) avec \(z = 10000\).
+        \end{itemize}
+
+        \item Pour \(n \geq 4\), on utilise Julia pour résoudre le problème.
+
+        \begin{enumerate}
+            \item On crée une fonction qui génère le modèle Klee-Minty pour une dimension \(n\) donnée:
+            \juliaFile{./julia_code/julia_jump_klee_minty_model.jl}
+
+            \item On affiche les résultats dans le terminal et on les sauvegarde dans un fichier texte.
+
+            \item Les temps de calculs sont en effet de l'ordre de \(\mathsf{O}(2^n)\) et dans mon cas le solveur n'arrive pas à résoudre le problème pour \(n \geq 25\) en moins de 60 secondes.
+        \end{enumerate}
+        
+    \end{enumerate}
 \end{td-sol}
 
 % ----- Consignes exo 9 ----- %
@@ -791,5 +996,6 @@ soit en déposant votre devoir durant le cours
 
 % ----- Solutions exo 9 ----- %
 \begin{td-sol}[]\,\\ %
-    % TODO: completer solution exercice 9
+    On peut modéliser ce problème suit dans Julia:
+    \juliaFile{./julia_code/julia_jump_convoyeur_model.jl}
 \end{td-sol}
