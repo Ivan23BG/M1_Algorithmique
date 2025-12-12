@@ -424,6 +424,70 @@ soit en déposant votre devoir durant le cours
                 \end{tabular}
             \end{center}
             On a ni une solution de base réalisable pour le dual ni une solution de base réalisable pour le primal car tous les termes sont négatifs. Donc on n'a pas de solution de base avec la méthode du dual simplexe et on ne peut pas chercher une solution au problème \(P_\beta\).
+
+            \item Faisons de même pour le problème \(P_\theta\):
+            \begin{equation*}
+                \begin{cases}
+                    \max z = x_1 + 3x_2 \\
+                    -x_1 -x_2 \leq -3 \\
+                    -x_1 + 2x_2 \leq -5 \\
+                    -2x_1 + x_2 \leq = 5 \\
+                    x_i \geq 0, \quad \forall i \in \{1,\ldots,5\}
+                \end{cases}
+            \end{equation*}
+            On passe au dual:
+            \begin{equation*}
+                \begin{cases}
+                    \min w = -3y_1 - 5y_2 + 5y_3 \\
+                    -y_1 - y_2 - 2y_3 \geq 1 \\
+                    -y_1 + 2y_2 + y_3 \geq 3 \\
+                    y_1, y_2 \geq 0, \quad y_3 \text{ libre}
+                \end{cases}
+            \end{equation*}
+            et on ajoute les variables d'écart:
+            \begin{equation*}
+                \begin{cases}
+                    \min w = -3y_1 - 5y_2 + 5y_3 + 0y_4 + 0y_5 + M(x_1 + x_2) \\
+                    -y_1 - y_2 - 2y_3 - y_4 + x_1 = 1 \\
+                    -y_1 + 2y_2 + y_3 - y_5 + x_2 = 3 \\
+                    y_1, y_2 \geq 0, \quad y_3 \text{ libre}, \quad y_4, y_5 \geq 0
+                \end{cases}
+            \end{equation*}
+            On utilise toujours des variables d'écart comme ca car on a pas de solution initiale au dual. On construit le tableau initial:
+            \begin{center}
+                \begin{tabular}{|ccc|ccccccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(-3\)&\(-5\)&\(5\)&\(0\)&\(0\)&\(M\)&\(M\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(y_1\)&\(y_2\)&\(y_3\)&\(y_4\)&\(y_5\)&\(x_1\)&\(x_2\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(M\)}& \multicolumn{1}{c|}{\(x_1^{1}=x_1\)} &\(1\)&\(-1\)&\(-1\)&\(-2\)&\(-1\)&\(0\)&\(1\)&\(0\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(M\)}& \multicolumn{1}{c|}{\(x_2^{1}=x_2\)} &\(3\)&\(-1\)&\(2\)&\(1\)&\(0\)&\(-1\)&\(0\)&\(1\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(w(y)\)& \multicolumn{1}{|c|}{\(4M\)} &\(-2M+3\)&\(M+5\)&\(-M-5\)&\(-M\)&\(-M\)&\(0\)&\(0\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            On a \(x_2\) qui rentre et \(x_7\) qui sort:
+            \becomes{}
+            \begin{center}
+                \begin{tabular}{|ccc|ccccccc|} % chktex 44
+                    \hline  % chktex 44
+                    & \ &\(c\)&\(-3\)&\(-5\)&\(5\)&\(0\)&\(0\)&\(M\)&\(M\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(y_1\)&\(y_2\)&\(y_3\)&\(y_4\)&\(y_5\)&\(x_1\)&\(x_2\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(M\)}& \multicolumn{1}{c|}{\(x_1^{2}=x_1\)} &\(\vphantom{\dfrac12}\frac{5}{2}\)&\(-\frac32\)&\(0\)&\(-1.5\)&\(-1\)&\(-\frac{1}{2}\)&\(1\)&\(0.5\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{\(-5\)}& \multicolumn{1}{c|}{\(x_2^{2}=y_2\)} &\(\vphantom{\dfrac12}\frac32\)&\(-\frac12\)&\(1\)&\(0.5\)&\(0\)&\(-\frac{1}{2}\)&\(0\)&\(0.5\)\\
+                    \hline % chktex 44
+                    \multicolumn{1}{|c|}{} &\(w(y)\)& \multicolumn{1}{|c|}{\(\vphantom{\dfrac12}\frac52M - \frac{15}{2}\)} &\(-\frac32M + \frac{11}{2}\)&\(0\)&\(-\frac32M - \frac{15}{2}\)&\(-M\)&\(-\frac12M+\frac52\)&\(0\)&\(-\frac12M-\frac52\)\\
+                    \hline % chktex 44
+                \end{tabular}
+            \end{center}
+            Comme tout a l'heure, on a plus aucune variable qui peut realistiquement sortir de base et on ne peut donc pas continuer l'algorithme du simplexe. On ne peut donc pas non plus trouver une solution au problème \(P_\theta\) via cette méthode.
+            L'ensemble des solutions est non borné.
         \end{enumerate}
     \end{enumerate}
 \end{td-sol}
