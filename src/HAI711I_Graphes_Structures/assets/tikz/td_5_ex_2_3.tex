@@ -1,0 +1,38 @@
+% Figure 1
+\ffigbox[\FBwidth]{
+\caption{\centering Graphe \(G_1\) colorié}\label{Fig:td5ex2c3}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1,
+            main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}, 
+            cola node/.style={circle, draw, fill=red!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}, 
+            colb node/.style={circle, draw, fill=green!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}, 
+            colc node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}, 
+            cold node/.style={circle, draw, fill=orange!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
+            \node[cold node] (a) at (0, 0) {\(a\)};
+            \node[colc node] (b) at (2, 0) {\(b\)};
+            \node[cola node] (c) at (0, -1) {\(c\)};
+            \node[cola node] (d) at (2, -1) {\(d\)};
+            \node[colb node] (e) at (-1, -2) {\(e\)};
+            \node[colc node] (f) at (1, -2) {\(f\)};
+            \node[colb node] (g) at (3, -2) {\(g\)};
+            
+            \draw (a) -- (b);
+            \draw (a) -- (c);
+            \draw (a) -- (e);
+
+            \draw (b) -- (d);
+            \draw (b) -- (g);
+
+            \draw (c) -- (e);
+            \draw (c) -- (f);
+
+            \draw (d) -- (f);
+            \draw (d) -- (g);
+
+            \draw (e) -- (f);
+
+            \draw (f) -- (g);
+        \end{tikzpicture}
+    }
+}

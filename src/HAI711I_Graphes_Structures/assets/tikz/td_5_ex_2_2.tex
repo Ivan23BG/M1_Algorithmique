@@ -1,0 +1,42 @@
+% Figure 1
+\ffigbox[\FBwidth]{
+\caption{\centering Graphe \(G_2\) dé départ}\label{Fig:td5ex2c2}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1,
+            main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
+            \node[main node] (a) at (-2, 1) {\(a\)};
+            \node[main node] (b) at (-2, -1) {\(b\)};
+            \node[main node] (c) at (2, 1) {\(c\)};
+            \node[main node] (d) at (2, -1) {\(d\)};
+            \node[main node] (e) at (-1, 2) {\(e\)};
+            \node[main node] (f) at (1, 2) {\(f\)};
+            \node[main node] (g) at (-1, -2) {\(g\)};
+            \node[main node] (h) at (1, -2) {\(h\)};
+            \node[main node] (i) at (-3, -3) {\(i\)};
+            \node[main node] (j) at (3, 3) {\(j\)};
+            \node[main node] (k) at (-3, 3) {\(k\)};
+            \node[main node] (l) at (3, -3) {\(l\)};
+
+
+            
+            
+            \draw (a) -- (b);
+            \draw (a) -- (c);
+            \draw (a) -- (e);
+
+            \draw (b) -- (d);
+            \draw (b) -- (g);
+
+            \draw (c) -- (e);
+            \draw (c) -- (f);
+
+            \draw (d) -- (f);
+            \draw (d) -- (g);
+
+            \draw (e) -- (f);
+
+            \draw (f) -- (g);
+        \end{tikzpicture}
+    }
+}
