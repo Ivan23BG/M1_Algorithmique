@@ -1,0 +1,109 @@
+\makeatletter
+
+% ==============================================================================
+% TABLE OF CONTENTS FORMATTING
+% ==============================================================================
+
+% Adjusts indentation and spacing for different section levels in the TOC.
+
+% ============================================================================== 
+% GENERAL MATH SHORTCUTS
+% ==============================================================================
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}  % Absolute value with scalable bars
+\newcommand{\Tau}{\mathcal{T}}                   % Calligraphic Tau, often used for topology
+
+% ============================================================================== 
+% SUBJECT-SPECIFIC THEOREM ENVIRONMENTS
+% ==============================================================================
+
+% --- Numbered theorem environments (per subsection) ---
+% Uses colored left border and custom counter for clarity in notes.
+\theoremstyle{default}
+\mytheorem{definition}{Définition}{algebraic-amber}{subsection}{o}  % Definitions: amber, numbered per subsection
+\mytheorem{exs}{Exemples}{matrix-mist}{subsection}{o}               % Examples: mist, numbered per subsection
+
+% --- Unnumbered theorem environments ---
+% Used for remarks, interpretations, and other statements that don't require numbering.
+\theoremstyle{nonum}
+\mytheorem{interp}{Interprétation}{verdant}{}{}    % Interpretation: green, unnumbered
+\mytheorem{proposition}{Proposition}{verdant}{}{}  % Proposition: green, unnumbered
+\mytheorem{notation}{Notation}{verdant}{}{}        % Notation: green, unnumbered
+\mytheorem{example}{Exemple}{matrix-mist}{}{}      % Example: mist, unnumbered
+\mytheorem{exo}{Exercice}{matrix-mist}{}{}         % Exercise: mist, unnumbered
+\mytheorem{exercice}{Exercice}{matrix-mist}{}{}    % Exercise (alt): mist, unnumbered
+\mytheorem{theorem}{Théorème}{astral}{}{}          % Theorem: blue, unnumbered
+\mytheorem{lemma}{Lemme}{astral}{}{}               % Lemma: blue, unnumbered
+\mytheorem{remark}{Remarque}{verdant}{}{}          % Remark: green, unnumbered
+
+\makeatother
+
+\counterwithout{tdcounter}{section} 
+
+\usetikzlibrary{shapes,arrows,positioning,calc,fit,backgrounds,angles,quotes}
+
+\newcommand{\becomes}{\begin{center}\(\downarrow\)\end{center}}
+
+
+\usepackage{floatrow}
+\usepackage{caption}
+\usepackage{cases}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% ----- Julia language definition -----
+\lstdefinelanguage{julia}{
+    keywords={function, end, if, else, elseif, while, for, in, return, break, continue, struct, 
+    mutable, using, import, module, export, const, let, global, local, abstract, typealias, 
+    sin, atan, true, add},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]", % chktex 18
+}
+\definecolor{codebg}{RGB}{245,245,245}   % very light gray
+\definecolor{codeborder}{RGB}{220,220,220} 
+\definecolor{keywordcolor}{RGB}{0,0,150}
+\definecolor{commentcolor}{RGB}{120,120,120}
+\lstdefinestyle{julia-style}{
+    language=julia, % new language
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{verdant},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+}
+% convenience macro
+\newcommand{\juliaFile}[1]{\lstinputlisting[style=julia-style]{#1}}
+
+% custom bash environment with same style as julia
+\lstdefinelanguage{bash}{
+    keywords={sudo, apt-get, install, update, upgrade, cd, ls, mkdir, rm, rmdir, touch, nano, vim, cat, echo, pwd, cp, mv},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]", % chktex 18
+}
+\lstdefinestyle{bash-style}{
+    language=bash,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeborder},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+}
+% convenience macro
+\newcommand{\bashFile}[1]{\lstinputlisting[style=bash-style]{#1}}
