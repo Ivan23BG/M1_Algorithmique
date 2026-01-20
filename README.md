@@ -2,19 +2,16 @@
 
 ## Overview
 This repository contains LaTeX source files and compiled materials for various algorithmics courses:
-- HAI702I: Algebra, geometry, transformation, scientific computing
-- HAI709I: Foundations of Cryptography for Security
-- HAI710I: Foundations of Symbolic AI
-- HAI711I: Graphs: Structures and Algorithms
-- HAI713I: Logic, Computability, and Complexity
-- HAI718I: Probability and Statistics
-- HAI720I: Efficient Algorithm Programming
-- HAI722I: Operations Research
+- HAI7XXI: Legacy files on various courses from semester 7
+- HAI820I: Operational Research 2
+- HAI808I: Calculability 2
+- HAI807I: Formal calculus
 
 ## Repository Structure
 ```
 .
 ├── build/                               # Build artifacts and intermediate files
+├── legacy/                              # Legacy files for previous courses
 ├── logs/                                # Compilation logs
 ├── pdfs/                                # Generated PDF documents
 └── src/                                 # Source files
