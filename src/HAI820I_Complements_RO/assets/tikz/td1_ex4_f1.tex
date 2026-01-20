@@ -1,0 +1,53 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Recherche d'un plus court chemin par branch and bound}\label{fig:td1_ex4_f1}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm}]
+            % les sommets initiaux
+            \node[main node] (s) at (-3.5,0) {\(s\)};
+            \node[main node] (t) at (3.5,0) {\(t\)};
+
+            \node[main node] (a) at (-2,1.5) {\(a\)};
+            \node[main node] (b) at (-2,0) {\(b\)};
+            \node[main node] (c) at (-2,-1.5) {\(c\)};
+
+            \node[main node] (d) at (0,1.5) {\(d\)};
+            \node[main node] (e) at (0,0) {\(e\)};
+            \node[main node] (f) at (0,-1.5) {\(f\)};
+
+            \node[main node] (g) at (2,1.5) {\(g\)};
+            \node[main node] (h) at (2,0) {\(h\)};
+            \node[main node] (i) at (2,-1.5) {\(i\)};
+
+            % les arcs avec capacités
+            \draw[-{Stealth}] (s) to node[above left] {\(2\)} (a);
+            \draw[-{Stealth}] (s) to node[above] {\(2\)} (b);
+            \draw[-{Stealth}] (s) to node[above right] {\(4\)} (c);
+
+            \draw[-{Stealth}] (a) to node[right] {\(3\)} (b);
+            \draw[-{Stealth}] (a) to node[above] {\(7\)} (d);
+            \draw[-{Stealth}] (a) to node[above right] {\(2\)} (e);
+
+            \draw[-{Stealth}] (b) to node[above] {\(9\)} (e);
+            \draw[-{Stealth}] (b) to node[above right] {\(2\)} (f);
+
+            \draw[-{Stealth}] (c) to node[above] {\(2\)} (f);
+
+            \draw[-{Stealth}] (d) to node[above] {\(1\)} (g);
+            \draw[-{Stealth}] (d) to node[above right] {\(2\)} (h);
+
+            \draw[-{Stealth}] (e) to node[right] {\(1\)} (f);
+            \draw[-{Stealth}] (e) to node[above] {\(3\)} (h);
+            
+            \draw[-{Stealth}] (f) to node[below right] {\(5\)} (h);
+            \draw[-{Stealth}] (f) to node[below right] {\(2\)} (i);
+            
+            \draw[-{Stealth}] (g) to node[below right] {\(4\)} (t);
+            
+            \draw[-{Stealth}] (h) to node[below right] {\(4\)} (t);
+            
+            \draw[-{Stealth}] (i) to node[below right] {\(2\)} (t);
+            \draw[-{Stealth}] (i) to node[below right] {\(2\)} (t);
+        \end{tikzpicture}
+    }
+}

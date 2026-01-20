@@ -1,0 +1,33 @@
+\section{Génération de colonnes}\label{sec:s_2}
+
+Rappelons le principe de l'algorithme de la génération de colonnes:
+\begin{itemize}
+    \item Initialisation: on met quelques colonnes de \(PL\). Soit \(PL_R\).
+    \item Itérations: 
+    \begin{itemize}
+        \item Résoudre \((PL_R)\).
+        \item Calculer les couts réduits des variables de \((PL)\).
+        \item Si toutes les variables de \((PL)\) ont un cout réduit \(\geq 0\) alors STOP \(((PL)\) est résolu \()\). 
+        Sinon ajouter une variable de cout réduit minimum à \((PL_R)\) et résoudre à nouveau \((PL_R)\).
+    \end{itemize}
+
+    Pour calculer les couts réduits:
+    
+    \item on utilise les variables duales \(\mu \geq 0\) associées aux contraintes
+    \item Couts réduits: \(c - \mu A\).
+    \item Dimensions:
+    \begin{itemize}
+        \item \(c\) et \(\mu\) vecteurs lignes,
+        \item \(c\) avec \(n\) colonnes et \(\mu\) avec \(m\) colonnes,
+        \item \(A\) la matrice \(m\times n\)
+        \item \(n\) le nombre de variables et \(m\) le nombre de contraintes.
+    \end{itemize}
+\end{itemize}
+
+
+\input{../exos/exo_26.tex}
+
+\input{../exos/exo_27.tex}
+
+\input{../exos/exo_28.tex}
+

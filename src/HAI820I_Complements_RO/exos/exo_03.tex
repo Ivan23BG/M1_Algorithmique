@@ -1,0 +1,82 @@
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[Détermination de l'arbre d'évaluation et de séparation pour un problème donné]\,\\ % 3 
+	Nous considérons le programme linéaire en nombres entiers suivant:
+	\begin{equation*}
+		PL_1 = 
+		\begin{cases}
+			2x_1 + 5x_2 \leq 11\\
+			x_1,x_2 \in\bb N\\
+			\max(z) = 10x_1 + x_2
+		\end{cases}
+	\end{equation*}
+	Nous associons le programme linéaire (en valeurs réelles) \(PL_1\) et la solution est la suivante:
+	\begin{equation*}
+		x_1^\ast = 5.5,\quad x_2^\ast = 0,\quad z^\ast = 55.
+	\end{equation*}
+	Le problème se sépare en deux sous-problèmes:
+	\begin{equation*}
+		PL_2 = 
+		\begin{cases}
+			2x_1 + 5x_2 \leq 11\\
+			x_1 \leq 5\\
+			x_1,x_2 \in\bb N\\
+			\max(z) = 10x_1 + x_2
+		\end{cases}
+	\end{equation*}
+	et 
+	\begin{equation*}
+		PL_3 = 
+		\begin{cases}
+			2x_1 + 5x_2 \leq 11\\
+			x_1 \geq 6\\
+			x_1,x_2 \in\bb N\\
+			\max(z) = 10x_1 + x_2
+		\end{cases}
+	\end{equation*}
+	Les solutions sont les suivantes pour les deux programmes:
+	\begin{equation*}
+		\begin{aligned}
+			x_1^\ast = 5,\quad x_2^\ast = 0.2,\quad z^\ast = 50.2 & \text{ pour } PL_2\\
+			\varnothing & \text{ pour } PL_3
+		\end{aligned}
+	\end{equation*}
+	Ainsi le problème \(PL_2\) associé au programme \(PL_1\) se décompose en sous-problèmes:
+	\begin{equation*}
+		PL_4 = 
+		\begin{cases}
+			2x_1 + 5x_2 \leq 11\\
+			x_1 \leq 5\\
+			x_2 \leq 0\\
+			x_1,x_2 \in\bb N\\
+			\max(z) = 10x_1 + x_2
+		\end{cases}
+	\end{equation*}
+	et 
+	\begin{equation*}
+		PL_5 = 
+		\begin{cases}
+			2x_1 + 5x_2 \leq 11\\
+			x_1 \leq 5\\
+			x_2 \geq 1\\
+			x_1,x_2 \in\bb N\\
+			\max(z) = 10x_1 + x_2
+		\end{cases}
+	\end{equation*}
+	Les solutions sont les suivantes pour les deux programmes:
+	\begin{equation*}
+		\begin{aligned}
+			x_1^\ast = 5,\quad x_2^\ast = 0,\quad z^\ast = 50 & \text{ pour } PL_4\\
+			x_1^\ast = 3,\quad x_2^\ast = 1,\quad z^\ast = 31 & \text{ pour } PL_5\\
+		\end{aligned}
+	\end{equation*}
+	Donner l'arbre d'évaluation et de séparation associé à la résolution du problème \(PL_1\).
+
+
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 3
+		
+	\end{td-sol}
+}{}
