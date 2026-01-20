@@ -65,7 +65,7 @@
 
 % ----- Consignes exo 2 ----- %
 \begin{td-exo}[Indépendant dans les subcubiques --- 5pts]\,\\ % 2
-    Un graphe \(G = (V,E)\) est dit \defemph{subcubique} si tous ses sommets ont degré au plus 3, c'est à dire si \(\forall v\in V, \mathsf{deg}_G(v) \leq 3\).
+    Un graphe \(G = (V,E)\) est dit \defemph{subcubique} si tous ses sommets ont degré au plus 3, c'est à dire si \(\forall v\in V, \mathsf{deg}_G(v) \leq 3\). % chktex 35
     Le but de l'exercice est de donner des bornes sur \(\alpha(G)\), la taille du plus grand ensemble indépendant (ou stable) de \(G\) en fonction de \(n\), le nombre de sommets de \(G\).
     \begin{enumerate}
         \item On commence par fournir une borne inférieure pour \(\alpha(G)\).
@@ -74,7 +74,7 @@
             \item En déduire, par récurrence sur \(n\), que tout graphe subcubique à \(n\) sommets admet un indépendant de taille au moins \(\lceil \frac{n}{4} \rceil\).
         \end{enumerate}
 
-        \item On suppose maintenant que \(G\) est cubique (c'est à dire \(\forall v\in V, \mathsf{deg}_G(v) = 3\)) et on va établir une borne supérieure pour \(\alpha(G)\).
+        \item On suppose maintenant que \(G\) est cubique (c'est à dire \(\forall v\in V, \mathsf{deg}_G(v) = 3\)) et on va établir une borne supérieure pour \(\alpha(G)\). % chktex 35
         \begin{enumerate}
             \item Soit \(X\) un indépendant de \(G\). En fonction de la taille de \(X\), calculer le nombre d'arêtes, noté \(e(X, \ol{X})\), entre \(X\) et son complémentaire.
             \item En déduire que \(|X| \leq |\ol{X}|\) puis que \(|X| \leq \lfloor \frac{n}{2} \rfloor\).
