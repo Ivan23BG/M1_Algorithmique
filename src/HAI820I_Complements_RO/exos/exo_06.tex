@@ -1,6 +1,16 @@
 % ----- Consignes exo 6 ----- %
-\begin{td-exo}[title]\, % 6 
-	
+\begin{td-exo}[Contraintes avec une seule variable]\,\\ % 6 
+	On considère un problème de programmation linéaire standard, à une seule contrainte, défini par
+	\begin{equation*}
+		\max \sum_{j=1}^{n} u_j x_j
+	\end{equation*}
+	avec 
+	\begin{equation*}
+		\sum_{j=1}^{n} v_j x_j \leq V,\text{ et } x_j\geq0,\quad\text{pour } 1 \leq j \leq n
+	\end{equation*}
+	Tous les coefficient \(u_j\) et \(v_j\) sont supposés strictement positifs et l'on suppose les variables classées par rapports utilité/volume décroissants ou, pour rester dans un formalisme plus mathématique, suivant les valeurs décroissantes des rapports \(\frac{u_j}{v_j}\).
+	Montrer que la variable \(x_1\) est entrante et que, en la faisant entrer en base, on atteint l'optimum de l'objectif en une seule étape.
+	Exprimer la valeur de l'objectif en fonction des différents coefficients.
 \end{td-exo}
 
 % ----- Solutions exo 6 ----- %
