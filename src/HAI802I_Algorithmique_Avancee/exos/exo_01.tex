@@ -14,6 +14,28 @@
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 1
-		
+		\begin{enumerate}
+			\item On rappelle que tous les litéraux sont positifs, il suffit alors de tout mettre à faux pour trouver une solution, donc le problème appartient à la classe \(P\).
+			\item On fait une réduction de \(3\)-SAT vers \textsc{Half} \(3\)-SAT.\@
+
+			On commence par faire la chose suivante:
+			\begin{equation*}
+				I \rightsquigarrow I + \underbrace{\left( x \lor y \lor z \right)}_{m\text{ copies}},\quad x,y,z\notin I
+			\end{equation*}
+			Si on a oui à \(3\)-SAT alors on a \(m\) clauses satisfaites. On en déduit que sur \(2m\) clauses, il suffit de mettre \(x,y,z\) à faux et alors 
+			on a bien \(50\%\) des clauses qui sont satisfaites par la solution à \(3\)-SAT.\@
+
+			Dans l'autre sens, si on a une solution à \textsc{Half} \(3\)-SAT on a plusieurs cas:
+			\begin{itemize}
+				\item Premier cas, on satisfait une clause dans \(I\). Alors toutes les \(m\) clauses sont validées dans \(I\) et 
+				on a une solution à \(3\)-SAT.\@
+				\item Second cas, on ne satisfait aucune clause de \(I\). Mais alors si dans \(I\) il n'y a aucune variable négative,
+				on peut résoudre \(3\)-SAT en mettant tout à positif, de même dans le cas où il n'y a aucune variable positive. Il y 
+				a donc forcément une variable présente de manière positive et négative dans \(I\). Alors, au moins une clause est satisfaite.
+				Donc on est dans le premier cas et forcément les \(m\) clauses satisfaites sont dans \(I\).
+			\end{itemize}
+
+			Le problème de au moins \(50\%\) est facile. Il suffit de prendre une affectation aléatoire (ou son complémentaire).
+		\end{enumerate}
 	\end{td-sol}
 }{}
