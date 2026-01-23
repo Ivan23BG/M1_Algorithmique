@@ -144,6 +144,7 @@ def find_main_files():
     return main_files
 
 def find_figure_files():
+    pass
     ensure_directories()
     figure_files = []
 
@@ -256,6 +257,7 @@ def migrate_figure_to_figures_dir(tikz_file):
     return wrapper_path
 
 def compile_figure(tikz_file):
+    pass
     """
     Compile a single TikZ figure to PDF.
     Process:
@@ -431,6 +433,7 @@ def move_build_outputs(tex_file, build_path, log_path, pdf_path):
 # ================================================================
 
 def build_figures_parallel(max_workers=None):
+    pass
     """Build all figures in parallel."""
     if not os.path.exists(FIGURE_FILES_LIST):
         print("No figure_files.txt found. Run --find-files first.")
@@ -552,10 +555,10 @@ def main():
     elif arg == "--create-deps-tree":
         create_deps_tree()
         
-    elif arg == "--figures-only":
-        success = build_figures_parallel()
-        if not success:
-            sys.exit(1)
+    # elif arg == "--figures-only":
+    #     success = build_figures_parallel()
+    #     if not success:
+    #         sys.exit(1)
             
     elif arg == "--main-only":
         success = build_mains_parallel()
@@ -567,9 +570,10 @@ def main():
         clean_all()
         find_figure_files()
         find_main_files()
-        success = build_figures_parallel()
-        if success:
-            build_mains_parallel()
+        # success = build_figures_parallel()
+        # if success:
+            # build_mains_parallel()
+        build_mains_parallel()
             
     elif arg == "--clean":
         clean_all()
