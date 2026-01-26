@@ -60,13 +60,67 @@
 			2 & 1
 		\end{pmatrix}\).
 
-		Est-ce que \(E\) est totalement unimodulaire? Trouver les deux solutions à valeurs entières.
+		Est-ce que \(E\) est totalement unimodulaire? Trouver les deux solutions à valeurs entières au problème \(EX = B\).
 	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{ 
-	\begin{td-sol}[]\ % 1
-		
+	\begin{td-sol}[]\, % 1
+		\begin{enumerate}
+			\item La matrice \(A\) est totalement unimodulaire car toutes ses matrices ont déterminant \(1,-1\) ou \(0\).
+			\begin{equation*}
+				\begin{vmatrix}
+					1 & -1\\
+					-1 & 1\\
+				\end{vmatrix} = 0,\quad 
+				\begin{vmatrix}
+					1 & 1\\
+					-1 & 0\\
+				\end{vmatrix} = 1\quad 
+				\begin{vmatrix}
+					-1 & 1\\
+					1 & 0\\
+				\end{vmatrix} = -1
+			\end{equation*}
+
+			\item On peut regarder le critère de suffisance pour qu'une matrice soit TU.\@
+			On met les lignes 1 et 3 ensemble dans \(A\) et les deux autres dans \(B\). Alors on a:
+			\begin{equation*}
+				A = 
+				\begin{pmatrix}
+					1 & 1 & 0 & 0 & 1\\
+					-1 & 0 & 0 & 0 & -1\\
+				\end{pmatrix}
+				B = 
+				\begin{pmatrix}
+					0 & 1 & 1 & 1 & 0\\
+					0 & 0 & -1 & 0 & 0
+				\end{pmatrix}
+			\end{equation*}
+			On a bien respecté les critères, les valeurs de signes opposés dont dans le même sous-ensemble et les valeurs de signe identique sont bien dans les sous-ensembles opposés. Alors \(B\) est totalement unimodulaire.
+
+			\item La matrice \(C\) n'est pas TU car son déterminant est \(2\).
+
+			\item La matrice \(D\) n'est pas TU car son déterminant est \(2\).
+
+			\item Si \(A\) est une matrice totalement unimodulaire alors:
+			\begin{enumerate}
+				\item la matrice \(-A\) est aussi TU,
+				\item la matrice \(A^T\) est TU,
+				\item en développant le long de la diagonale de \(I\) on retrouve bien que \([A, I]\) est TU,
+				\item par les propositions ci-dessus on a bien \([A, -A]\) qui est TU.\@
+			\end{enumerate}
+
+			\item La matrice \(E\) n'est pas TU.\@ Le problème s'exprime comme:
+			\begin{equation*}
+				PL = 
+				\begin{cases}
+					x_1 - x_2 + x_3 = 2\\
+					x_1 + x_2 = 1
+				\end{cases}
+			\end{equation*}
+			Les solutions sont \(X_1 = (1, 0, 1)\) et \(X_2 = (0, 1, 3)\).
+		\end{enumerate}
 	\end{td-sol}
 }{}
