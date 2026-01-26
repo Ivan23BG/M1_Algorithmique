@@ -1,0 +1,55 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Représentation du problème \(PL_2\) dans \(\bb R^2\)}\label{fig:td1_ex02_f2}
+}{
+    \fbox{
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle,
+                xlabel={\(x_1\)},
+                ylabel={\(x_2\)},
+                xmin=0, xmax=4,
+                ymin=0, ymax=5,
+                grid=both,
+                axis equal image,
+                width=10cm,
+                height=7cm,
+                legend pos=outer north east,
+                legend cell align=left,
+                legend image post style={fill opacity=0.45}
+            ]
+
+            % ----- Constraint line: 10x1 + 7x2 = 29 -----
+            \addplot[domain=0:2.9, very thick, color=blue] { (29 - 10*x)/7 };
+            \addlegendentry{\(10x_1 + 7x_2 = 29\)}
+
+            % ----- Feasible region -----
+            \addplot[
+                fill=cyan!35,
+                opacity=0.45,
+                draw=none,
+                area legend
+            ] coordinates {
+                (0,0)
+                (2.9,0)
+                (0,4.14)
+            };
+            \addlegendentry{Région réalisable}
+
+            % ----- Real optimum -----
+            \addplot[only marks, mark=*, mark size=3pt, color=red!80!black] coordinates {(2.9,0)};
+            \addlegendentry{Solution réelle \((2.9,0)\)}
+
+            % ----- Integer optimum -----
+            \addplot[only marks, mark=square*, mark size=3pt, color=purple] coordinates {(0,4)};
+            \addlegendentry{Solution entière \((0,4)\)}
+            
+            % Level line through real optimum
+            \addplot[dashed, thick, black, domain=0:4.5] {-1.46*(x - 2.9)};
+            \addlegendentry{Ligne de niveau \(z = 870\)}
+
+
+            \end{axis}
+        \end{tikzpicture}
+    }
+}
