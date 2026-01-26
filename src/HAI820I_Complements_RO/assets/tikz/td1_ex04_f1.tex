@@ -1,0 +1,97 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Branch and bound}\label{fig:td1_ex04_f1}
+}{
+    \fbox{
+        \begin{tikzpicture}[
+            main node/.style={
+                draw,
+                rounded rectangle,
+                rounded corners=3pt,
+                fill=blue!20,
+                inner sep=4pt,
+                font=\scriptsize,
+                align=center
+            },
+            solution/.style={
+                draw=red,
+                very thick,
+                fill=red!8
+            },
+            optimal/.style={
+                draw=green,
+                very thick,
+                fill=green!8
+            },
+            invalid/.style={
+                draw=gray,
+                dashed,
+                text=gray,
+                fill=gray!10
+            },
+        ]
+
+        % root
+        \node[main node] (s00) {
+            \(z^* = 12.75\)\\
+            \(x^* = (2.25,1.5)\)
+        };
+
+        % children (relative placement) -- tier 1
+        \node[main node, below right=2cm and 2cm of s00] (s12) {
+            \(z^* = 11.5\)\\
+            \(x^* = \left(2.5,1\right)\)
+        };
+
+        \node[main node, below left=2cm and 2cm of s00] (s11) {
+            \(z^* = 12.5\)\\
+            \(x^* = (3,2)\)
+        };
+
+        % children (relative placement) -- tier 2
+        \node[main node, below left=2cm and 1cm of s11] (s21) {
+            \(z^* = 12.33\)\\
+            \(x^* = \left(1,\frac73\right)\)
+        };
+
+        \node[main node, invalid, below right=2cm and 1cm of s11] (s22) {
+            Impossible
+        };
+        
+        \node[main node, solution, below left=2cm and 1cm of s12] (s23) {
+            \(z^* = 10\)\\
+            \(x^* = \left(2, 1\right)\)
+        };
+
+        \node[main node, solution, below right=2cm and 1cm of s12] (s24) {
+            \(z^* = 9\)\\
+            \(x^* = \left(3, 0\right)\)
+        };
+
+        % children (relative placement) -- tier 3
+        \node[main node, solution, below left=2cm and .6cm of s21] (s31) {
+            \(z^* = 11\)\\
+            \(x^* = \left(1,2\right)\)
+        };
+
+        \node[main node, optimal, below right=2cm and .6cm of s21] (s32) {
+            \(z^* = 12\)\\
+            \(x^* = (0,3)\)
+        };
+
+        % edges
+        \draw[-{Stealth}] (s00) -- node[above left] {\(x_2 \leq 1\)} (s11);
+        \draw[-{Stealth}] (s00) -- node[above right] {\(x_2 \geq 2\)} (s12);
+        
+        \draw[-{Stealth}] (s11) -- node[above left] {\(x_1 \leq 1\)} (s21);
+        \draw[-{Stealth}] (s11) -- node[above right] {\(x_1 \geq 2\)} (s22);
+        
+        \draw[-{Stealth}] (s12) -- node[above left] {\(x_1 \leq 2\)} (s23);
+        \draw[-{Stealth}] (s12) -- node[above right] {\(x_1 \geq 3\)} (s24);
+        
+        \draw[-{Stealth}] (s21) -- node[above left] {\(x_2 \leq 2\)} (s31);
+        \draw[-{Stealth}] (s21) -- node[above right] {\(x_2 \geq 3\)} (s32);
+
+        \end{tikzpicture}
+    }
+}

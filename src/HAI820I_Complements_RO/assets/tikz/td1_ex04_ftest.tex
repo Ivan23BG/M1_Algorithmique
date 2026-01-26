@@ -1,0 +1,84 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Branch and bound}\label{fig:test}
+}{
+    \fbox{
+        \begin{tikzpicture}[
+            main node/.style={
+                draw, 
+                rounded rectangle, 
+                rounded corners=3pt, 
+                fill=blue!20, 
+                inner sep=4pt, 
+                font=\scriptsize, 
+                align=center
+            },
+            solution/.style={draw=red, very thick, fill=red!8},
+            optimal/.style={draw=green, very thick, fill=green!8},
+            invalid/.style={draw=gray, dashed, text=gray, fill=gray!10},
+
+            edge from parent/.style={-{Stealth}},
+            level distance=18mm,
+            sibling distance=14mm
+            ]
+
+            \node[main node] {
+            \(z^* = 12.75\)\\
+            \(x^* = (2.25,1.5)\)
+            }
+            child { node[main node] {
+                \(z^* = 12.5\)\\
+                \(x^* = (3,2)\)
+            }
+            edge from parent node[above left] {\(x_2 \le 1\)}
+
+            child { node[main node] {
+                \(z^* = 12.33\)\\
+                \(x^* = \left(1,\frac73\right)\)
+                }
+                edge from parent node[above left] {\(x_1 \le 1\)}
+
+                child { node[main node, solution] {
+                    \(z^* = 11\)\\
+                    \(x^* = (1,2)\)
+                }
+                edge from parent node[above left] {\(x_2 \le 2\)}
+                }
+
+                child { node[main node, optimal] {
+                    \(z^* = 12\)\\
+                    \(x^* = (0,3)\)
+                }
+                edge from parent node[above right] {\(x_2 \ge 3\)}
+                }
+            }
+
+            child { node[main node, invalid] {Impossible}
+                edge from parent node[above right] {\(x_1 \ge 2\)}
+            }
+            }
+            child { node[main node] {
+                \(z^* = 11.5\)\\
+                \(x^* = (2.5,1)\)
+            }
+            edge from parent node[above right] {\(x_2 \ge 2\)}
+
+            child { node[main node, solution] {
+                \(z^* = 10\)\\
+                \(x^* = (2,1)\)
+                }
+                edge from parent node[above left] {\(x_1 \le 2\)}
+            }
+
+            child { node[main node, solution] {
+                \(z^* = 9\)\\
+                \(x^* = (3,0)\)
+                }
+                edge from parent node[above right] {\(x_1 \ge 3\)}
+            }
+            };
+
+        \end{tikzpicture}
+
+    }
+}
