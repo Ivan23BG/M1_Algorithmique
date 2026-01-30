@@ -1,0 +1,18 @@
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[]\,\\ % 4 
+	Coder dans Sagemath les opérations d'addition et de multiplication de deux polynomes qui sont donnés par la liste de leurs coefficients. 
+	Le premier élément de la liste correspondra à l'élément constant du polynome.
+	Vous testerez vos fonctions sur des polynomes aléatoires de degrés dans \(\left\{10, 100, 1000\right\}\) avec les domaines de coefficients suivants: \(\bb{GF}(17), \bb Z, \bb Z/100\bb Z\).
+	A chaque fois vous prendrez soin de faire des opérations impliquant aussi bien des polynomes de degrés identiques que des polynomes de degrés différents.
+	Vous devrez comparer les résultats de vos calculs avec celui fait par les opérations natives d'addition et de multiplication de polynomes dans Sage.
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 4
+		On utilise le code suivant:
+
+		\SageFile{../tps/exo04_f01.py}{Fonction d'addition de polynomes}{lst:ex04_f01}
+
+	\end{td-sol}
+}{}

@@ -1,0 +1,49 @@
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[]\,\\ % 3 
+	On travaille dans l'anneau de polynomes \((\bb Z/6\bb Z)[x]\).
+	Les coefficients sont calculés modulo 6.
+	Soient \(P(x) = 2x^2 + 3\) et \(Q(x) = 3x+1\)
+	\begin{enumerate}
+		\item \textbf{Anomalie du degré}
+		\begin{enumerate}
+			\item Quels sont les degrés de \(P\) et \(Q\)?
+
+			\item Calculer le produit \(P(x)\cdot Q(x)\) en réduisant les coefficients modulo 6.
+
+			\item Quel est le degré du polynome résultant? La propriété \(\deg(P\cdot Q) = \deg(P) + \deg(Q)\) est-elle vérifiée? Expliquez pourquoi.
+		\end{enumerate}
+
+		\item \textbf{Echec de la division euclidienne standard}. 
+		On considère les polynomes \(F(x) = x^2+1\) et \(G(x) = 2x\).
+		Essayez de poser la division euclidienne de \(F\) par \(G\).
+
+		\textit{Indice}: Pour éliminer le terme en \(x^2\), vous devez multiplier \(2x\) par un coefficient \(k\) tel que \(2\cdot k = 1\pmod 6\). Un tel entier existe-t-il dans \(\bb Z/6\bb Z\)?
+		Conclure.
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 3
+		\begin{enumerate}
+			\item Sur les degrés:
+			\begin{enumerate}
+				\item \(P\) est de degré 2 et \(Q\) de degré 1.
+
+				\item On a
+				\begin{equation*}
+					\begin{aligned}
+						P\cdot Q
+						&= \left(2x^2 + 3\right) \cdot \left(3x + 1\right)&\pmod 6\\
+						&= 6x^3 + 2x^2 + 9x + 3&\pmod 6\\
+						&= 2x^2 + 3x + 3&\pmod 6
+					\end{aligned}
+				\end{equation*}
+
+				\item Le degré du polynome résultant est 2. La propriété \(\deg(P\cdot Q) = \deg(P) + \deg(Q)\) n'est pas vérifiée car l'anneau n'est pas intègre (par exemple \(2\cdot 3 = 0\pmod 6\)).
+			\end{enumerate}
+
+			\item 2 ne possède pas d'inverse dans \(\bb Z/6\bb Z\) car \(2\wedge 6 = 2\). On ne peut donc pas poser la division euclidienne de \(F\) par \(G\) ici.
+		\end{enumerate}
+	\end{td-sol}
+}{}

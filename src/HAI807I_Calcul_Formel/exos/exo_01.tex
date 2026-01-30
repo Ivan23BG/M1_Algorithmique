@@ -1,0 +1,62 @@
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Objectif]\, % 1 
+	Identifier les propriétés d'un groupe (neutre, inverses, commutativité) à partir d'une table d'opérations symbolique.
+
+	Soit \(G = \{\alpha, \beta, \gamma, \delta\}\) un ensemble muni d'une loi de composition interne \(*\).
+	La table de l'opération est donnée ci-dessous (où l'entrée à la ligne \(i\) et la colonne \(j\) correspond à \(i*j\)):
+	
+	\vspace{2mm}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|} % chktex 44
+		\hline % chktex 44
+		\(*\)&\(\alpha\)&\(\beta\)&\(\gamma\)&\(\delta\)\\
+		\hline % chktex 44
+		\(\alpha\)&\(\alpha\)&\(\beta\)&\(\gamma\)&\(\delta\)\\
+		\hline % chktex 44
+		\(\beta\)&\(\beta\)&\(\alpha\)&\(\delta\)&\(\gamma\)\\
+		\hline % chktex 44
+		\(\gamma\)&\(\gamma\)&\(\delta\)&\(\alpha\)&\(\beta\)\\
+		\hline % chktex 44
+		\(\delta\)&\(\delta\)&\(\gamma\)&\(\beta\)&\(\alpha\)\\
+		\hline % chktex 44
+	\end{tabular}
+
+	\begin{enumerate}
+		\item \textbf{Identification de l'élément neutre}: Quel est l'élément neutre \(e\) de ce groupe?
+		Justifiez votre réponse en observant les lignes et colonnes du tableau.
+
+		\item \textbf{Recherche d'inverses}: Pour chaque élément \(x\) de \(G\), trouver son inverse \(x^{-1}\) (l'unique élément tel que \(x * x^{-1} = e\)). Que remarquez-vous sur l'inverse de \(\gamma\)?
+
+		\item \textbf{Commutativité}: Le groupe \((G, *)\) est-il abélien (commutatif)?
+
+		\item \textbf{Résolution d'équation}: A l'aide de la table, résoudre l'équation suivante d'inconnue \(x\):
+		\begin{equation*}
+			\gamma * x = \delta
+		\end{equation*}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 1
+		\begin{enumerate}
+			\item La seule ligne (et colonne) qui ne modifie aucun élément est celle de \(\alpha\) donc \(e=\alpha\).
+
+			\item On a
+			\begin{equation*}
+				\begin{cases}
+					\alpha^{-1} &= \alpha\\
+					\beta^{-1} &= \beta\\
+					\gamma^{-1} &= \gamma\\
+					\delta^{-1} &= \delta\\
+				\end{cases}
+			\end{equation*}
+			On remarque que \(\gamma\) est son propre inverse.
+
+			\item On a bien \(\forall x,y\in G, x*y = y*x\) car le tableau est symétrique par rapport à la diagonale.
+			Donc \((G,*)\) est abélien.
+
+			\item On cherche dans le tableau l'élément \(x\) tel que \(\gamma * x = \delta\). On trouve \(x=\beta\).
+		\end{enumerate}
+	\end{td-sol}
+}{}

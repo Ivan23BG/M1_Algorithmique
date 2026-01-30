@@ -1,0 +1,44 @@
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{inconsolata}
+\usepackage{caption}
+
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{keywordcolor}{RGB}{0,92,197}
+\definecolor{stringcolor}{RGB}{163,21,21}
+\definecolor{commentcolor}{RGB}{0,128,0}
+\definecolor{numbercolor}{RGB}{100,100,100}
+
+
+
+
+
+% ---------- LISTINGS STYLE ----------
+\lstdefinestyle{sage}{
+    language=Python,
+    backgroundcolor=\color{codebg},
+    frame=single,
+    rulecolor=\color{codeframe},
+    framesep=8pt,
+    frameround=tttt,
+    basicstyle=\ttfamily\small\color{codetext},
+    keywordstyle=\color{keywordcolor}\bfseries,
+    stringstyle=\color{stringcolor},
+    commentstyle=\color{commentcolor}\itshape,
+    showstringspaces=false,
+    breaklines=true,
+    tabsize=4,
+    captionpos=b,
+    numbers=none,
+    morekeywords={GF,ZZ,Integers,PolynomialRing}
+}
+% =========================================================
+
+\newcommand{\SageFile}[3]{%
+\lstinputlisting[
+    style=sage,
+    caption={#2},
+    label={#3}
+]{#1}
+}

@@ -1,0 +1,106 @@
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[]\,\\ % 2 
+	On se place dans l'anneau \((M_2(\bb R), +, \cdot)\).
+	On considère les matrices suivantes:
+	\begin{equation*}
+		A = 
+		\begin{pmatrix}
+			0 & 1\\
+			0 & 0
+		\end{pmatrix}
+		\quad\text{et}\quad
+		B = 
+		\begin{pmatrix}
+			1 & 0\\
+			0 & 0
+		\end{pmatrix}
+	\end{equation*}
+	\begin{enumerate}
+		\item Calculer le produit \(A \cdot B\) puis le produit \(B \cdot A\).
+
+		\item L'anneau \(M_2(\bb R)\) est-il commutatif?
+
+		\item Calculer \(A^2\).
+
+		\item Pourquoi cela empeche-t-il \(M_2(\bb R)\) d'être un anneau intègre même s'il ne contient que des coefficients réels?
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 2
+		\begin{enumerate}
+			\item On a
+			\begin{equation*}
+				\begin{aligned}
+					A \cdot B
+					&= 
+					\begin{pmatrix}
+						0 & 1\\
+						0 & 0
+					\end{pmatrix}
+					\cdot 
+					\begin{pmatrix}
+						1 & 0\\
+						0 & 0
+					\end{pmatrix}
+					\\
+					&=
+					\begin{pmatrix}
+						0 & 0\\
+						0 & 0
+					\end{pmatrix}
+				\end{aligned}
+			\end{equation*}
+			et
+			\begin{equation*}
+				\begin{aligned}
+					B \cdot A
+					&= 
+					\begin{pmatrix}
+						1 & 0\\
+						0 & 0
+					\end{pmatrix}
+					\cdot 
+					\begin{pmatrix}
+						0 & 1\\
+						0 & 0
+					\end{pmatrix}
+					\\
+					&=
+					\begin{pmatrix}
+						0 & 1\\
+						0 & 0
+					\end{pmatrix}
+				\end{aligned}
+			\end{equation*}
+
+			\item L'anneau \(M_2(\bb R)\) n'est pas commutatif parce qu'on a trouvé deux éléments (\(A\) et \(B\)) de \(M_2(\bb R)\) tels que \(A \cdot B \neq B \cdot A\).
+
+			\item On a
+			\begin{equation*}
+				\begin{aligned}
+					A^2
+					&= 
+					\begin{pmatrix}
+						0 & 1\\
+						0 & 0
+					\end{pmatrix}
+					\cdot 
+					\begin{pmatrix}
+						0 & 1\\
+						0 & 0
+					\end{pmatrix}
+					\\
+					&=
+					\begin{pmatrix}
+						0 & 0\\
+						0 & 0
+					\end{pmatrix}
+				\end{aligned}
+			\end{equation*}
+
+			\item On vient de trouver deux éléments de \(M_2(\bb R)\) (\(A\)) non nuls tels que \(A\cdot A = 0\). Alors l'anneau \(M_2(\bb R)\) n'est pas intègre.
+		\end{enumerate}
+	\end{td-sol}
+}{}
