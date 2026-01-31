@@ -16,7 +16,8 @@
                 height=7cm,
                 legend pos=outer north east,
                 legend cell align=left,
-                legend image post style={fill opacity=0.45}
+                legend image post style={fill opacity=0.45},
+                legend style={fill=pagebg, draw=pagetext}
             ]
 
             % ----- Constraint line: 10x1 + 7x2 = 29 -----
@@ -45,7 +46,7 @@
             \addlegendentry{Solution entière \((0,4)\)}
             
             % Level line through real optimum
-            \addplot[dashed, thick, black, domain=0:4.5] {-1.46*(x - 2.9)};
+            \addplot[dashed, thick, yellow, domain=0:4.5] {-1.46*(x - 2.9)};
             \addlegendentry{Ligne de niveau \(z = 870\)}
 
 

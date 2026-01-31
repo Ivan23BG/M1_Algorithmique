@@ -6,7 +6,7 @@ on:
       - develop
     paths:
       - 'src/**'
-      - 'run.py'
+      - 'compiler.py'
       - '.github/workflows/build-latex.yml'
   pull_request:
     branches:
@@ -41,16 +41,13 @@ jobs:
           restore-keys: |
             texlive-${{ runner.os }}-
       
-      - name: Make run.py executable
-        run: chmod +x run.py
-      
-      - name: Initialize build system
-        run: ./run.py --initial
+      - name: Make compiler.py executable
+        run: chmod +x compiler.py
       
       - name: Build main documents
         id: build_mains
         run: |
-          ./run.py --main-only
+          ./compiler.py
           echo "status=$?" >> $GITHUB_OUTPUT
         continue-on-error: true
       

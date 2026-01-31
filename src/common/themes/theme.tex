@@ -1,0 +1,60 @@
+% =========================================================
+% LIGHT / DARK MODE TOGGLE — import after choosing theme
+% =========================================================
+
+% ---------- COLORS ----------
+\ifdarkmode          % chktex 1
+    % Page
+    \definecolor{pagebg}{RGB}{18,18,18}
+    \definecolor{pagetext}{RGB}{220,220,220}
+
+    % Links
+    \definecolor{linkcolor}{RGB}{86,156,214}
+
+    % Code
+    \definecolor{codebg}{RGB}{32,32,32}       % very dark grey
+    \definecolor{codeframe}{RGB}{70,70,70}
+    \definecolor{codetext}{RGB}{230,230,230}  % near-white
+    \definecolor{keywordcolor}{RGB}{86,156,214}
+    \definecolor{stringcolor}{RGB}{214,157,133}
+    \definecolor{commentcolor}{RGB}{106,153,85}
+    \definecolor{numbercolor}{RGB}{130,130,130}
+
+    % Theorems
+    \definecolor{theorembg}{RGB}{28,28,28}
+    \definecolor{theoremframe}{RGB}{80,80,80}
+    \definecolor{theoremtext}{RGB}{230,230,230}
+\else
+    % Page
+    \definecolor{pagebg}{RGB}{255,255,255}
+    \definecolor{pagetext}{RGB}{0,0,0}
+
+    % Links
+    \definecolor{linkcolor}{RGB}{0,92,197}
+
+    % Code
+    \definecolor{codebg}{RGB}{245,245,245}    % light grey
+    \definecolor{codeframe}{RGB}{200,200,200}
+    \definecolor{codetext}{RGB}{0,0,0}        % black
+    \definecolor{keywordcolor}{RGB}{0,92,197}
+    \definecolor{stringcolor}{RGB}{163,21,21}
+    \definecolor{commentcolor}{RGB}{0,128,0}
+    \definecolor{numbercolor}{RGB}{100,100,100}
+    
+    % Theorems
+    \definecolor{theorembg}{RGB}{255,255,255}
+    \definecolor{theoremframe}{RGB}{200,200,200}
+    \definecolor{theoremtext}{RGB}{0,0,0}
+\fi
+
+% ---------- APPLY PAGE COLORS ----------
+\pagecolor{pagebg}
+\color{pagetext}
+
+% ---------- HYPERREF ----------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=linkcolor
+}
