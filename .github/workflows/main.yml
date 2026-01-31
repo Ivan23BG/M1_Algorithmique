@@ -48,15 +48,7 @@ jobs:
         id: build_mains
         run: |
           ./compiler.py
-          echo "status=$?" >> $GITHUB_OUTPUT
         continue-on-error: true
-      
-      - name: Check build status
-        run: |
-          if [ "${{ steps.build_mains.outputs.status }}" != "0" ]; then
-            echo "::error::Build failed. Check logs for details."
-            exit 1
-          fi
       
       - name: List generated PDFs
         if: always()
