@@ -57,7 +57,7 @@ jobs:
           find pdfs -name "*.pdf" -type f | sort
       
       - name: Commit updated PDFs back to repository
-        if: github.event_name == 'push' && success()
+        if: github.event_name == 'push'
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
