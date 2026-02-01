@@ -1,6 +1,19 @@
 % ----- Consignes exo 25 ----- %
-\begin{td-exo}[title]\, % 25 
-	
+\begin{td-exo}[Preuve sur les enveloppes convexes]\, % 25 
+	\begin{enumerate}
+		\item Soit \(X\) l'ensemble suivant
+		\begin{equation*}
+			X = \{(x,y) \in \bb R^m_+ \times B^1\ \colon\ \sum_{i=1}^m x_i \leq my, x_i \leq 1, \forall i \in \{1,\ldots,m\}\}
+		\end{equation*}
+		où \(B^1 = \{0,1\}\).
+		Considérons la formulation suivante:
+		\begin{equation*}
+			P = \{(x,y) \in \bb R^m_+ \times \bb R^1\ \colon\ x_i \leq y, \forall i \in \{1,\ldots,m\}, y \leq 1\}
+		\end{equation*}
+		Montrer que la matrice \(A\) ou la partie \((A, B)\) admet une structure particulière garantissant que \(P = \conv(X)\).
+
+		\item Montrer que les points \((x,y)\in P\) (pour l'ensemble \(X\)) avec \(y\) fractionnaire sont des points extremes de \(P\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 25 ----- %

@@ -1,6 +1,19 @@
 % ----- Consignes exo 21 ----- %
-\begin{td-exo}[title]\, % 21 
-	
+\begin{td-exo}[Propriétés de l'enveloppe convexe]\,\\ % 21 
+	Soient \(A, B \subseteq \bb R^n\) deux ensembles convexes.
+	Montrer les propriétés suivantes:
+	\begin{enumerate}
+		\item \(\conv(A \cup B) = \conv(\conv(A) \cup \conv(B))\).
+		\item \(\conv(A + B) = \conv(A) + \conv(B)\). 
+		\textit{Aide}: On peut considerer la somme \(\sum_{j,k} \lambda_j \mu_k (a_j + b_k)\) où \(\sum_j \lambda_j = 1\), \(\sum_k \mu_k = 1\), \(\lambda_j, \mu_k \geq 0\), \(a_j \in A\) et \(b_k \in B\).
+		\item Soient \(P\) et \(Q\) deux polytopes de \(\bb R^n\).
+		Montrer que les ensembles suivants sont aussi des polytopes:
+		\begin{itemize}
+			\item \(P \times Q = \{(p\times q)\in \bb R^{2n}\ |\ p \in P, q \in Q\}\).
+			\item \(P \cap Q\).
+			\item \(\conv(P \cup Q)\).
+		\end{itemize}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 21 ----- %
