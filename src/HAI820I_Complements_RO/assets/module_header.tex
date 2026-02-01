@@ -112,4 +112,26 @@
     every axis plot/.append style={thick}
 }
 
+% ============================================================================== 
+% ALGORITHM STUFF
+% ==============================================================================
+\usepackage[noend]{algpseudocode}
+\DeclareCaptionType{algorithm}[Algorithme][Liste des Algorithmes]
+\captionsetup[algorithm]{ %
+    justification=raggedright,
+    singlelinecheck=false,
+    % skip=10pt
+}
+% Reduce space around algorithm floats
+% \floatsetup[algorithm]{precode=\vspace{-40pt}, postcode=\vspace{-6pt}}
+
+
+\newcommand*\Let[2]{\State #1 $\gets$ #2} % chktex 1
+\algrenewcommand\alglinenumber[1]{
+    {\sf\footnotesize\addfontfeatures{Colour=888888,Numbers=Monospaced}#1}}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Question:}}
+
+
+
 \newcommand{\conv}{\mathsf{conv}}
