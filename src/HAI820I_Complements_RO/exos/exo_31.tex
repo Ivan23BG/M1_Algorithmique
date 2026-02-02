@@ -1,6 +1,25 @@
 % ----- Consignes exo 31 ----- %
-\begin{td-exo}[title]\, % 31 
-	
+\begin{td-exo}[Le problème du stable dans un graphe]\,\\ % 31 
+	On rappelle la définition suivante:
+	\begin{definition}
+		Un \defemph{stable} dans un graphe est un ensemble de sommets qui sont deux à deux non adjacents.
+	\end{definition}
+	La matrice d'incidence (arêtes-sommets) \(A = (a_{ij})\) est une matrice \(m \times n\) définie de la manière suivante:
+	\begin{equation*}
+		a_{ij} = \begin{cases}
+			1 & \text{si l'arête } i \text{ est incidente au sommet } j,\\
+			0 & \text{sinon.}
+		\end{cases}
+	\end{equation*}
+
+	\begin{enumerate}
+		\item Donner la matrice d'incidence du graphe donné par la figure~\ref{fig:td4_ex31_f1}:
+
+		\input{../assets/tikz/td4_ex31_f1.tex}
+
+		\item Le problème de trouver un stable maximum dans un graphe ci-dessus peut se formuler comme un programme linéaire.
+		Donner cette formulation.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 31 ----- %

@@ -1,6 +1,14 @@
 % ----- Consignes exo 27 ----- %
-\begin{td-exo}[title]\, % 27 
-	
+\begin{td-exo}[Encadrement de la valeur optimale]\,\\ % 27 
+	Montrer qu'à chaque itération de la génération de colonnes on a
+	\begin{equation*}
+		\text{valeur}(PL) \leq \text{valeur}(PL_R) 
+	\end{equation*}
+	et
+	\begin{equation*}
+		\text{score}(PL_R) + k \cdot \text{cred} \leq \text{score}(PL)
+	\end{equation*}
+	où \(k\) est la valeur d'une solution optimale \(\sum_{j=1}^{n} x_j^\ast \leq k\) et \(\text{cred}\) est le cout reduit minimum à une itération donnée.
 \end{td-exo}
 
 % ----- Solutions exo 27 ----- %
