@@ -1,123 +1,70 @@
 name: Build LaTeX Documents
+
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
     paths:
       - 'src/**'
-      - 'compiler.py'
+      - 'run.py'
       - '.github/workflows/build-latex.yml'
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:  # Allow manual triggers
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build_latex:
     runs-on: ubuntu-latest
-    container:
-      image: texlive/texlive:latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Get full history for better caching
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      - name: Cache LaTeX packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            /usr/share/texlive
-            ~/.texlive
-          key: texlive-${{ runner.os }}-${{ hashFiles('**/*.tex') }}
-          restore-keys: |
-            texlive-${{ runner.os }}-
-      
-      - name: Make compiler.py executable
-        run: chmod +x compiler.py
-      
-      - name: Build main documents
-        id: build_mains
+
+      - name: Install TeX Live
         run: |
-          ./compiler.py
-        continue-on-error: true
-      
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-full \
+            latexmk \
+            python3
+
+      - name: Build LaTeX documents
+        run: |
+          python3 run.py
+
       - name: List generated PDFs
-        if: always()
         run: |
           echo "Generated PDFs:"
           find pdfs -name "*.pdf" -type f | sort
-      
-      - name: Commit updated PDFs back to repository
+
+      - name: Commit PDFs back to repo
         if: github.event_name == 'push'
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Add only the pdfs directory
           git add pdfs
 
-          # Check if there is anything to commit
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No PDF changes."
             exit 0
           fi
 
           git commit -m "Update generated PDFs [skip ci]"
-          git push origin HEAD:${GITHUB_REF#refs/heads/}
-      
-      - name: Upload PDFs (fallback for PRs)
-        if: github.event_name == 'pull_request' && success()
+          git push
+
+      - name: Upload PDFs for PRs
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: latex-pdfs-${{ github.sha }}
           path: pdfs/**/*.pdf
-          retention-days: 30
-      
-      - name: Upload build logs
+
+      - name: Upload logs on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: build-logs-${{ github.sha }}
+          name: latex-logs-${{ github.sha }}
           path: logs/**/*.log
-          retention-days: 7
-      
-      - name: Comment PR with build results
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const { execSync } = require('child_process');
-            
-            let pdfCount = 0;
-            try {
-              const output = execSync('find pdfs -name "*.pdf" -type f | wc -l').toString().trim();
-              pdfCount = parseInt(output);
-            } catch (e) {
-              console.log('Could not count PDFs');
-            }
-            
-            const message = `## LaTeX Build Results
-            
-            **Status:** ${{ job.status }}
-            **Generated PDFs:** ${pdfCount}
-            **Commit:** ${{ github.sha }}
-            
-            Download the artifacts to view the compiled documents.`;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: message
-            });

@@ -1,6 +1,7 @@
 import os
 import shutil
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 PROJECT_ROOT = Path.cwd()
 SRC_DIR = PROJECT_ROOT / "src"
@@ -99,13 +100,35 @@ if __name__ == "__main__":
 
     successes = []
     failures = []
-
+    """
+    Non parallel version
     for tex in tex_files:
         ok = compile_latex(tex)
         if ok:
             successes.append(tex)
         else:
             failures.append(tex)
+    """
+
+    MAX_WORKERS = min(8, os.cpu_count() or 1)
+    print(f"\nCompiling with {MAX_WORKERS} parallel workers...\n")
+
+    successes = []
+    failures = []
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_map = {executor.submit(compile_latex, tex): tex for tex in tex_files}
+
+        for future in as_completed(future_map):
+            tex = future_map[future]
+            try:
+                ok = future.result()
+                if ok:
+                    successes.append(tex)
+                else:
+                    failures.append(tex)
+            except Exception:
+                failures.append(tex)
 
     print("\n===== Compilation Summary =====")
     if successes:
@@ -117,5 +140,6 @@ if __name__ == "__main__":
         print(f"\nFailed to compile: {len(failures)}")
         for f in failures:
             print("   ", f)
+        exit(1)
     else:
         print("\nAll files compiled successfully")
