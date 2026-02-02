@@ -16,7 +16,8 @@
                 height=7cm,
                 legend pos=outer north east, % <-- legend outside
                 legend cell align=left,
-                legend image post style={fill opacity=0.45}
+                legend image post style={fill opacity=0.45},
+                legend style={fill=pagebg, draw=pagetext}
             ]
 
             % ----- Constraint lines -----
@@ -67,7 +68,7 @@
             \addlegendentry{Solution entière}
             
             % Draw the objective level line
-            \addplot[dashed, thick, black, domain=0:2] {3*x - 2};
+            \addplot[dashed, thick, yellow, domain=0:2] {3*x - 2};
             \addlegendentry{Ligne de niveau \(z=2\)}
 
             % Draw the direction of decrease (vector)
