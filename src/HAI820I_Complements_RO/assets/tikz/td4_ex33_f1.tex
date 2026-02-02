@@ -1,0 +1,20 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Un graphe orienté pondéré}\label{fig:td4_ex33_f1}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm, text=black}]
+            % les sommets initiaux
+            \node[main node] (s) at (0,0) {\(s\)};
+            \node[main node] (a) at (2,2) {\(a\)};
+            \node[main node] (b) at (2,-2) {\(b\)};
+            \node[main node] (t) at (4,0) {\(t\)};
+
+            % les arcs avec capacités
+            \draw[-{Stealth}] (s) to node[above left] {\((e_1, 1)\)} (a);
+            \draw[-{Stealth}] (s) to node[below left] {\((e_2, 2)\)} (b);
+            \draw[-{Stealth}] (a) to node[above] {\((e_4, 3)\)} (t);
+            \draw[-{Stealth}] (b) to node[below right] {\((e_5, 1)\)} (t);
+            \draw[-{Stealth}] (a) to node[below] {\((e_3, 2)\)} (b);
+        \end{tikzpicture}
+    }
+}

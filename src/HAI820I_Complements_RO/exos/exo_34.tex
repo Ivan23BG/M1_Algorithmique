@@ -1,6 +1,21 @@
 % ----- Consignes exo 34 ----- %
-\begin{td-exo}[title]\, % 34 
-	
+\begin{td-exo}[Sur le problème du voyageur de commerce]\,\\ % 34 
+	Le problème du voyageur de commerce consiste à effectuer un circuit Hamiltonien de cout minimum dans un graphe complet non orienté.
+	Pour cela nous considérons \(n+1\) villes tel que le cout entre deux villes est donné par la matrice \(C = (c_{ij})\) où \(c_{ij}\) est le cout pour aller de la ville \(i\) à la ville \(j\).
+	\begin{enumerate}
+		\item Pourquoi le problème du voyageur de commerce est étudié dans le cadre d'un graphe complet valué et non dans un graphe quelconque?
+		\item Rappeler la définition d'un circuit Hamiltonien.
+		Quelles conséquences sur les degrés des sommets du circuit Hamiltonien?
+		Modéliser ce problème par un programme linéaire en nombres entiers en justifiant les contraintes.
+		\item Donner un exemple qui satisfait les contraintes du programme linéaire en nombres entiers mais qui n'est pas une solution réalisable du voyageur de commerce. 
+		Quel est l'inconvénient des nouvelles contraintes? (Penser aux problèmes des sous-tours.)
+		\item Nous ajoutons au programme linéaire en nombres entiers les contraintes suivantes:
+		\begin{equation*}
+			u_i - u_j + n x_{ij} \leq n-1, \quad \forall 1 \leq i \neq j \leq n
+		\end{equation*}
+		Montrer que les contraintes qu'on vient d'ajouter définissent bien le problème du voyageur de commerce.
+		\item Comment appele-t-on ce type de programme linéaire?
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 34 ----- %

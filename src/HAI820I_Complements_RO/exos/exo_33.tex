@@ -1,6 +1,28 @@
 % ----- Consignes exo 33 ----- %
-\begin{td-exo}[title]\, % 33 
-	
+\begin{td-exo}[Modéliser les problèmes suivants par un programme linéaire en nombre entiers]\, % 33 
+	\begin{enumerate}
+		\item L'arbre couvrant de poits minimum.
+		Quel est le problème sur le nombre de contraintes?
+
+		\item Le problème du plus court chemin entre un sommet \(s\) et un sommet \(t\).
+		Soit \(G = (V, E)\) un graphe orienté avec des coûts \(c_{ij}\geq 0\) sur les arcs \((i, j) \in E\).
+		Soit \(F = \left\{ P = (e_{j_1}, e_{j_2}, \ldots, e_{j_k}) \right\}\) une séquence d'arcs d'un plus court chemin entre \(s\) et \(t\) dans le graphe \(G\). On considère le graphe donné par la figure~\ref{fig:td4_ex33_f1} ci-dessous:
+		
+		\input{../assets/tikz/td4_ex33_f1.tex}
+		
+		\begin{enumerate}
+			\item Donner sa matrice d'incidence \(A\).
+			\item Donner le dual.
+			\item Résoudre le problème par l'algorithme du simplexe.
+			\item Considérons un vecteur \(f = (f_1, \ldots, f_n)\) avec \(f_i\) associé à l'arc \(e_i\) tel que \(f_i = 1\) si l'arc \(e_i\) appartient à un plus court chemin \(P\) entre \(s\) et \(t\), et \(f_i = 0\) sinon.
+			\begin{enumerate}
+				\item Que signifie \(\sum_{j=1}^m a_{ij} f_j = 1\)?
+				\item Que signifie \(\sum_{j=1}^m a_{ij} f_j = -1\)?
+				\item Que signifie \(\sum_{j=1}^m a_{ij} f_j = 0\)?
+			\end{enumerate}
+			\item Utiliser l'algorithme du dual simplexe.
+		\end{enumerate}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 33 ----- %

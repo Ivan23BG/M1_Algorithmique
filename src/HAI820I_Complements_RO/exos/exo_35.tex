@@ -1,6 +1,27 @@
 % ----- Consignes exo 35 ----- %
-\begin{td-exo}[title]\, % 35 
-	
+\begin{td-exo}[Le problème du flot maximum versus la coupe minimum]\, % 35 
+	\begin{enumerate}
+		\item Questions préliminaires
+		\begin{enumerate}
+			\item Rappeler le principe des algorithmes principaux pour résoudre le problème du flot maximum.
+			\item Dans toute solution optimale, que dire des arcs retours? 
+			Et des arcs avant appartenant à une coupe minimale?
+		\end{enumerate}
+		\item Modélisation et propriétés.
+		On considère dans la partie qui suit le graphe orienté pondéré donné par la figure~\ref{fig:td4_ex35_f1} suivante:
+
+		\input{../assets/tikz/td4_ex35_f1.tex}
+
+		\begin{enumerate}
+			\item Formuler le problème du flot maximum par un programme linéaire noté \(P_0\) pour le réseau donné par la figure~\ref{fig:td4_ex35_f1}.
+			Formuler le problème du flot maximum par un programme linéaire \(\mathcal{P}\).
+
+			\item Donner le programme dual de \(P_0\) et de \(\mathcal{P}\).
+			Quelle est la structure de la matrice des contraintes pour le dual?
+
+			\item Utiliser les écarts complémentaires pour retrouver un théorème de \textsc{Min-Max}.
+		\end{enumerate}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 35 ----- %

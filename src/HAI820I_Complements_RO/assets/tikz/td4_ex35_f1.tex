@@ -1,0 +1,21 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Un réseau de flot}\label{fig:td4_ex35_f1}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm, text=black}]
+            % les sommets initiaux
+            \node[main node] (s) at (0,0) {\(s\)};
+            \node[main node] (a) at (2,2) {\(a\)};
+            \node[main node] (b) at (2,-2) {\(b\)};
+            \node[main node] (c) at (4,0) {\(c\)};
+            \node[main node] (t) at (6,0) {\(t\)};
+
+            % les arcs avec capacités
+            \draw[-{Stealth}] (s) to node[above left] {\(2\)} (a);
+            \draw[-{Stealth}] (s) to node[below left] {\(1\)} (b);
+            \draw[-{Stealth}] (a) to node[above] {\(2\)} (c);
+            \draw[-{Stealth}] (b) to node[below right] {\(1\)} (c);
+            \draw[-{Stealth}] (c) to node[below] {\(2\)} (t);
+        \end{tikzpicture}
+    }
+}
