@@ -3,17 +3,19 @@
 	\begin{enumerate}
 		\item Appliquer la méthode par séparation et évaluation décrite en cours pour résoudre le problème du voyageur de commerce dans le graphe \(K_6\) dont la matrice des poids est la suivante:
 
-		\begin{tabular}{c|cccccc} % chktex 44
-			\ & \(x\) & \(y\) & \(z\) & \(t\) & \(u\) & \(v\)\\
-			\hline % chktex 44
-			\(x\) & \(\infty\) & \(4\) & \(7\) & \(2\) & \(5\) & \(4\)\\
-			\(y\) & \(4\) & \(\infty\) & \(3\) & \(2\) & \(1\) & \(2\)\\
-			\(z\) & \(7\) & \(3\) & \(\infty\) & \(2\) & \(6\) & \(3\)\\
-			\(t\) & \(2\) & \(2\) & \(2\) & \(\infty\) & \(5\) & \(3\)\\
-			\(u\) & \(5\) & \(1\) & \(6\) & \(5\) & \(\infty\) & \(2\)\\
-			\(v\) & \(4\) & \(2\) & \(3\) & \(3\) & \(2\) & \(\infty\)\\
-		\end{tabular}
-
+		\begin{center}
+			\begin{tabular}{c|cccccc} % chktex 44
+				\ & \(x\) & \(y\) & \(z\) & \(t\) & \(u\) & \(v\)\\
+				\hline % chktex 44
+				\(x\) & \(\infty\) & \(4\) & \(7\) & \(2\) & \(5\) & \(4\)\\
+				\(y\) & \(4\) & \(\infty\) & \(3\) & \(2\) & \(1\) & \(2\)\\
+				\(z\) & \(7\) & \(3\) & \(\infty\) & \(2\) & \(6\) & \(3\)\\
+				\(t\) & \(2\) & \(2\) & \(2\) & \(\infty\) & \(5\) & \(3\)\\
+				\(u\) & \(5\) & \(1\) & \(6\) & \(5\) & \(\infty\) & \(2\)\\
+				\(v\) & \(4\) & \(2\) & \(3\) & \(3\) & \(2\) & \(\infty\)\\
+			\end{tabular}
+		\end{center}
+		
 		\item Que faudrait-il faire si on voulait connaitre tous les cycles de poids minimum?
 	\end{enumerate}
 \end{td-exo}
@@ -21,6 +23,92 @@
 % ----- Solutions exo 7 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 7
-		
+		\begin{enumerate}
+			\item On commence par calculer l'ACPM sur \(G \setminus \{x\}\):\\
+			Les arêtes de poids minimal qui permettent de connecter tous les sommets sont:
+			\begin{itemize}
+				\item \(y-u\) de poids \(1\),
+				\item \(y-t\) de poids \(2\),
+				\item \(z-t\) de poids \(2\),
+				\item \(v-u\) de poids \(2\),
+				\item \(z-v\) de poids \(3\).
+			\end{itemize}
+			Le poids total de l'ACPM est \(10\).
+
+			Ensuite on reconnecte \(x\) avec les arêtes les moins couteuses: \\
+			Les deux plus petites arêtes partant de \(x\) sont:
+			\begin{itemize}
+				\item \(x-t = 2\),
+				\item \(x-y = 4\).
+			\end{itemize}
+
+			Ainsi, le poids total du 1-arbre résultant est:
+			\begin{equation*}
+				LB_0 = 10 + 2 + 4 = 16
+			\end{equation*}
+			qui constitue notre \textbf{borne inférieure initiale}.
+
+			On vérifie maintenant si la solution trouvée est réalisable (est-elle un cycle Hamiltonien):\\
+			On calcule le degré de chaque sommet dans ce 1-arbre:
+			\begin{itemize}
+				\item \(\deg(x) = 2\),
+				\item \(\deg(y) = 3\),
+				\item \(\deg(z) = 2\),
+				\item \(\deg(t) = 3\),
+				\item \(\deg(u) = 2\),
+				\item \(\deg(v) = 2\).
+			\end{itemize}
+			Certains sommets ont un degré supérieur à 2, donc ce 1-arbre n'est pas une solution réalisable (pas de cycle hamiltonien).
+
+			On branche alors sur un des sommets de degré \(>2\), par exemple \(y\), et on crée des sous-problèmes en excluant successivement une arête incidente à \(y\).
+
+			\begin{enumerate}
+				\item \textbf{Exclusion de \(y-u\):} 
+				On recalcule le 1-arbre compatible avec cette contrainte. 
+				Les deux arêtes les moins coûteuses de \(x\) restent \(x-t\) et \(x-y\). 
+				Le nouvel arbre a toujours un poids:
+				\begin{equation*}
+					LB = 10 + 2 + 4 = 16
+				\end{equation*}
+				Les degrés deviennent:
+				\begin{itemize}
+					\item \(\deg(y) = 2\), \(\deg(t) = 3\), \(\deg(x)=2\), \(\deg(z)=2\), \(\deg(u)=2\), \(\deg(v)=2\)
+				\end{itemize}
+				On branche maintenant sur \(t\) (degré \(>2\)).
+
+				\item \textbf{Exclusion de \(y-t\):} 
+				Recalcul du 1-arbre compatible:
+				\begin{equation*}
+					LB = 16
+				\end{equation*}
+				Les degrés deviennent
+				\begin{itemize}
+					\item \(\deg(t)=2\), \(\deg(y)=2\), \(\deg(x)=2\), \(\deg(z)=2\), \(\deg(u)=2\), \(\deg(v)=2\)
+				\end{itemize}
+				Cette configuration donne un cycle hamiltonien réalisable!  
+
+				\textbf{Étape 5 — Borne supérieure (solution réalisable):} \\
+				Un cycle hamiltonien réalisable correspondant est:
+				\begin{equation*}
+					x \to t \to z \to v \to u \to y \to x
+				\end{equation*}
+				de poids:
+				\begin{equation*}
+					2 + 2 + 3 + 2 + 1 + 4 = 14
+				\end{equation*}
+
+				\item \textbf{Exclusion de \(x-y\):} 
+				Recalcul du 1-arbre compatible, poids \(LB = 16\); on branche encore sur \(t\) ou \(v\).  
+				Toutes ces branches auront un \(LB \ge 16\), donc elles peuvent être éliminées par notre borne supérieure.
+			\end{enumerate}
+
+			On conclut:\\
+			Les sous-problèmes dont la borne inférieure est \(\ge UB=14\) sont éliminés. La solution trouvée est donc optimale.
+			\begin{equation*}
+				\text{Cycle optimal: } x \to t \to z \to v \to u \to y \to x, \quad \text{poids } 14.
+			\end{equation*}
+
+			\item Pour connaître tous les cycles de poids minimum il faudrait continuer la procédure de séparation et d'évaluation, mais couper les branches seulement en cas d'inégalité stricte.
+		\end{enumerate}
 	\end{td-sol}
 }{}
