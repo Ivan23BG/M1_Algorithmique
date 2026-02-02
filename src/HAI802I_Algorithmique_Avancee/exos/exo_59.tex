@@ -3,13 +3,91 @@
 	On pose \(P |\cdot| C_{\max}\) définie de la manière suivante:
 	\input{../assets/tikz/td1_ex59_1.tex}
 
-	Par la suite on va utiliser un ordonnancement par liste.
+	Par la suite on va utiliser un ordonnancement par liste. 
+	Le principe est le suivant:
+	\begin{itemize}
+		\item On construit une liste de priorité de taches.
+		\item A chaque étape la première machine disponible est sélectionnée pour executér la première tâche de la liste.
+	\end{itemize}
+	\begin{enumerate}
+		\item Montrer que le problème est \(\mathcal{NP}\)-complet meme pour deux machines.
+
+		\item Pour n'importe quel ordonnancement de liste \(LS\) on a \(\frac{C^{LS}_{\max}}{C^\ast_{\max}}\leq 2\).
+		Montrer que la borne est supérieure est atteinte.
+
+		\item Nous considérons le nouvel algorithme dont le principe est le suivant:
+		\begin{itemize}
+			\item On construit une liste de priorité de taches dans l'ordre décroissant.
+
+			\item A chaque étape la première machine disponible est sélectionnée pour exéctuer la première tache de la liste.
+		\end{itemize}
+		Pour n'importe quel ordonnancement de liste on a \(\frac{C^{LPT}_{\max}}{C^\ast_{\max}}\leq \frac43 - \frac1{3m}\).
+
+		\item Un schéma d'approximation polynomiale pour le problème \(P |\cdot| C_{\max}\)
+	\end{enumerate}
 \end{td-exo}
 % \(\alpha | \beta | \gamma\)
 
 % ----- Solutions exo 59 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 59
-		
+		\begin{enumerate}
+			\item On va faire une réduction du problème de \(2\)-\textsc{Partition} vers \(P |\cdot| C_{\max}\).
+			On rappelle l'énoncé du problème \(2\)-\textsc{Partition}:
+			
+			\input{../assets/tikz/td6_ex59_1.tex}
+
+			Dans le problème de de \(2\)-\textsc{Partition}, on a 
+			\begin{equation*}
+				\sum_{i=1}^n s(a_i)=2p
+			\end{equation*}
+
+			On pose 
+			\begin{equation*}
+				s(a_i) = p_i\quad\text{et}\quad w = \sum_{i=1}^n p_i
+			\end{equation*}
+
+			Montrons que si il est possible de partager les poids en deux sous-ensembles de même poids alors il existera une distribution des taches pour le problème \(P |\cdot| C_{\max}\) telle que 
+			
+			\begin{equation*}
+				C_{\max} \leq T \leq \frac w2
+			\end{equation*}
+
+			Si on peut partager les poids en deux sous-ensembles \(P_1,P_2\) alors il existe \(S\) tel que 
+			\begin{equation*}
+				\mathsf{Load}(M_1) = \sum_{i\in S}P_i = \sum_{a_i \in P_1} s(a_i) = p
+			\end{equation*}
+			de même pour l'autre machine. Alors on a bien trouvé une solution.
+
+			Pour le sens indirect, soit \(C\) une distribution telle que
+			\begin{equation*}
+				C_{\max} \leq \frac w2
+			\end{equation*}
+			Soit \(S\) un sous-ensemble de travaux de sorte que \(S\subseteq \{1,\ldots,n\}\) et 
+			\begin{equation*}
+				\mathsf{Load}(M_1) = \sum_{i\in S} p_i = \frac w2
+			\end{equation*}
+			Alors, comme pour tout \(i\) on a \(p_i = s(a_i)\), l'ensemble des taches sur le processeur \(P_1\) forme une solution  du problème de \(P |\cdot| C_{\max}\) avec une bipartition
+			\begin{equation*}
+				\sum_{i\in P_1} s(a_i) = p
+			\end{equation*}
+			Les éléments restants sont dans \(P_2\) ce qui donne une solution à \(2\)-\textsc{Partition}.
+
+			\item On peut déjà trouver deux bornes inférieures intéressantes:
+			\begin{equation*}
+				C^{OPT}_{\max}\geq \max_{i\in I} p_i,\quad\text{et}\quad C^{OPT}_{\max}\geq \frac1m\sum_{i=1}^n p_i
+			\end{equation*}
+			Il faut au moins la durée de la tache de la plus longue et on ne peut pas faire mieux que la répartition parfaite de toutes les taches sur tous les processeurs de manière continue.
+
+			On a 
+			\begin{equation*}
+				C_{\max} = t_j + p_j \leq \max_i p_i + t_j \leq C^{OPT}_{\max} + t_j
+			\end{equation*}
+
+			Mais de par la nature de notre algorithme, avant \(t_j\) tous les processeurs sont actifs d'où
+			\begin{equation*}
+				C_{\max} = t_j + p_j \leq 2C^{OPT}_{\max}
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
