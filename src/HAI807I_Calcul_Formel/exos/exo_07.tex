@@ -9,6 +9,12 @@
 % ----- Solutions exo 7 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 7
-		
+		On peut coder la multiplication de Karatsuba avec des polynomes de taille une puissance de 2 comme suit:
+
+		\SageFile{../tps/exo07_f01.py}{Multiplication de Karatsuba avec \(\deg(P) = 2^k-1\)}{lst:ex07_f01}
+
+		qo'on peut positivement tester avec le code qui suit:
+
+		\SageFile{../tps/exo07_f02.py}{Test de la multiplication de Karatsuba}{lst:ex07_f02}
 	\end{td-sol}
 }{}

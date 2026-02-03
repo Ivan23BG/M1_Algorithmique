@@ -10,9 +10,25 @@
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 4
-		On utilise le code suivant:
+		On utilise le code suivant pour additioner nos deux polynomes:
 
 		\SageFile{../tps/exo04_f01.py}{Fonction d'addition de polynomes}{lst:ex04_f01}
 
+		et celui-ci pour faire la multiplication:
+
+		\SageFile{../tps/exo04_f02.py}{Fonction de multiplication de polynomes}{lst:ex04_f02}
+
+		Une fonction importante qu'on a utilisé dans les programmes précédent est celle de normalisation.
+		Elle permet de retirer les zeros en trop après les opérations (par exemple \((X + 1) + (-X + 1)\) donnera \(2\) et pas \(0X + 2\)).
+
+		\SageFile{../tps/exo04_f03.py}{Fonction de normalisation des resultats}{lst:ex04_f03}
+
+		Enfin avec les fonctions suivantes on peut tester que nos fonctions font bien ce qu'elles devraient:
+
+		\SageFile{../tps/exo04_f04.py}{Fonctions pour tester}{lst:ex04_f04}
+
+		Et alors une fonction comme celle-ci nous confirme bien que nos fonctions effectuent les bonnes opérations:
+
+		\SageFile{../tps/exo04_f05.py}{Lancement des tests --- Resultats positifs}{lst:ex04_f05}
 	\end{td-sol}
 }{}
