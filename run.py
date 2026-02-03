@@ -2,6 +2,7 @@ import os
 import shutil
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import subprocess
 
 PROJECT_ROOT = Path.cwd()
 SRC_DIR = PROJECT_ROOT / "src"
@@ -53,21 +54,27 @@ def compile_latex(tex_file: Path):
     job_name = tex_file.stem
 
     build_dir = mirror_under(BUILD_ROOT, tex_file)
-    pdf_dir = mirror_under(PDF_ROOT, tex_file)
-    log_dir = mirror_under(LOG_ROOT, tex_file)
+    pdf_dir   = mirror_under(PDF_ROOT, tex_file)
+    log_dir   = mirror_under(LOG_ROOT, tex_file)
 
-    original_cwd = Path.cwd()
-    os.chdir(tex_file.parent)
+    cmd = [
+        "latexmk",
+        "-pdf",
+        "-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        f"-outdir={build_dir}",
+        f"{job_name}.tex",
+    ]
 
     try:
-        cmd = (
-            f"latexmk -pdf -shell-escape "
-            f"-interaction=nonstopmode -halt-on-error "
-            f"-outdir=\"{build_dir}\" "
-            f"\"{job_name}.tex\" > NUL 2>&1"
+        result = subprocess.run(
+            cmd,
+            cwd=tex_file.parent,     # per-thread working directory
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False
         )
-
-        return_code = os.system(cmd)
 
         # Copy PDF
         pdf_src = build_dir / f"{job_name}.pdf"
@@ -79,11 +86,10 @@ def compile_latex(tex_file: Path):
         if log_src.exists():
             shutil.move(log_src, log_dir / log_src.name)
 
-        return return_code == 0
+        return result.returncode == 0
 
-    finally:
-        os.chdir(original_cwd)
-
+    except Exception:
+        return False
 
 # --------------------------------------------------
 # Main
