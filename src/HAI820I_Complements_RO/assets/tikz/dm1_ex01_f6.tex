@@ -48,32 +48,32 @@
             % };
             % \addlegendentry{Région réalisable de \(P_3\)}
 
-            % % ----- Integer points inside the feasible region -----
-            % \foreach \x in {0,1}{
-            %     \foreach \y in {0,1,2,3}{
-            %         \addplot[
-            %             only marks,
-            %             mark=*,
-            %             mark size=2.2pt,
-            %             color=green!70,
-            %             forget plot
-            %         ] coordinates {(\x,\y)};
-            %     }
-            % }
-            % \addplot[
-            %     only marks,
-            %     mark=*,
-            %     mark size=2.2pt,
-            %     color=green!70,
-            %     forget plot
-            % ] coordinates {(2,2)};
-            % \addplot[
-            %     only marks,
-            %     mark=*,
-            %     mark size=2.2pt,
-            %     color=green!70
-            % ] coordinates {(2,3)};
-            % \addlegendentry{Ensemble de points dans \(P_3 \cap \bb Z^2\)}
+            % ----- Integer points inside the feasible region -----
+            \foreach \x in {0,1}{
+                \foreach \y in {0,1,2,3}{
+                    \addplot[
+                        only marks,
+                        mark=*,
+                        mark size=2.2pt,
+                        color=green!70,
+                        forget plot
+                    ] coordinates {(\x,\y)};
+                }
+            }
+            \addplot[
+                only marks,
+                mark=*,
+                mark size=2.2pt,
+                color=green!70,
+                forget plot
+            ] coordinates {(2,2)};
+            \addplot[
+                only marks,
+                mark=*,
+                mark size=2.2pt,
+                color=green!70
+            ] coordinates {(2,3)};
+            \addlegendentry{Ensemble de points dans \(P_3 \cap \bb Z^2\)}
             
             % ----- Smaller Feasible region -----
             \addplot[
