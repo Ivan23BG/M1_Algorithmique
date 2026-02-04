@@ -1,0 +1,129 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Représentation du polyèdre \(P_I\) dans \(\bb R^2\)}\label{fig:dm1_ex01_f7}
+}{
+    \fbox{
+        \begin{tikzpicture}
+            \begin{axis}[
+                % axis lines=middle,
+                xlabel={\(x_1\)},
+                ylabel={\(x_2\)},
+                xmin=0, xmax=3,
+                ymin=0, ymax=4,
+                grid=both,
+                axis equal image, % <-- orthonormal grid
+                width=10cm,
+                height=7cm,
+                legend pos=outer north east, % <-- legend outside
+                legend cell align=left,
+                legend image post style={fill opacity=0.45},
+                legend style={fill=pagebg, draw=pagetext}
+            ]
+
+            % ----- Constraint lines -----
+
+            % x2 = 3  -> x2 = 3
+            \addplot[domain=0:3, very thick, color=blue] {3};
+            \addlegendentry{\(x_2 = 3\)}
+            
+            % x1 = 2
+            \addplot[
+                very thick,
+                color=orange
+            ] coordinates {(2,0) (2,4)};
+            \addlegendentry{\(x_1 = 2\)}
+
+            % 2x1 - x2 = 2 -> x2 = 2x1 - 2
+            \addplot[domain=0:3, very thick, color=green!60!black] {2*x - 2};
+            \addlegendentry{\(2x_1 - x_2 = 2\)}
+
+            % % x2 = 2
+            % \addplot[domain=0:3, very thick, color=green!60!black] {2};
+            % \addlegendentry{\(x_2 = 2\)}
+
+            % % ----- Feasible region -----
+            % \addplot[
+            %     fill=cyan!30,
+            %     opacity=0.45,
+            %     draw=none,
+            %     area legend
+            % ] coordinates {
+            %     (0, 0)
+            %     (0, 3)
+            %     (7/3, 3)
+            %     (4/3, 0)
+            % };
+            % \addlegendentry{Région réalisable de \(P_3\)}
+
+            % % ----- Integer points inside the feasible region -----
+            % \foreach \x in {0,1}{
+            %     \foreach \y in {0,1,2,3}{
+            %         \addplot[
+            %             only marks,
+            %             mark=*,
+            %             mark size=2.2pt,
+            %             color=green!70,
+            %             forget plot
+            %         ] coordinates {(\x,\y)};
+            %     }
+            % }
+            % \addplot[
+            %     only marks,
+            %     mark=*,
+            %     mark size=2.2pt,
+            %     color=green!70,
+            %     forget plot
+            % ] coordinates {(2,2)};
+            % \addplot[
+            %     only marks,
+            %     mark=*,
+            %     mark size=2.2pt,
+            %     color=green!70
+            % ] coordinates {(2,3)};
+            % \addlegendentry{Ensemble de points dans \(P_3 \cap \bb Z^2\)}
+            
+            % ----- Smaller Feasible region -----
+            \addplot[
+                fill=red!30,
+                opacity=0.45,
+                draw=none,
+                area legend
+            ] coordinates {
+                (0, 0)
+                (0, 3)
+                (2, 3)
+                (2, 2)
+                (1, 0)
+            };
+            \addlegendentry{Enveloppe convexe de \(P_I\)}
+
+            % % ----- Optimal real solution -----
+            % \addplot[
+            %     only marks,
+            %     mark=*,
+            %     mark size=2.5pt,
+            %     color=red!80!black
+            % ] coordinates {(0.75,0.25)};
+            % \addlegendentry{Solution réelle}
+
+            % % ----- Optimal integer solution -----
+            % \addplot[
+            %     only marks,
+            %     mark=square*,
+            %     mark size=2.5pt,
+            %     color=purple
+            % ] coordinates {(1,0)};
+            % \addlegendentry{Solution entière}
+            
+            % % Draw the objective level line
+            % \addplot[dashed, thick, yellow, domain=0:2] {3*x - 2};
+            % \addlegendentry{Ligne de niveau \(z=2\)}
+
+            % Draw the direction of decrease (vector)
+            % \draw[->, thick, red!70!black] 
+            %     (axis cs:0.75,0.25) -- (axis cs:0.75-0.6,0.25+0.2) 
+            %     node[above left] {$(-3,1)$};
+            \end{axis}
+        \end{tikzpicture}
+    }
+}

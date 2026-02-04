@@ -1,0 +1,80 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Représentation du problème \(P_\varepsilon\) dans \(\bb R^2\) pour \(\varepsilon = 1\)}\label{fig:dm1_ex01_f2}
+}{
+    \fbox{
+        \begin{tikzpicture}
+            \begin{axis}[
+                % axis lines=middle,
+                xlabel={\(x_1\)},
+                ylabel={\(x_2\)},
+                xmin=0, xmax=5,
+                ymin=0, ymax=5,
+                grid=both,
+                axis equal image, % <-- orthonormal grid
+                width=10cm,
+                height=7cm,
+                legend pos=outer north east, % <-- legend outside
+                legend cell align=left,
+                legend image post style={fill opacity=0.45},
+                legend style={fill=pagebg, draw=pagetext}
+            ]
+
+            % ----- Constraint lines -----
+
+            % x2 = 3  -> x2 = 3
+            \addplot[domain=0:5, very thick, color=blue] {3};
+            \addlegendentry{\(x_2 = 3\)}
+
+            % x1 + x2 = 4 -> x2 = 4 - x1
+            \addplot[domain=0:5, very thick, color=orange] {4 - x};
+            \addlegendentry{\(x_1 + x_2 = 4\)}
+
+            % % x2 = 2
+            % \addplot[domain=0:3, very thick, color=green!60!black] {2};
+            % \addlegendentry{\(x_2 = 2\)}
+
+            % ----- Feasible region -----
+            \addplot[
+                fill=cyan!30,
+                opacity=0.45,
+                draw=none,
+                area legend
+            ] coordinates {
+                (0, 0)
+                (0, 3)
+                (1, 3)
+                (4, 0)
+            };
+            \addlegendentry{Région réalisable}
+
+            % % ----- Optimal real solution -----
+            % \addplot[
+            %     only marks,
+            %     mark=*,
+            %     mark size=2.5pt,
+            %     color=red!80!black
+            % ] coordinates {(0.75,0.25)};
+            % \addlegendentry{Solution réelle}
+
+            % % ----- Optimal integer solution -----
+            % \addplot[
+            %     only marks,
+            %     mark=square*,
+            %     mark size=2.5pt,
+            %     color=purple
+            % ] coordinates {(1,0)};
+            % \addlegendentry{Solution entière}
+            
+            % % Draw the objective level line
+            % \addplot[dashed, thick, yellow, domain=0:2] {3*x - 2};
+            % \addlegendentry{Ligne de niveau \(z=2\)}
+
+            % Draw the direction of decrease (vector)
+            % \draw[->, thick, red!70!black] 
+            %     (axis cs:0.75,0.25) -- (axis cs:0.75-0.6,0.25+0.2) 
+            %     node[above left] {$(-3,1)$};
+            \end{axis}
+        \end{tikzpicture}
+    }
+}

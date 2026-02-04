@@ -1,0 +1,195 @@
+\section{Partie théorique}\label{sec:s_1}
+
+\subsection{Polyèdre entier}\label{subsec:ss1_1}
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Représentation et facettes]\,\\ % 1 
+	Soit \(P_{\varepsilon}\) le polyèdre défini par les inégalités linéaires suivantes:
+    \begin{equation*}
+        (P_{\varepsilon}) = 
+        \begin{cases}
+            x_2 \leq 3\\
+            \varepsilon x_1 + (2 -\varepsilon) x_2 \leq 4\\
+            x_i \geq 0,\forall i \in \{1, 2\}
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}
+        \item Illustrer le polyèdre \(P_\varepsilon\) et les inégalités dans le plan pour \(\varepsilon = 1\) et \(\varepsilon = -1\).
+
+        \item Soient \(\varepsilon = 3\) et le polyèdre entier \(P_I = \conv(P_3 \cap \bb Z^2)\).
+        Dessiner \(P_I\) et donner une représentation (extérieure) minimale de \(P_I\).
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 1
+		\begin{enumerate}
+            \item Pour \(\varepsilon = -1\), le problème \(P_\varepsilon\) devient le suivant:
+            \begin{equation*}
+                P_\varepsilon = P_{-1} = 
+                \begin{cases}
+                    x_2 \leq 3\\
+                    - x_1 + 3 x_2 \leq 4\\
+                    x_i \geq 0,\forall i \in \{1, 2\}
+                \end{cases}
+            \end{equation*}
+            On peut représenter ce problème dans le plan comme suit:
+
+            \input{../assets/tikz/dm1_ex01_f1.tex}
+
+            Quelques remarques par rapport à la figure:
+            \begin{itemize}
+                \item Tout d'abord on peut remarquer que l'ensemble des points dans le polyèdre est non borné en \(x_1\).
+                \item Les points extrêmes de ce polyèdre sont:
+                \begin{equation*}
+                    (0, 0), (0, 4/3), (5, 3), (6.5, 3), (6.5, 0)
+                \end{equation*}
+            \end{itemize}
+
+            Regardons maintenant le cas \(\varepsilon = 1\). Le problème \(P_\varepsilon\) devient le suivant:
+            \begin{equation*}
+                P_\varepsilon = P_{1} = 
+                \begin{cases}
+                    x_2 \leq 3\\
+                    x_1 + x_2 \leq 4\\
+                    x_i \geq 0,\forall i \in \{1, 2\}
+                \end{cases}
+            \end{equation*}
+            On peut représenter ce problème dans le plan comme suit:
+
+            \input{../assets/tikz/dm1_ex01_f2.tex}
+
+            Quelques remarques par rapport à la figure:
+            \begin{itemize}
+                \item Tout d'abord on peut remarquer que l'ensemble des points dans le polyèdre est complètement borné cette fois-ci.
+                Contrairement au cas \(\varepsilon = -1\), on ne peut pas choisir n'importe quelle valeur pour \(x_1\).
+                \item Les points extrêmes de ce polyèdre sont:
+                \begin{equation*}
+                    (0, 0), (0, 3), (1, 3), (4, 0)
+                \end{equation*}
+                \item Ces deux problèmes, même s'ils viennent tous deux de \(P_\varepsilon\) ont des représentations dans l'espace bien différentes, cela est notamment dû à l'impact qu'a le choix de \(\varepsilon\) sur le signe des variables \(x_1\) et \(x_2\) dans la seconde contrainte. C'est ce qui décide \og{}l'angle de la pente\fg{} de cette contrainte et qui permet donc de borner ou non le polyèdre.
+            \end{itemize}
+
+            \item On fixe désormais \(\varepsilon = 3\). On commence par représenter le problème \(P_3\) dans l'espace comme suit:
+
+            \input{../assets/tikz/dm1_ex01_f3.tex}
+
+            Ensuite, on veut contraindre cet ensemble de points pour se retrouver uniquement avec des valeurs entières. 
+            Cela donne le graphe suivant:
+
+            \input{../assets/tikz/dm1_ex01_f4.tex}
+
+            On veut maintenant trouver l'enveloppe convexe de cet ensemble de points ce qui donne le graphe suivant:
+
+            \input{../assets/tikz/dm1_ex01_f5.tex}
+
+            Enfin, on peut nettoyer visuellement la figure pour voir plus clairement l'enveloppe convexe:
+
+            \input{../assets/tikz/dm1_ex01_f6.tex}
+
+            On voit alors que ce polyèdre \(P_I\) est clairement défini par les trois contraintes suivantes:
+            \begin{equation*}
+                (P_I) = 
+                \begin{cases}
+                    x_2 \leq 3\\
+                    x_1 \leq 2\\
+                    2x_1 - x_2 \leq 2\\
+                    x_i \geq 0,\ \forall i \in \{1, 2\}
+                \end{cases}
+            \end{equation*}
+            ce qui donne le graphe suivant:
+
+            \input{../assets/tikz/dm1_ex01_f7.tex}
+
+            Quelques remarques sur \(P_I\):
+            \begin{itemize}
+                \item Comme pour le cas \(\varepsilon = 1\), l'ensemble des points du polyèdre est borné.
+                Plus fort que ca, les différents points du polyèdre sont bornés par des points entiers.
+                \item Les points extrêmes de ce polyèdre sont:
+                \begin{equation*}
+                    (0, 0), (0, 3), (2, 3), (2, 2), (1, 0)
+                \end{equation*}
+                \item Tous les points extrêmes de \(P_I\) sont entiers.
+                \item Le polyèdre \(P_I\) est entièrement défini par 3 inégalités.
+            \end{itemize}
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+\subsection{Optimisation combinatoire}\label{subsec:ss1_2}
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Bornes géométriques pour le problème du \textsc{Voyageur de Commerce}]\,\\ % 2 
+    On considère le problème du \textsc{Voyageur de Commerce} sur un graphe complet non-orienté formé de \(n\) villes.
+    On note \(E\) l'ensemble des arêtes, formé des \(n(n-1)/2\) parties \(\{i,j\}\) de deux éléments distincts de \(\{1,\ldots,n\}\).
+    On note \(d_{ij}\) la distance de la ville \(i\) à la ville \(j\).
+    On rappelle qu'à un tour, on associe un vecteur \(x\in \bb R^E\) tel que \(x_{ij} = 1\) si l'arête \({i,j}\) appartient au tour et \(x_{ij}=0\) sinon.
+    On considère le problème linéaire \(P_1\) (sans contraintes d'intégrité) suivant:
+    \begin{equation*}
+        (P_1) = 
+        \begin{cases}
+            \min \sum_{\{i,j\}\in E} d_{ij} x_{ij},\ x\in\bb R^E\\
+            \sum_{j:\{i,j\}\in E} x_{ij} = 2,\ \forall i \in \{1,\ldots,n\}\\
+            x_{ij} \geq 0,\ \forall \{i,j\} \in E
+        \end{cases}
+    \end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 2
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[]\,\\ % 3 
+	
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 3
+		
+	\end{td-sol}
+}{}
+
+\subsection{Comparaison de méthodes}\label{subsec:ss1_3}
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[]\,\\ % 4 
+	
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 4
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[]\,\\ % 5 
+	
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 5
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[]\,\\ % 6 
+	
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 6
+		
+	\end{td-sol}
+}{}
