@@ -1,0 +1,174 @@
+\section{Complexité}\label{sec:s_1}
+
+\subsection{Problèmes NP-complets}\label{subsec:ss1_1}
+% ----- Consignes exo 1 ----- %
+\begin{td-exo}[Problème du \textsc{Feedback Vertex Set}]\,\\ % 1 
+	Le problème du \textsc{Feedback Vertex Set} défini ci-dessous est un problème fondamental en base de données.
+    Dans les systèmes d'exploitation, ce problème joue un rôle important dans l'étude de la récupération de données après des crashs ou des blocages.
+    Dans le graphe des processus d'un système d'exploitation, chaque cycle dirigé correspond à une situation d'impasse.
+    Afin de résoudre toutes les impasses, certains processus bloqués doivent être abandonnés.
+    Un \textsc{Feedback Vertex Set} dans le graphe correspond à un nombre minimum de processus qu'il faut abandonner.
+	
+    \input{../assets/tikz/dm1_ex01_1.tex}
+
+    On considère les figures ci-dessous:
+
+    \begin{center}
+        \begin{minipage}{0.48\linewidth}
+            \centering
+            \input{../assets/tikz/dm1_ex01_2.tex}
+        \end{minipage}\hfill
+        \begin{minipage}{0.48\linewidth}
+            \centering
+            \input{../assets/tikz/dm1_ex01_3.tex}
+        \end{minipage}
+    \end{center}
+
+    \begin{enumerate}
+        \item Donner l'ensemble \(S\) pour le graphe orienté donné par la figure~\ref{fig:dm1_ex01_f2}.
+        \item Proposer une réduction à partir de \textsc{Vertex Cover} et effectuer la preuve de NP-complétude.
+        \item Appliquer votre réduction sur le graphe donné par la figure~\ref{fig:dm1_ex01_f3}.
+    \end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 1 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 1
+		\begin{enumerate}
+            \item On commence par essayer de trouver un ensemble \(S\) de taille \(k = 1\).
+            Si on retire \(e\) ou \(d\) alors le cycle \(a-b\) subsiste.
+            Sinon c'est le cycle \(e-d\) qui subsiste.
+            Il n'y a donc pas de solution pour \(k = 1\).
+            On cherche maintenant une solution pour \(k=2\).
+            Il faut casser chaque cycle dans le graphe donc il faut pour chaque paire de sommets adjacents dans le graphe, retirer un des deux sommets.
+            Si on choisit \(S = \{b, d\}\) il n'y a plus de cycles dans le graphe \(G \setminus S = \{a, c, e\}\).
+            Alors \(S = \{b, d\}\) est bien solution minimale du problème avec \(k=2\).
+
+            \item Commencons par montrer que le problème de \textsc{Feedback Vertex Set} appartient à la classe NP.\@
+            Soit \(S\) une solution au problème de \textsc{Feedback Vertex Set}.
+            On commence par vérifier que \(S\) est bien de taille \(k\) (se fait en temps linéaire).
+            Ensuite, pour vérifier la validité d'une telle solution, on retire \(S\) du graphe \(G\) (se fait en temps linéaire) puis on effectue un BFS sur chaque sommet de \(G\) (polynomial en le nombre de sommets) pour vérifier qu'on ne retombe pas sur le sommet de départ.
+            Ainsi le problème de \textsc{Feedback Vertex Set} est bien NP.\@
+
+            Montrons maintenant qu'on peut réduire le problème de \textsc{Vertex Cover} à un problème de \textsc{Feedback Vertex Set}.
+            Soit \(G = (V, E)\) un graphe non orienté. 
+            On construit le graphe \(G' = (V', E')\) comme suit: pour chaque sommet \(v\in V\) de \(G\), on rajoute \(v' = v \in V'\).
+            Pour chaque arête \({u, v}\in E\), on rajoute deux arcs orientés \({u, v},{v, u}\) dans \(E'\).
+            Alors \(G' = (V', E')\) correspond au graphe \(G\) où chaque arête est remplacée par deux arcs de sens opposé.
+            Cette construction peut se faire en temps polynomial.
+
+            On commence par montrer le sens direct.
+            Soit \(S\) une solution au \textsc{Vertex Cover} dans \(G\).
+            Alors, toute arête \({u, v}\in E\) a bien \(u\in S\) ou \(v\in S\).
+            Alors, tous les 2-cycles dans \(G'\) sont cassés (sinon l'arête correspondante ne serait pas couverte par \(S\)).
+            Alors tous les sommets de \(G'\) sont isolés et \(G'\) n'a donc aucun cycle.
+            On a trouvé une solution à \textsc{Feedback Vertex Set} dans \(G'\) à partir d'une solution de \textsc{Vertex Cover} dans \(G\).
+
+            Maintenant le sens indirect.
+            Soit \(S\) une solution de \textsc{Feedback Vertex Set} dans \(G'\).
+            Alors, toute arête \({u, v}\in E'\) a bien \(u\in S\) ou \(v\in S\) (sinon \(u-v-u\) formerait un cycle).
+            Alors, toutes les arêtes dans \(E\) sont bien couvertes par \(S\) dans \(G\) (sinon on aurait un 2-cycle induit dans \(G'\)).
+            On a trouvé une solution à \textsc{Vertex Cover} dans \(G\) à partir d'une solution de \textsc{Feedback Vertex Set} dans \(G'\).
+
+            Alors, le problème de \textsc{Feedback Vertex Set} est NP-complet.
+
+            \item Appliquons la réduction au graphe~\ref{fig:dm1_ex01_f4}.
+
+            On commence par créer le graphe \(G'\) comme décrit dans la réduction:
+
+            \vspace{9px}
+            \input{../assets/tikz/dm1_ex01_4.tex}
+
+            Une solution au problème de \textsc{Vertex Cover} dans le graphe de départ est \(S = \{d, b\}\).
+            Si on retire \(S\) au graphe \(G'\) on obtient:
+            \begin{center}
+                \begin{minipage}{0.48\linewidth}
+                    \centering
+                    \input{../assets/tikz/dm1_ex01_5.tex}
+                \end{minipage}\hfill
+                \begin{minipage}{0.48\linewidth}
+                    \centering
+                    \input{../assets/tikz/dm1_ex01_6.tex}
+                \end{minipage}
+            \end{center}
+        \end{enumerate}
+	\end{td-sol}
+}{}
+
+
+\subsection{Optimisation combinatoire}\label{subsec:ss1_2}
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Bornes géométriques pour le problème du \textsc{Voyageur de Commerce}]\,\\ % 2 
+    On considère le problème du \textsc{Voyageur de Commerce} sur un graphe complet non-orienté formé de \(n\) villes.
+    On note \(E\) l'ensemble des arêtes, formé des \(n(n-1)/2\) parties \(\{i,j\}\) de deux éléments distincts de \(\{1,\ldots,n\}\).
+    On note \(d_{ij}\) la distance de la ville \(i\) à la ville \(j\).
+    On rappelle qu'à un tour, on associe un vecteur \(x\in \bb R^E\) tel que \(x_{ij} = 1\) si l'arête \({i,j}\) appartient au tour et \(x_{ij}=0\) sinon.
+    On considère le problème linéaire \(P_1\) (sans contraintes d'intégrité) suivant:
+    \begin{equation*}
+        (P_1) = 
+        \begin{cases}
+            \min \sum_{\{i,j\}\in E} d_{ij} x_{ij},\ x\in\bb R^E\\
+            \sum_{j:\{i,j\}\in E} x_{ij} = 2,\ \forall i \in \{1,\ldots,n\}\\
+            x_{ij} \geq 0,\ \forall \{i,j\} \in E
+        \end{cases}
+    \end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 2
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 3 ----- %
+\begin{td-exo}[]\,\\ % 3 
+	
+\end{td-exo}
+
+% ----- Solutions exo 3 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 3
+		
+	\end{td-sol}
+}{}
+
+\subsection{Comparaison de méthodes}\label{subsec:ss1_3}
+% ----- Consignes exo 4 ----- %
+\begin{td-exo}[]\,\\ % 4 
+	
+\end{td-exo}
+
+% ----- Solutions exo 4 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 4
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[]\,\\ % 5 
+	
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 5
+		
+	\end{td-sol}
+}{}
+
+
+% ----- Consignes exo 6 ----- %
+\begin{td-exo}[]\,\\ % 6 
+	
+\end{td-exo}
+
+% ----- Solutions exo 6 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 6
+		
+	\end{td-sol}
+}{}

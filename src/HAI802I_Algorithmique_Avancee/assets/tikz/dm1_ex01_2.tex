@@ -1,0 +1,27 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Exemple pour le \textsc{Feedback Vertex Set}}\label{fig:dm1_ex01_f2}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm, text=black}]
+            % les sommets initiaux
+            \node[main node] (a) at (0,0) {\(a\)};
+            \node[main node] (b) at (2, 0) {\(b\)};
+            \node[main node] (c) at (2,-2) {\(c\)};
+            \node[main node] (d) at (0,-2) {\(d\)};
+            \node[main node] (e) at (-2,-4) {\(e\)};
+
+            % les arcs avec capacités
+            \draw[-{Stealth}] (a) edge[bend left] (b);
+            \draw[-{Stealth}] (b) edge[bend left] (a);
+            \draw[-{Stealth}] (a) edge[bend left] (d);
+            \draw[-{Stealth}] (d) edge[bend left] (a);
+            \draw[-{Stealth}] (b) edge[bend left] (c);
+            \draw[-{Stealth}] (c) edge[bend left] (b);
+            \draw[-{Stealth}] (c) edge[bend left] (d);
+            \draw[-{Stealth}] (d) edge[bend left] (c);
+            \draw[-{Stealth}] (d) edge[bend left] (e);
+            \draw[-{Stealth}] (e) edge[bend left] (d);
+
+        \end{tikzpicture}
+    }
+}

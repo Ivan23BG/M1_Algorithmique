@@ -1,0 +1,42 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Graphe \(G'\) obtenu par réduction}\label{fig:dm1_ex01_f5}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm, text=black}]
+            % les sommets initiaux
+            \node[main node] (a) at (0,0) {\(a\)};
+            \node[main node, draw=gray, fill=gray!10, path picture={
+                \draw[gray, line width=0.6pt]
+                (path picture bounding box.south west) --
+                (path picture bounding box.north east);
+                \draw[gray, line width=0.6pt]
+                (path picture bounding box.north west) --
+                (path picture bounding box.south east);
+            }] (b) at (2,0) {\(b\)};
+            \node[main node] (c) at (2,-2) {\(c\)};
+            \node[main node, draw=gray, fill=gray!10, path picture={
+                \draw[gray, line width=0.6pt]
+                (path picture bounding box.south west) --
+                (path picture bounding box.north east);
+                \draw[gray, line width=0.6pt]
+                (path picture bounding box.north west) --
+                (path picture bounding box.south east);
+            }] (d) at (0,-2) {\(d\)};
+            \node[main node] (e) at (-1,-2) {\(e\)};
+
+            % les arcs avec capacités 
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (a) edge[bend left] (b);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (b) edge[bend left] (c);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (c) edge[bend left] (d);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (d) edge[bend left] (a);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (d) edge[bend left] (e);
+
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (b) edge[bend left] (a);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (c) edge[bend left] (b);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (d) edge[bend left] (c);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (a) edge[bend left] (d);
+            \draw[-{Stealth}, dashed, gray!10!pagetext] (e) edge[bend left] (d);
+            
+        \end{tikzpicture}
+    }
+}
