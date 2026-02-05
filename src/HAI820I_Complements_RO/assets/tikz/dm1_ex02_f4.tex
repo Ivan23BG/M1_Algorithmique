@@ -1,0 +1,74 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Illustration des zones de contrôle sur la figure~\ref{fig:dm1_ex02_f1}}\label{fig:dm1_ex02_f4}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=6mm, text=black}]
+            % gonna need these for the annoying circles later
+            \def\ra{1}      % original control radius
+            \def\rb{0.56}      % original control radius
+            \def\delta{0.5}   % douve thickness
+            \def\Ra{\ra+\delta} % expanded radius
+            \def\Rb{\rb+\delta} % expanded radius
+            % thick line = 0.8pt -> half = 0.4pt = 0.014058cm
+            \def\lwh{0.014058}
+            \def\Rta{\Ra-\lwh}
+            \def\Rtb{\Rb-\lwh}
+
+            % nodes
+            \node[main node] (1) at (-0.2,0) {1};
+            \node[main node] (2) at (1,1) {2};
+            \node[main node] (3) at (1,-1) {3};
+            
+            \node[main node] (4) at (4,1) {4};
+            \node[main node] (5) at (4,-1) {5};
+            \node[main node] (6) at (5.2,0) {6};
+
+            % small circles for group 1-2-3
+            \draw[red, thick, fill=red!20] (1) circle (\rb);
+            \draw[red, thick, fill=red!20] (2) circle (\ra);
+            \draw[red, thick, fill=red!20] (3) circle (\ra);
+
+            % small circles for group 4-5-6
+            \draw[red, thick, fill=red!20] (4) circle (\ra);
+            \draw[red, thick, fill=red!20] (5) circle (\ra);
+            \draw[red, thick, fill=red!20] (6) circle (\rb);
+            
+            \node[main node] (1bis) at (-0.2,0) {\(1\)};
+            \node[main node] (2bis) at (1,1) {\(2\)};
+            \node[main node] (3bis) at (1,-1) {\(3\)};
+            
+            \node[main node] (4bis) at (4,1) {\(4\)};
+            \node[main node] (5bis) at (4,-1) {\(5\)};
+            \node[main node] (6bis) at (5.2,0) {\(6\)};
+
+            % Douves
+            % draw outline (with overlaps) first then fill
+            \begin{scope}[on background layer]
+                \foreach \v in {2,3,4,5} {
+                    \draw[fill=green!30, thick, draw=green] (\v) circle (\Ra);
+                }
+                \foreach \v in {1,6} {
+                    \draw[fill=green!30, thick, draw=green] (\v) circle (\Rb);
+                }
+                \foreach \v in {2,3,4,5} {
+                    \fill[green!30] (\v) circle (\Rta);
+                }
+                \foreach \v in {1,6} {
+                    \fill[green!30] (\v) circle (\Rtb);
+                }
+            \end{scope}
+
+            % ------------------------
+            % Legend to the side
+            % ------------------------
+            \begin{scope}[shift={(7,2)}, font=\scriptsize]
+                \node[draw=red, thick, minimum width=0.35cm, minimum height=0.35cm, fill=red!20] (leg1) {};
+                \node[right=0.25cm of leg1, anchor=west] {Zones de contrôle};
+
+                \node[draw=green, thick, minimum width=0.35cm, minimum height=0.35cm, below=0.3cm of leg1, fill=green!30] (leg2) {};
+                \node[right=0.25cm of leg2, anchor=west] {Douves};
+            \end{scope}
+
+        \end{tikzpicture}
+    }
+}
