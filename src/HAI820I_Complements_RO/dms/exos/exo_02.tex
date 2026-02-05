@@ -1,0 +1,23 @@
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Bornes géométriques pour le problème du \textsc{Voyageur de Commerce}]\,\\ % 2 
+    On considère le problème du \textsc{Voyageur de Commerce} sur un graphe complet non-orienté formé de \(n\) villes.
+    On note \(E\) l'ensemble des arêtes, formé des \(n(n-1)/2\) parties \(\{i,j\}\) de deux éléments distincts de \(\{1,\ldots,n\}\).
+    On note \(d_{ij}\) la distance de la ville \(i\) à la ville \(j\).
+    On rappelle qu'à un tour, on associe un vecteur \(x\in \bb R^E\) tel que \(x_{ij} = 1\) si l'arête \({i,j}\) appartient au tour et \(x_{ij}=0\) sinon.
+    On considère le problème linéaire \(P_1\) (sans contraintes d'intégrité) suivant:
+    \begin{equation*}
+        (P_1) = 
+        \begin{cases}
+            \min \sum_{\{i,j\}\in E} d_{ij} x_{ij},\ x\in\bb R^E\\
+            \sum_{j:\{i,j\}\in E} x_{ij} = 2,\ \forall i \in \{1,\ldots,n\}\\
+            x_{ij} \geq 0,\ \forall \{i,j\} \in E
+        \end{cases}
+    \end{equation*}
+\end{td-exo}
+
+% ----- Solutions exo 2 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 2
+		
+	\end{td-sol}
+}{}
