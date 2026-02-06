@@ -22,10 +22,10 @@ def test_operations(R, deg1, deg2):
         assert list_to_poly(C_add, PR) == PA + PB
         assert list_to_poly(C_mul, PR) == PA * PB
     except AssertionError:
-        print(f"Erreur pour degrés {deg1} et {deg2} sur {R}")
+        print(f"Erreur pour degres {deg1} et {deg2} sur {R}")
         print(f"A = {PA}, B = {PB}")
-        print(f"A + B = {PA + PB}, calculé: {list_to_poly(C_add, PR)}")
-        print(f"A * B = {PA * PB}, calculé: {list_to_poly(C_mul, PR)}")
+        print(f"A + B = {PA + PB}, calcule: {list_to_poly(C_add, PR)}")
+        print(f"A * B = {PA * PB}, calcule: {list_to_poly(C_mul, PR)}")
         raise
 
-    print(f"Test réussi pour degrés {deg1} et {deg2} sur {R}")
+    print(f"Test reussi pour degres {deg1} et {deg2} sur {R}")
