@@ -1,4 +1,5 @@
 def list_to_poly(L, R):
+    # cree le polynome associe a une liste
     x = R['x'].gen()
     return sum(L[i] * x^i for i in range(len(L)))
 
@@ -17,7 +18,14 @@ def test_operations(R, deg1, deg2):
     C_add = poly_add(A, B, R)
     C_mul = poly_mult(A, B, R)
 
-    assert list_to_poly(C_add, PR) == PA + PB
-    assert list_to_poly(C_mul, PR) == PA * PB
+    try:
+        assert list_to_poly(C_add, PR) == PA + PB
+        assert list_to_poly(C_mul, PR) == PA * PB
+    except AssertionError:
+        print(f"Erreur pour degrés {deg1} et {deg2} sur {R}")
+        print(f"A = {PA}, B = {PB}")
+        print(f"A + B = {PA + PB}, calculé: {list_to_poly(C_add, PR)}")
+        print(f"A * B = {PA * PB}, calculé: {list_to_poly(C_mul, PR)}")
+        raise
 
-    print(f"OK pour degres {deg1} et {deg2} sur {R}")
+    print(f"Test réussi pour degrés {deg1} et {deg2} sur {R}")

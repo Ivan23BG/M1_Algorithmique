@@ -3,5 +3,5 @@ def poly_mult(A, B, R):
     for i in range(len(A)):
         for j in range(len(B)):
             res[i + j] += A[i] * B[j]
-    res = normalise(res, R)
+    res = remove_zeroes(res, R)
     return res

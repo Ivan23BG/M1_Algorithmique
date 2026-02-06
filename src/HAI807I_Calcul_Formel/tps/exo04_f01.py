@@ -5,5 +5,5 @@ def poly_add(A, B, R):
         a = A[i] if i < len(A) else 0
         b = B[i] if i < len(B) else 0
         res[i] += a + b
-    res = normalise(res, R)
+    res = remove_zeroes(res, R)
     return res
