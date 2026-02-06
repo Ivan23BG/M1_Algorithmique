@@ -88,6 +88,36 @@
 			\begin{equation*}
 				C_{\max} = t_j + p_j \leq 2C^{OPT}_{\max}
 			\end{equation*}
+
+			Autre correction possible:
+
+			On a 
+			\begin{equation*}
+				C_{\max}^{OPT} \geq \frac{T_{\text{seq}}}{m}
+			\end{equation*}
+			et
+			\begin{equation*}
+				C_{\max}^{OPT} \geq p_j,\ \forall j
+			\end{equation*}
+			Si on considère l'agencement des taches on trouve
+			\begin{equation*}
+				T_{\text{seq}} \geq \left( C_{\max} - p_j \right) m + p_j
+			\end{equation*}
+			et alors
+			\begin{equation*}
+				\frac{T_{\text{seq}}}{m} \geq C_{\max} - p_j + \frac{p_j}{m}
+			\end{equation*}
+			en combinant ces deux inégalités on trouve
+			\begin{equation*}
+				\begin{aligned}
+					C_{\max}^{LS}
+					&\leq \frac{T_{\text{seq}}}{m} + p_j - \frac{p_j}{m} \\
+					&\leq \frac{T_{\text{seq}}}{m} + p_j \left( 1 - \frac1m \right) \\
+					&\leq C_{\max}^{OPT} + C_{\max}^{OPT} \left( 1 - \frac1m \right) \\
+					&\leq C_{\max}^{OPT} \left( 2 - \frac1m \right) \\
+					&\leq 2C_{\max}^{OPT} 
+				\end{aligned}
+			\end{equation*}
 		\end{enumerate}
 	\end{td-sol}
 }{}
