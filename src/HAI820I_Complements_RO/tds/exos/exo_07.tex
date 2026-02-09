@@ -24,116 +24,310 @@
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 7
 		\begin{enumerate}
-			\item On commence par calculer l'ACPM sur \(G \setminus \{x\}\):\\
-			Les arêtes de poids minimal qui permettent de connecter tous les sommets sont:
-			\begin{itemize}
-				\item \(y-u\) de poids \(1\),
-				\item \(y-t\) de poids \(2\),
-				\item \(z-t\) de poids \(2\),
-				\item \(v-u\) de poids \(2\),
-			\end{itemize}
-			Le poids total de l'ACPM est \(7\).
+			\item \textbf{1. Construction du 1-arbre initial}
 
-			On reconnecte \(x\) au graphe par les 2 arêtes les moins cheres pour un poids total de \(7+6=13\).
+			On considère le graphe complet \(G\) sur \(V=\{x,y,z,t,u,v\}\).
+			On fixe le sommet \(x\) et on calcule un 1-arbre.
 
-			Le degré de \(t\) est 3 donc on branche sur \(t\).
+			On applique l'algorithme de Kruskal au graphe \(G\setminus\{x\}\) muni des poids initiaux.
 
-			Si on retire \(ty\) du graphe, le nouvel ACPM devient
-
-			\begin{itemize}
-				\item 
-			\end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			Ensuite on reconnecte \(x\) avec les arêtes les moins couteuses: \\
-			Les deux plus petites arêtes partant de \(x\) sont:
-			\begin{itemize}
-				\item \(x-t = 2\),
-				\item \(x-y = 4\).
-			\end{itemize}
-
-			Ainsi, le poids total du 1-arbre résultant est:
+			Les arêtes sélectionnées sont:
 			\begin{equation*}
-				LB_0 = 10 + 2 + 4 = 16
-			\end{equation*}
-			qui constitue notre \textbf{borne inférieure initiale}.
-
-			On vérifie maintenant si la solution trouvée est réalisable (est-elle un cycle Hamiltonien):\\
-			On calcule le degré de chaque sommet dans ce 1-arbre:
-			\begin{itemize}
-				\item \(\deg(x) = 2\),
-				\item \(\deg(y) = 3\),
-				\item \(\deg(z) = 2\),
-				\item \(\deg(t) = 3\),
-				\item \(\deg(u) = 2\),
-				\item \(\deg(v) = 2\).
-			\end{itemize}
-			Certains sommets ont un degré supérieur à 2, donc ce 1-arbre n'est pas une solution réalisable (pas de cycle hamiltonien).
-
-			On branche alors sur un des sommets de degré \(>2\), par exemple \(y\), et on crée des sous-problèmes en excluant successivement une arête incidente à \(y\).
-
-			\begin{enumerate}
-				\item \textbf{Exclusion de \(y-u\):} 
-				On recalcule le 1-arbre compatible avec cette contrainte. 
-				Les deux arêtes les moins coûteuses de \(x\) restent \(x-t\) et \(x-y\). 
-				Le nouvel arbre a toujours un poids:
-				\begin{equation*}
-					LB = 10 + 2 + 4 = 16
-				\end{equation*}
-				Les degrés deviennent:
-				\begin{itemize}
-					\item \(\deg(y) = 2\), \(\deg(t) = 3\), \(\deg(x)=2\), \(\deg(z)=2\), \(\deg(u)=2\), \(\deg(v)=2\)
-				\end{itemize}
-				On branche maintenant sur \(t\) (degré \(>2\)).
-
-				\item \textbf{Exclusion de \(y-t\):} 
-				Recalcul du 1-arbre compatible:
-				\begin{equation*}
-					LB = 16
-				\end{equation*}
-				Les degrés deviennent
-				\begin{itemize}
-					\item \(\deg(t)=2\), \(\deg(y)=2\), \(\deg(x)=2\), \(\deg(z)=2\), \(\deg(u)=2\), \(\deg(v)=2\)
-				\end{itemize}
-				Cette configuration donne un cycle hamiltonien réalisable!  
-
-				\textbf{Étape 5 — Borne supérieure (solution réalisable):} \\
-				Un cycle hamiltonien réalisable correspondant est:
-				\begin{equation*}
-					x \to t \to z \to v \to u \to y \to x
-				\end{equation*}
-				de poids:
-				\begin{equation*}
-					2 + 2 + 3 + 2 + 1 + 4 = 14
-				\end{equation*}
-
-				\item \textbf{Exclusion de \(x-y\):} 
-				Recalcul du 1-arbre compatible, poids \(LB = 16\); on branche encore sur \(t\) ou \(v\).  
-				Toutes ces branches auront un \(LB \ge 16\), donc elles peuvent être éliminées par notre borne supérieure.
-			\end{enumerate}
-
-			On conclut:\\
-			Les sous-problèmes dont la borne inférieure est \(\ge UB=14\) sont éliminés. La solution trouvée est donc optimale.
-			\begin{equation*}
-				\text{Cycle optimal: } x \to t \to z \to v \to u \to y \to x, \quad \text{poids } 14.
+				y\!-\!u=1,\quad
+				y\!-\!t=2,\quad
+				y\!-\!v=2,\quad
+				z\!-\!t=2.
 			\end{equation*}
 
-			\item Pour connaître tous les cycles de poids minimum il faudrait continuer la procédure de séparation et d'évaluation, mais couper les branches seulement en cas d'inégalité stricte.
+			Poids de l'ACPM:\@
+			\begin{equation*}
+				7.
+			\end{equation*}
+
+			On ajoute les deux arêtes incidentes à \(x\) de poids minimal:
+			\begin{equation*}
+				x\!-\!t=2,\qquad x\!-\!y=4.
+			\end{equation*}
+
+			On obtient le 1-arbre initial de poids
+			\begin{equation*}
+				LB_0 = 7+2+4=13.
+			\end{equation*}
+
+			Les degrés sont:
+			\begin{equation*}
+				\deg(x)=2,\;
+				\deg(y)=4,\;
+				\deg(t)=3,\;
+				\deg(z)=1,\;
+				\deg(u)=1,\;
+				\deg(v)=1.
+			\end{equation*}
+
+			Ce n'est pas un cycle hamiltonien.
+
+			On construit une solution réalisable:
+			\begin{equation*}
+				x\to t\to z\to y\to u\to v\to x
+			\end{equation*}
+			de poids
+			\begin{equation*}
+				14.
+			\end{equation*}
+
+			On fixe donc
+			\begin{equation*}
+				UB=14.
+			\end{equation*}
+
+			Comme \(LB_0<UB\), on applique la séparation.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Règle de branchement}
+
+			Si le 1-arbre courant n'est pas hamiltonien, on choisit un sommet \(v\) tel que \(\deg(v)>2\). 
+			On crée une branche pour chacune des arêtes incidentes à \(v\) dans le 1-arbre courant, en les excluant successivement.
+
+			Toute exclusion est modélisée par une fonction de poids modifiée \(w^{(k)}\) où l'arête exclue reçoit le poids \(\infty\).
+			Cette fonction est utilisée:
+			\begin{itemize}
+				\item pour l'ACPM sur \(G\setminus\{x\}\),
+				\item pour le choix des deux arêtes incidentes à \(x\).
+			\end{itemize}
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branchement au niveau racine}
+
+			Dans le 1-arbre initial, \(\deg(y)=4>2\).
+			On branche donc sur \(y\).
+
+			Les arêtes incidentes à \(y\) dans le 1-arbre sont:
+			\begin{equation*}
+				y\!-\!u,\quad y\!-\!t,\quad y\!-\!v,\quad y\!-\!x.
+			\end{equation*}
+
+			On crée donc quatre branches.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche A:\@ exclusion de \(y\!-\!u\)}
+
+			On impose \(w(y,u)=\infty\).
+
+			ACPM sur \(G\setminus\{x\}\):
+
+			\begin{equation*}
+				y\!-\!t=2,\quad
+				y\!-\!v=2,\quad
+				z\!-\!t=2,\quad
+				u\!-\!v=2.
+			\end{equation*}
+
+			Poids = 8.
+
+			On ajoute \(x\!-\!t=2\) et \(x\!-\!y=4\).
+
+			\begin{equation*}
+				LB_A=8+2+4=14.
+			\end{equation*}
+
+			Comme \(LB_A=UB\), la branche ne peut être élaguée.
+
+			Dans ce 1-arbre, \(\deg(y)=3>2\).
+			On branche à nouveau sur \(y\).
+
+			Les arêtes incidentes à \(y\) sont
+			\begin{equation*}
+				y\!-\!t,\; y\!-\!v,\; y\!-\!x.
+			\end{equation*}
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche A1:\@ exclusion de \(y\!-\!t\)}
+
+			Il reste à \(y\) les arêtes \(y\!-\!v=2\) et \(y\!-\!z=3\).
+
+			Dans tout arbre couvrant, \(y\) doit être incident à au moins une arête. 
+			Toute ACPM contient donc une arête de poids au moins 3 incidente à \(y\).
+
+			Les trois autres arêtes ont poids minimal total 6.
+
+			Toute ACPM a donc poids \(\geq 9\).
+
+			\begin{equation*}
+				LB_{A1}\geq 9+2+4=15>UB.
+			\end{equation*}
+
+			Branche élaguée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche A2:\@ exclusion de \(y\!-\!v\)}
+
+			Raisonnement analogue:
+
+			Toute ACPM contient une arête incidente à \(y\) de poids au moins 3.
+
+			\begin{equation*}
+				LB_{A2}\geq 9+2+4=15>UB.
+			\end{equation*}
+
+			Branche élaguée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche A3:\@ exclusion de \(y\!-\!x\)}
+
+			ACPM inchangé (poids 8).
+
+			Les deux arêtes minimales incidentes à \(x\) deviennent \(x\!-\!t=2\) et \(x\!-\!v=4\).
+
+			\begin{equation*}
+				LB_{A3}=8+2+4=14.
+			\end{equation*}
+
+			Tous les sommets ont degré 2.
+
+			On obtient un cycle hamiltonien de poids 14.
+
+			Branche fermée
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche B:\@ exclusion de \(y\!-\!t\)}
+
+			On impose \(w(y,t)=\infty\).
+
+			ACPM:\@
+			\begin{equation*}
+				y\!-\!u=1,\quad
+				y\!-\!v=2,\quad
+				z\!-\!t=2,\quad
+				u\!-\!v=2.
+			\end{equation*}
+
+			Poids = 7.
+
+			Ajout de \(x\!-\!t=2\) et \(x\!-\!y=4\).
+
+			\begin{equation*}
+				LB_B=13.
+			\end{equation*}
+
+			\(\deg(y)=3\).
+			On branche sur \(y\).
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche B1:\@ exclusion de \(y\!-\!u\)}
+
+			Toute ACPM contient alors une arête incidente à \(y\) de poids \(\geq 3\).
+
+			\begin{equation*}
+				LB_{B1}\geq 15.
+			\end{equation*}
+
+			Élaguée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche B2:\@ exclusion de \(y\!-\!v\)}
+
+			Même raisonnement:
+
+			\begin{equation*}
+				LB_{B2}\geq 15.
+			\end{equation*}
+
+			Élaguée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche B3:\@ exclusion de \(y\!-\!x\)}
+
+			Les arêtes incidentes à \(x\) deviennent \(x\!-\!t=2\) et \(x\!-\!v=4\).
+
+			On obtient un cycle hamiltonien de poids 14.
+
+			Branche fermée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche C:\@ exclusion de \(y\!-\!v\)}
+
+			ACPM:\@
+			\begin{equation*}
+				y\!-\!u=1,\quad
+				y\!-\!t=2,\quad
+				z\!-\!t=2,\quad
+				u\!-\!v=2.
+			\end{equation*}
+
+			Poids = 7.
+
+			\begin{equation*}
+				LB_C=13.
+			\end{equation*}
+
+			On branche sur \(y\).
+
+			Les deux sous-branches \(y\!-\!u\) exclue et \(y\!-\!t\) exclue donnent \(LB\geq 15\), donc élaguées.
+
+			Exclusion de \(y\!-\!x\) donne un cycle hamiltonien de poids 14.
+
+			Branche fermée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Branche D:\@ exclusion de \(y\!-\!x\)}
+
+			ACPM initial inchangé (poids 7).
+
+			Arêtes incidentes minimales à \(x\):
+			\begin{equation*}
+				x\!-\!t=2,\quad x\!-\!v=4.
+			\end{equation*}
+
+			\begin{equation*}
+				LB_D=13.
+			\end{equation*}
+
+			On branche sur \(y\).
+
+			Les exclusions successives de \(y\!-\!u\) et \(y\!-\!t\) donnent \(LB\geq 15\): branches élaguées.
+
+			L'exclusion de \(y\!-\!v\) produit un cycle hamiltonien de poids 14.
+
+			Branche fermée.
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			\textbf{Conclusion globale}
+
+			Toutes les branches de l'arbre de séparation ont été:
+
+			\begin{itemize}
+				\item soit élaguées par une borne strictement supérieure à 14,
+				\item soit explorées complètement et conduisant à un cycle de poids 14.
+			\end{itemize}
+
+			Il n'existe donc aucun cycle hamiltonien de poids strictement inférieur à 14.
+
+			\begin{equation*}
+				\boxed{\text{Poids optimal } = 14.}
+			\end{equation*}
+
+			L'arbre de séparation est donné à la figure~\ref{fig:td1_ex07_f1} en annexe.
+
+			\item Pour obtenir \emph{tous} les cycles optimaux, il faut poursuivre la séparation en n'élaguant que lorsque \(LB>UB\) (et non \(LB\geq UB\)), et enregistrer toutes les solutions de poids 14.
 		\end{enumerate}
 	\end{td-sol}
 }{}
+

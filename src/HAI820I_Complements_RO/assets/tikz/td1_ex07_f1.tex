@@ -1,0 +1,154 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Arbre de séparation et évaluation --- TSP}\label{fig:td1_ex07_f1}
+}{
+    \fbox{
+        \begin{tikzpicture}[
+            main node/.style={
+                draw,
+                rounded rectangle,
+                rounded corners=3pt,
+                fill=blue!20,
+                inner sep=4pt,
+                font=\scriptsize,
+                align=center,
+                text=black
+            },
+            optimal/.style={
+                draw=green!60!black,
+                very thick,
+                fill=green!10
+            },
+            pruned/.style={
+                draw=red!60!black,
+                dashed,
+                text=red!60!black,
+                fill=red!10
+            },
+        ]
+
+            % ROOT
+            \node[main node] (root) {
+                1-arbre initial\\
+                \(LB = 13\), \(UB = 14\)
+            };
+
+            % LEVEL 1 - increased horizontal spacing
+            \node[main node, below left=3cm and 8cm of root] (A) {
+                Excl. \(y\!-\!u\)\\
+                \(LB = 14\)
+            };
+
+            \node[main node, below left=3cm and 2cm of root] (B) {
+                Excl. \(y\!-\!t\)\\
+                \(LB = 13\)
+            };
+
+            \node[main node, below right=3cm and 2cm of root] (C) {
+                Excl. \(y\!-\!v\)\\
+                \(LB = 13\)
+            };
+
+            \node[main node, below right=3cm and 8cm of root] (D) {
+                Excl. \(y\!-\!x\)\\
+                \(LB = 13\)
+            };
+
+            % LEVEL 2 under A - decreased vertical spacing between siblings
+            \node[main node, pruned, below left=2.5cm and 1.2cm of A] (A1) {
+                Excl. \(y\!-\!t\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, pruned, below=2.5cm of A] (A2) {
+                Excl. \(y\!-\!v\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, optimal, below right=2.5cm and 1.2cm of A] (A3) {
+                Excl. \(y\!-\!x\)\\
+                Cycle: 14
+            };
+
+            % LEVEL 2 under B
+            \node[main node, pruned, below left=2.5cm and 1.2cm of B] (B1) {
+                Excl. \(y\!-\!u\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, pruned, below=2.5cm of B] (B2) {
+                Excl. \(y\!-\!v\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, optimal, below right=2.5cm and 1.2cm of B] (B3) {
+                Excl. \(y\!-\!x\)\\
+                Cycle: 14
+            };
+
+            % LEVEL 2 under C
+            \node[main node, pruned, below left=2.5cm and 1.2cm of C] (C1) {
+                Excl. \(y\!-\!u\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, pruned, below=2.5cm of C] (C2) {
+                Excl. \(y\!-\!t\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, optimal, below right=2.5cm and 1.2cm of C] (C3) {
+                Excl. \(y\!-\!x\)\\
+                Cycle: 14
+            };
+
+            % LEVEL 2 under D
+            \node[main node, pruned, below left=2.5cm and 1.2cm of D] (D1) {
+                Excl. \(y\!-\!u\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, pruned, below=2.5cm of D] (D2) {
+                Excl. \(y\!-\!t\)\\
+                \(LB \geq 15\)\\
+                Élagué
+            };
+
+            \node[main node, optimal, below right=2.5cm and 1.2cm of D] (D3) {
+                Excl. \(y\!-\!v\)\\
+                Cycle: 14
+            };
+
+            % EDGES LEVEL 1
+            \draw[-{Stealth}] (root) -- (A);
+            \draw[-{Stealth}] (root) -- (B);
+            \draw[-{Stealth}] (root) -- (C);
+            \draw[-{Stealth}] (root) -- (D);
+
+            % EDGES LEVEL 2
+            \draw[-{Stealth}] (A) -- (A1);
+            \draw[-{Stealth}] (A) -- (A2);
+            \draw[-{Stealth}] (A) -- (A3);
+
+            \draw[-{Stealth}] (B) -- (B1);
+            \draw[-{Stealth}] (B) -- (B2);
+            \draw[-{Stealth}] (B) -- (B3);
+
+            \draw[-{Stealth}] (C) -- (C1);
+            \draw[-{Stealth}] (C) -- (C2);
+            \draw[-{Stealth}] (C) -- (C3);
+
+            \draw[-{Stealth}] (D) -- (D1);
+            \draw[-{Stealth}] (D) -- (D2);
+            \draw[-{Stealth}] (D) -- (D3);
+
+        \end{tikzpicture}
+    }
+}
