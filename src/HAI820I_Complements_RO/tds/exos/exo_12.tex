@@ -26,6 +26,16 @@
 % ----- Solutions exo 12 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 12
-		
+		\begin{enumerate}
+			\item On peut modéliser le \textsc{Bin Packing Problem} à l'aide de variables binaires \(x_{ij}\) qui indiquent si l'objet \(a_i\) est placé dans la boîte \(j\), et des variables binaires \(y_j\) qui indiquent si la boîte \(j\) est utilisée. L'objectif est de minimiser le nombre de boîtes utilisées, soit \(\sum_j y_j\), sous les contraintes suivantes:
+			\begin{equation*}
+				\begin{aligned}
+					& \sum_j x_{ij} = 1 && \forall i \in \{1, \ldots, 7\} \quad \text{(chaque objet doit etre place dans exactement une boite)} \\
+					& \sum_i a_i x_{ij} \leq W y_j && \forall j \quad \text{(la somme des poids dans chaque boite ne doit pas depasser la capacite)} \\
+					& x_{ij} \in \{0, 1\} && \forall i, j \\
+					& y_j \in \{0, 1\} && \forall j
+				\end{aligned}
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
