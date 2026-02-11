@@ -1,11 +1,26 @@
 % ----- Consignes exo 9 ----- %
-\begin{td-exo}[title]\, % 9 
-	
+\begin{td-exo}[]\,\\ % 9 
+	En faisant les calculs à la main, déterminer si les propositions suivantes sont correctes:
+	\begin{enumerate}
+		\item \(\omega = 3\) est une racine \(4\)-ième de l'unité dans \(\bb Z/10\bb Z\).
+		\item \(\omega = 3\) est une racine \(8\)-ième primitive de l'unité dans \(\bb Z/10\bb Z\).
+		\item \(\omega = 3\) est une racine \(6\)-ième primitive de l'unité dans \(\bb Z/7\bb Z\).
+		\item \(\omega = 2\) est une racine \(6\)-ième primitive de l'unité dans \(\bb Z/7\bb Z\).
+		\item \(\omega = 11\) est une racine \(4\)-ième principale de l'unité dans \(\bb Z/16\bb Z\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 9 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 9
-		
+		On a
+		\begin{enumerate}
+			\item \(3^4 = 1\) dans \(\bb Z/10\bb Z\), donc \(3\) est une racine \(4\)-ième de l'unité.
+			\item \(3^4 = 1\) dans \(\bb Z/10\bb Z\) alors que \(4 < 8\), donc \(3\) n'est pas une racine \(8\)-ième primitive de l'unité.
+			\item \(3^6 = 1\) dans \(\bb Z/7\bb Z\) et \(6\) est le plus petit entier \(k\) tel que \(3^k = 1\), donc \(3\) est une racine \(6\)-ième primitive de l'unité.
+			\item \(2^3 = 1\) dans \(\bb Z/7\bb Z\), donc \(2\) n'est pas une racine \(6\)-ième primitive de l'unité.
+			\item \(11^4 = 1\) dans \(\bb Z/16\bb Z\) et \(4\) est le plus petit entier \(k\) tel que \(11^k = 1\), donc \(11\) est une racine \(4\)-ième primitive de l'unité.
+			Par contre, on a \(11^2 = 9\) dans \(\bb Z/16\bb Z\) et \(9 - 1 = 8\) n'est pas inversible dans \(\bb Z/16\bb Z\), donc \(11\) n'est pas une racine \(4\)-ième principale de l'unité.
+		\end{enumerate}
 	\end{td-sol}
 }{}

@@ -1,6 +1,18 @@
 % ----- Consignes exo 10 ----- %
-\begin{td-exo}[title]\, % 10 
-	
+\begin{td-exo}[]\, % 10 
+	\begin{enumerate}
+		\item Soit \(\omega = 8\) une racine \(4\)-ième primitive de l'unité dans \(\bb{GF}(13)\).
+		En utilisant sage, calculer la matrice de Vandermonde \(V\) associée à la transformée de Fourier discrète en \(\omega\).
+		Trouver l'inverse de \(\omega\) et déduire la matrice de Vandermonde associée à la transformée de Fourier discrète en \(\omega^{-1}\).
+		Vérifer l'égalité \(V_\omega \times V_{\omega^{-1}} = n\cdot I_n\).
+
+		\item Trouver une valeur de \(\omega\) qui soit une racine \(5\)-ième de l'unité dans \(\bb{GF}(31)\) et calculer son inverse \(\omega^{-1}\).
+		En utilisant les matrices de Vandermonde associées à \(\omega\) et \(\omega^{-1}\), calculer le produit des polynomes suivants dans \(\bb{GF}(13)[X]\) uniquement en faisant des produits matrices-vecteurs:
+		\begin{itemize}
+			\item \(P(X) = 11X + 1\) et \(Q(X) = 5X + 18\).
+			\item \(P(X) = 16X^2 + 11X + 29\) et \(Q(X) = 5X^2 + 18\).
+		\end{itemize}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 10 ----- %
