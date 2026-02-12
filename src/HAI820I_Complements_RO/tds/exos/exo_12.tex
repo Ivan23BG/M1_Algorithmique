@@ -27,13 +27,75 @@
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 12
 		\begin{enumerate}
-			\item On peut modéliser le \textsc{Bin Packing Problem} à l'aide de variables binaires \(x_{ij}\) qui indiquent si l'objet \(a_i\) est placé dans la boîte \(j\), et des variables binaires \(y_j\) qui indiquent si la boîte \(j\) est utilisée. L'objectif est de minimiser le nombre de boîtes utilisées, soit \(\sum_j y_j\), sous les contraintes suivantes:
+			\item On peut modéliser le \textsc{Bin Packing Problem} de deux manières différentes:
+			\begin{itemize}
+				\item On utilise des variables binaires \(x_{ij}\) qui indiquent si l'objet \(a_i\) est placé dans la boîte \(j\), et des variables binaires \(y_j\) qui indiquent si la boîte \(j\) est utilisée. L'objectif est de minimiser le nombre de boîtes utilisées, soit:
+				\begin{equation*}
+					\begin{cases}
+						\min \sum_j y_j \\
+						\sum_j x_{ij} = 1, \ \forall i \in \{1, \ldots, 7\}\\
+						\sum_i a_i x_{ij} \leq W y_j, \ \forall j \\
+						x_{ij} \in \{0, 1\}, \ \forall i, j \\
+						y_j \in \{0, 1\}, \ \forall j
+					\end{cases} 
+				\end{equation*}
+
+				\item Une autre modélisation consiste à ne pas considérer les \(y_i\) comme des variables, cela donne alors:
+				\begin{equation*}
+					\begin{cases}
+						\min k\\
+						\sum_j x_{ij} = 1, \ \forall i \in \{1, \ldots, 7\}\\
+						\sum_i a_i x_{ij} \leq W, \ \forall j \\
+						x_{ij} \in \{0, 1\}, \ \forall i, j \\
+					\end{cases} 
+				\end{equation*}
+			\end{itemize}
+
+			\item Une solution optimale pour cette instance consiste à placer les éléments comme suit:
+			\begin{itemize}
+				\item \(a_7\) est dans la boite 1,
+				\item \(a_6\) et \(a_1\) sont dans la boite 2,
+				\item \(a_5\) est dans la boite 3, 
+				\item \(a_4\) et \(a_3\) sont dans la boite 4, 
+				\item \(a_2\) est dans la boite 5. 
+			\end{itemize}
+			Cette solution utilise 5 boites.
+			Une borne inférieure pour toute solution optimale est donnée par \(\left\lceil \frac{\sum_i a_i}{W} \right\rceil = \left\lceil \frac{22}{6} \right\rceil = 4\). 
+			Les éléments \(a_4,\ldots,a_7\) nécessitent chacun une boite, et les éléments \(a_2\) et \(a_3\) ne peuvent rentrer tous deux dans ces boites.
+			Le nombre minimum de boites est alors de 5, et la solution proposée est optimale. 
+
+			\item Une borne inférieure pour toute solution optimale est donnée par
+			\begin{equation*}
+				\left\lceil \frac{\sum_i a_i}{W} \right\rceil
+			\end{equation*}
+
+			\item Un ensemble de coupes pour l'instance donnée serait (pour tout \(j\)):
 			\begin{equation*}
 				\begin{aligned}
-					& \sum_j x_{ij} = 1 && \forall i \in \{1, \ldots, 7\} \quad \text{(chaque objet doit etre place dans exactement une boite)} \\
-					& \sum_i a_i x_{ij} \leq W y_j && \forall j \quad \text{(la somme des poids dans chaque boite ne doit pas depasser la capacite)} \\
-					& x_{ij} \in \{0, 1\} && \forall i, j \\
-					& y_j \in \{0, 1\} && \forall j
+					&C_1 = \begin{cases}
+						x_{7j} + x_{1j} \leq y_j\\
+						x_{7j} + x_{2j} \leq y_j\\
+						x_{7j} + x_{3j} \leq y_j\\
+						x_{7j} + x_{4j} \leq y_j\\
+						x_{7j} + x_{5j} \leq y_j\\
+						x_{7j} + x_{6j} \leq y_j\\
+					\end{cases},\qquad
+					C_2 = \begin{cases}
+						x_{6j} + x_{2j} \leq y_j\\
+						x_{6j} + x_{3j} \leq y_j\\
+						x_{6j} + x_{4j} \leq y_j\\
+						x_{6j} + x_{5j} \leq y_j\\
+					\end{cases},\\
+					&C_3 = \begin{cases}
+						x_{5j} + x_{2j} \leq y_j\\
+						x_{5j} + x_{3j} \leq y_j\\
+						x_{5j} + x_{4j} \leq y_j\\
+					\end{cases},\qquad
+					C_4 = \begin{cases}
+						x_{4j} + x_{3j} + x_{2j} \leq 2y_j\\
+						x_{4j} + x_{3j} + x_{1j} \leq 2y_j\\
+						x_{4j} + x_{2j} + x_{1j} \leq 2y_j\\
+					\end{cases},\\
 				\end{aligned}
 			\end{equation*}
 		\end{enumerate}

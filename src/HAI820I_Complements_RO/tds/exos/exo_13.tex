@@ -15,6 +15,25 @@
 % ----- Solutions exo 13 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 13
+		Les ensembles minimaux dépendants sont les suivants: 
+		\begin{itemize} 
+			\item \(C_1 = \{1, 2, 3\}\) avec \(a(C_1) = 185 > 178\), 
+			\item \(C_2 = \{1, 2, 4, 5\}\) avec \(a(C_2) = 222 > 178\),
+			\item \(C_3 = \{1, 3, 4, 5\}\) avec \(a(C_3) = 222 > 178\), 
+			\item \(C_4 = \{2, 3, 4, 5\}\) avec \(a(C_4) = 196 > 178\). 
+		\end{itemize}
+
+		Les inégalités valides associées à ces ensembles sont les suivantes: 
+		\begin{itemize} 
+			\item \(x_1 + x_2 + x_3 \leq 2\), 
+			\item \(x_1 + x_2 + x_4 + x_5 \leq 3\), 
+			\item \(x_1 + x_3 + x_4 + x_5 \leq 3\), 
+			\item \(x_2 + x_3 + x_4 + x_5 \leq 3\). 
+		\end{itemize} 
 		
+		\item L'extension \(E(C)\) de ces ensembles est la même pour tous ces ensembles sauf pour \(C_4\) qui devient alors
+		\begin{equation*}
+			x_1 + x_2 + x_3 + x_4 + x_5 \leq 3. 
+		\end{equation*}
 	\end{td-sol}
 }{}

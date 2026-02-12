@@ -11,6 +11,16 @@
 % ----- Solutions exo 11 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 11
-		
+		On sait que les \(x_i\) sont des entiers positifs. 
+		Par conséquent, on peut trouver une inégalité valide en arrondissant les coefficients de l'inégalité à l'entier supérieur le plus proche.
+		Par exemple, on peut faire comme suit:
+		\begin{equation*}
+			\begin{aligned}
+				13x_1 + 20x_2 + 11x_3 + 6x_4 \geq 72 
+				& \implies \frac{13}{11}x_1 + \frac{20}{11}x_2 + x_3 + \frac{6}{11}x_4 \geq \frac{72}{11} \\
+				&\implies 2x_1 + 2x_2 + x_3 + x_4 \geq 7
+			\end{aligned}
+		\end{equation*}
+		On peut faire ce procédé pour toute valeur entière pour obtenir des inégalités valides différentes.
 	\end{td-sol}
 }{}
