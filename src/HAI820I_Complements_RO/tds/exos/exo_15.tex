@@ -19,7 +19,186 @@
 
 % ----- Solutions exo 15 ----- %
 \iftoggle{showsolutions}{ 
-	\begin{td-sol}[]\ % 15
-		
+	\begin{td-sol}[]\, % 15
+		On considère:
+		\begin{equation*}
+			PL = 
+			\begin{cases}
+				2x_1 + 5x_2 \leq 17 \\
+				3x_1 + 2x_2 \leq 10 \\
+				x_1,x_2 \in \bb N \\
+				\max(z) = 2x_1 + x_2
+			\end{cases}
+		\end{equation*}
+
+		On commence par résoudre la relaxation linéaire du programme linéaire en nombres entiers avec le simplexe.
+		On obtient le tableau suivant:
+		\begin{center}
+			\begin{tabular}{|ccc|cccc|} % chktex 44
+				\hline  % chktex 44
+				\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1} = x_3\)}&\(17\)&\(2\)&\(5\)&\(1\)&\(0\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1} = x_4\)}&\(10\)&\(3\)&\(2\)&\(0\)&\(1\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{} & \(z(x)\) & \multicolumn{1}{|c|}{\(0\)}& \(-2\) & \(-1\) & \(0\) & \(0\)\\
+				\hline % chktex 44
+			\end{tabular}
+		\end{center}
+
+		On effectue le pivot, \(x_1\) rentre (coefficient le plus négatif) et \(x_4\) sort (rapport le plus petit).
+		On obtient alors le tableau suivant:
+		\begin{center}
+			\begin{tabular}{|ccc|cccc|} % chktex 44
+				\hline  % chktex 44
+				\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{2} = x_3\)}& \(31/3\) & \(0\) & \(11/3\) & \(1\) & \(-2/3\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_2^{2} = x_1\)}& \(10/3\) & \(1\) & \(2/3\) & \(0\) & \(1/3\)\\
+				\hline % chktex 44
+				\multicolumn{1}{|c|}{} & \(z(x)\) & \multicolumn{1}{|c|}{\(20/3\)}& \(0\) & \(1/3\) & \(0\) & \(2/3\)\\
+				\hline % chktex 44
+			\end{tabular}
+		\end{center}
+		Tous les coefficients de la ligne \(z\) sont positifs, on a atteint l'optimum de la relaxation linéaire:
+		\begin{equation*}
+			x^\ast_{\bb R}=\left(\frac{10}{3}, 0\right), \quad z^\ast_{\bb R}=\frac{20}{3}.
+		\end{equation*}
+
+		\begin{enumerate}
+			\item Appliquons la méthode des coupes de Gomory.
+
+			La variable de base \(x_1\) est fractionnaire, on va construire une coupe de Gomory à partir de la ligne correspondante:
+			\begin{equation*}
+				x_1 = \frac{10}{3} - \frac{2}{3}x_2 - 0\cdot x_3 - \frac{1}{3}x_4.
+			\end{equation*}
+			En isolant les parties fractionnaires, on obtient la coupe de Gomory suivante:
+			\begin{equation*}
+				\frac{1}{3}x_2 + \frac{2}{3}x_4 \geq \frac{1}{3}.
+			\end{equation*}
+			En multipliant par 3, on peut réécrire la coupe de Gomory de la manière suivante:
+			\begin{equation*}
+				x_2 + 2x_4 \geq 1.
+			\end{equation*}
+			Mais on sait que
+			\begin{equation*}
+				x_4 = 10 - 2x_2 - 3x_1
+			\end{equation*}
+			et alors on obtient la coupe
+			\begin{equation*}
+				\begin{aligned}
+					&x_2 + 2\cdot(10 - 2x_2 - 3x_1) \geq 1\\
+					\iff & x_2 + 20 - 4x_2 - 6x_1 \geq 1\\
+					\iff & -3x_2 - 6x_1 \geq -19\\
+					\iff & 6x_1 + 3x_2 \leq 19
+				\end{aligned}
+			\end{equation*}
+			En ajoutant cette coupe au programme linéaire, on obtient le programme linéaire suivant:
+			\begin{equation*}
+				\begin{cases}
+					2x_1 + 5x_2 \leq 17 \\
+					3x_1 + 2x_2 \leq 10 \\
+					6x_1 + 3x_2 \leq 19 \\
+					x_1, x_2, x_3, x_4 \in \bb N
+				\end{cases}
+			\end{equation*}
+			En résolvant la relaxation linéaire de ce programme linéaire, la solution
+			\begin{equation*}
+				x^\ast_{\bb R} = (\frac{19}{6}, 0), \quad z^\ast_{\bb R} = \frac{19}{3}
+			\end{equation*}
+
+			On peut alors répéter ce procédé encore une fois pour obtenir la coupe suivante
+			\begin{equation*}
+				x_1 = \frac{19}{6} - \frac{1}{2}x_2 - 0\cdot x_3 - 0\cdot x_4 - \frac{1}{6}x_5
+			\end{equation*}
+			En isolant les parties fractionnaires, on obtient la coupe de Gomory suivante:
+			\begin{equation*}
+				\frac{1}{2}x_2 + \frac{5}{6}x_5 \geq \frac{1}{6}.
+			\end{equation*}
+			En multipliant par 6, on peut réécrire la coupe de Gomory de la manière suivante:
+			\begin{equation*}
+				3x_2 + 5x_5 \geq 1.
+			\end{equation*}
+			Mais on sait que
+			\begin{equation*}
+				x_5 = 19 - 6x_1 - 3x_2
+			\end{equation*}
+			et alors on obtient la coupe
+			\begin{equation*}
+				\begin{aligned}
+					&3x_2 + 5\cdot(19 - 6x_1 - 3x_2) \geq 1\\
+					\iff & 3x_2 + 95 - 30x_1 - 15x_2 \geq 1\\
+					\iff & -12x_2 - 30x_1 \geq -94\\
+					\iff & 30x_1 + 12x_2 \leq 94
+				\end{aligned}
+			\end{equation*}
+			En ajoutant cette coupe au programme linéaire, on obtient le programme linéaire suivant:
+			\begin{equation*}
+				\begin{cases}
+					2x_1 + 5x_2 \leq 17 \\
+					3x_1 + 2x_2 \leq 10 \\
+					6x_1 + 3x_2 \leq 19 \\
+					30x_1 + 12x_2 \leq 94 \\
+					x_1, x_2, x_3, x_4, x_5 \in \bb N
+				\end{cases}
+			\end{equation*}
+			En résolvant la relaxation linéaire de ce programme linéaire, la solution
+			\begin{equation*}
+				x^\ast_{\bb R} = (3, \frac{1}{3}), \quad z^\ast_{\bb R} = \frac{19}{3}.
+			\end{equation*}
+			En répétant ce procédé encore une fois, on trouve la coupe suivante:
+			\begin{equation*}
+				x_2 = \frac{1}{3} - 0\cdot x_1 - 0\cdot x_3 - 0\cdot x_4 - \frac{5}{3}\cdot x_5 - \frac{1}{3}x_6
+			\end{equation*}
+			En isolant les parties fractionnaires, on obtient la coupe de Gomory suivante:
+			\begin{equation*}
+				\frac{1}{3}x_5 + \frac{2}{3}x_6 \geq \frac{1}{3}.
+			\end{equation*}
+			En multipliant par 3, on peut réécrire la coupe de Gomory de la manière suivante:
+			\begin{equation*}
+				x_5 + 2x_6 \geq 1.
+			\end{equation*}
+			Mais on sait que
+			\begin{equation*}
+				x_6 = 94 - 30x_1 - 12x_2 
+			\end{equation*}
+			et 
+			\begin{equation*}
+				x_5 = 19 - 6x_1 - 3x_2
+			\end{equation*}
+			et alors on obtient la coupe
+			\begin{equation*}
+				\begin{aligned}
+					& (19 - 6x_1 - 3x_2) + 2\cdot(94 - 30x_1 - 12x_2) \geq 1\\
+					\iff & 19 - 6x_1 - 3x_2 + 188 - 60x_1 - 24x_2 \geq 1\\
+					\iff & -66x_1 - 27x_2 \geq -206\\
+					\iff & 66x_1 + 27x_2 \leq 206
+				\end{aligned}
+			\end{equation*}
+			En ajoutant cette coupe au programme linéaire, on obtient le programme linéaire suivant:
+			\begin{equation*}
+				\begin{cases}
+					2x_1 + 5x_2 \leq 17 \\
+					3x_1 + 2x_2 \leq 10 \\
+					6x_1 + 3x_2 \leq 19 \\
+					30x_1 + 12x_2 \leq 94 \\
+					66x_1 + 27x_2 \leq 206 \\
+					x_1, x_2, x_3, x_4, x_5, x_6 \in \bb N
+				\end{cases}
+			\end{equation*}
+			En résolvant la relaxation linéaire de ce programme linéaire, la solution
+			\begin{equation*}
+				x^\ast_{\bb R} = (2.92, 0.5), \quad z^\ast_{\bb R} = 6.33.
+			\end{equation*}
+		\end{enumerate}	
+
+		\input{../assets/tikz/td1_ex15_f1.tex}
 	\end{td-sol}
 }{}
+

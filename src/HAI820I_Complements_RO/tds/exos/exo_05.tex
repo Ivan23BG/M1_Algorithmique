@@ -13,6 +13,18 @@
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 5
-		
+		\begin{itemize}
+			\item \textbf{Stratégie 1:} On peut utiliser une approche de type Dijkstra, où à chaque étape, on explore le nœud avec la plus petite distance cumulée depuis le point de départ. On maintient une liste des nœuds à explorer et une table des distances minimales trouvées jusqu'à présent.
+
+			\item \textbf{Stratégie 2:} On peut également appliquer une variante du branch and bound comme suit:
+			\begin{itemize}
+				\item On commence par calculer une borne supérieure du coût du chemin, par exemple en exhibant un chemin quelconque du point de départ à la destination, ici \(s \to a \to e \to h \to t\) avec un coût de \(2 + 2 + 3 + 4 = 11\).
+				\item Ensuite, on explore les branches du graphe en interdisant un arc à la fois, en recalculant les coûts minimaux pour chaque branche.
+				\item Si une branche mène à un coût supérieur à la borne supérieure actuelle, on peut la couper (pruning).
+				\item On continue ce processus jusqu'à ce que toutes les branches aient été explorées ou coupées, et la meilleure solution trouvée sera le plus court chemin.
+			\end{itemize}
+		\end{itemize}
+
+		En appliquant ces stratégies sur le graphe de la figure~\ref{fig:td1_ex4_f1}, on trouve que le plus court chemin de \(s\) à \(t\) est \(s \to b \to f \to i \to t\) avec un coût total de \(8\).
 	\end{td-sol}
 }{}

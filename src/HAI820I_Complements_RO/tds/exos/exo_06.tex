@@ -16,6 +16,19 @@
 % ----- Solutions exo 6 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 6
-		
+		Comme les variables sont classées par rapports utilité/volume décroissants, la variable \(x_1\) a le rapport le plus élevé \(\frac{u_1}{v_1}\). En faisant entrer \(x_1\) en base, on maximise immédiatement l'utilité par unité de volume consommé.
+
+		En entrant \(x_1\) en base, on peut allouer autant que possible à \(x_1\) sans dépasser la contrainte de volume. La quantité maximale de \(x_1\) que l'on peut allouer est donnée par
+		\begin{equation*}
+			x_1 = \frac{V}{v_1}
+		\end{equation*}
+		sous réserve que \(x_1 \leq 1\) (si \(x_1\) est une variable binaire, sinon elle peut être continue).
+
+		L'objectif atteint en faisant entrer \(x_1\) en base est alors
+		\begin{equation*}
+			u_1 x_1 = u_1 \frac{V}{v_1} = V \frac{u_1}{v_1}
+		\end{equation*}
+
+		Cette solution est optimale car toute autre variable \(x_j\) avec \(j > 1\) aurait un rapport utilité/volume inférieur à celui de \(x_1\), ce qui signifie que pour chaque unité de volume consommée, on obtiendrait moins d'utilité que si on avait alloué ce volume à \(x_1\).
 	\end{td-sol}
 }{}
