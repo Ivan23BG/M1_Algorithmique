@@ -8,8 +8,8 @@
                 % axis lines=middle,
                 xlabel={\(x_1\)},
                 ylabel={\(x_2\)},
-                xmin=0, xmax=8,
-                ymin=0, ymax=8,
+                xmin=0, xmax=4,
+                ymin=0, ymax=4,
                 grid=both,
                 axis equal image, % <-- orthonormal grid
                 width=10cm,
@@ -21,16 +21,36 @@
             ]
 
             % ----- Constraint lines -----
+            % just have to express x2 in terms of x1 for each constraint
+            % x + y = 2 -> y = 2 - x
 
-            % x1 - x2 = 0.5  -> x2 = x1 - 0.5
             % 2x1 + 5x2 = 17 -> x2 = (17 - 2x1)/5
-            \addplot[domain=0:8, very thick, color=blue] {(17 - 2*x)/5};
-             \addlegendentry{\(2x_1 + 5x_2 = 17\)}
+            \addplot[domain=0:4, very thick, color=blue] {(17 - 2*x)/5};
+            \addlegendentry{\(2x_1 + 5x_2 = 17\)}
 
-            % x1 + x2 = 1 -> x2 = 1 - x1
             % 3x1 + 2x2 = 10 -> x2 = (10 - 3x1)/2
-             \addplot[domain=0:8, very thick, color=orange] {(10 - 3*x)/2};
-             \addlegendentry{\(3x_1 + 2x_2 = 10\)}
+            \addplot[domain=0:4, very thick, color=orange] {(10 - 3*x)/2};
+            \addlegendentry{\(3x_1 + 2x_2 = 10\)}
+
+            % first cut
+            % 6x1 + 3x2 = 19 -> x2 = (19 - 6x1)/3
+            \addplot[domain=0:4, very thick, color=green] {(19 - 6*x)/3};
+            \addlegendentry{\(6x_1 + 3x_2 = 19\)}
+
+            % second cut
+            % 30x1 + 12x2 = 94 -> x2 = (94 - 30x1)/12
+            \addplot[domain=0:4, very thick, color=red] {(94 - 30*x)/12};
+            \addlegendentry{\(30x_1 + 12x_2 = 94\)}
+
+            % third cut
+            % 66x1 + 27x2 = 206 -> x2 = (206 - 66x1)/27
+            \addplot[domain=0:4, very thick, color=purple] {(206 - 66*x)/27};
+            \addlegendentry{\(66x_1 + 27x_2 = 206\)}
+
+            % optimal cut
+            % x2 = -2x1 + 3
+            \addplot[domain=0:4, very thick, dashed, color=magenta] {-2*x + 6};
+            \addlegendentry{\(x_2 = -2x_1 + 6\)}
 
             % ----- Feasible region -----
             \addplot[
@@ -40,12 +60,25 @@
                 area legend
             ] coordinates {
                 (0,0)
-                (0,2)
-                (1.5,2)
-                (3,0)
-                (1,0)
+                (0,17/5)
+                (16/11,31/11)
+                (10/3,0)
             };
-            \addlegendentry{Région réalisable}
+            \addlegendentry{Région réalisable initiale}
+
+            % % ----- Feasible region 2 -----
+            % \addplot[
+            %     fill=red!30,
+            %     opacity=0.45,
+            %     draw=none,
+            %     area legend
+            % ] coordinates {
+            %     (0,0)
+            %     (0,17/5)
+            %     (16/11,187/55)
+            %     (10/3,0)
+            % };
+            % \addlegendentry{Région réalisable après les coupes}
 
             % ----- Optimal real solution -----
             \addplot[
@@ -62,20 +95,16 @@
                 mark=square*,
                 mark size=2.5pt,
                 color=purple
-            ] coordinates {(1,0)};
+            ] coordinates {(3,0)};
             \addlegendentry{Solution entière}
             
-            % Draw the objective level line
+            % ----- Level line for the objective function -----
+            % z is a vector, the level line is orthogonal to the vector of coefficients of the objective function
             % 2x1 + x2 -> z = 2x1 + x2
-            \addplot[dashed, thick, yellow, domain=0:2] {2*x};
-            \addlegendentry{Ligne de niveau \(z=2\)}
-
-            % Draw the direction of decrease (vector)
-            % \draw[->, thick, red!70!black] 
-            %     (axis cs:0.75,0.25) -- (axis cs:0.75-0.6,0.25+0.2) 
-            %     node[above left] {$(-3,1)$};
-
-
+            % we can express x2 in terms of z and x1: x2 = z - 2x1
+            
+            \addplot[dashed, thick, yellow, domain=0:4] {20/3 - 2*x};
+            \addlegendentry{Ligne de niveau \(z=\frac{20}{3}\)}
             \end{axis}
         \end{tikzpicture}
     }

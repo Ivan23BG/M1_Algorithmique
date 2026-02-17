@@ -196,9 +196,42 @@
 			\begin{equation*}
 				x^\ast_{\bb R} = (2.92, 0.5), \quad z^\ast_{\bb R} = 6.33.
 			\end{equation*}
-		\end{enumerate}	
 
-		\input{../assets/tikz/td1_ex15_f1.tex}
+			Ce procédé peut ne jamais converger, on s'arrête ici par simplicité.
+			Une représentation graphique du programme linéaire et des coupes associées est donnée ci-dessous en~\ref{fig:td1_ex15_f1}.
+
+			\input{../assets/tikz/td1_ex15_f1.tex}
+
+			On peut alors voir graphiquement l'inéfficacité des coupes de Gomory, on peut aussi voir que la solution optimale en nombres entiers est \(x^\ast = (3, 0)\) avec \(z^\ast = 6\).
+
+			\item Pour la méthode du Branch and Bound, on commence par résoudre la relaxation linéaire du programme linéaire en nombres entiers avec le simplexe.
+			On obtient la même solution que précédemment:
+			\begin{equation*}
+				x^\ast_{\bb R} = \left(\frac{10}{3}, 0\right), \quad z^\ast_{\bb R} = \frac{20}{3}.
+				\end{equation*}
+			Comme \(x_1\) est fractionnaire, on va faire un branchement sur \(x_1\):
+			\begin{itemize}
+				\item Branchement \(x_1 \leq 3\): on ajoute la contrainte \(x_1 \leq 3\) au programme linéaire, on résout la relaxation linéaire de ce programme linéaire et on trouve la solution \(x^\ast_{\bb R} = (3, \frac{1}{2})\) avec \(z^\ast_{\bb R} = 6.5\). 
+
+				Comme \(x_2\) est fractionnaire, on va faire un branchement sur \(x_2\):
+				\begin{itemize}
+					\item Branchement \(x_2 \leq 0\): on ajoute la contrainte \(x_2 \leq 0\) au programme linéaire, on résout la relaxation linéaire de ce programme linéaire et on trouve la solution \(x^\ast_{\bb R} = (3, 0)\) avec \(z^\ast_{\bb R} = 6\).
+					C'est une solution entière, on la garde en mémoire et on continue à explorer les autres branches.
+					\item Branchement \(x_2 \geq 1\): on ajoute la contrainte \(x_2 \geq 1\) au programme linéaire, on résout la relaxation linéaire de ce programme linéaire et on trouve la solution \(x^\ast_{\bb R} = (2.92, 1)\) avec \(z^\ast_{\bb R} = 6.84\). On peut alors faire un branchement sur \(x_1\):
+					\begin{itemize}
+						\item Branchement \(x_1 \leq 2\): on ajoute la contrainte \(x_1 \leq 2\) au programme linéaire, on résout la relaxation linéaire de ce programme linéaire et on trouve la solution \(x^\ast_{\bb R} = (2, 1)\) avec \(z^\ast_{\bb R} = 5\). C'est une solution entière inférieure à la solution entière trouvée précédemment, on ne la garde pas en mémoire et on continue à explorer les autres branches.
+						\item Branchement \(x_1 \geq 3\): on ajoute la contrainte \(x_1 \geq 3\) au programme linéaire, on résout la relaxation linéaire de ce programme linéaire et on trouve la solution \(x^\ast_{\bb R} = (3, 0)\) avec \(z^\ast_{\bb R} = 6\). C'est la même solution entière que celle trouvée précédemment, on poursuit.
+					\end{itemize}
+				\end{itemize}
+
+				\item Branchement \(x_1 \geq 4\): aucune solution réalisable, on ne garde pas cette branche en mémoire.
+			\end{itemize}
+			On a fini de faire les branchements, la solution optimale en nombres entiers est \(x^\ast = (3, 0)\) avec \(z^\ast = 6\).
+
+			Une représentation de l'arbre de branchement est donnée ci-dessous en~\ref{fig:td1_ex15_f2}:
+			
+			\input{../assets/tikz/td1_ex15_f2.tex}
+		\end{enumerate}	
 	\end{td-sol}
 }{}
 

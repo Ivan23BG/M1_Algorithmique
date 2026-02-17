@@ -1,0 +1,89 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Arbre de séparation et évaluation du problème en nombres entiers}\label{fig:td1_ex15_f2}
+}{
+    \fbox{
+        \begin{tikzpicture}[
+            main node/.style={
+                draw,
+                rounded rectangle,
+                rounded corners=3pt,
+                fill=blue!20,
+                inner sep=4pt,
+                font=\scriptsize,
+                align=center,
+                text=black
+            },
+            optimal/.style={
+                draw=green!60!black,
+                very thick,
+                fill=green!10
+            },
+            pruned/.style={
+                draw=red!60!black,
+                dashed,
+                text=red!60!black,
+                fill=red!10
+            },
+        ]
+
+            % ROOT
+            \node[main node] (root) {
+                Relaxation linéaire\\
+                \(x^*_{\mathbb R}=\left(\frac{10}{3},0\right)\)\\
+                \(z^*_{\mathbb R}=\frac{20}{3}\)
+            };
+
+            % LEVEL 1
+            \node[main node, below left=3cm and 2cm of root] (A) {
+                \(x_1 \le 3\)\\
+                \(x^*_{\mathbb R}=(3,\frac{1}{2})\)\\
+                \(z^*_{\mathbb R}=6.5\)
+            };
+
+            \node[main node, pruned, below right=3cm and 2cm of root] (B) {
+                \(x_1 \ge 4\)\\
+                Aucune solution\\
+                Élagué
+            };
+
+            % LEVEL 2 under A
+            \node[main node, optimal, below left=2.5cm and 1.5cm of A] (A1) {
+                \(x_2 \le 0\)\\
+                \(x^*=(3,0)\)\\
+                \(z^*=6\)
+            };
+
+            \node[main node, below right=2.5cm and 1.5cm of A] (A2) {
+                \(x_2 \ge 1\)\\
+                \(x^*_{\mathbb R}=(2.92,1)\)\\
+                \(z^*_{\mathbb R}=6.84\)
+            };
+
+            % LEVEL 3 under A2
+            \node[main node, pruned, below left=2.5cm and 1cm of A2] (A21) {
+                \(x_1 \le 2\)\\
+                \(x^*=(2,1)\)\\
+                \(z^*=5\)\\
+                Non retenu
+            };
+
+            \node[main node, optimal, below right=2.5cm and 1cm of A2] (A22) {
+                \(x_1 \ge 3\)\\
+                \(x^*=(3,0)\)\\
+                \(z^*=6\)
+            };
+
+            % EDGES
+            \draw[-{Stealth}] (root) -- (A);
+            \draw[-{Stealth}] (root) -- (B);
+
+            \draw[-{Stealth}] (A) -- (A1);
+            \draw[-{Stealth}] (A) -- (A2);
+
+            \draw[-{Stealth}] (A2) -- (A21);
+            \draw[-{Stealth}] (A2) -- (A22);
+
+        \end{tikzpicture}
+    }
+}
