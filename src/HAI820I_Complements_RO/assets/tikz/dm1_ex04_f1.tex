@@ -1,0 +1,72 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Représentation du problème \(PL_0\) dans \(\bb R^2\)}\label{fig:dm1_ex04_f1}
+}{
+    \fbox{
+        \begin{tikzpicture}
+            \begin{axis}[
+                % axis lines=middle,
+                xlabel={\(x_1\)},
+                ylabel={\(x_2\)},
+                xmin=0, xmax=4,
+                ymin=0, ymax=4,
+                grid=both,
+                axis equal image, % <-- orthonormal grid
+                width=10cm,
+                height=7cm,
+                legend pos=outer north east, % <-- legend outside
+                legend cell align=left,
+                legend image post style={fill opacity=0.45},
+                legend style={fill=pagebg, draw=pagetext}
+            ]
+
+            % ----- Constraint lines -----
+
+            % 2x1 + 5x2 = 17 -> x2 = (17 - 2x1)/5
+            \addplot[domain=0:4, very thick, color=blue] {(17 - 2*x)/5};
+            \addlegendentry{\(2x_1 + 5x_2 = 17\)}
+
+            % 3x1 + 2x2 = 10 -> x2 = (10 - 3x1)/2
+            \addplot[domain=0:4, very thick, color=orange] {(10 - 3*x)/2};
+            \addlegendentry{\(3x_1 + 2x_2 = 10\)}
+
+            % ----- Feasible region -----
+            \addplot[
+                fill=cyan!30,
+                opacity=0.45,
+                draw=none,
+                area legend
+            ] coordinates {
+                (0, 0)
+                (0, 17/5)
+                (32/22, 31/11)
+                (10/3, 0)
+            };
+            \addlegendentry{Région réalisable}
+
+            % ----- Optimal real solution -----
+            \addplot[
+                only marks,
+                mark=*,
+                mark size=2.5pt,
+                color=red!80!black
+            ] coordinates {(10/3, 0)};
+            \addlegendentry{Solution réelle}
+
+            % % ----- Optimal integer solution -----
+            % \addplot[
+            %     only marks,
+            %     mark=square*,
+            %     mark size=2.5pt,
+            %     color=purple
+            % ] coordinates {(1,0)};
+            % \addlegendentry{Solution entière}
+            
+            % % Draw the objective level line
+            % z = 2x1 + x2 = 2*(10/3) + 0 = 20/3
+            \addplot[dashed, thick, yellow, domain=0:4] {20/3 - 2*x};
+            \addlegendentry{Ligne de niveau \(z=\frac{20}{3}\)}
+            \end{axis}
+        \end{tikzpicture}
+    }
+}

@@ -5,16 +5,15 @@
     \fbox{
         \begin{tikzpicture}
             \begin{axis}[
-                % axis lines=middle,
                 xlabel={\(x_1\)},
                 ylabel={\(x_2\)},
                 xmin=0, xmax=4,
                 ymin=0, ymax=4,
                 grid=both,
-                axis equal image, % <-- orthonormal grid
+                axis equal image,
                 width=10cm,
                 height=7cm,
-                legend pos=outer north east, % <-- legend outside
+                legend pos=outer north east,
                 legend cell align=left,
                 legend image post style={fill opacity=0.45},
                 legend style={fill=pagebg, draw=pagetext}
@@ -65,20 +64,6 @@
                 (10/3,0)
             };
             \addlegendentry{Région réalisable initiale}
-
-            % % ----- Feasible region 2 -----
-            % \addplot[
-            %     fill=red!30,
-            %     opacity=0.45,
-            %     draw=none,
-            %     area legend
-            % ] coordinates {
-            %     (0,0)
-            %     (0,17/5)
-            %     (16/11,187/55)
-            %     (10/3,0)
-            % };
-            % \addlegendentry{Région réalisable après les coupes}
 
             % ----- Optimal real solution -----
             \addplot[

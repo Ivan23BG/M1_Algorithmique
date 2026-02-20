@@ -1,0 +1,83 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Arbre de branchement du problème \(PL_0\)}\label{fig:dm1_ex04_f6}
+}{
+    \fbox{
+        \begin{tikzpicture}[
+            main node/.style={
+                draw,
+                rounded rectangle,
+                rounded corners=3pt,
+                fill=blue!20,
+                inner sep=4pt,
+                font=\scriptsize,
+                align=center,
+                text=black
+            },
+            solution/.style={
+                draw=red,
+                very thick,
+                fill=red!8
+            },
+            optimal/.style={
+                draw=green,
+                very thick,
+                fill=green!8
+            },
+            invalid/.style={
+                draw=gray,
+                dashed,
+                text=gray,
+                fill=gray!10
+            },
+        ]
+
+        % root
+        \node[main node] (s00) {
+            \(z^* = \frac{20}{3}\)\\
+            \(x^* = \left(\frac{10}{3}, 0\right)\)
+        };
+
+        % children (relative placement) -- tier 1
+        \node[main node, below left=2cm and 2cm of s00] (s11) {
+            \(z^* = \frac{13}{2}\)\\
+            \(x^* = \left(3, \frac{1}{2}\right)\)
+        };
+
+        \node[main node, invalid, below right=2cm and 2cm of s00] (s12) {
+            Impossible
+        };
+
+        % children (relative placement) -- tier 2
+        \node[main node, optimal, below left=2cm and 1cm of s11] (s21) {
+            \(z^* = 6\)\\
+            \(x^* = \left(3, 0\right)\)
+        };
+
+        \node[main node, below right=2cm and 1cm of s11] (s22) {
+            \(z^* = \frac{19}{3}\)\\
+            \(x^* = \left(\frac{8}{3}, 1\right)\)
+        };
+
+        % children (relative placement) -- tier 3, we're now below s22
+        \node[main node, optimal, below left=2cm and 1cm of s22] (s31) {
+            \(z^* = 6\)\\
+            \(x^* = \left(2, 2\right)\)
+        };
+
+        \node[main node, invalid, below right=2cm and 1cm of s22] (s32) {
+            Impossible
+        };
+
+        % edges
+        \draw[-{Stealth}] (s00) -- node[above left] {\(x_1 \leq 3\)} (s11);
+        \draw[-{Stealth}] (s00) -- node[above right] {\(x_1 \geq 4\)} (s12);
+        
+        \draw[-{Stealth}] (s11) -- node[above left] {\(x_2 \leq 0\)} (s21);
+        \draw[-{Stealth}] (s11) -- node[above right] {\(x_2 \geq 1\)} (s22);
+
+        \draw[-{Stealth}] (s22) -- node[above left] {\(x_1 \leq 2\)} (s31);
+        \draw[-{Stealth}] (s22) -- node[above right] {\(x_1 \geq 3\)} (s32);
+        \end{tikzpicture}
+    }
+}

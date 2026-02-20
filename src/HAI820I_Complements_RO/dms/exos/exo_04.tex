@@ -1,11 +1,257 @@
 % ----- Consignes exo 4 ----- %
-\begin{td-exo}[exo4]\, % 4 
-	
+\begin{td-exo}[Comparaisons branch and bound and branch and cut]\, % 4 
+	Nous considérons le programme linéaire suivant:
+	\begin{equation*}
+		PL_0 = 
+		\begin{cases}
+			\max z(x_1, x_2) = 2x_1 + x_2 \\
+			2x_1 + 5x_2 \leq 17\\
+			3x_1 + 2x_2 \leq 10\\
+			x_1, x_2 \geq 0
+		\end{cases}
+	\end{equation*}
+	\begin{enumerate}
+		\item Représenter graphiquement le polytope associé aux équations de \(PL_0\).
+
+		\item Résoudre graphiquement \(PL_0\).
+
+		\item Résoudre par la méthode du simplexe.
+		Vous donnerez les tableaux nécessaires à la résolution.
+
+		\item Maintenant nous cherchons une solution à valeur entière:
+
+		\begin{enumerate}
+			\item Vous donnerez la solution optimale en utilisant la méthode de Branch and Bound.
+			Vous donnerez l'arbre et vous préciserez toutes les étapes.
+
+			\item Vous donnerez la solution optimale en utilisant la méthode des coupes de Dantzig.
+			Vous préciserez à chaque fois la contrainte rajoutée et vous l'exprimerez en fonctions des variables \(x_1\) et \(x_2\).
+
+			\item Vous donnerez la solution optimale en utilisant la méthode des coupes de Gomory.
+			Vous préciserez à chaque fois la contrainte rajoutée et vous l'exprimerez en fonctions des variables \(x_1\) et \(x_2\).
+
+			\item Vous donnerez la solution optimale en utilisant la méthode des coupes de Chvatal-Gomory.
+			Vous préciserez à chaque fois la contrainte rajoutée et vous l'exprimerez en fonctions des variables \(x_1\) et \(x_2\).
+		\end{enumerate}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 4
-		
+		\begin{enumerate}
+			\item Le programme linéaire peut être représenté graphiquement comme dans la figure~\ref{fig:dm1_ex04_f1} ci-dessous:
+
+			\input{../assets/tikz/dm1_ex04_f1.tex}
+
+			\item On peut lire sur la figure~\ref{fig:dm1_ex04_f1} que la solution optimale est \(x^\ast = \left(\frac{10}{3}, 0\right)\).
+
+			\item Résolvons par la méthode du simplexe. 
+			On commence par mettre le problème sous forme standard:
+			\begin{equation*}
+				PL_0 = 
+				\begin{cases}
+					\max z(x_1, x_2) = 2x_1 + x_2 \\
+					2x_1 + 5x_2 + x_3 = 17\\
+					3x_1 + 2x_2 + x_4 = 10\\
+					x_1, x_2, x_3, x_4 \geq 0
+				\end{cases}
+			\end{equation*}
+			On construit ensuite le tableau initial:
+			\begin{center}
+				\begin{tabular}{|ccc|cccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{1} = x_3\)}&\(17\)&\(2\)&\(5\)&\(1\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_2^{1} = x_4\)}&\(10\)&\(3\)&\(2\)&\(0\)&\(1\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} & \(z(x)\) & \multicolumn{1}{|c|}{\(0\)}& \(-2\) & \(-1\) & \(0\) & \(0\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+
+			On fait rentrer \(x_1\) dans la base, et on sort \(x_4\):
+			\begin{center}
+				\begin{tabular}{|ccc|cccc|} % chktex 44
+					\hline  % chktex 44
+					\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{2} = x_3\)}&\(\frac{31}{3}\)&\(0\)&\(\frac{11}{3}\)&\(1\)&\(-\frac{2}{3}\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_2^{2} = x_1\)}&\(\frac{10}{3}\)& \(1\) & \(\frac{2}{3}\) & \(0\) & \(\frac{1}{3}\)\\
+					\hline % chktex 44
+					\multicolumn{1}{|c|}{} & \(z(x)\) & \multicolumn{1}{|c|}{\(\frac{20}{3}\)}& \(0\) & \(\frac{1}{3}\) & \(0\) & \(\frac{2}{3}\)\\
+					\hline % chktex 44
+				\end{tabular}
+			\end{center}
+			Tous les coefficients de la ligne \(z(x)\) sont positifs, on a donc trouvé la solution optimale \(x^\ast = \left(\frac{10}{3}, 0\right)\) avec \(z(x^\ast) = \frac{20}{3}\).
+
+			\item On passe à la résolution du problème à valeurs entières.
+
+			\begin{enumerate}
+				\item On commence par faire le branchement sur \(x_1\):
+				\begin{itemize}
+					\item Cas \(x_1 \leq 3\):
+					Le problème peut alors être représenté graphiquement comme dans la figure~\ref{fig:dm1_ex04_f2} ci-dessous:
+					
+					\input{../assets/tikz/dm1_ex04_f2.tex}
+
+					En résolvant ce problème (graphiquement, par le simplexe ou avec un solveur), on trouve la solution optimale \(x^\ast = \left(3, \frac{1}{2}\right)\) avec \(z(x^\ast) = 6.5\).
+
+					On peut ensuite faire le branchement sur \(x_2\):
+					\begin{itemize}
+						\item Cas \(x_2 \leq 0\):
+						Le problème peut être représenté graphiquement comme dans la figure~\ref{fig:dm1_ex04_f3} ci-dessous:
+
+						\input{../assets/tikz/dm1_ex04_f3.tex}
+
+						En résolvant ce problème on trouve la solution optimale \(x^\ast = (3, 0)\) avec \(z(x^\ast) = 6\).
+						C'est une solution entière, on peut donc la garder en tant que solution réalisable pour le problème à valeurs entières.
+						\begin{equation*}
+							x^\ast_{\bb N} = (3, 0), z(x^\ast_{\bb N}) = 6
+						\end{equation*}
+
+						\item Cas \(x_2 \geq 1\):
+						Le problème peut être représenté graphiquement comme dans la figure~\ref{fig:dm1_ex04_f4} ci-dessous:
+
+						\input{../assets/tikz/dm1_ex04_f4.tex}
+
+						En résolvant ce problème on trouve la solution optimale \(x^\ast = \left(\frac{8}{3}, 1\right)\) avec \(z(x^\ast) = \frac{19}{3}\).
+						Comme \(x_1\) n'est pas entier, on peut faire le branchement sur \(x_1\):
+
+						\begin{itemize}
+							\item Cas \(x_1 \leq 2\):
+							Le problème peut être représenté graphiquement comme dans la figure~\ref{fig:dm1_ex04_f5} ci-dessous:
+
+							\input{../assets/tikz/dm1_ex04_f5.tex}
+
+							En résolvant ce problème on trouve la solution optimale \(x^\ast = (2, 2)\) avec \(z(x^\ast) = 6\).
+							C'est une solution entière, on peut donc la garder en tant que solution réalisable pour le problème à valeurs entières.
+							\begin{equation*}
+								x^\ast_{\bb N} = (2, 2), z(x^\ast_{\bb N}) = 6
+							\end{equation*}
+
+							\item Cas \(x_1 \geq 3\):
+							Le système de contraintes est alors incompatible, il n'y a pas de solution réalisable.
+						\end{itemize}
+					\end{itemize}
+
+					\item Cas \(x_1 \geq 4\):
+					Le système de contraintes est alors incompatible, il n'y a pas de solution réalisable.
+				\end{itemize}
+				On a traité tous les cas, on trouve que les solutions optimales à valeurs entières sont \(x^\ast_{\bb N} = (3, 0)\) et \(x^\ast_{\bb N} = (2, 2)\) avec \(z(x^\ast_{\bb N}) = 6\).
+				L'arbre de branchement est représenté dans la figure~\ref{fig:dm1_ex04_f6} ci-dessous:
+				
+				\input{../assets/tikz/dm1_ex04_f6.tex}
+
+				On conclut cette recherche avec la solution optimale à valeurs entières \(x^\ast_{\bb N} = (3, 0)\) ou \(x^\ast_{\bb N} = (2, 2)\) avec \(z(x^\ast_{\bb N}) = 6\).
+
+				On remarquera d'ailleurs qu'on aurait pu arrêter le branchement dès la première solution entière trouvée, puisque \(z_{\bb N}^\ast = \lfloor z^\ast_{\bb R} \rfloor = 6\).
+
+				\item On passe à la méthode des coupes de Dantzig.
+				On rappelle brièvement la coupe en question: 
+				\begin{equation*}
+					\sum_{j\in N} x_j \geq 1
+				\end{equation*}
+				pour \(N\) l'ensemble des variables hors base.
+
+				La solution optimale du problème est \(x^\ast = \left(\frac{10}{3}, 0\right)\) avec \(z(x^\ast) = \frac{20}{3}\).
+				Les variables hors base sont \(x_2\) et \(x_4\), on a donc \(N = \{2, 4\}\).
+				La coupe de Dantzig est alors:
+				\begin{equation*}
+					x_2 + x_4 \geq 1
+				\end{equation*}
+				En ajoutant cette contrainte au problème, on trouve la solution
+				\begin{equation*}
+					x^\ast = \left(\frac{8}{3}, 1, \frac{20}{3}, 0\right), z(x^\ast) = \frac{19}{3}
+				\end{equation*}
+
+				La variable hors base est \(x_4\), on rajoute la contrainte \(x_4 \geq 1\) et on trouve la solution
+				\begin{equation*}
+					x^\ast = (3, 0, 11, 1), z(x^\ast) = 6
+				\end{equation*}
+
+				C'est une solution entière, on a donc trouvé la solution optimale à valeurs entières \(x^\ast_{\bb N} = (3, 0)\) avec \(z(x^\ast_{\bb N}) = 6\).
+				
+				\item On passe à la méthode des coupes de Gomory.
+				On reprend le dernier tableau du simplexe pour le problème:
+				\begin{center}
+					\begin{tabular}{|ccc|cccc|} % chktex 44
+						\hline  % chktex 44
+						\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{2} = x_3\)}&\(\frac{31}{3}\)&\(0\)&\(\frac{11}{3}\)&\(1\)&\(-\frac{2}{3}\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_2^{2} = x_1\)}&\(\frac{10}{3}\)& \(1\) & \(\frac{2}{3}\) & \(0\) & \(\frac{1}{3}\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{} & \(z(x)\) & \multicolumn{1}{|c|}{\(\frac{20}{3}\)}& \(0\) & \(\frac{1}{3}\) & \(0\) & \(\frac{2}{3}\)\\
+						\hline % chktex 44
+					\end{tabular}
+				\end{center}
+
+				On reprend la ligne de \(x_2^2\) pour construire la coupe de Gomory:
+				\begin{equation*}
+					\begin{aligned}
+						&\left\langle \frac{2}{3} \right\rangle x_2 + \left\langle \frac{1}{3} \right\rangle x_4 = \left\langle \frac{10}{3} \right\rangle\\
+						\iff & \frac{2}{3} x_2 + \frac{1}{3} x_4 \geq \frac{1}{3}\\
+						\iff & 2 x_2 + x_4 \geq 1
+					\end{aligned}
+				\end{equation*}
+				On remarque d'ailleurs qu'utiliser la ligne de \(x_1^2\) aurait donné la même contrainte.
+
+				On a 
+				\begin{equation*}
+					x_4 = 10 - 3x_1 - 2x_2
+				\end{equation*}
+				ce qui donne
+				\begin{equation*}
+					\begin{aligned}
+						&2 x_2 + 10 - 3x_1 - 2x_2 \geq 1\\
+						\iff & -3 x_1 \geq -9\\
+						\iff & x_1 \leq 3
+					\end{aligned}
+				\end{equation*}
+				On ajoute cette contrainte au problème et on reprend encore une fois le dernier tableau du simplexe:
+				\begin{center}
+					\begin{tabular}{|ccc|ccccc|} % chktex 44
+						\hline  % chktex 44
+						\, & \, &\(c\)&\(2\)&\(1\)&\(0\)&\(0\)&\(0\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(c^J\)}& \multicolumn{2}{c|}{variables de base}&\(x_1\)&\(x_2\)&\(x_3\)&\(x_4\)&\(x_5\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(0\)}& \multicolumn{1}{c|}{\(x_1^{3} = x_3\)}&\(8.5\)&\(0\)&\(0\)&\(1\)&\(-2.5\)&\(5.5\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(1\)}& \multicolumn{1}{c|}{\(x_2^{3} = x_2\)}&\(0.5\)& \(0\) & \(1\) & \(0\) & \(0.5\) & \(-1.5\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{\(2\)}& \multicolumn{1}{c|}{\(x_3^{3} = x_1\)}&\(3\)& \(1\) & \(0\) & \(0\) & \(0\) & \(1\)\\
+						\hline % chktex 44
+						\multicolumn{1}{|c|}{} & \(z(x)\) & \multicolumn{1}{|c|}{\(6.5\)}& \(0\) & \(0\) & \(0\) & \(0.5\) & \(0.5\)\\
+						\hline % chktex 44
+					\end{tabular}
+				\end{center}
+				On reprend la ligne de \(x_1^3\) (ou celle de \(x_2^3\)) pour construire la coupe de Gomory suivante:
+				\begin{equation*}
+					\begin{aligned}
+						0.5x_4 + 0.5 x_5 \geq 0.5
+						\iff & x_4 + x_5 \geq 1\\
+						\iff & 10 - 3x_1 - 2x_2 + (3 - x_1) \geq 1\\
+						\iff & -4 x_1 - 2 x_2 \geq -12\\
+						\iff & 2 x_1 + x_2 \leq 6
+					\end{aligned}
+				\end{equation*}
+				On ajoute cette contrainte au problème et on trouve la solution optimale \(x^\ast = (3, 0)\) avec \(z(x^\ast) = 6\).
+				C'est une solution entière, on a donc trouvé la solution optimale à valeurs entières \(x^\ast_{\bb N} = (3, 0)\) avec \(z(x^\ast_{\bb N}) = 6\).
+
+				\item On passe à la méthode des coupes de Chvatal-Gomory. 
+			\end{enumerate}
+		\end{enumerate}
 	\end{td-sol}
 }{}

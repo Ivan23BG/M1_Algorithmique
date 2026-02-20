@@ -1,6 +1,64 @@
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[exo3]\, % 3 
-	
+\begin{td-exo}[\textsc{Sac a dos} en variables entières]\, % 3 
+	On étudie le problème \textsc{Sac a dos} en variables entières, positives, pas nécessairement \(\{0, 1\}\), de la forme:
+	\begin{equation*}
+		\begin{cases}
+			\max_{z \in {\bb N}^N} \sum_{i=1}^N u_i z_i\\
+			z \leq b\\
+			\sum_{i=1}^N p_i z_i \leq M
+		\end{cases}
+	\end{equation*}
+	où les \(u_i\in\bb N\) représentent l'utilité des objets de type \(i\), les \(p_i\) leur poids, les \(b_i\) la quantité disponible (avec \(b_i \in\bb N\cup \{+\infty\}\)), \(M\) le poids maximum admissible du sac à dos et \(N\) le nombre de types d'objets considérés.
+	Le relaché continu est défini comme suit:
+	\begin{equation*}
+		\begin{cases}
+			\max_{z \in {\bb R}^N_+} \sum_{i=1}^N u_i z_i\\
+			z \leq b\\
+			\sum_{i=1}^N p_i z_i \leq M
+		\end{cases}
+	\end{equation*}
+	\begin{enumerate}
+		\item Montrer qu'on peut changer les \(b_i\) en \(\min\{b_i, \lfloor M/p_i \rfloor\}, \forall i\) sans changer la solution du problème en valeurs entières.
+		On appellera cette opération la mise à jour des quantités disponibles.
+
+		\item On suppose sans perte de généralité les ratios \(u_i/p_i\) triés par ordre décroissant.
+		Montrer qu'on peut calculer simplement la solution du relaché continu.
+		On se contentera d'une preuve dans le cas où les ratios \(u_i/p_i\) sont strictement décroissants.
+
+		\item On considère le cas particulier (avec donc ici \(b_i = +\infty,\forall i\)):
+		\begin{equation*}
+			\begin{cases}
+				\max_{\bb N^3_+} 4z_1 + 5z_2 + 2 z_3\\
+				4z_1 + 7z_2 + 3z_3 \leq 19
+			\end{cases}
+		\end{equation*}
+
+		\begin{enumerate}
+			\item Effectuer la mise à jour des quantités disponibles.
+
+			\item Expliciter la solution du relaché continu (avec les nouvelles bornes).
+
+			\item Calculer la valeur associée.
+		\end{enumerate}
+
+		\item On introduit la variable d'écart \(z_4 \in\bb N\) telle que 
+		\begin{equation*}
+			4z_1 + 7z_2 + 3z_3 + z_4 = 19
+		\end{equation*}
+		et la variable d'écart à la borne supérieure \(\ol{z_1} = b_1 - z_1 = 4 - z_1\).
+		Vérifier que 
+		\begin{equation*}
+			-4 \ol{z_1} + 7 z_2 + 3 z_3 + z_4 = 3
+		\end{equation*}
+		Appliquer la technique de coupe de Gomory à l'égalité précédente pour obtenir la relation satisfaite par les points entiers admissibles pour le problème à valeurs entières, et qui élimine la solution du relaxé continu.
+
+		\item On considère le problème \(PR'\) obtenu en ajoutant au problème relaché continu la coupe de Gomory.
+		Montrer que cette dernière contrainte est active en tout solution de \(PR'\) et calculer la valeur et les solutions de \(PR'\).
+		Que peut-on en conclure?
+
+		\item Comment aurait-on pu résoudre le problème du \textsc{Sac a dos} par une approche de séparation et évaluation.
+		On étudiera le cas de minorantes obtenues en résolvant le problème relaché continu avec branchement sur les valeurs fractionnaires.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 3 ----- %
