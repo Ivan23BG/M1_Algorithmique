@@ -250,7 +250,26 @@
 				On ajoute cette contrainte au problème et on trouve la solution optimale \(x^\ast = (3, 0)\) avec \(z(x^\ast) = 6\).
 				C'est une solution entière, on a donc trouvé la solution optimale à valeurs entières \(x^\ast_{\bb N} = (3, 0)\) avec \(z(x^\ast_{\bb N}) = 6\).
 
-				\item On passe à la méthode des coupes de Chvatal-Gomory. 
+				\item On passe à la méthode des coupes de Chvatal-Gomory.
+				On veut trouver \(u = (u_1, u_2) \in \bb R^2_+\) tel que 
+				\begin{equation*}
+					\begin{aligned}
+						\left( 2 u_1 + 3 u_2 \right) x_1 + \left( 5 u_1 + 2 u_2 \right) x_2 &\leq \lfloor 17 u_1 + 10 u_2 \rfloor\\
+					\end{aligned}
+				\end{equation*}
+				avec \(2 u_1 + 3 u_2 \in \bb Z\) et \(5 u_1 + 2 u_2 \in \bb Z\).
+
+				En particulier, on veut invalider la solution réelle optimale \(x^\ast = \left(\frac{10}{3}, 0\right)\).
+				Cela revient à chercher \(u\) tel que
+				\begin{equation*}\label{eq:dm1_ex04_eq1}
+					\begin{aligned}
+						&\left( 2 u_1 + 3 u_2 \right) \frac{10}{3} > \lfloor 17 u_1 + 10 u_2 \rfloor\\
+						\iff & 20 u_1 + 30 u_2 > \lfloor 51 u_1 + 30 u_2 \rfloor
+					\end{aligned}
+				\end{equation*}
+				Or \(u\) ne peut pas satisfaire l'inégalité~\eqref{eq:dm1_ex04_eq1} tout en maintenant les contraintes d'intégralité sur les coefficients de la coupe.
+
+				Ainsi il faut d'abord rajouter une contrainte au problème pour faire en sorte que \(x^\ast\) ne soit plus réalisable, par exemple \(x_1 \leq 3\), ensuite on peut trouver une coupe de Chvatal-Gomory qui élimine la solution optimale du problème modifié.
 			\end{enumerate}
 		\end{enumerate}
 	\end{td-sol}
