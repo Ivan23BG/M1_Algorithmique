@@ -1,0 +1,91 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Construction de la réduction de \(3\)-\textsc{coloration} à partir de \(3\)-\textsc{sat}}\label{fig:td1_ex08_1}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=5mm, text=black}]
+            % les sommets x_i
+            \node[main node] (x1) at (-1,0) {\(x_1\)};
+            \node[main node] (bx1) at (-1,-1) {\(\ol{x_1}\)};
+
+            \node[main node] (x2) at (-1,-3) {\(x_2\)};
+            \node[main node] (bx2) at (-1,-4) {\(\ol{x_2}\)};
+
+            \node[main node] (x3) at (-1,-6) {\(x_3\)};
+            \node[main node] (bx3) at (-1,-7) {\(\ol{x_3}\)};
+
+            % construction des triangles y_i
+            \node[main node] (y11) at (1, 0) {\(y_{11}\)};
+            \node[main node] (y12) at (1, -1) {\(y_{12}\)};
+            \node[main node] (y13) at (1, -2) {\(y_{13}\)};
+            \node[main node] (y14) at (1.5, -0.5) {\(y_{14}\)};
+            \node[main node] (y15) at (1.5, -1.5) {\(y_{15}\)};
+            \node[main node] (y16) at (2, -2) {\(y_{16}\)};
+            % et encore 2 triangles similaires pour les autres clauses en dessous des premiers
+            \node[main node] (y21) at (1, -3) {\(y_{21}\)};
+            \node[main node] (y22) at (1, -4) {\(y_{22}\)};
+            \node[main node] (y23) at (1, -5) {\(y_{23}\)};
+            \node[main node] (y24) at (1.5, -3.5) {\(y_{24}\)};
+            \node[main node] (y25) at (1.5, -4.5) {\(y_{25}\)};
+            \node[main node] (y26) at (2, -5) {\(y_{26}\)};
+
+            \node[main node] (y31) at (1, -6) {\(y_{31}\)};
+            \node[main node] (y32) at (1, -7) {\(y_{32}\)};
+            \node[main node] (y33) at (1, -8) {\(y_{33}\)};
+            \node[main node] (y34) at (1.5, -6.5) {\(y_{34}\)};
+            \node[main node] (y35) at (1.5, -7.5) {\(y_{35}\)};
+            \node[main node] (y36) at (2, -8) {\(y_{36}\)};
+            % rajout des deux v_i
+            \node[main node] (v1) at (3, 2) {\(v_1\)};
+            \node[main node] (v2) at (4, 2) {\(v_2\)};
+            
+
+            % les aretes
+            % on connecte les x_i aux bx_i
+            \foreach \i in {1,2,3} {
+                \draw (x\i) to (bx\i);
+            }
+
+            % on connecte les y_i entre eux
+            \foreach \i in {1,2,3} {
+                \draw (y\i1) to (y\i2);
+                \draw (y\i1) to (y\i4);
+                \draw (y\i2) to (y\i4);
+                \draw (y\i3) to (y\i5);
+                \draw (y\i3) to (y\i6);
+                \draw (y\i4) to (y\i5);
+                \draw (y\i5) to (y\i6);
+            }
+
+            % on connecte les v_i entre eux
+            \draw (v1) to (v2);
+
+            % left bus vertical pour collecter les xi
+            \coordinate (lbt) at (-2,2);
+
+            \foreach \i in {1,2,3} {
+                \draw (x\i)  -- ($(x\i)+(-0.5,0.5)$)  -| (lbt);
+                \draw (bx\i) -- ($(bx\i)+(-0.5,0.5)$) -| (lbt);
+            }
+
+            \draw (lbt) -- (v1);
+
+            % right bus vertical pour collecter les y6
+            \coordinate (rbt) at (3.5,0.5);
+
+            \foreach \i in {1,2,3} {
+                \draw
+                    (y\i6) -- ($(y\i6)+(0.5,0.5)$) -| (rbt);
+            }
+
+            \draw (v1) -- (rbt);
+            \draw (v2) -- (rbt);
+
+            % draw small dashed line left of each y1, y2, y3 to indicate the clause literals
+            \foreach \i in {1,2,3} {
+                \draw[dashed] ($(y\i1)+(-0.8,0)$) -- (y\i1);
+                \draw[dashed] ($(y\i2)+(-0.8,0)$) -- (y\i2);
+                \draw[dashed] ($(y\i3)+(-0.8,0)$) -- (y\i3);
+            }
+        \end{tikzpicture}
+    }
+}
