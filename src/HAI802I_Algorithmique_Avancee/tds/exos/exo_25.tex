@@ -1,11 +1,28 @@
 % ----- Consignes exo 25 ----- %
-\begin{td-exo}[title]\,\\ % 25 
-	
+\begin{td-exo}[Algorithme glouton pour \textsc{SAT}]\, % 25 
+	Montrer que l'algorithme % add ref to algo here
+	admet une performance relative de \(\frac{1}{2}\).
+	On pourra utiliser une preuve par réduction.
 \end{td-exo}
 
 % ----- Solutions exo 25 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 25
+		On fait une preuve par récurrence.
+
+		Dans le cas de base, le résultat est trivial.
+
+		Supposons maintenant qu'on a \(n\) variables.
+		Soit \(v\) la variable dans \(\varphi\) qui apparait le plus.
+		Soit \(c_1\) le nombre de clauses où \(v\) apparaît positivement et \(c_2\) le nombre de clauses où \(v\) apparaît négativement.
+		Sans perte de généralité, supposons que \(c_1 \geq c_2\).
+		En assignant \(v\) à vrai, on satisfait au moins \(c_1\) clauses,
+		il reste alors \(c - c_1\) clauses à satisfaire sur les \(n-1\) variables restantes, où \(c\) est le nombre de clauses satisfaites par une affectation optimale.
+		Par hypothèse de récurrence, l'algorithme satisfait au moins \(\frac{1}{2}(c - c_1)\) clauses parmi les \(n-1\) variables restantes.
+		Le nombre de clauses satisfaites au total par l'algorithme est alors au moins
+		\begin{equation*}
+			c_1 + \frac{1}{2}(c - c_1) = \frac{1}{2}c + \frac{1}{2}c_1 \geq \frac{1}{2}c.
+		\end{equation*}
 		
 	\end{td-sol}
 }{}
