@@ -1,11 +1,39 @@
 % ----- Consignes exo 45 ----- %
-\begin{td-exo}[title]\,\\ % 45 
-	
+\begin{td-exo}[Non-approximation du \textsc{TSP} en fonction de paramètres]\,\\ % 45 
+	Nous voulons montrer que si \(\mathcal{P} \neq \mathcal{NP}\), alors aucun algorithme polynomial pour le problème de la minimisation du \textsc{voyageur de commerce} ne peut garantir un rapport d'approximation classique inférieur à \(\frac{d_{\max}}{n d_{\min}}\), où \(d_{\max}\) et \(d_{\min}\) sont respectivement la plus grande et la plus petite des distances sur les arêtes de l'instance du \textsc{tsp}, et \(n\) est le nombre de villes.\\
+
+	Pour cela, procéder par l'absurde et utiliser le même principe qu'en cours. 
+	A partir d'un graphe quelconque \(G = (V, E)\):
+	\begin{enumerate}
+		\item Construire un graphe complet valué en complétant les arêtes.
+
+		\item Executer votre algorithme sur votre instance et conclure sur l'existence d'un cycle Hamiltonien dans \(G\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 45 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 45
-		
+		\begin{enumerate}
+			\item On considère le graphe \(G' = (V', E')\) suivant: \(V' = V\) et \(E' = \) l'ensemble de toutes les paires de sommets de \(V\). 
+			On définit la fonction de coût \(c\) sur les arêtes de \(G'\) de la manière suivante:
+			\begin{equation*}
+				c(u, v) =
+				\begin{cases}
+					1 & \text{si } (u, v) \in E, \\
+					d_{\max} & \text{sinon}.
+				\end{cases}
+			\end{equation*}
+			Par simplification, on peut supposer que \(d_{\min} = 1\) et on peut poser \(d_{\max} = M\).
+
+			\item Supposons que nous avons un algorithme polynomial \(A\) pour le \textsc{tsp} qui garantit un rapport d'approximation inférieur à \(\frac{M}{n}\).
+			Si \(G\) contient un cycle Hamiltonien, alors le coût optimal du \textsc{tsp} sur \(G'\) est \(n\) (car on peut parcourir les arêtes de coût 1).
+			Par conséquent, l'algorithme \(A\) doit trouver une solution de coût au plus \(\frac{M}{n} \cdot n = M\).
+
+			Si \(G\) ne contient pas de cycle Hamiltonien, alors le coût optimal du \textsc{tsp} sur \(G'\) est au moins \(n - 1 + M\) (car on doit utiliser au moins une arête de coût \(M\)).
+			Par conséquent, l'algorithme \(A\) doit trouver une solution de coût au plus \(\frac{M}{n} \cdot (n - 1 + M)\) qui est strictement supérieur à \(M\) pour \(n > 1\).
+
+			On a donc séparé les cas où \(G\) contient un cycle Hamiltonien de ceux où il n'en contient pas et on a trouvé un écart de coût, il est donc impossible d'approcher une solution du \textsc{tsp} avec un rapport d'approximation inférieur à \(\frac{M}{n}\), ce qui contredit l'existence de l'algorithme \(A\). Par conséquent, si \(\mathcal{P} \neq \mathcal{NP}\), aucun algorithme polynomial pour le \textsc{tsp} ne peut garantir un rapport d'approximation inférieur à \(\frac{d_{\max}}{n d_{\min}}\).
+		\end{enumerate}
 	\end{td-sol}
 }{}

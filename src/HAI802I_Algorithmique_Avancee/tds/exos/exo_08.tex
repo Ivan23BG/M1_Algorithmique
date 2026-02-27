@@ -1,6 +1,51 @@
 % ----- Consignes exo 8 ----- %
-\begin{td-exo}[title]\,\\ % 8 
-	
+\begin{td-exo}[Problème de la coloration]\,\\ % 8 
+	% add problem here
+	\begin{enumerate}
+		\item Montrer que \textsc{3-Coloration} est \(\mathcal{NP}\)-complet en effectuant une réduction à partir de \textsc{3-SAT}.
+
+		Nous proposons la transformation polynomiale suivante à partir de \textsc{3-SAT}:
+
+		Soit \(I\) une instance de \textsc{3-SAT} constitué d'un ensemble \(B = \left\{C_1, \ldots, C_m \right\}\) de clauses sur un ensemble \(X = \left\{x_1, \ldots, x_n \right\}\) de variables.
+		Nous allons construire, à partir de la formule \(B\), un graphe \(G = (S, A)\) de manière que \(B\) soit satisfaisable si et seulement si \(G\) admet une coloration en 3 couleurs.
+
+		\begin{itemize}
+			\item Pour chaque variable \(x_i\), on pose \color{blue} \(T_i = (S_{i, 1}, A_{i, 1})\)\color{pagetext}~où \(S_{i, 1} = \{x_i, \ol{x_i}\}\) et \(A_{i, 1} = \{(x_i\ol{x_i})\}\), voir figure~\ref{fig:td1_ex08_2}.
+			\item Pour chaque clause \(C_j\), on pose \color{red} \(V_j = (S_{j, 2}, A_{j, 2})\)\color{pagetext}~où \(S_{j, 2} = \{y_{j, 1}, y_{j, 2}, y_{j, 3}, y_{j, 4}, y_{j, 5}, y_{j, 6}\}\) et \(A_{j, 2} = \{(y_{j, 1}y_{j, 2}), (y_{j, 1}y_{j, 4}), (y_{j, 2}y_{j, 4}), (y_{j, 4}y_{j, 5}), (y_{j, 5}y_{j, 6}), (y_{j, 5}y_{j, 3}), (y_{j, 3}y_{j, 6})\}\), voir figure~\ref{fig:td1_ex08_3}.
+
+			\item \(V_j\) est isomorphe à \(G_0 -\{u_0, u_1, u_2\}\). %add ref to fig here
+
+			\item On pose \(T = (S_3, A_3)\) où \(S_3 = \{v_1, v_2\}\) et \(A_3 = \{(v_1v_2)\}\). %add ref to fig 3 here
+			
+			\item Pour chaque variable \(x_i\) on pose \(A_{i, 4} = \{v_2x_i, v_2\ol{x_i}\}\) et \(A_{i, 5} = \{(v_1y_{j, 6}, v_2y_{j, 6})\}\) pour tout \(j\in \{1, \ldots, m\}\).
+
+			\item Enfin, \(A_{j, 6}\) est un ensemble de trois arêtes reliant, pour chaque clause \(C_j\), les trois sommets de type \(x_i\) ou \(\ol{x_i}\) correspondant aux littéraux de \(C_j\). Le premier littéral de \(C_j\) est relié à \(y_{j, 1}\), le deuxième à \(y_{j, 2}\) et le troisième à \(y_{j, 3}\), voir figure~\ref{fig:td1_ex08_4}.
+		\end{itemize}
+		Tous les graphes présentés ci-dessus sont donnés dans les figures ci-dessous:
+		\begin{center}
+			\begin{minipage}[b]{0.3\textwidth}
+				\centering
+				\input{../assets/tikz/td1_ex08_2.tex}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[b]{0.3\textwidth}
+				\centering
+				\input{../assets/tikz/td1_ex08_3.tex}
+			\end{minipage}
+			\hfill
+			\begin{minipage}[b]{0.3\textwidth}
+				\centering
+				\input{../assets/tikz/td1_ex08_4.tex}
+			\end{minipage}
+		\end{center}
+
+		Donner le nombre de sommets et le nombre d'arêtes de \(G\).
+		Appliquer la construction sur l'instance \(X = \{x_1, x_2, x_3, x_4, x_5\}\) et \(B = \{C_1, C_2\}\) où \(C_1 = (x_1 \lor \ol{x_3} \lor \ol{x_4})\) et \(C_2 = (\ol{x_4} \lor x_2 \lor \ol{x_1})\).
+
+		\item Montrer que le problème de \(4\)-coloration est \(\mathcal{NP}\)-complet en effectuant une réduction à partir de \textsc{3-Coloration}.
+
+		\item Regarder la preuve pour des graphes planaires.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 8 ----- %
@@ -9,5 +54,23 @@
 		On propose de visualiser le schéma de construction avec la figure~\ref{fig:td1_ex08_1} suivante:
 
 		\input{../assets/tikz/td1_ex08_1.tex}
+
+
+		En appliquant le schéma de construction à l'instance donnée, on obtient le graphe suivant:
+
+		\input{../assets/tikz/td1_ex08_5.tex}
+
+		On peut aussi retirer les couleurs de ce graphe et essayer de les assigner manuellement.
+		Les paires \((x_i, \ol{x_i})\) doivent être colorées avec des couleurs différentes, et \(v_1\) et \(v_2\) doivent être colorés avec des couleurs différentes. Les \(y_{j, 6}\) doivent être colorés différemment de \(v_1\) et \(v_2\).
+		Avec ces seules contraintes, on peut trouver une coloration en 3 couleurs du graphe, ce qui correspond à une assignation de vérité pour les variables \(x_i\) qui satisfait les clauses \(C_j\) et on peut passer de l'une à l'autre de manière bijective.
+
+		Les seules choses à considérer pour passer d'une coloration à une autre est la permutation des couleurs \(y_{j, 1}, y_{j, 2}\) et celles des \(x_i\) et \(\ol{x_i}\), l'extension de cette construction à des instances plus grandes est alors facile.
+
+		\begin{enumerate}
+			\item Il est facile de voir qu'avec la construction proposée on a bien une réduction de \textsc{3-SAT} vers \textsc{3-Coloration} et donc ce dernier est \(\mathcal{NP}\)-complet.
+			\item Il suffit de considérer le graphe \(G'\) qui a les memes sommets et arêtes que \(G\) mais avec un sommet supplémentaire \(v\) connecté à tous les autres sommets de \(G\).
+			Alors si \(G\) est 3-colorable, alors \(G'\) est 4-colorable (en coloriant \(v\) avec une nouvelle couleur).
+			Inversement, si \(G'\) est 4-colorable, alors \(v\) doit être colorié avec une couleur différente de celle de tous les autres sommets de \(G\), ce qui implique que \(G\) est 3-colorable.
+		\end{enumerate}
 	\end{td-sol}
 }{}

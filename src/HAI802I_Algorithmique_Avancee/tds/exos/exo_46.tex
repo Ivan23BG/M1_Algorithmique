@@ -1,11 +1,14 @@
 % ----- Consignes exo 46 ----- %
-\begin{td-exo}[title]\,\\ % 46 
-	
+\begin{td-exo}[\textsc{TSP} asymétrique]\,\\ % 46
+	On rappelle que le problème du \textsc{tsp} asymétrique s'énonce comme suit:
+	\input{../assets/tikz/td3_ex45_1.tex}
+
+	Montrer que \textsc{ATSP} est \(\mathcal{NP}\)-complet et non approximable.
 \end{td-exo}
 
 % ----- Solutions exo 46 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 46
-		
+		Le problème du \textsc{ATSP} est un cas particulier du \textsc{TSP} (en imposant des coûts infinis pour les arcs non présents), et que le \textsc{TSP} est déjà connu pour être \(\mathcal{NP}\)-complet et non approximable. Par conséquent, \textsc{ATSP} hérite de ces propriétés.
 	\end{td-sol}
 }{}

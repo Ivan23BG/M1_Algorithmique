@@ -9,6 +9,25 @@
 % ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 2
+		Le problème de \textsc{Non Egal Satisfaisabilité} est dans \(\mathcal{NP}\) car on peut vérifier en temps polynomial si deux formules booléennes sont non équivalentes. 
+		Pour montrer qu'il est \(\mathcal{NP}\)-complet, on effectue une réduction à partir du problème de \textsc{Satisfaisabilité}. 
+		On montre que si on pouvait résoudre \textsc{Non Egal Satisfaisabilité} en temps polynomial, alors on pourrait résoudre \textsc{Satisfaisabilité} en temps polynomial, ce qui contredit l'hypothèse que \(\mathcal{P} \neq \mathcal{NP}\). 
+		Par conséquent, \textsc{Non Egal Satisfaisabilité} est \(\mathcal{NP}\)-complet.
+
+		Soit \(\varphi\) une formule conjonctive de \(3\)-\textsc{SAT}. 
+		On construit une formule \(\psi\) pour le problème de \textsc{Non Egal Satisfaisabilité} de la manière suivante:
+		\begin{equation*}
+			\psi_i = \varphi_i \land (x_1 \lor \ldots \lor x_n) \land (\lnot x_1 \lor \ldots \lor \lnot x_n), \quad \forall i \in \{1, \ldots, m\}
+		\end{equation*}
+
+		Ensuite, on pose \(\psi = \bigwedge_{i=1}^m \psi_i\).
 		
+		Si \(\varphi\) est satisfaisable, alors il existe une affectation de valeurs de vérité aux variables qui satisfait \(\varphi\). 
+		Cette même affectation satisfait également \(\psi\) car les clauses supplémentaires garantissent que chaque clause de \(\psi\) a un littéral vrai et un littéral faux.
+		
+		Inversement, si \(\psi\) est satisfaisable, alors il existe une affectation de valeurs de vérité aux variables qui satisfait \(\psi\). 
+		Cette affectation doit également satisfaire \(\varphi\) (car si elle satisfait chaque clause de \(\psi\)), alors elle satisfait également chaque clause de \(\varphi\). 
+		
+		Par conséquent, \(\varphi\) est satisfaisable si et seulement si \(\psi\) est satisfaisable, ce qui montre que le problème de \textsc{Non Egal Satisfaisabilité} est \(\mathcal{NP}\)-complet (car il est au moins aussi dur que \textsc{Satisfaisabilité}, qui est lui-même \(\mathcal{NP}\)-complet).
 	\end{td-sol}
 }{}

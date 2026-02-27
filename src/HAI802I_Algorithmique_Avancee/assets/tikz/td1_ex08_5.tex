@@ -1,0 +1,94 @@
+\ffigbox[\FBwidth]{%
+\caption{\centering Application de la construction à l'instance donnée avec un exemple de coloration}\label{fig:td1_ex08_5}
+}{
+    \fbox{
+        \begin{tikzpicture}[scale=1, main node/.style={circle, draw, fill=blue!20, inner sep=1pt, font=\scriptsize, minimum size=5mm, text=black}]
+            % les sommets x_i
+            \node[main node] (x1) at (-1,0) {\(x_1\)};
+            \node[main node, fill=green!20] (bx1) at (-1,-0.8) {\(\ol{x_1}\)};
+
+            \node[main node] (x2) at (-1,-1.8) {\(x_2\)};
+            \node[main node, fill=green!20] (bx2) at (-1,-2.6) {\(\ol{x_2}\)};
+
+            \node[main node] (x3) at (-1,-3.6) {\(x_3\)};
+            \node[main node, fill=green!20] (bx3) at (-1,-4.4) {\(\ol{x_3}\)};
+
+            \node[main node] (x4) at (-1,-5.4) {\(x_4\)};
+            \node[main node, fill=green!20] (bx4) at (-1,-6.2) {\(\ol{x_4}\)};
+
+            \node[main node] (x5) at (-1,-7.2) {\(x_5\)};
+            \node[main node, fill=green!20] (bx5) at (-1,-8) {\(\ol{x_5}\)};
+            
+
+            % construction des triangles y_i
+            \node[main node, fill=green!20] (y11) at (1, 0) {\(y_{11}\)};
+            \node[main node] (y12) at (1, -1) {\(y_{12}\)};
+            \node[main node, fill=red!20] (y13) at (1, -2) {\(y_{13}\)};
+            \node[main node, fill=red!20] (y14) at (1.5, -0.5) {\(y_{14}\)};
+            \node[main node, fill=green!20] (y15) at (1.5, -1.5) {\(y_{15}\)};
+            \node[main node] (y16) at (2, -2) {\(y_{16}\)};
+            % et encore 2 triangles similaires pour les autres clauses en dessous des premiers
+            \node[main node] (y21) at (1, -3) {\(y_{21}\)};
+            \node[main node, fill=green!20] (y22) at (1, -4) {\(y_{22}\)};
+            \node[main node, fill=red!20] (y23) at (1, -5) {\(y_{23}\)};
+            \node[main node, fill=red!20] (y24) at (1.5, -3.5) {\(y_{24}\)};
+            \node[main node, fill=green!20] (y25) at (1.5, -4.5) {\(y_{25}\)};
+            \node[main node] (y26) at (2, -5) {\(y_{26}\)};
+            % rajout des deux v_i
+            \node[main node, fill=red!20] (v1) at (3, 2) {\(v_1\)};
+            \node[main node, fill=green!20] (v2) at (4, 2) {\(v_2\)};
+            
+
+            % les aretes
+            % on connecte les x_i aux bx_i
+            \foreach \i in {1,2,3,4,5} {
+                \draw (x\i) to (bx\i);
+            }
+
+            % on connecte les y_i entre eux
+            \foreach \i in {1,2} {
+                \draw (y\i1) to (y\i2);
+                \draw (y\i1) to (y\i4);
+                \draw (y\i2) to (y\i4);
+                \draw (y\i3) to (y\i5);
+                \draw (y\i3) to (y\i6);
+                \draw (y\i4) to (y\i5);
+                \draw (y\i5) to (y\i6);
+            }
+
+            % on connecte les v_i entre eux
+            \draw (v1) to (v2);
+
+            % left bus vertical pour collecter les xi
+            \coordinate (lbt) at (-2,2);
+
+            \foreach \i in {1,2,3,4,5} {
+                \draw (x\i)  -- ($(x\i)+(-0.5,0.5)$)  -| (lbt);
+                \draw (bx\i) -- ($(bx\i)+(-0.5,0.5)$) -| (lbt);
+            }
+
+            \draw (lbt) -- (v1);
+
+            % right bus vertical pour collecter les y6
+            \coordinate (rbt) at (3.5,0.5);
+
+            \foreach \i in {1,2} {
+                \draw
+                    (y\i6) -- ($(y\i6)+(0.5,0.5)$) -| (rbt);
+            }
+
+            \draw (v1) -- (rbt);
+            \draw (v2) -- (rbt);
+
+            % connect the y_i to the x_i according to the clauses
+            \draw (x1) to (y11);
+            \draw (bx3) to (y12);
+            \draw (bx4) to (y13);
+
+            \draw (bx4) to (y21);
+            \draw (x2) to (y22);
+            \draw (bx1) to (y23);
+            
+        \end{tikzpicture}
+    }
+}
