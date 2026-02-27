@@ -1,11 +1,60 @@
 % ----- Consignes exo 21 ----- %
-\begin{td-exo}[title]\,\\ % 21 
-	
+\begin{td-exo}[Approximation pour \textsc{Maximum Independent}: algorithme glouton]\, % 21 
+	% rajout algos et figures ici
+	\begin{enumerate}
+		\item Donner la complexité de l'algorithme et montrer que la solution donnée par l'algorithme est un stable.
+
+		\item A partir de l'algorithme, proposer un graphe qui donne le pire cas.
+
+		\item Soit \(G = (V, E)\) un graphe ayant \(n\) sommets et \(m\) arêtes, soit \(\delta = \frac mn\) la densité du graphe de \(G\).
+		Montrer que toute solution \(S\) est d'au moins \(\frac{n}{2 \delta + 1}\).
+
+		\item Montrer maintenant que le ratio est \(\delta + 1\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 21 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 21
-		
+		\begin{enumerate}
+			\item % todo
+			\item On propose le graphe suivant % add ref and figure here
+			Où \(A = K_n, B = IS_n, C = \{x\}\) où \(C\) domine \(B\) et \(A\) et \(B\) sont complètement connectés. L'algorithme peut choisir \(x\) et ne pas choisir les sommets de \(B\) alors que la solution optimale est de choisir tous les sommets de \(B\).
+			Ainsi on a bien un ratio de \(\frac{n}{2}\) qui peut être arbitrairement grand.
+
+			\item Sachant que l'algorithme s'arrête, lorsqu'on a plus de sommets à traiter, on a:
+			\begin{equation}\label{eq:td1_ex21_1}
+				\sum_{i \in S} (d_i + 1) = n
+			\end{equation}
+			où \(d_i\) est le degré du sommet \(i\) dans le graphe restant.
+
+			De plus, on a
+			\begin{equation}\label{eq:td1_ex21_2}
+				\sum_{i \in S} \frac{d_i (d_i + 1)}{2} \leq m
+			\end{equation}
+
+			En combinant les équations~\eqref{eq:td1_ex21_1} et~\eqref{eq:td1_ex21_2}, on a
+			\begin{equation*}
+				\begin{aligned}
+					\sum_{i \in S} (d_i + 1) \cdot \sum_{i \in S} d_i(d_i + 1) 
+					&\leq 2m + n\\
+					&\leq 2 \delta m + n - n (2 S + 1)
+				\end{aligned}
+			\end{equation*}
+
+			En appliquant l'inégalité de Cauchy-Schwarz avec \(a_k = (d_i + 1)\) et \(b_k = 1\), on a
+			\begin{equation*}
+				\begin{aligned}
+					{\left(\sum_{i \in S} (d_i + 1) \cdot 1\right)}^2
+					& \leq \left( \sum_{i \in S} {(d_i + 1)}^2 \right) \cdot \left( \sum_{i \in S} 1^2 \right)\\
+					& \leq \left( \sum_{i \in S} {(d_i + 1)}^2 \right)
+				\end{aligned}
+			\end{equation*}
+			et on a bien
+			\begin{equation*}
+				\frac{n}{2 \delta + 1} \leq |S|
+			\end{equation*}
+			
+		\end{enumerate}
 	\end{td-sol}
 }{}
