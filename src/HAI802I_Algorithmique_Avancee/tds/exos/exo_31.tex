@@ -8,6 +8,14 @@
 % ----- Solutions exo 31 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 31
-		
+		On suppose qu'il existe un algorithme polynomial \(A\) pour \textsc{Bin Packing} tel que 
+		\begin{equation*}
+			\frac{n - A(I)}{n - \textsc{opt}(I)} \geq \frac{n-1}{n}
+		\end{equation*}
+		alors
+		\begin{equation*}
+			A(I) - \textsc{opt}(I) \leq 1 - \frac{\textsc{opt}(I)}{n} < 1
+		\end{equation*}
+		or \(A(I)\) et \(\textsc{opt}(I)\) sont des entiers, donc \(A(I) = \textsc{opt}(I)\) et \(A\) est un algorithme polynomial pour \textsc{Bin Packing}, ce qui est impossible.
 	\end{td-sol}
 }{}
