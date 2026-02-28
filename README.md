@@ -59,3 +59,4 @@ This project is licensed under the [CC-BY-SA-4.0 LICENSE] - see the [LICENSE](LI
 - University of Montpellier for access to the various courses
 - M. Charlier for his amazing .tex files these ones are inspired from
 - All the teachers that made this possible
+# M1_TER
