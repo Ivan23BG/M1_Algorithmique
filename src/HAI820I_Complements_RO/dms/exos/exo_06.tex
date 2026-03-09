@@ -1,6 +1,17 @@
 % ----- Consignes exo 6 ----- %
-\begin{td-exo}[exo6]\, % 6 
-	
+\begin{td-exo}[Modélisation]\,\\ % 6 
+	Une société désire planifier sa production sur \(n\) semaines.
+	Le demande cumulée à satisfaire durant les \(i\) premières semaines et de \(d_i\) (pour \(i=1, \ldots, n\)).
+	Le cout unitaire de production de la semaine \(i\) est de \(c_i\) (pour \(i=1, \ldots, n\)).
+	Un stockage peut etre réalisé à la fin des \(n-1\) premières semaines au cout constant \(h\) par unité et par semaine.
+
+	Sachant que la production ne peut se réaliser que pendant \(n-1\) semaines au plus, quelle est la production à planifier chaque semaine pour minimiser le cout total. 
+	On utilisera les notations suivantes:
+	\begin{itemize}
+		\item \(x_i\) la variable entière représentant la production de la semaine \(i\) (pour \(i=1, \ldots, n-1\)).
+		\item \(y_i \in \{0,1\}\) la variable binaire valant \(1\) si une production est réalisée pendant la semaine \(i\) et \(0\) sinon (pour \(i=1, \ldots, n-1\)).
+	\end{itemize}
+	Modéliser ce problème par un programme linéaire en nombres entiers.
 \end{td-exo}
 
 % ----- Solutions exo 6 ----- %
