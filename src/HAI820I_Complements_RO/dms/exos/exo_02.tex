@@ -52,7 +52,7 @@
         \item Expliciter le problème dual du problème \(P_1\) et le comparer au programme \(D_1\).
         Retrouver ainsi la borne précédente faisant intervenir les zones de controle.
 
-        \item Que pensez-vous de la qualité des bornes précédentes pour l'instance donnée par la figure 1 répartie en deux groupes distants?
+        \item Que pensez-vous de la qualité des bornes précédentes pour l'instance donnée par la figure~\ref{fig:dm1_ex02_f1} répartie en deux groupes distants?
 
         \input{../assets/tikz/dm1_ex02_f1.tex}
 
@@ -79,7 +79,7 @@
         Expliciter le dual du problème \(P_2\).
         Montrer que toute borne obtenue à l'aide de douves peut aussi être obtenue à l'aide d'une contrainte de sous-tour.
 
-        \item On considère l'instance donnée par la figure 2. 
+        \item On considère l'instance donnée par la figure~\ref{fig:dm1_ex02_f2}. 
         
         \input{../assets/tikz/dm1_ex02_f2.tex}
         On prend la distance \(L_1\) et non la distance euclidienne.
@@ -123,8 +123,7 @@
             De plus, les solutions de \(P_1\) ne sont pas forcément admissibles pour le \textsc{Voyageur de Commerce}.
             Prenons l'exemple suivant avec le graphe \(G\) de la figure~\ref{fig:dm1_ex02_f3} ci-dessous:
 
-            \vspace{9px}
-            \input{../assets/tikz/dm1_ex02_f1.tex}
+            \input{../assets/tikz/dm1_ex02_f3.tex}
 
             On peut voir que la solution au problème \(P_1\) sur \(G\) où la distance entre les sommets est, par simplicité, la distance euclidienne donne
             \begin{equation*}
@@ -236,6 +235,79 @@
             \begin{equation*}
                 \sum_{\{i, j\}\in S} d_{ij} \geq \sum_{i=1} 2 r_i + 2\delta + 2 \ol\delta
             \end{equation*}
+
+            \item La nouvelle contrainte rajoutée peut être vue comme suit: sur l'ensemble des sommets de \(V\) et de \(\ol V\), il doit y avoir au moins deux arêtes qui les relient, c'est à dire que le tour doit traverser au moins deux fois la frontière entre \(V\) et \(\ol V\).
+            Alors, le problème \(P_2\) s'exprime comme suit:
+            \begin{equation*}
+                P_2 = 
+                \begin{cases}
+                    \min \sum_{\{i,j\}\in E} d_{ij} x_{ij},\ x\in\bb R^E\\
+                    \sum_{j:\{i,j\}\in E} x_{ij} = 2,\ \forall i \in \{1,\ldots,n\}\\
+                    \sum_{\{i,j\}\in E, i\in V, j\in \ol V} x_{ij} \geq 2\\
+                    x_{ij} \geq 0,\ \forall \{i,j\} \in E
+                \end{cases}
+            \end{equation*}
+            En introduisant une variable de dualité \(z\) pour la nouvelle contrainte, on trouve que le dual de \(P_2\) est:
+            \begin{equation*}
+                \mathsf{Dual}(P_2) =
+                \begin{cases}
+                    \max \sum_{i=1}^n 2y_i + 2z \\
+                    y_i + y_j + z \le d_{ij}, \quad \forall \{i,j\}\in E, i\in V, j\in \ol V \\
+                    y_i + y_j \le d_{ij}, \quad \forall \{i,j\}\in E, i,j\in V \text{ ou } i,j\in \ol V \\
+                    z \geq 0
+                \end{cases}
+            \end{equation*}
+
+            Soit une famille de zones de contrôle de rayons \(r_i\) et deux douves centrées en \(V\) et \(\ol V\) de largeurs \(\delta\) et \(\ol\delta\) ne s'intersectant pas.
+
+            On définit une solution duale par
+            \begin{equation*}
+                y_i = r_i, \qquad z = \delta + \ol\delta.
+            \end{equation*}
+
+            La valeur de l'objectif dual est alors
+            \begin{equation*}
+                \sum_{i=1}^n 2y_i + 2z
+                =
+                \sum_{i=1}^n 2r_i + 2(\delta+\ol\delta)
+                =
+                \sum_{i=1}^n 2r_i + 2\delta + 2\ol\delta,
+            \end{equation*}
+            qui correspond exactement à la borne obtenue à l'aide des douves.
+
+            Les contraintes duales sont satisfaites car les zones de contrôle impliquent
+            \begin{equation*}
+                r_i + r_j \leq d_{ij}
+            \end{equation*}
+            pour les arêtes internes à \(V\) ou \(\ol V\), et l'absence d'intersection des douves implique
+            \begin{equation*}
+                r_i + r_j + \delta + \ol\delta \leq d_{ij}
+            \end{equation*}
+            pour les arêtes reliant \(V\) et \(\ol V\).
+
+            Ainsi toute borne obtenue à l'aide de douves correspond à une solution réalisable du dual de \(P_2\).
+
+            \item Une visualisation de l'instance donnée par la figure~\ref{fig:dm1_ex02_f2} est donnée dans la figure~\ref{fig:dm1_ex02_f5} ci-dessous:
+
+            \input{../assets/tikz/dm1_ex02_f5.tex}
+
+            La distance \(L_1\) correspond à la distance de Manhattan ce qui donne cette forme de diamants pour les disques.
+
+            On a étendu les autres notions comme indiqué dans la figure~\ref{fig:dm1_ex02_f5}.
+            Alors, on peut choisir les rayons des différents objets de manière optimale comme suit:
+            \begin{itemize}
+                \item Pour les zones de contrôle, on peut choisir \(r_i = 1\) pour \(i\in \{1,2,3,4\}\) et \(r_5 = 2\).
+                \item Pour les douves, on choisit un rayon de \(\delta = 0.5\) et nos deux regions sont \(V = \{1, 3, 5\}\) et \(\ol V = \{2, 4\}\).
+            \end{itemize}
+            Avec ce choix, on a
+            \begin{equation*}
+                \sum_{i=1}^n 2r_i + 2\delta + 2\ol\delta = 2(1+1+1+1+2) + 2(0.5) + 2(0.5) = 14,
+            \end{equation*}
+            ce qui correspond à la longueur minimale d'un tour dans ce cas.
+
+            On a trouvé un tour de longueur 14, ici \(1 \to 2 \to 4 \to 5 \to 3 \to 1\), donc la longueur minimale d'un tour est bien de 14.
+
+            On peut d'ailleurs remarquer sur la figure qu'on rentre et qu'on sort bien de chaque zone de controle et de chaque douve exactement deux fois, comme attendu par les résultats précédents.
         \end{enumerate}
 	\end{td-sol}
 }{}
