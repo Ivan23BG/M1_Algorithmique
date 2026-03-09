@@ -1,0 +1,1 @@
+set optimizer attribute(model, "seconds", T)

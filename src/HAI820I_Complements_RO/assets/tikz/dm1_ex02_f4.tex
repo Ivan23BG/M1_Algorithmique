@@ -46,10 +46,10 @@
             % draw outline (with overlaps) first then fill
             \begin{scope}[on background layer]
                 \foreach \v in {2,3,4,5} {
-                    \draw[fill=green!30, thick, draw=green] (\v) circle (\Ra);
+                    \draw[fill=none, thick, draw=green] (\v) circle (\Ra);
                 }
                 \foreach \v in {1,6} {
-                    \draw[fill=green!30, thick, draw=green] (\v) circle (\Rb);
+                    \draw[fill=none, thick, draw=green] (\v) circle (\Rb);
                 }
                 \foreach \v in {2,3,4,5} {
                     \fill[green!30] (\v) circle (\Rta);

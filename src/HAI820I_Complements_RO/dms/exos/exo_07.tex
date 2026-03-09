@@ -1,11 +1,94 @@
 % ----- Consignes exo 7 ----- %
-\begin{td-exo}[exo7]\, % 7 
+\begin{td-exo}[Comparaison de formulations pour le problème du voyageur de commerce]\,\\ % 7 
+	Le problème du \textsc{Voyageur de commerce} consiste, étant donné un ensemble de villes séparées par des distances données, à trouver le plus court chemin qui relie toutes les villes.
+	Pour chaque paire de villes \(i\) et \(j\), on note \(c_{ij}\) la distance entre les villes \(i\) et \(j\).
+	Le problème consiste à trouver le plus court cycle hamiltonien couvrant tous les noeuds du graphe.
+	C'est à dire, trouver le plus court cycle qui passe par toutes les villes exactement une fois.
+	De nombreuses formulations existent pour ce problème.
+	Soit \(x_{ij} = 1\) si l'arc \((i,j)\) est emprunté par la solution et \(0\) sinon, tandis que la variable réelle \(y_i\) indique l'ordre du noeud \(i\) dans la solution optimale.
+	On a:
+	\begin{equation*}
+		MTZ = 
+		\begin{cases}
+			\min z = \sum_{i=1}^n \sum_{j=1}^n c_{ij} x_{ij} \\
+			\sum_{i,j} x_{ij} = 1 \quad \forall i \in \{1, \ldots, n\} \\
+			\sum_{i,j} x_{ij} = 1 \quad \forall j \in \{1, \ldots, n\} \\
+			x_{ij} (n-1) + y_i - y_j \leq n-2 \quad \forall i,j \in \{1, \ldots, n\}, i \neq j \\
+			x_{ij} \in \{0,1\} \quad \forall i,j \in \{1, \ldots, n\} \\
+			y_i \geq 0 \quad \forall i \in \{1, \ldots, n\}
+		\end{cases}
+	\end{equation*}
+	avec à chaque fois, \(i \neq j\).
+
+	Il existe de nombreuses formulations alternatives pour ce problème, par exemple:
+	\begin{equation*}
+		SF = 
+		\begin{cases}
+			\min z = \sum_{i=1}^n \sum_{j=1}^n c_{ij} x_{ij} \\
+			\sum_{i,j} x_{ij} = 1 \quad \forall i \in \{1, \ldots, n\} \\
+			\sum_{i,j} x_{ij} = 1 \quad \forall j \in \{1, \ldots, n\} \\
+			q_{ij} \leq (n-1) x_{ij} \quad \forall i,j \in \{1, \ldots, n\}, i \neq j \\
+			\sum_{j=1}^n q_{1j} = n-1 \\
+			\sum_{i\neq j} q_{ji} - \sum_{i\neq j} q_{ij} = 1 \quad \forall j \in \{2, \ldots, n\} \\
+			x_{ij} \in \{0,1\} \quad \forall i,j \in \{1, \ldots, n\} \\
+			0 \leq q_{ij} \leq n-1 \quad \forall i,j \in \{1, \ldots, n\}
+		\end{cases}
+	\end{equation*}
+	où les variables \(x\) jouent le même rôle que dans la formulation \(MTZ\).
+	Enfin, la relaxation linéaire de ces deux formulations peut être améliorée en ajoutant les inégalités suivantes:
 	
+	\begin{equation}\label{eq:exo07_e01}
+		x_{ij} + x_{ji} \leq 1 \quad \forall i < j \in \{1, \ldots, n\}
+	\end{equation}
+
+	Vous devez coder les formulations \(MTZ\) et \(SF\) dans julia en utilisant le solveur Cbc.
+	Testez vos modèles sur l'instance jouet suivante:
+	\juliaFile{../assets/julia/exo_07_instance.jl}
+
+	Vous devez rendre un rapport contenant du texte et des formules, courbes (code en annexe) et répondant aux questions suivantes:
+	
+	\begin{enumerate}
+		\item Comparaison de \(MTZ\) et \(SF\):
+		
+		\begin{enumerate}
+			\item Expliquer le sens des variables \(q\) dans la formulation \(SF\).
+			Expliquer egalement le sens des trois types de contraintes impliquant les variables \(q\) (sans compter les bornes sur ces variables).
+
+			\item Donner la valeur des relaxations linéaires de ces formulations pour les instances disponibles au lien suivant:
+			\url{https://people.sc.fsn.edu/jburkardt/datasets/tsp/tsp.html}.
+
+			\item Quelle formulation est la plus efficace pour résoudre le problème avec les contraintes binaires?
+			N'hésitez pas à limiter le temps de calcul avec la commande:
+			
+			\juliaFile{../assets/julia/exo_07_time_limit.jl}
+			
+			où \(T\) est le nombre de secondes maximum allouées à l'algorithme de branch and bound.
+
+			\item Etait-ce prévisible à partir des valeurs obtenues pour les relaxations linéaires?
+		\end{enumerate}
+
+		\item Inégalité~\eqref{eq:exo07_e01} et \(SF\):
+
+		\begin{enumerate}
+			\item Rajouter les inégalités~\eqref{eq:exo07_e01}.
+			Que se passe-t-il avec la solution optimale de la relaxation linéaire?
+
+			\item Est-ce que l'inégalité~\eqref{eq:exo07_e01} rend la formulation plus efficace?
+
+			\item Etait-ce prévisible à partir des valeurs obtenues pour les relaxations linéaires avec et sans cette inégalité?
+
+			\item Quel est le sens de l'inégalité~\eqref{eq:exo07_e01}?
+
+			\item Montrer un exemple de solution fractionnaire pour la relaxation linéaire de \(MTZ\) ou \(SF\) qui ne satisfait pas la contrainte~\eqref{eq:exo07_e01}.
+		\end{enumerate}
+
+		\item Procéder à des tests pour comparer les deux méthodes.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 7 ----- %
 \iftoggle{showsolutions}{ 
-	\begin{td-sol}[]\ % 7
-		
+	\begin{td-sol}[]\,\\ % 7
+		On ne traitera pas cet exercice dans ce papier.
 	\end{td-sol}
 }{}
