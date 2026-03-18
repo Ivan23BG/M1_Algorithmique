@@ -45,6 +45,7 @@
 \newcommand{\becomes}{\begin{center}\(\downarrow\)\end{center}}
 
 
+\usepackage{subcaption}
 \usepackage{floatrow}
 \usepackage{caption}
 \usepackage{cases}
@@ -62,10 +63,6 @@
     comment=[l]{\#},
     morestring=[b]", % chktex 18
 }
-\definecolor{codebg}{RGB}{245,245,245}   % very light gray
-\definecolor{codeborder}{RGB}{220,220,220} 
-\definecolor{keywordcolor}{RGB}{0,0,150}
-\definecolor{commentcolor}{RGB}{120,120,120}
 \lstdefinestyle{julia-style}{
     language=julia, % new language
     basicstyle=\ttfamily\small,
@@ -75,7 +72,7 @@
     backgroundcolor=\color{codebg},
     frame=single,
     framerule=0.5pt,
-    rulecolor=\color{codeborder},
+    rulecolor=\color{codeframe},
     tabsize=2,
     columns=fullflexible,
     keepspaces=true,
@@ -99,7 +96,7 @@
     backgroundcolor=\color{codebg},
     frame=single,
     framerule=0.5pt,
-    rulecolor=\color{codeborder},
+    rulecolor=\color{codeframe},
     tabsize=2,
     columns=fullflexible,
     keepspaces=true,

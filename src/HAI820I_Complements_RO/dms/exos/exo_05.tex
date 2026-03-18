@@ -5,12 +5,13 @@
 	\begin{enumerate}
 		\item Donner le programme linéaire en nombres entiers qui modélise le problème (version minimum et maximum).
 
-		\item Donner les équations des contraintes pour le graphe donné par la figure XX% add ref here
-		ci-dessous pour la version minimum.
+		\item Donner les équations des contraintes pour le graphe donné par la figure~\ref{fig:dm1_ex05_f1} ci-dessous pour la version minimum.
 
-		\item Donner une solution optimale notée \(z(ILP)\) pour la figure XX.\ % add ref here
+		\input{../assets/tikz/dm1_ex05_f1.tex}
 
-		\item Donner une solution pour le programme relaxé notée \(z(LP)\) pour la figure XX.\ % add ref here
+		\item Donner une solution optimale notée \(z(ILP)\) pour la figure~\ref{fig:dm1_ex05_f1}.
+
+		\item Donner une solution pour le programme relaxé notée \(z(LP)\) pour la figure~\ref{fig:dm1_ex05_f1}.
 
 		\item Conclure sur la pertinence de la formulation.
 
@@ -18,15 +19,67 @@
 		\begin{equation*}
 			\forall S \subseteq V: |S| \text{ impair} \implies \sum_{e \in E(S)} x_e \leq \frac{|S|-1}{2}
 		\end{equation*}
-		et vérifier les équations sur l'exemple donné à la figure XX % add ref here
-		sur un triangle.
+		et vérifier les équations sur l'exemple donné à la figure~\ref{fig:dm1_ex05_f1} sur un triangle.
 
 		\item Donner une description sous forme de programme linéaire en nombres entiers du problème du couplage maximal de cardinalité minimum (CMCM). C'est à dire, on cherche un couplage maximal \(C\) tel que pour tout couplage maximal \(C'\), on ait \(|C| \leq |C'|\).
 
 		\item Decrire un algorithme polynomial de \(2\)-approximation du problème du couplage maximal.
 
 		\item Représentation du polytope du couplage. 
-		% TODO: TO FILL
+		
+		Le vecteur caractéristique des couplages dans \(G\) peuvent être vu comme des points de \(\bb R^m\) avec \(m = |E|\). 
+		Ainsi
+
+		\begin{definition}
+			Pour un graphe \(G\) donné, le polytope \(M\) du couplage est l'envelopppe convexe de tous les couplages dans \(G\).
+			Ainsi
+			\begin{equation*}
+				M = \left\{ \sum_i \lambda_i M_i \ \mid\ \forall i, \lambda_i \geq 0,\ M_i \text{ est un couplage dans } G,\ \sum_i \lambda_i = 1 \right\}
+			\end{equation*}
+		\end{definition}
+		\begin{definition}
+			Pour un graphe \(G\) donné, le polytope fractionnaire \(FM\) du couplage est défini comme la région réalisable pour le programme relaxé l'enveloppe convexe de tous les couplages dans \(G\).
+			Ainsi
+			\begin{equation*}
+				FM = \left\{ \sum_i \lambda_i M_i \ \mid\ \forall i, \lambda_i \geq 0,\ M_i \text{ est un couplage dans } G,\ \sum_i \lambda_i = 1 \right\}
+			\end{equation*}
+		\end{definition}
+		La différence entre \(FM\) et \(M\) porte sur la relaxation des contraintes d'intégrité \(x_\varepsilon \in \ff{0, 1}\) à la place de \(x_\varepsilon \in \{0, 1\}\).
+
+		On peut étendre ces définitions en prenant des couplages parfaits à la place des couplages en considérant \(PM\) et \(FPM\).
+
+		\begin{enumerate}
+			\item Pour les graphes donnés par la figure~\ref{fig:dm1_ex05_f2} ci-dessous, donner pour chacun l'ensemble des points possibles pour le programme linéaire en nombres entiers et le polytope du couplage \(M\) associé.
+
+			\input{../assets/tikz/dm1_ex05_f2.tex}
+
+			\item Montrer les propositions suivantes:
+
+			\begin{enumerate}
+				\item \(M \subseteq FM\),
+
+				\item Si \(G\) est biparti alors \(M = FM\).
+				Pour cela procédons par contradiction.
+				Supposons que \(x\) soit un sommet non entier.
+				Définissions \(G_x = (V, E_x)\) où \(E_x = \{e \in E \mid x_e \notin \{0, 1\}\}\).
+
+				\begin{itemize}
+					\item Supposons que \(G_x\) possède un cycle \(C\).
+					Définir deux couplages \(x^+\) et \(x^-\) obtenus à partir de \(x\) en supprimant et ajoutant un \(\varepsilon\) (à vous de le définir).
+					\item Supposons que \(G_x\) ne possède pas de cycle.
+					Définir deux couplages \(x^+\) et \(x^-\) obtenus à partir de \(x\) en supprimant et ajoutant un \(\varepsilon\) (à vous de le définir).
+				\end{itemize}
+
+				\item Si \(G\) est non biparti, alors \(M \neq FM\).
+			\end{enumerate}
+
+			\item Dans le cas du triangle, positionner le point de coordonnées \(\left(\frac{1}{2}, \frac{1}{2}, \frac{1}{2}\right)\).
+			Conclure sur son appartenance au polytope.
+			Conclure sur le programme linéaire en nombres entiers donné ci-dessus.
+
+			\item Montrer que pour les graphes bipartis, le programme relaxé donne un couplage comme une solution optimale.
+			Pour cela, comparer les sommets du polytope du couplage fractionnaire et du polytope du couplage.
+		\end{enumerate}
 	\end{enumerate}
 \end{td-exo}
 
