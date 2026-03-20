@@ -1,0 +1,55 @@
+% ----- Consignes exo 5 ----- %
+\begin{td-exo}[Autour du problème d'ordonnancement avec contraintes de précédence]\,\\ % 5 
+	On rappelle que le problème \(P \ \mid \text{prec}\ \mid C_{\max}\) est défini de la manière suivante:
+
+	\input{./exos/assets/exam1_ex05_1.tex}
+
+	\begin{enumerate}
+		\item On veut montrer que pour n'importe quel ordonnancement de liste \(LS\) on a
+		\begin{equation*}
+			\frac{C_{\max}^{LS}}{C_{\max}^\ast} \leq 2 - \frac{1}{m}
+		\end{equation*}
+
+		\begin{enumerate}
+			\item Pour cela, considérons la tache \(T_{i_1}\) dont la fin d'exécution coincide avec \(C_{\max}^{LS}\). 
+			Soit \(T_{i_2} = T_j \setminus T_j \in \Gamma^-(T_{i_1}) \land C_j = \max_{T_j \in \Gamma^-(T_{i_1})} C_i\) où \(C_i = t_i + p_i\) désigne la fin d'exécution de la tache \(i\) et \(\Gamma^-(T_{i_1})\) désigne l'ensemble des prédécesseurs de \(i_j\).
+
+			En procédant ainsi de suite, on a \(T_{i_k} = T_j \setminus T_j \in \Gamma^-(T_{i_{k-1}}) \land C_j = \max_{T_j \in \Gamma^-(T_{i_{k-1}})} CT_i\). On appellera \(P\) le chemin constitué de ces taches \(T_{i_1}, T_{i_2}, \ldots, T_{i_k}\).
+
+			Est-ce qu'il existe des processeurs (ou machines) inactifs entre la fin d'exécution d'un prédécesseur de \(T_{i_1}\) et le début d'exécution de \(T_{i_1}\)?
+
+			Est-ce qu'il existe des processeurs (ou machines) inactifs entre la fin d'exécution d'un prédécesseur de \(T_{i_k}\) et le début d'exécution de \(T_{i_k}, \forall k\)?
+			
+			Que pouvons-nous conclure sur les dates de début d'exécution des taches appartant au chemin \(P\)?
+
+			\item A partir de l'équation suivante, conclure sur le ratio:
+			\begin{equation*}
+				C_{\max}^{LS} = \frac{T_{\text{seq}} + T_{\text{idle}}}{m}
+			\end{equation*}
+
+			\item Pouvons-nous appliquer le même algorithme au problème \(P \ \mid \text{prec}, r_j \mid C_{\max}\), c'est-à-dire le même problème décrit ci-dessus mais avec le début des taches \(T_j\) qui ne peut se faire qu'après la date de disponibilité \(r_j\)?
+		\end{enumerate}
+
+		\item Montrer que la borne supérieure est atteinte.
+		Pour cela, considérer l'instance suivante:
+		\begin{itemize}
+			\item \(m\) taches indépendantes,
+			\item la tache \(m\) précède les taches \(m+1, m+2, \ldots, 2m\),
+			\item la tache \(2m + 1\) suit les taches \(m+1, m+2, \ldots, 2m\).
+		\end{itemize}
+		Les durées des taches sont les suivantes:
+		\begin{itemize}
+			\item \(p_1 = p_2 = \cdots = p_{m-1} = m - 1\),
+			\item \(p_m = \varepsilon\),
+			\item \(p_{m+1} = p_{m+2} = \cdots = p_{2m} = 1\),
+			\item \(p_{2m + 1} = m - 1\).
+		\end{itemize}
+	\end{enumerate}
+\end{td-exo}
+
+% ----- Solutions exo 5 ----- %
+\iftoggle{showsolutions}{ 
+	\begin{td-sol}[]\ % 5
+		% ca marche avec ineg triangulaire
+	\end{td-sol}
+}{}

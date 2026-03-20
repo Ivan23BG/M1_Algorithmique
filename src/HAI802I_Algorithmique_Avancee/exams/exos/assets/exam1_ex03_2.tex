@@ -1,0 +1,11 @@
+\begin{styledalgo}{Algorithme pour le Max 3D Matching}\label{alg:exam1_ex03_1}
+    \Input{Un ensemble \(S \subseteq X \times Y \times Z\) de triplets.}
+    \Output{Un couplage \(M \subseteq S\)}
+    \State \(M \gets \varnothing\) % chktex 1
+    \For{chaque triplet \((x,y,z) \in S\)}
+        \If{\((x,y,z)\) ne contredit pas \(M\)}
+            \State \(M \gets M \cup \{(x,y,z)\}\) % chktex 1
+        \EndIf % chktex 1
+    \EndFor % chktex 1
+    \State \textbf{return} \(M\) % chktex 1
+\end{styledalgo}

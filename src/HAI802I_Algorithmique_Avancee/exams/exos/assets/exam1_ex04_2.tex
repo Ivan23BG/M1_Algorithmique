@@ -1,0 +1,10 @@
+\begin{styledalgo}{Algorithme d'approximation pour le problème de \textsc{Weighted Vertex Cover}}
+    \State On commence par résoudre la relaxation du problème de \textsc{Weighted Vertex Cover}. % chktex 1
+
+    \State Soit \(V_0 = \left\{v \in V\ \mid\ x^\ast_v = 0\right\}, V_{1/2} = \left\{v \in V\ \mid\ x^\ast_v = \frac{1}{2}\right\}, V_1 = \left\{v \in V\ \mid\ x^\ast_v = 1\right\}\). % chktex 1
+
+    \State L'ensemble \(V_{1/2}\) utilise \(k\) couleurs pour être coloré par une coloration propre. % chktex 1
+    Soit \(C\) la classe de couleur \(c\) ayant le maximum de sommets.
+
+    \State Retourner \(V' = V_1 \cup (V_{1/2} \setminus C)\). % chktex 1
+\end{styledalgo}

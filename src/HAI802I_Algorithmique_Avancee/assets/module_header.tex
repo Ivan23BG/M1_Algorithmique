@@ -1,18 +1,14 @@
 % ============================================================================== 
-% GENERAL MATH SHORTCUTS
+% TIKZ STUFF
 % ==============================================================================
-
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}  % Absolute value with scalable bars
 \counterwithout{tdcounter}{section} 
 \usetikzlibrary{shapes,arrows,positioning,calc,fit,backgrounds,angles,quotes}
-% \newcommand{\becomes}{\begin{center}\(\downarrow\)\end{center}}
 
 
 % ============================================================================== 
 % JULIA CODE STUFF
 % ==============================================================================
-
-
 \usepackage{floatrow}
 \usepackage{caption}
 \usepackage{cases}
@@ -76,6 +72,7 @@
 % convenience macro
 \newcommand{\bashFile}[1]{\lstinputlisting[style=bash-style]{#1}}
 
+
 % ============================================================================== 
 % ALGORITHM STUFF
 % ==============================================================================
@@ -84,14 +81,50 @@
 \captionsetup[algorithm]{ %
     justification=raggedright,
     singlelinecheck=false,
-    % skip=10pt
 }
-% Reduce space around algorithm floats
-% \floatsetup[algorithm]{precode=\vspace{-40pt}, postcode=\vspace{-6pt}}
+
+\algnewcommand{\Input}[1]{\State \textbf{Input:} #1} % chktex 1
+\algnewcommand{\Output}[1]{\State \textbf{Output:} #1} % chktex 1
+
+\newenvironment{styledalgo}[1]
+{
+    \begin{algorithm}[H]
+    \hrule\vspace{-6pt}
+    \caption{#1}
+    \hrule\vspace{2pt}
+    \begin{algorithmic}
+}
+{
+    \end{algorithmic}
+    \vspace{2pt}\hrule
+    \end{algorithm}
+}
 
 
-\newcommand*\Let[2]{\State #1 $\gets$ #2} % chktex 1
-\algrenewcommand\alglinenumber[1]{
-    {\sf\footnotesize\addfontfeatures{Colour=888888,Numbers=Monospaced}#1}}
-\algrenewcommand\algorithmicrequire{\textbf{Input:}}
-\algrenewcommand\algorithmicensure{\textbf{Question:}}
+% ===============================================================================
+% PROBLEM ENVIRONMENT
+% ===============================================================================
+\algnewcommand{\Question}[1]{\State \textbf{Question:} #1} % chktex 1
+
+\newfloat{problemfloat}{H}{lop}
+\floatname{problemfloat}{Problème}
+
+\DeclareCaptionLabelFormat{problemformat}{#1~#2 --}
+\captionsetup[problemfloat]{
+    justification=raggedright,
+    singlelinecheck=false,
+    labelformat=problemformat,
+    labelsep=space,
+    labelfont=bf
+}
+
+\newcommand{\listofproblems}{\listof{problemfloat}{Liste des Problèmes}}
+
+\newenvironment{problem}[1]
+{
+    \noindent\captionof{problemfloat}{#1}
+    \begin{algorithmic}
+}
+{
+    \end{algorithmic}
+}
