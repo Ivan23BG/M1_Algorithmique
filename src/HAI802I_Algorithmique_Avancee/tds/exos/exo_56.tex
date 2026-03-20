@@ -1,11 +1,40 @@
 % ----- Consignes exo 56 ----- %
-\begin{td-exo}[title]\,\\ % 56 
-	
+\begin{td-exo}[Exemples de \(L\)-réductions de base]\,\\ % 56 
+	On rappelle les énoncés des deux problèmes suivants:
+
+	\input{./assets/td5_ex56_1.tex}
+	\input{./assets/td5_ex56_2.tex}
+
+	Faire les \(L\)-réductions sur les problèmes suivants:
+	\begin{enumerate}
+		\item \(2\)-\textsc{Satisfiabilite Maximale} \(\leq_L\) \textsc{Maximum} \(\neq 3\)-\textsc{SAT}
+
+		\item \textsc{Maximum} \(\neq 3\)-\textsc{SAT} \(\leq_L\) \textsc{Maximum Multi-Coupe}.
+		On propose la construction suivante:
+		\begin{constr}
+			Considérons une instance \(\varphi\) de \textsc{Maximum} \(\neq 3\)-\textsc{SAT} sur \(n\) variables et \(m\) clauses et supposons que chacune des \(m\) clauses de \(\varphi\) contient au moins un littéral.
+			\begin{itemize}
+				\item Pour toute variable \(x\) de \(\varphi\), la graphe \(G = f(\varphi)\) contient deux sommets \(v_x\) et \(v_{\ol{x}}\); ces sommets sont reliés entre eux par \(2n_x\) arêtes parallèles, où \(n_x\) est le nombre de fois que la variable \(x\) apparaît dans \(\varphi\).
+				Nous appelons ces arêtes ``\(v\)-arêtes'' pour indiquer qu'elles sont associées aux variables de \(\varphi\).
+
+				\item Pour chaque clause \(C = (y \lor z \lor w)\) de \(\varphi\), le graphe \(G\) contient un triangle sur les sommets \(v_y\), \(v_z\) et \(v_w\); pour chaque clause \(C = (y\lor z)\) de \(\varphi\), le graphe \(G\) contient deux arêtes parallèles entre les sommets \(v_y\) et \(v_z\).
+				Nous allons appeler ces arêtes ``\(c\)-arêtes'' pour indiquer qu'elles sont associées aux clauses de \(\varphi\).
+				La fonction \(f\) de la réduction est ainsi spécifiée.
+				Il est facile de voir que le graphe ainsi construit est un multigraphe, instance de \textsc{Maximum Multi-Coupe}.
+			\end{itemize}
+		\end{constr}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 56 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 56
-		
+		\begin{enumerate}
+			\item On considère la transformation suivante:
+			\begin{equation*}
+				\left(l_1^i, l_2^i\right) \mapsto \left(l_1^i, l_2^i, x\right) 
+			\end{equation*}
+			Alors, toute solution de \(2\)-\textsc{Satisfiabilite Maximale} est aussi une solution de \textsc{Maximum} \(\neq 3\)-\textsc{SAT}, il suffit de mettre \(x\) à faux. De plus, toute solution de \textsc{Maximum} \(\neq 3\)-\textsc{SAT} est aussi une solution de \(2\)-\textsc{Satisfiabilite Maximale}, il suffit d'ignorer les clauses contenant \(x\). Par conséquent, on a bien une \(L\)-réduction avec \(\alpha_1 = \alpha_2 = 1\).
+		\end{enumerate}
 	\end{td-sol}
 }{}

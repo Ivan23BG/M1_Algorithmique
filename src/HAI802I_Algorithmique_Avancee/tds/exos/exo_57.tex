@@ -1,11 +1,60 @@
 % ----- Consignes exo 57 ----- %
-\begin{td-exo}[title]\,\\ % 57 
-	
+\begin{td-exo}[Exemples de \(L\)-réductions sur les graphes]\, % 57 
+	\begin{enumerate}
+		\item Montrer que \textsc{Minimum Vertex Cover}-\(3\) est \(\mathcal{APX}\)-complet.
+		Utiliser la transformation proposée par la figure 9 % TODO rajouter ref figure ici
+		pour vous aider.
+		La réduction se fera à partir du problème \textsc{Minimum Vertex Cover}-\(4\).
+		Conclure que \textsc{Maximum Independent Set}-\(3\) est aussi \(\mathcal{APX}\)-complet.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 57 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 57
-		
+		\begin{enumerate}
+			\item On utilise la transformation \(f\) décrite dans la construction ci-dessus.
+			Soit \(s\) le nombre de sommets de degré 4. Soit \(k\) la taille d'un vertex cover de \(G\).
+			Alors, la transformation de \(G\) par \(f\) donne un vertex cover solution de taille \(k' = k + s\).
+			On a donc 
+			\begin{equation*}
+				|C'| = |C| + s
+			\end{equation*}
+			On sait que \(|E| \geq |V|\). De plus,
+			\begin{equation*}
+				\sum_{v \in V} \deg(v) = 2|E| \geq |E|
+			\end{equation*}
+			et on a aussi
+			\begin{equation*}
+				4 |C| \geq \sum_{v \in C} \deg(v) \geq |E| \geq |V| \geq s
+			\end{equation*}
+			Par conséquent, on a
+			\begin{equation*}
+				\begin{aligned}
+					\text{OPT}(G') 
+					=&\ \text{OPT}(G) + s \\
+					=&\ 5 \cdot \text{OPT}(G) \\
+					\implies&\ \alpha_1 = 5
+				\end{aligned}
+			\end{equation*}
+			On a aussi 
+			\begin{equation*}
+				|C| \leq |C'| - s
+			\end{equation*}
+			pour tout vertex cover. En particulier, 
+			\begin{equation*}
+				\text{OPT}(G) \leq \text{OPT}(G') - s
+			\end{equation*}
+			et
+			\begin{equation*}
+				\begin{aligned}
+					\text{OPT}(G) - |C| 
+					\leq&\ \text{OPT}(G') - s - (|C'| - s) \\
+					=&\ \text{OPT}(G') - |C'| \\
+					\implies&\ \alpha_2 = 1
+				\end{aligned}
+			\end{equation*}
+			Par conséquent, on a bien une \(L\)-réduction avec \(\alpha_1 = 5\) et \(\alpha_2 = 1\).
+		\end{enumerate}
 	\end{td-sol}
 }{}
