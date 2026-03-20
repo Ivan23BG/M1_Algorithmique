@@ -1,14 +1,32 @@
 % ----- Consignes exo 4 ----- %
-\begin{td-exo}[Autour de \textsc{Coupe maximum}]\,\\ % 4 
+\begin{td-exo}[Autour de \textsc{Coupe maximum}]\, % 4 
 	\input{../assets/tikz/td1_ex04_1.tex}
 
 	Réduire \textsc{Non Egal 3-SAT} à \textsc{Coupe maximum}. Conclure.
+	
 	\textit{Remarque}: vous verrez en master que coupe min est polynomiale meme si les aretes ont des poids.
 \end{td-exo}
 
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 4
-		
+		On supposera que dans les clauses de taille \(3\) on a pas à la fois \(x\) et \(\ol{x}\), sinon la clause est toujours satisfaite et on peut l'ignorer.
+		On suppose de plus que toute paire de clauses a au plus un littéral en commun. On procède alors à la construction suivante:
+		\begin{constr}
+			On crée un graphe \(G\) qui, à chaque littéral, crée un sommet \(v\) et un sommet \(\ol{v}\).
+			% voir construction
+
+			On obtient alors que le nombre d'arêtes sur ce graphe est égal à 3 fois le nombre de clauses de \(\varphi\) plus une par variable, soit \(3m + n\).
+			De plus, on a
+			\begin{equation*}
+				\sum_{x_i \in L} n_{x_i} = 3m
+			\end{equation*}
+			Alors, on cherche une coupe telle que
+			\begin{equation*}
+				C(S, \ol{S}) \geq 2m + n
+			\end{equation*}
+
+			Soit \(t\) une solution de \textsc{Non Egal 3-SAT}. Supposons que \(n\) variables sont mises à vrai, et donc \(n\) variables sont mises à faux. Alors, on a \(2m\) arêtes de clauses coupées et \(n\) arêtes de variables coupées, soit un total de \(2m + n\) arêtes coupées.
+		\end{constr}
 	\end{td-sol}
 }{}
