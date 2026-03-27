@@ -50,6 +50,26 @@
 % ----- Solutions exo 5 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 5
-		% ca marche avec ineg triangulaire
+		\begin{enumerate}
+			\item Sur le ratio d'ordonnancement de liste:
+			\begin{enumerate}
+				\item On obtient un chemin incompressible, les dates d'exécution ne peuvent être avancées.
+
+				\item On a bien 
+				\begin{equation*}
+					m\cdot C_{\max} = T_{\text{seq}} + T_{\text{idle}}
+				\end{equation*}
+				d'où
+				\begin{equation*}
+					\begin{aligned}
+						C_{\max} 
+						&= \frac{T_{\text{seq}} + T_{\text{idle}}}{m} \\
+						& \leq \frac{T_{\text{seq}} + (m-1) \sum_{i=1}^n P_i p}{m} \\
+						& = OPT + \left( 1 - \frac{1}{m} \right) OPT \\
+						& = \left( 2 - \frac{1}{m} \right) OPT
+					\end{aligned}
+				\end{equation*}
+			\end{enumerate}
+		\end{enumerate}
 	\end{td-sol}
 }{}
