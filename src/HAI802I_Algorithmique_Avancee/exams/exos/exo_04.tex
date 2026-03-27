@@ -23,6 +23,29 @@
 % ----- Solutions exo 4 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 4
-		
+		\begin{enumerate}
+			\item A remplir
+
+			\item Tous les sommets de couleur \(c\) forment un stable, donc ils sont reliés à \(V_{1/2} \setminus C\) par des arêtes.
+			Alors, \(V_1\) couvre les arêtes qui ne sont pas couvertes par \(V_{1/2} \setminus C\) et \(V_{1/2} \setminus C\) couvre les arêtes qui ne sont pas couvertes par \(V_1\).
+
+			\item On a le cout de la solution qui est:
+			\begin{equation*}
+				\begin{aligned}
+					&\sum_{v \in V_1} x^\ast_v w_v + \sum_{v \in V_{1/2} \setminus C} x^\ast_v w_v + \sum_{v \in V_0} x^\ast_v w_v \\
+					\leq & \sum_{v \in V_1} x^\ast_v w_v + \sum_{v \in V_{1/2} \setminus C} 2 x^\ast_v w_v + \sum_{v \in V_0} 2 x^\ast_v w_v \\
+					\leq & \sum_{v \in V_0 \cup V_1} x^\ast_v w_v + \sum_{v \in V_{1/2}} 2 x^\ast_v w_v - \frac{1}{k} \sum_{v\in V_{1/2}} 2 x^\ast_v w_v \\
+					\leq & 2 \cdot \sum_{v\in V} x^\ast_v w_v - \frac{2}{k} \sum_{v\in V_{1/2}} x^\ast_v w_v \\
+					\leq & 2 \cdot \sum_{v\in V} x^\ast_v w_v - \frac{2}{k} \sum_{v\in V} x^\ast_v w_v
+				\end{aligned}
+			\end{equation*}
+			Par le choix de \(C\) on a aussi:
+			\begin{equation*}
+				\begin{aligned}
+					&\sum_{v\in C} 2 x^\ast_v w_v \geq \frac{1}{k} \sum_{v\in V_{1/2}} 2 x^\ast_v w_v \\
+					\iff & - \sum_{v\in C} 2 x^\ast_v w_v \leq - \frac{1}{k} \sum_{v\in V_{1/2}} 2 x^\ast_v w_v \\
+				\end{aligned}
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}

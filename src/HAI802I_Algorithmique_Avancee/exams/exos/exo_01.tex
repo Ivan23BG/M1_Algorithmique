@@ -28,6 +28,18 @@
 % ----- Solutions exo 1 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 1
-		
+		\begin{enumerate}
+			\item Il suffit de rajouter un sommet \(\alpha\) qui domine le graphe.
+			Alors, tout vertex cover doit forcément contenir \(\alpha\) et sera donc connexe
+
+			\item A remplir
+
+			\item Il faut transformer chaque arête en triangle. 
+			Alors on obtient bien une réduction de \textsc{Vertex Cover} à \textsc{Dominating Set}.
+
+			\item Le problème est polynomial dans les graphes bipartis, il suffit de faire un couplage maximum.
+
+			\item Le problème est polynomial dans les graphes de degré maximum \(2\) car ils correspondent à des chemins et des cycles.
+		\end{enumerate}
 	\end{td-sol}
 }{}

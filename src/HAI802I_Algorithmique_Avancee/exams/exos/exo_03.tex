@@ -21,6 +21,13 @@
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 3
-		
+		\begin{enumerate}
+			\item L'algorithme a une complexité de \(O(n^2)\).
+
+			\item L'algorithme ne peut pas etre mieux que 3 approché, car on a un exemple de cas 3-approché. 
+			De plus, a chaque étape on dégage au pire 3 triplets de la solution optimale, alors on a forcément une approximation de facteur 3.
+
+			\item Il suffit de considérer 4 triangles dont 3 qui connectent à un sommet du triangle restant.
+		\end{enumerate}
 	\end{td-sol}
 }{}
