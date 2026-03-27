@@ -47,7 +47,9 @@
 					\leq & \sum_{v \in V_1} x^\ast_v w_v + \sum_{v \in V_{1/2} \setminus C} 2 x^\ast_v w_v + \sum_{v \in V_0} 2 x^\ast_v w_v \\
 					\leq & \sum_{v \in V_0 \cup V_1} x^\ast_v w_v + \sum_{v \in V_{1/2}} 2 x^\ast_v w_v - \frac{1}{k} \sum_{v\in V_{1/2}} 2 x^\ast_v w_v \\
 					\leq &\ 2 \cdot \sum_{v\in V} x^\ast_v w_v - \frac{2}{k} \sum_{v\in V_{1/2}} x^\ast_v w_v \\
-					\leq &\ 2 \cdot \sum_{v\in V} x^\ast_v w_v - \frac{2}{k} \sum_{v\in V} x^\ast_v w_v
+					\leq &\ 2 \cdot \sum_{v\in V} x^\ast_v w_v - \frac{2}{k} \sum_{v\in V} x^\ast_v w_v \\
+					\leq &\ \left(2 - 2/k\right) \cdot \sum_{v\in V} x^\ast_v w_v \\
+					\leq &\ \left(2 - 2/k\right) \cdot OPT_{ILP}
 				\end{aligned}
 			\end{equation*}
 		\end{enumerate}
