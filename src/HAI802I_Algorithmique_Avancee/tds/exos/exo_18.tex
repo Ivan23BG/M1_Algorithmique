@@ -1,11 +1,49 @@
 % ----- Consignes exo 18 ----- %
-\begin{td-exo}[title]\,\\ % 18 
-	
+\begin{td-exo}[\textsc{Vertex Cover} dans les planaires utilisant une 4-coloration]\, % 18 
+	% insert algorithm here
+	\begin{enumerate}
+		\item Rappeler le résultat de complexité pour le problème de l'étape 4-coloration.
+
+		\item Expliquer le fonctionnement de l'algorithme 6. % TODO: add ref to algorithm 6
+
+		\item Prouver la correction de l'algorithme 6. % TODO: add ref to algorithm 6
+
+		\item Montrer que le problème admet un ratio de \(\frac{3}{2}\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 18 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 18
-		
+		\begin{enumerate}
+			\item Le problème de la 4-coloration dans un graphe planaire est polynomial.
+
+			\item x
+
+			\item La couleur retenue est au moins de taille \(\frac{w}{4}\) où \(w\) est
+			\begin{equation*}
+				w = \sum_{v \in V} w(v)
+			\end{equation*}
+
+			On conserve les sommets de toutes les autres couleurs, ils couvrent donc les sommets de la couleur retenue. 
+			Comme ces sommets forment un stable, on couvre bien toutes les arêtes du graphe.
+
+			\item On a
+			\begin{equation*}
+				OPT_{LP} = \sum_{\substack{v\in V\\x^\ast_v = 1}} x_v c(v) + \sum_{\substack{v\in V\\x^\ast_v = \frac{1}{2}}} x_v c(v) 
+			\end{equation*}
+			Il en suit
+			\begin{equation*}
+				\begin{aligned}
+					S 
+					&= OPT_{LP} + \frac{1}{2} \mathsf{Cost}(\ol k) - \frac{1}{2} \mathsf{Cost}(k)\\
+					&\leq OPT_{LP} + \frac{w}{4} \\
+					&\leq OPT_{LP} + \frac{1}{2} OPT_{LP} \\
+					&\leq \frac{3}{2} OPT_{LP} \\
+					&\leq \frac{3}{2} OPT_{ILP} \\
+					& \implies \rho \leq \frac{3}{2}
+				\end{aligned}
+			\end{equation*}
+		\end{enumerate}
 	\end{td-sol}
 }{}
