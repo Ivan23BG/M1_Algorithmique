@@ -22,19 +22,7 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache TeX Live
-        id: cache-texlive
-        uses: actions/cache@v4
-        with:
-          path: |
-            /usr/share/texlive
-            /usr/share/texmf
-            /usr/bin/pdflatex
-            /usr/bin/latexmk
-          key: texlive-${{ runner.os }}-v1
-
       - name: Install TeX Live
-        if: steps.cache-texlive.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
