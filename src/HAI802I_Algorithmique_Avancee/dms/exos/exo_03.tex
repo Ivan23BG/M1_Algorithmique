@@ -1,11 +1,114 @@
 % ----- Consignes exo 3 ----- %
-\begin{td-exo}[title]\, % 3 
-	
+\begin{td-exo}[\textsc{Vertex Cover} dans les graphes bipartis et points extrêmes]\, % 3 
+	\begin{enumerate}
+		\item Donner le programme linéaire en nombres entiers pour le problème du \textsc{Vertex Cover}.
+
+		\item On veut montrer que dans le cas où \(G\) est un graphe biparti \(G = ((A \sqcup B), E)\) alors l'ensemble des points extrêmes admet des valeurs entières.
+
+		\begin{enumerate}
+			\item Pour cela, nous allons procéder à une preuve par contraposée.
+			Supposer que \(x\) est un point extrême défini de la manière suivante: \(x = \left(x_1,x_2,\ldots,x_n\right)\) admet au moins une coordonnée non entière.
+			Supposons qu'il existe une coordonnée \(x_v = \frac{1}{2}\) dans \(x\).
+
+			Soit \(t = (t_1,\ldots,t_n)\) et \(w = (w_1,\ldots,w_n)\) deux nouveaux points définis de la manière suivante:
+			\begin{equation*}
+				t_i = 
+				\begin{cases}
+					x_i &\text{ si } x_i \text{ entier}\\
+					0  &\text{ si } x_i =\frac{1}{2} \text{ et } i \in A\\
+					1  &\text{ si } x_i =\frac{1}{2} \text{ et } i \in B\\
+				\end{cases}
+				\quad
+				w_i = 
+				\begin{cases}
+					x_i &\text{ si } x_i \text{ entier}\\
+					0  &\text{ si } x_i =\frac{1}{2} \text{ et } i \in B\\
+					1  &\text{ si } x_i =\frac{1}{2} \text{ et } i \in A\\
+				\end{cases}
+			\end{equation*}
+			Vérifier que
+			\begin{equation*}
+				x = \frac{1}{2} t + \frac{1}{2} w.
+			\end{equation*}
+
+			\item Montrer que \(t\) et \(w\) sont deux points extrêmes.
+		\end{enumerate}
+
+		\item Conclure sur l'existence d'un algorithme polynomial pour résoudre le \textsc{Vertex Cover} dans les graphes bipartis.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 3
-		
+		\begin{enumerate}
+			\item On rappelle que le programme linéaire associé au problème de \textsc{Vertex Cover} s'énonce comme suit:
+			\begin{equation*}
+				ILP = 
+				\begin{cases}
+					\min(z) = \sum_{i=1}^n x_i \\
+					x_i + x_j \geq 1,&\forall (x_i, x_j) \in E\\
+					x_i \in \left\{0, 1\right\},&\forall i \in \left\{1, \ldots, n\right\}
+				\end{cases}
+			\end{equation*}
+			où \(n\) correspond au nombre de sommets de \(G\).
+
+			\item On montre dans la suite que dans le cas d'un graphi biparti, les points extrêmes sont à valeurs entières:
+			
+			\begin{enumerate}
+				\item On procède par disjonction de cas:
+				\begin{itemize}
+					\item Si \(x_i\) est entier alors on a
+					\begin{equation*}
+						\begin{aligned}
+							x_i 
+							&= \frac{1}{2} t_i + \frac{1}{2} w_i\\
+							&= \frac{1}{2} x_i + \frac{1}{2} x_i\\
+							&= x_i
+						\end{aligned}
+					\end{equation*}
+					\item Si \(x_i\) est non entier et \(i\in A\) alors on a
+					\begin{equation*}
+						\begin{aligned}
+							x_i 
+							&= \frac{1}{2} t_i + \frac{1}{2} w_i\\
+							&= \frac{1}{2} \cdot 0 + \frac{1}{2} \cdot 1\\
+							&= \frac{1}{2}\\
+							&= x_i
+						\end{aligned}
+					\end{equation*}
+					\item Si \(x_i\) est non entier et \(i\in B\) alors on a
+					\begin{equation*}
+						\begin{aligned}
+							x_i 
+							&= \frac{1}{2} t_i + \frac{1}{2} w_i\\
+							&= \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot 0\\
+							&= \frac{1}{2}\\
+							&= x_i
+						\end{aligned}
+					\end{equation*}
+				\end{itemize}
+				Alors, pour tout \(i\) on a \(x_i = \frac{1}{2} t_i + \frac{1}{2} w_i\) donc
+				\begin{equation*}
+					x = \frac{1}{2} t + \frac{1}{2} w
+				\end{equation*}
+
+				\item Montrons que \(t\) et \(w\) satisfont les contraintes du programme linéaire associé au problème de \textsc{Vertex Cover}.
+				Soit \((i, j) \in E\) une arête de \(G\). Alors, on a les cas suivants:
+				\begin{itemize}
+					\item Si \(x_i\) et \(x_j\) sont entiers alors \(t_i = w_i = x_i\) et \(t_j = w_j = x_j\) donc \(t_i + t_j = w_i + w_j = x_i + x_j \geq 1\).
+					\item S'ils sont tous deux égaux à \(\frac{1}{2}\) car \(G\) est un graphe biparti (donc \(i\) et \(j\) ne peuvent pas être dans le même ensemble \(A\) ou \(B\)). Alors, on a \(t_i + t_j = 0 + 1 = 1\) et \(w_i + w_j = 1 + 0 = 1\)
+					\item Si au plus un des deux sommets \(i\) ou \(j\) est entier alors on a \(t_i + t_j \geq 1\) et \(w_i + w_j \geq 1\) (car au moins un des deux sommets est égal à 1 dans \(t\) et dans \(w\)).
+				\end{itemize}
+				Alors, \(t\) et \(w\) satisfont les contraintes du programme linéaire associé au problème de \textsc{Vertex Cover}.
+
+				Cela contredit l'hypothèse que \(x\) est un point extrême car il est alors combinaison convexe de \(t\) et \(w\) qui sont deux points différents de \(x\). Comme il existe au moins un sommet \(v\) tel que \(x_v = \frac{1}{2}\), on a \(t_v \neq w_v\), donc \(t \neq w\). Donc, \(x\) n'est pas un point extrême.
+				Donc, tous les points extrêmes du programme linéaire associé au problème de \textsc{Vertex Cover} dans les graphes bipartis sont à valeurs entières.
+			\end{enumerate}
+
+			\item Comme tous les points extrêmes du programme linéaire associé au problème de \textsc{Vertex Cover} dans les graphes bipartis sont à valeurs entières, alors on peut résoudre le problème de \textsc{Vertex Cover} dans les graphes bipartis en résolvant son programme linéaire associé (en utilisant un algorithme polynomial comme l'ellipsoïde).
+
+			Il existe donc un algorithme polynomial pour résoudre le problème de \textsc{Vertex Cover} dans les graphes bipartis.
+		\end{enumerate}
 	\end{td-sol}
 }{}
