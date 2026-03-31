@@ -1,6 +1,38 @@
 % ----- Consignes exo 8 ----- %
-\begin{td-exo}[title]\, % 8 
-	
+\begin{td-exo}[\textsc{Vertex Cover} avec un arbre de recherche en profondeur]\,\\ % 8 
+	Cet exercice est basé sur l'article de Carla Savage.
+
+	Nous utilisons un parcours en profondeur d'un graphe \(G\) à partir d'un sommet quelconque \(r\), soit \(T\) l'arbre obtenu.
+	Le vertex cover retenu est l'ensemble des sommets internes de \(T\) (c'est à dire les sommets de \(T\) qui ne sont pas des feuilles).
+	Dans le cas où \(r\) est une feuille on prend ce sommet.
+
+	Dans la suite nous notera \(M(T)\) (respectivement \(M(G)\)) un couplage maximum dans \(T\) (respectivement \(G\)).
+	Soit \(VC^\ast(G)\) un vertex cover optimal dans \(G\).
+
+	\begin{enumerate}
+		\item Expliquer pourquoi l'algorithme précédent donne une solution réalisable.
+
+		\item Rappeler pourquoi nous avons \(M(T) \leq M(G) \leq VC^\ast(G)\).
+
+		\item Soit \(L(T)\) la liste des feuilles de l'arbre \(T\). 
+		Montrer par récurrence sur la profondeur de l'arbre que \(|L(T)| = \sum_{v \in NL(T)} (\text{fils}(v) - 1) + 1\) où \(NL(T)\) est la liste des sommets internes et \(\text{fils}(v)\) le nombre de fils du sommet \(v\) dans \(T\).
+		Un sommet \(v\) est dit \defemph{free} par rapport à un couplage \(M\) s'il n'est pas couvert par \(M\).
+		Soit \(X\) l'ensemble des sommets de \(T\) qui sont free par rapport à \(M(T)\).
+		Montrer que \(|L(T)| \geq (|X| - 1) + 1 = |X|\).
+		Conclure en montrant que 
+		\begin{equation*}
+			\frac{|NL(T)|}{|VC^\ast(G)|} \leq 2.
+		\end{equation*}
+
+		\item Est-ce que cette borne est atteinte?
+
+		\item Montrer que si \(VC^\ast(G)\) est un vertex cover de \(G\) et \(T\) un arbre couvrant de \(G\) obtenu par parcours en profondeurs admettant \(VC^\ast(T)\) alors
+		\begin{equation*}
+			\frac{|VC^\ast(G)|}{|VC^\ast(T)|} \leq 2.
+		\end{equation*}
+
+		\item Montrer que la borne supérieure est atteinte.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 8 ----- %
