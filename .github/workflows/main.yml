@@ -55,6 +55,46 @@ jobs:
           git commit -m "Update generated PDFs [skip ci]"
           git push
 
+      - name: Set release date
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: echo "RELEASE_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Prepare renamed PDFs for release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p release_pdfs
+
+          find pdfs -name "*.pdf" -type f | while read filepath; do
+            # Strip leading "pdfs/" then replace all "/" with "_"
+            relative="${filepath#pdfs/}"
+            flat_name="${relative//\//_}"
+            cp "$filepath" "release_pdfs/$flat_name"
+          done
+
+          echo "Renamed PDFs:"
+          ls release_pdfs/
+
+          cd release_pdfs
+          zip -r ../all-pdfs.zip .
+
+      - name: Create GitHub Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}-${{ env.RELEASE_DATE }}
+          name: "Build #${{ github.run_number }} — ${{ env.RELEASE_DATE }}"
+          body: |
+            Automated PDF build from commit ${{ github.sha }}
+
+            **Triggered by:** ${{ github.actor }}
+            **Branch:** ${{ github.ref_name }}
+            **Date:** ${{ env.RELEASE_DATE }}
+          files: |
+            all-pdfs.zip
+            release_pdfs/*.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload PDFs for PRs
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
