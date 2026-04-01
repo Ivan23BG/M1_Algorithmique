@@ -26,12 +26,12 @@
 		On se contentera d'une preuve dans le cas où les ratios \(u_i/p_i\) sont strictement décroissants.
 
 		\item On considère le cas particulier (avec donc ici \(b_i = +\infty,\forall i\)):
-		\begin{equation*}
+		\begin{equation}\label{eq:ex3_1}
 			\begin{cases}
 				\max_{\bb N^3_+} 4z_1 + 5z_2 + 2 z_3\\
 				4z_1 + 7z_2 + 3z_3 \leq 19
 			\end{cases}
-		\end{equation*}
+		\end{equation}
 
 		\begin{enumerate}
 			\item Effectuer la mise à jour des quantités disponibles.
@@ -64,6 +64,155 @@
 % ----- Solutions exo 3 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 3
-		
+		\begin{enumerate}
+			\item Supposons que \(b_i < \lfloor M/p_i \rfloor\).
+			Alors, même si on peut rentrer \(\lfloor M/p_i \rfloor\) objets de type \(i\) dans le sac à dos, on ne peut en prendre que \(b_i\) au plus, et donc on peut remplacer \(b_i\) par \(\min\{b_i, \lfloor M/p_i \rfloor\}\) sans changer la solution du problème en valeurs entières.
+
+			Supposons que \(b_i \geq \lfloor M/p_i \rfloor\).
+			Alors, même si on peut prendre \(b_i\) objets de type \(i\), le sac n'a de place que pour \(\lfloor M/p_i \rfloor\) objets de type \(i\), et donc on peut remplacer \(b_i\) par \(\min\{b_i, \lfloor M/p_i \rfloor\}\) sans changer la solution du problème en valeurs entières.
+
+			La mise à jour des quantités disponibles est donc une opération qui ne change pas la solution du problème en valeurs entières.
+
+			\item Si les ratios \(u_i/p_i\) sont strictement décroissants, alors on peut trouver la solution du relaché continu en prenant les objets de type \(1\) jusqu'à ce que le sac soit plein ou que la quantité disponible soit atteinte, puis les objets de type \(2\) jusqu'à ce que le sac soit plein ou que la quantité disponible soit atteinte, et ainsi de suite.
+			En effet, si on prend un objet de type \(i\) alors qu'on pourrait prendre un objet de type \(j\) avec \(j < i\), alors pour un même poids, on aurait une utilité plus grande en prenant l'objet de type \(j\) plutôt que celui de type \(i\), ce qui contredirait le fait que les ratios \(u_i/p_i\) sont strictement décroissants.
+
+			Ainsi, la solution du relaché continu peut être calculée simplement en suivant cet ordre de priorité.
+
+			\item Avec \(b_i = +\infty\), on a un stock illimité de chaque type d'objet.
+			\begin{enumerate}
+				\item En mettant à jour les quantités disponibles, on obtient
+				\begin{equation*}
+					b_i = \min\{+\infty, \lfloor 19/p_i \rfloor\} = \lfloor 19/p_i \rfloor
+				\end{equation*}
+				En particulier, sur l'instance donnée dans l'équation~\eqref{eq:ex3_1}, on a 
+				\begin{equation*}
+					\begin{aligned}
+						b_1 &= \lfloor 19/4 \rfloor = 4\\
+						b_2 &= \lfloor 19/7 \rfloor = 2\\
+						b_3 &= \lfloor 19/3 \rfloor = 6
+					\end{aligned}
+				\end{equation*}
+
+				\item On applique la méthode décrite à la question précédente:
+				\begin{itemize}
+					\item on commence par calculer les ratios \(u_i/p_i\):
+					\begin{equation*}
+						\begin{aligned}
+							u_1/p_1 &= 4/4 = 1\\
+							u_2/p_2 &= 5/7 \approx 0.714\\
+							u_3/p_3 &= 2/3 \approx 0.667
+						\end{aligned}
+					\end{equation*}
+					\item on trie les types d'objets par ordre décroissant de ces ratios, ce qui correspond à l'ordre \(1, 2, 3\).
+					\item on prend les objets de type \(1\) jusqu'à ce que le sac soit plein ou que la quantité disponible soit atteinte. 
+					Avec la mise à jour des quantités disponibles, on peut prendre au maximum \(4\) objets de type \(1\), ce qui correspond à un poids de \(16\) et une utilité de \(16\).
+
+					\item il reste un poids à remplir de \(3\), et on peut prendre au maximum \(2\) objets de type \(2\). 
+					On en prend donc \(\frac{2}{14} \times 3 = \frac{3}{7}\) pour un poids de \(3\) et une utilité de \(\frac{5}{7} \times 3 = \frac{15}{7}\).
+				\end{itemize}
+				La solution du relaché continu est donc \(z_1 = 4, z_2 = \frac{3}{7}, z_3 = 0\).
+
+				\item La valeur associée à cette solution est
+				\begin{equation*}
+					4 \times 4 + 5 \times \frac{3}{7} + 2 \times 0 = 16 + \frac{15}{7} = \frac{127}{7} \approx 18.14
+				\end{equation*}
+			\end{enumerate}
+
+			\item En introduisant la variable d'écart \(\ol{z_1} = 4 - z_1\), on a
+			\begin{equation*}
+				\begin{aligned}
+					4z_1 + 7 z_2 + 3 z_3 + z_4 &= 19\\
+					4 \cdot \left(4 - \ol{z_1}\right) + 7 z_2 + 3 z_3 + z_4 &= 19\\
+					-4 \ol{z_1} + 7 z_2 + 3 z_3 + z_4 &= 19 - 16\\
+					-4 \ol{z_1} + 7 z_2 + 3 z_3 + z_4 &= 3
+				\end{aligned}
+			\end{equation*}
+
+			\item On part de l'égalité
+			\begin{equation*}
+			-4 \ol{z_1} + 7 z_2 + 3 z_3 + z_4 = 3
+			\end{equation*}
+			où \(\ol{z_1}, z_2, z_3, z_4 \in \bb{N}\).
+
+			On isole la variable \(z_2\):
+			\begin{equation*}
+				7 z_2 = 3 + 4\ol{z_1} - 3 z_3 - z_4
+				\ \iff\ 
+				z_2 = \frac{3}{7} + \frac{4}{7}\ol{z_1} - \frac{3}{7}z_3 - \frac{1}{7}z_4
+			\end{equation*}
+
+			La solution du relaché continu étant fractionnaire (avec \(z_2 = \frac{3}{7}\)), on applique une coupe de Gomory.
+
+			On considère les parties fractionnaires:
+			\begin{equation*}
+				\left\{\frac{3}{7}\right\} = \frac{3}{7}, \quad
+				\left\{\frac{4}{7}\right\} = \frac{4}{7}, \quad
+				\left\{-\frac{3}{7}\right\} = \frac{4}{7}, \quad
+				\left\{-\frac{1}{7}\right\} = \frac{6}{7}
+			\end{equation*}
+
+			La coupe de Gomory s'écrit alors:
+			\begin{equation*}
+				\frac{4}{7}\ol{z_1} + \frac{4}{7} z_3 + \frac{6}{7} z_4 \geq \frac{3}{7}
+			\end{equation*}
+
+			En multipliant par \(7\), on obtient:
+			\begin{equation*}
+				4\ol{z_1} + 4 z_3 + 6 z_4 \geq 3
+			\end{equation*}
+
+			Cette inégalité est satisfaite par tous les points entiers admissibles, mais elle est violée par la solution du relaché continu \((\ol{z_1}, z_2, z_3, z_4) = (0, \frac{3}{7}, 0, 0)\), car:
+			\begin{equation*}
+				4 \cdot 0 + 4 \cdot 0 + 6 \cdot 0 = 0 < 3
+			\end{equation*}
+
+			Ainsi, cette coupe élimine la solution fractionnaire sans exclure de solutions entières admissibles.
+
+			\item On considère le problème \(PR'\) obtenu en ajoutant la coupe de Gomory:
+			\begin{equation*}
+				4\ol{z_1} + 4 z_3 + 6 z_4 \geq 3
+			\end{equation*}
+
+			On montre que cette contrainte est active à l'optimum. 
+			En effet, comme les coefficients dans la contrainte sont positifs et que l'on cherche à maximiser l'utilité, il est optimal de minimiser \(\ol{z_1}, z_3\) et \(z_4\) tout en respectant cette contrainte. 
+			Ainsi, la contrainte est satisfaite à l'égalité:
+			\begin{equation*}
+				4\ol{z_1} + 4 z_3 + 6 z_4 = 3
+			\end{equation*}
+
+			Comme les variables sont entières, on cherche des solutions entières non négatives satisfaisant cette égalité. On remarque que \(z_4\) doit être nul (car \(6 z_4 \geq 6\) si \(z_4 \geq 1\)). On obtient donc:
+			\begin{equation*}
+				4\ol{z_1} + 4 z_3 = 3
+			\end{equation*}
+			ce qui est impossible avec des entiers. 
+			Ainsi, il faut relâcher légèrement et considérer les solutions admissibles de \(PR'\) satisfaisant:
+			\begin{equation*}
+				4\ol{z_1} + 4 z_3 + 6 z_4 \geq 3
+			\end{equation*}
+
+			On teste alors les solutions entières admissibles du problème initial. 
+			Par exemple, \(z_1 = 4,\, z_2 = 0,\, z_3 = 1\) donne un poids total de \(16 + 3 = 19\) (admissible),
+			et une valeur:
+			\begin{equation*}
+				4 \cdot 4 + 5 \cdot 0 + 2 \cdot 1 = 18 < \frac{127}{7}
+			\end{equation*}
+
+			On vérifie que cette solution satisfait la coupe:
+			\begin{equation*}
+				\ol{z_1} = 0,\, z_3 = 1,\, z_4 = 0 \implies 4 \cdot 0 + 4 \cdot 1 + 6 \cdot 0 = 4 \geq 3
+			\end{equation*}
+
+			On peut vérifier qu'aucune solution entière admissible ne donne une valeur strictement supérieure. Ainsi, la valeur optimale de \(PR'\) est \(18\), atteinte par exemple pour:
+			\begin{equation*}
+				(z_1, z_2, z_3) = (4, 0, 1)
+			\end{equation*}
+
+			On en conclut que la solution du problème relaxé renforcé par la coupe de Gomory est entière et correspond à une solution optimale du problème en nombres entiers.
+
+			\item Pour résoudre le problème du \textsc{Sac a dos} par une approche de séparation et évaluation, on peut faire un arbre de recherche où à chaque nœud, on résout le problème relaché continu pour obtenir une minorante de la valeur optimale du problème en nombres entiers.
+			Pour descendre dans l'arbre on sépare alors sur les variables qui prennent des valeurs fractionnaires dans la solution du relaché continu, en créant deux branches: une où la variable est inférieure ou égale à la partie entière de sa valeur dans le relaché continu, et une où elle est supérieure ou égale à la partie entière plus un.
+			En continuant ainsi, on finit par trouver une solution entière optimale, ou par prouver que le problème n'a pas de solution entière admissible.
+			% TODO: complete this with an actual example of branching 
+		\end{enumerate}
 	\end{td-sol}
 }{}
