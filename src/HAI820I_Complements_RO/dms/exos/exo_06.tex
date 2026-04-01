@@ -16,7 +16,45 @@
 
 % ----- Solutions exo 6 ----- %
 \iftoggle{showsolutions}{ 
-	\begin{td-sol}[]\ % 6
-		
+	\begin{td-sol}[]\,\\ % 6
+		On peut modéliser ce problème par le programme linéaire en nombres entiers suivant:
+		\begin{equation*}
+			\begin{cases}
+				\min \sum_{i=1}^{n-1} c_i x_i + h \sum_{i=1}^{n-1} \left( \sum_{j=1}^i x_j - d_i \right) \\
+				\sum_{j=1}^i x_j \geq d_i \quad \forall i = 1, \ldots, n-1 \\
+				x_i \leq M y_i \quad \forall i = 1, \ldots, n-1 \\
+				x_i \geq 0,\, y_i \in \{0,1\} \quad \forall i = 1, \ldots, n-1
+			\end{cases}
+		\end{equation*}
+		où \(M\) est une constante suffisamment grande (par exemple, \(M = \max_i d_i\)) pour garantir que \(x_i\) peut prendre n'importe quelle valeur admissible lorsque \(y_i = 1\), et que \(x_i\) doit être nul lorsque \(y_i = 0\).
+		\begin{itemize}
+			\item La fonction objectif minimise le coût total:
+			\begin{itemize}
+				\item La première somme \(\sum_{i=1}^{n-1} c_i x_i\) représente le coût de production.
+				\item La deuxième somme \(h \sum_{i=1}^{n-1} \left( \sum_{j=1}^i x_j - d_i \right)\) représente le coût de stockage, où \(\sum_{j=1}^i x_j - d_i\) est la quantité stockée à la fin de la semaine \(i\) qu'on multiplie par le coût de stockage \(h\), et ce pour chaque semaine \(i\).
+			\end{itemize}
+			\item La première contrainte garantit que la demande cumulée est satisfaite à chaque semaine.
+			La somme de toute la production jusqu'à la semaine \(i\) doit être au moins égale à la demande cumulée \(d_i\).
+			\item La deuxième contrainte lie la production \(x_i\) à la variable binaire \(y_i\) pour s'assurer que \(x_i\) est nul si aucune production n'est réalisée pendant la semaine \(i\).
+			Pour cela, on impose que \(x_i \leq M y_i\), ce qui signifie que si \(y_i = 0\), alors \(x_i\) doit être égal à zéro, et si \(y_i = 1\), alors \(x_i\) peut prendre n'importe quelle valeur jusqu'à \(M\), qu'on fixera suffisamment grande pour ne pas restreindre les solutions admissibles.
+		\end{itemize}
+
+		Une autre manière de modéliser ce problème serait d'utiliser des variables de stockage explicites pour chaque semaine, cela permettrait de simplifier la fonction objectif et les contraintes, mais la modélisation présentée ci-dessus est également valide et respecte les exigences du problème.
+
+		Voici une autre modélisation possible utilisant des variables de stockage explicites:
+		\begin{equation*}
+			\begin{cases}
+				\min \quad \sum_{i=1}^{n-1} c_i x_i + h \sum_{i=1}^{n-1} s_i \\
+				s_i = \sum_{j=1}^i x_j - d_i \quad \forall i = 1, \ldots, n-1 \\
+				x_i \leq M y_i \quad \forall i = 1, \ldots, n-1 \\
+				x_i \geq 0,\, s_i \geq 0,\, y_i \in \{0,1\} \quad \forall i = 1, \ldots, n-1
+			\end{cases}
+		\end{equation*}
+		où \(s_i\) représente la quantité stockée à la fin de la semaine avec \(s_0 = 0\).
+		On pourrait aussi calculer les \(s_i\) comme suit:
+		\begin{equation*}
+			s_i = s_{i-1} + x_i - (d_i - d_{i-1}) \quad \forall i = 1, \ldots, n-1
+			\quad \text{avec } s_0 = 0
+		\end{equation*}
 	\end{td-sol}
 }{}

@@ -15,6 +15,29 @@
 % ----- Solutions exo 8 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 8
-		
+		\begin{enumerate}
+			\item La formulation classique du problème du sac à dos est la suivante:
+			\begin{equation*}
+				\begin{cases}
+					\max \sum_{i=1}^n p_i z_i \\
+					\sum_{i=1}^n w_i z_i \leq W \\
+					z_i \in \{0,1\} \quad \forall i = 1, \ldots, n
+				\end{cases}
+			\end{equation*}
+			où \(p_i\) est le profit de l'objet \(i\), \(w_i\) est le poids de l'objet \(i\), \(W\) est la capacité du sac à dos, et \(z_i\) est une variable binaire indiquant si l'objet \(i\) est inclus dans le sac à dos ou non.
+
+			\item Pour améliorer la qualité de la formulation, on peut ajouter des coupes de Gomory ou d'autres types de coupes valides pour le problème du sac à dos. Par exemple, on peut ajouter les coupes suivantes:
+			\begin{equation*}
+				\sum_{i \in S} z_i \leq |S| - 1 \quad \forall S \subseteq \{1, \ldots, n\} \text{ tel que } \sum_{i \in S} w_i > W
+			\end{equation*}
+			ces coupes interdisent les combinaisons d'objets qui dépassent la capacité du sac à dos.
+			Plus précisément, si un ensemble d'objets \(S\) a un poids total supérieur à \(W\), alors au moins un de ces objets doit être exclu du sac à dos, ce qui est exprimé par la contrainte ci-dessus.
+			Une autre coupe possible est la suivante:
+			\begin{equation*}
+				\sum_{i=1}^n \frac{w_i}{W} z_i \leq 1
+			\end{equation*}
+			qui est une coupe de couverture linéaire.
+			Plus généralement, on peut ajouter des coupes de type ``cover'' ou ``knapsack cover'' qui sont basées sur les propriétés combinatoires du problème du sac à dos.
+		\end{enumerate}
 	\end{td-sol}
 }{}
