@@ -1,11 +1,72 @@
-% ----- Consignes exo 3 ----- %
-\begin{td-exo}[title]\, % 3 
+% ----- Consignes exo 2 ----- %
+\begin{td-exo}[Réduction polynomiale]\, % 2 
+	On considère le problème de \textsc{Minimal Square Sum} défini de la manière suivante:
 	
+	\begin{problem}{\textsc{Minimal Square Sum}}
+		\Input{Un ensemble fini \(A\), une fonction \(s\ \colon A \to \bb N\) et deux entier \(k\) et \(j\).}
+
+		\Question{Peut-on partitionner les éléments de \(A\) en \(k\) sous-ensembles \(A_1, A_2, \ldots, A_k\) tels que \(\sum_{i=1}^k {\left(\sum_{a \in A_i} s(a)\right)}^2 \leq j\)?}
+	\end{problem}
+
+	Montrer que le problème \textsc{Minimal Square Sum} est NP-complet.
+	La preuve se fait à partor du problème de \textsc{Partition Problem} qui est lui aussi NP-complet et défini de la manière suivante:
+
+	\begin{problem}{\textsc{Partition Problem}}
+		\Input{Un ensemble fini \(A\) et une fonction \(s\ \colon A \to \bb N\).}
+
+		\Question{Existe-t-il un sous-ensemble \(A' \subseteq A\) tel que \(\sum_{a \in A'} s(a) = \sum_{a \in A \setminus A'} s(a)\)?}
+	\end{problem}
 \end{td-exo}
 
-% ----- Solutions exo 3 ----- %
+% ----- Solutions exo 2 ----- %
 \iftoggle{showsolutions}{ 
-	\begin{td-sol}[]\ % 3
-		
+	\begin{td-sol}[]\ % 2
+		Soit \(A\) un ensemble fini et \(s\ \colon A \to \bb N\) une fonction qui encode le poids des éléments de \(A\).
+
+		% Soit \(A' \subseteq A\) tel que 
+		% \begin{equation*}
+		% 	\sum_{a \in A'} s(a) = \sum_{a \in A \setminus A'} s(a)
+		% \end{equation*}
+		% On a donc une solution au problème de \textsc{Partition Problem}.
+
+		On construit alors une instance du \textsc{Minimal Square Sum} de la manière suivante:
+		\begin{itemize}
+			\item On garde le même ensemble d'éléments \(A\),
+			\item on garde la même fonction de poids \(s\),
+			\item on pose \(k = 2\),
+			\item on pose \(j = \frac{S^2}{2}\) où \(S\) représente le poids total de \(A\).
+		\end{itemize}
+
+		Alors, pour résoudre le problème de \textsc{Minimal Square Sum}, il faut trouver \(A'\) tel que:
+		\begin{equation*}
+			\begin{aligned}
+				f(x)
+				&= \sum_{i=1}^{k} {\left( \sum_{a \in A_i} s(a)\right)}^2 \leq j\\
+				&= \sum_{i=1}^{2} {\left( \sum_{a \in A_i} s(a)\right)}^2 \leq \frac{S^2}{2}\\
+				&= {\left(\sum_{a \in A'} s(a)\right)}^2 + {\left(\sum_{a \in A \setminus A'} s(a)\right)}^2 \leq \frac{S^2}{2}\\
+			\end{aligned}
+		\end{equation*}
+		Soit \(x\) le poids total de l'ensemble \(A'\). On a alors
+		\begin{equation*}
+			\begin{aligned}
+				f(x)
+				&= {\left(\sum_{a \in A'} s(a)\right)}^2 + {\left(\sum_{a \in A \setminus A'} s(a)\right)}^2\\
+				&= x^2 + {\left(S - x\right)}^2\\
+				&= x^2 + S^2 + x^2 - 2Sx\\
+				&= 2x^2 - 2Sx + S^2
+			\end{aligned}
+		\end{equation*}
+		Cette fonction trouve son minimum en \(x = \frac{S}{2}\) (qu'on peut trouver par exemple en cherchant \(f'(x) = 0\)).
+		Pour minimiser le poids total des carrés il faut donc trouver une partition des poids en exactement \(f\left(\frac{S}{2}\right) = \frac{S}{2}\).
+
+		Si une partition parfaite existe alors on a \(f(x) = \frac{S}{2}\). Sinon, on a \(f(x) > \frac{S}{2}\) (car on est en dehors du minimum).
+		Plus précisément, comme on a posé \(j = \frac{S}{2}\), on vient de montrer que 
+		\begin{equation*}
+			f \leq j \ \iff \ \text{Une partition en deux ensemble de poids égal existe}
+		\end{equation*}
+
+		On a donc construit une réduction polynomiale du problème de \textsc{Partition Problem} au problème de \textsc{Minimal Square Sum}.
+
+		Comme \textsc{Partition Problem} est NP-complet et \textsc{Minimal Square Sum} est NP, \textsc{Minimal Square Sum} est NP-complet.
 	\end{td-sol}
 }{}
