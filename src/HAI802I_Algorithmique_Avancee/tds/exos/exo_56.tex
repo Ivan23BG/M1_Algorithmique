@@ -36,5 +36,34 @@
 			\end{equation*}
 			Alors, toute solution de \(2\)-\textsc{Satisfiabilite Maximale} est aussi une solution de \textsc{Maximum} \(\neq 3\)-\textsc{SAT}, il suffit de mettre \(x\) à faux. De plus, toute solution de \textsc{Maximum} \(\neq 3\)-\textsc{SAT} est aussi une solution de \(2\)-\textsc{Satisfiabilite Maximale}, il suffit d'ignorer les clauses contenant \(x\). Par conséquent, on a bien une \(L\)-réduction avec \(\alpha_1 = \alpha_2 = 1\).
 		\end{enumerate}
+
+		On se propose dans la suite de montrer les relations suivantes:
+		\begin{equation*}
+			\min \textsc{VC}(3) \prec_L \min \textsc{Dom}(6) \prec_L \min \textsc{Dom}(3) 
+		\end{equation*}
+
+		Montrons d'abord que \(\min \textsc{VC}(3) \prec_L \min \textsc{Dom}(6)\).
+		Soit \(G\) un graphe.
+		On propose la construction suivante:
+		\begin{equation*}
+			\forall (u, v) \in E(G),
+		\end{equation*}
+		On construit le triangle \((u, v, w)\).
+
+		Montrons maintenant qu'on a \(\forall k, \textsc{VC}(k) \approx \textsc{Dom}(k)\).
+
+		Si on a une solution à \textsc{VC}\((k)\), le même ensemble de sommets est bien une solution à \textsc{Dom}\((k)\) puisque tout sommet de \(G\) est soit dans la solution, soit adjacent à un sommet de la solution.
+
+		Si on a une solution à \textsc{Dom}\((k)\), on effectue les opérations suivantes:
+		\begin{itemize}
+			\item Si \(u\) ou \(v\) est dans la solution, on ajoute \(u\) et \(v\) à la solution.
+			\item Sinon, \(w\) est dans la solution, on ajoute alors \(u\) ou \(v\) à la solution.
+		\end{itemize}
+
+		On a donc égalité des solutions optimales pour les deux problèmes, et on a aussi égalité des solutions approximatives, ce qui montre que \(\textsc{VC}(k) \approx \textsc{Dom}(k)\) avec \(\alpha = \beta = 1\).
+
+		Si on regarde maintenant le degré des graphes, dans un graphe subcubique, un sommet transformé en triangle a un degré au plus égal à 6, d'où la réduction de \(\textsc{VC}(3)\) à \(\textsc{Dom}(6)\).
+
+		Montrons maintenant que \(\min \textsc{Dom}(6) \prec_L \min \textsc{Dom}(3)\).
 	\end{td-sol}
 }{}
