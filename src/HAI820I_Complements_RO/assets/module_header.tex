@@ -45,15 +45,6 @@
 \newcommand{\becomes}{\begin{center}\(\downarrow\)\end{center}}
 
 
-\usepackage{subcaption}
-\usepackage{floatrow}
-\usepackage{caption}
-\usepackage{cases}
-
-
-\usepackage{listings}
-\usepackage{xcolor}
-
 % ----- Julia language definition -----
 \lstdefinelanguage{julia}{
     keywords={function, end, if, else, elseif, while, for, in, return, break, continue, struct, 
@@ -63,21 +54,7 @@
     comment=[l]{\#},
     morestring=[b]", % chktex 18
 }
-\lstdefinestyle{julia-style}{
-    language=julia, % new language
-    basicstyle=\ttfamily\small,
-    keywordstyle=\color{keywordcolor},
-    commentstyle=\color{commentcolor},
-    stringstyle=\color{verdant},
-    backgroundcolor=\color{codebg},
-    frame=single,
-    framerule=0.5pt,
-    rulecolor=\color{codeframe},
-    tabsize=2,
-    columns=fullflexible,
-    keepspaces=true,
-    showstringspaces=false,
-}
+
 % convenience macro
 \newcommand{\juliaFile}[1]{\lstinputlisting[style=julia-style]{#1}}
 
@@ -88,20 +65,7 @@
     comment=[l]{\#},
     morestring=[b]", % chktex 18
 }
-\lstdefinestyle{bash-style}{
-    language=bash,
-    basicstyle=\ttfamily\small,
-    keywordstyle=\color{keywordcolor},
-    commentstyle=\color{commentcolor},
-    backgroundcolor=\color{codebg},
-    frame=single,
-    framerule=0.5pt,
-    rulecolor=\color{codeframe},
-    tabsize=2,
-    columns=fullflexible,
-    keepspaces=true,
-    showstringspaces=false,
-}
+
 % convenience macro
 \newcommand{\bashFile}[1]{\lstinputlisting[style=bash-style]{#1}}
 

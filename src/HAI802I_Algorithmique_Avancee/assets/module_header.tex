@@ -16,13 +16,7 @@
 % ============================================================================== 
 % JULIA CODE STUFF
 % ==============================================================================
-\usepackage{floatrow}
-\usepackage{caption}
-\usepackage{cases}
 
-
-\usepackage{listings}
-\usepackage{xcolor}
 
 % ----- Julia language definition -----
 \lstdefinelanguage{julia}{
@@ -33,25 +27,7 @@
     comment=[l]{\#},
     morestring=[b]", % chktex 18
 }
-\definecolor{codebg}{RGB}{245,245,245}   % very light gray
-\definecolor{codeborder}{RGB}{220,220,220} 
-\definecolor{keywordcolor}{RGB}{0,0,150}
-\definecolor{commentcolor}{RGB}{120,120,120}
-\lstdefinestyle{julia-style}{
-    language=julia, % new language
-    basicstyle=\ttfamily\small,
-    keywordstyle=\color{keywordcolor},
-    commentstyle=\color{commentcolor},
-    stringstyle=\color{verdant},
-    backgroundcolor=\color{codebg},
-    frame=single,
-    framerule=0.5pt,
-    rulecolor=\color{codeborder},
-    tabsize=2,
-    columns=fullflexible,
-    keepspaces=true,
-    showstringspaces=false,
-}
+
 % convenience macro
 \newcommand{\juliaFile}[1]{\lstinputlisting[style=julia-style]{#1}}
 
@@ -62,20 +38,7 @@
     comment=[l]{\#},
     morestring=[b]", % chktex 18
 }
-\lstdefinestyle{bash-style}{
-    language=bash,
-    basicstyle=\ttfamily\small,
-    keywordstyle=\color{keywordcolor},
-    commentstyle=\color{commentcolor},
-    backgroundcolor=\color{codebg},
-    frame=single,
-    framerule=0.5pt,
-    rulecolor=\color{codeborder},
-    tabsize=2,
-    columns=fullflexible,
-    keepspaces=true,
-    showstringspaces=false,
-}
+
 % convenience macro
 \newcommand{\bashFile}[1]{\lstinputlisting[style=bash-style]{#1}}
 
