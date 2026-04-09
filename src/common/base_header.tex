@@ -21,13 +21,13 @@
 \usepackage{titlesec}            % Section title formatting
 \usepackage{titletoc}            % Table of contents formatting
 \usepackage{sectsty}             % Section font customization
+\usepackage[a4paper,hmargin=30mm,vmargin=30mm]{geometry}
 
 % ==============================================================================
 % MATHEMATICS & SYMBOLS
 % ==============================================================================
 
 \usepackage{centernot}           % Centered negation symbols (e.g., \centernot\implies)
-\usepackage{stmaryrd}            % Extra math symbols (e.g., \llbracket, \rrbracket)
 \usepackage[overload]{abraces}   % Extensible braces for math expressions
 \usepackage{latexsym}            % Standard LaTeX math symbols
 \usepackage{amsmath}             % Advanced math typesetting (align, gather, etc.)
@@ -35,20 +35,7 @@
 \usepackage{amssymb}             % Additional AMS math symbols
 \usepackage{amsthm}              % Theorem environments (definition, lemma, etc.)
 \usepackage{mathtools}           % Extensions to amsmath (e.g., \coloneqq)
-\usepackage{mathrsfs}            % Script font (\mathscr)
-\usepackage{MnSymbol}            % More math symbols (arrows, delimiters, etc.)
-\usepackage{dsfont}              % Double stroke font (\mathds)
 \usepackage{etoolbox}            % Programming tools for conditional macros
-
-% ==============================================================================
-% GRAPHICS & PLOTTING
-% ==============================================================================
-
-\usepackage{tikz}                % Drawing graphics programmatically
-\usepackage{pgfplots}            % Plotting graphs with TikZ
-\pgfplotsset{compat=1.18}        % Set pgfplots compatibility version
-\usetikzlibrary{positioning, shapes, arrows.meta, external, patterns, backgrounds, fit}      % Arrow tips for TikZ diagrams
-% \tikzexternalize[prefix=figures/] % Enable TikZ externalization for faster compilation
 
 % ==============================================================================
 % COLOR MANAGEMENT
@@ -57,15 +44,8 @@
 \usepackage{xcolor}              % Color support for text and graphics
 \usepackage{colortbl}            % Color support for tables
 
-% --- Custom color definitions ---
 \definecolor{astral}{RGB}{46,116,181}             % Blue shade for headers
 \definecolor{verdant}{RGB}{96,172,128}            % Green shade
-\definecolor{algebraic-amber}{RGB}{255,179,102}   % Amber shade
-\definecolor{calculus-coral}{RGB}{255,191,191}    % Coral shade
-\definecolor{divergent-denim}{RGB}{130,172,211}   % Denim shade
-\definecolor{matrix-mist}{RGB}{204,204,204}       % Misty gray
-\definecolor{numeric-navy}{RGB}{204,204,204}      % Navy gray (same as mist)
-\definecolor{quadratic-quartz}{RGB}{204,153,153}  % Quartz shade
 
 % ==============================================================================
 % FRAMED ENVIRONMENTS
@@ -129,9 +109,9 @@
 \providecommand{\defemph}[1]{{\sffamily\bfseries\color{astral}#1}}
 
 % --- Utility commands ---
-\newcommand{\skipline}{\vspace{\baselineskip}} % Skip a line
-\newcommand{\noi}{\noindent}                   % No indentation
-\newcommand{\ptr}{\(\triangleright\)}          % Triangle right symbol
+% \newcommand{\skipline}{\vspace{\baselineskip}} % Skip a line
+% \newcommand{\noi}{\noindent}                   % No indentation
+% \newcommand{\ptr}{\(\triangleright\)}          % Triangle right symbol
 
 % ==============================================================================
 % ADVANCED MACROS & REDECLARATIONS
@@ -141,7 +121,7 @@
 % operator command (like \sin, \ker, etc.) with a new name or formatting, 
 % similar to \DeclareMathOperator, but without causing errors if the operator 
 % already exists. It also supports starred and unstarred versions for different 
-% formatting.
+% formatting. 
 
 \makeatletter
 \newcommand\RedeclareMathOperator{%
@@ -160,11 +140,11 @@
 \@onlypreamble\RedeclareMathOperator%
 \makeatother
 
-
+% ==============================================================================
+% Necessary for complex figures or code insertions that require precise placement.
+% ==============================================================================
 \usepackage{subcaption}
 \usepackage{floatrow}
 \usepackage{caption}
 \usepackage{cases}
-
-
 \usepackage{listings}

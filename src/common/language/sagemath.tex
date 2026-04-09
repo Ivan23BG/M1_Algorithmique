@@ -1,0 +1,27 @@
+\lstdefinelanguage{sagemath}{
+    keywords={var, def, matrix, try, assert, except, print, block_matrix, 
+    end, if, else, elseif, while, for, in, return, break, continue, struct, 
+    mutable, using, import, module, export, const, let, global, local, abstract, typealias, 
+    sin, atan, true, add},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]", % chktex 18
+}
+
+\lstdefinestyle{sagemath-style}{
+    language=sagemath,
+    basicstyle=\ttfamily\small\color{codetext},
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeframe},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+}
+% convenience macro
+\newcommand{\sagemathFile}[1]{\lstinputlisting[style=sagemath-style]{#1}}

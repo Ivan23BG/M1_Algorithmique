@@ -1,9 +1,14 @@
+\lstdefinelanguage{bash}{
+    keywords={sudo, apt-get, install, update, upgrade, cd, ls, mkdir, rm, rmdir, touch, nano, vim, cat, echo, pwd, cp, mv},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]", % chktex 18
+}
 \lstdefinestyle{bash-style}{
     language=bash,
     basicstyle=\ttfamily\small\color{codetext},
     keywordstyle=\color{keywordcolor},
     commentstyle=\color{commentcolor},
-    stringstyle=\color{stringcolor},
     backgroundcolor=\color{codebg},
     frame=single,
     framerule=0.5pt,
@@ -13,3 +18,5 @@
     keepspaces=true,
     showstringspaces=false,
 }
+
+\newcommand{\bashFile}[1]{\lstinputlisting[style=bash-style]{#1}}

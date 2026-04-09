@@ -1,0 +1,23 @@
+\usepackage[noend]{algpseudocode}
+\DeclareCaptionType{algorithm}[Algorithme][Liste des Algorithmes]
+\captionsetup[algorithm]{ %
+    justification=raggedright,
+    singlelinecheck=false,
+}
+
+\algnewcommand{\Input}[1]{\State \textbf{Input:} #1} % chktex 1
+\algnewcommand{\Output}[1]{\State \textbf{Output:} #1} % chktex 1
+
+\newenvironment{styledalgo}[1]
+{
+    \begin{algorithm}[H]
+    \hrule\vspace{-6pt}
+    \caption{#1}
+    \hrule\vspace{2pt}
+    \begin{algorithmic}
+}
+{
+    \end{algorithmic}
+    \vspace{2pt}\hrule
+    \end{algorithm}
+}

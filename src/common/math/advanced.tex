@@ -1,13 +1,17 @@
-\makeatletter
+% ==============================================================================
+% More packages
+% ==============================================================================
+\usepackage{stmaryrd}            % Extra math symbols (e.g., \llbracket, \rrbracket)
+\usepackage{mathrsfs}            % Script font (\mathscr)
+\usepackage{MnSymbol}            % More math symbols (arrows, delimiters, etc.)
+\usepackage{dsfont}              % Double stroke font (\mathds)
+
 
 % ==============================================================================
 % GENERAL FONT SHORTCUTS
 % ==============================================================================
 
 \newcommand{\scr}[1]{\mathscr{#1}}   % Shortcut for script font (calligraphic style)
-\newcommand{\bb}[1]{\mathbb{#1}}     % Shortcut for blackboard bold font
-\newcommand{\ol}[1]{\overline{#1}}   % Shortcut for overline
-\newcommand{\ul}[1]{\underline{#1}}  % Shortcut for underline
 
 % ==============================================================================
 % INTERVAL NOTATION
@@ -22,9 +26,6 @@
 % SETS & GROUPS
 % ==============================================================================
 
-\newcommand{\R}{\mathbb{R}}                  % Real numbers
-\newcommand{\Z}{\mathbb{Z}}                  % Integers
-\newcommand{\N}{\mathbb{N}}                  % Natural numbers
 \newcommand{\C}{\mathbb{C}}                  % Complex numbers
 \newcommand{\Q}{\mathbb{Q}}                  % Rational numbers
 \newcommand{\barR}{\overline{\bb{R}}}        % Extended real numbers (with infinities)
@@ -61,6 +62,7 @@
 % ==============================================================================
 % OPERATORS & FUNCTIONS
 % ==============================================================================
+\makeatletter
 
 \providecommand{\1}{\mathds{1}}                   % Indicator function
 \DeclareMathOperator{\im}{\mathsf{Im}}            % Imaginary part
@@ -81,12 +83,14 @@
 \DeclareMathOperator{\cov}{\mathsf{Cov}}          % Covariance
 \providecommand{\B}{\mathsf{B}}                   % Bold symbol (often used for balls or sets)
 
+\makeatother
 % ==============================================================================
 % MISCELLANEOUS SHORTCUTS
 % ==============================================================================
 
-\newcommand{\one}{\mathds{1}}                  % Alternative indicator function
-\newcommand{\from}{\ \colon\ }                 % Function definition symbol (f : X → Y)
-\newcommand{\smol}[1]{\text{\scriptsize{#1}}}  % Typeset text in scriptsize (for indices, etc.)
-
-\makeatother % chktex 17
+\newcommand{\one}{\mathds{1}}                    % Alternative indicator function
+\newcommand{\from}{\ \colon\ }                   % Function definition symbol (f : X → Y)
+\newcommand{\smol}[1]{\text{\scriptsize{#1}}}    % Typeset text in scriptsize (for indices, etc.)
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}  % Absolute value with scalable bars
+\newcommand{\Tau}{\mathcal{T}}                   % Calligraphic Tau, often used for topology
+\newcommand{\conv}{\mathsf{conv}}                % Convex hull operator

@@ -1,0 +1,24 @@
+\lstdefinelanguage{julia}{
+    keywords={function, end, if, else, elseif, while, for, in, return, break, continue, struct, 
+    mutable, using, import, module, export, const, let, global, local, abstract, typealias, 
+    sin, atan, true, add},
+    sensitive=true,
+    comment=[l]{\#},
+    morestring=[b]", % chktex 18
+}
+\lstdefinestyle{julia-style}{
+    language=julia, % new language
+    basicstyle=\ttfamily\small\color{codetext},
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{verdant},
+    backgroundcolor=\color{codebg},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{codeframe},
+    tabsize=2,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+}
+\newcommand{\juliaFile}[1]{\lstinputlisting[style=julia-style]{#1}}

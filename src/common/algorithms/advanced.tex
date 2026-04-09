@@ -1,0 +1,24 @@
+\algnewcommand{\Question}[1]{\State \textbf{Question:} #1} % chktex 1
+
+\newfloat{problemfloat}{H}{lop}
+\floatname{problemfloat}{Problème}
+
+\DeclareCaptionLabelFormat{problemformat}{#1~#2 --}
+\captionsetup[problemfloat]{
+    justification=raggedright,
+    singlelinecheck=false,
+    labelformat=problemformat,
+    labelsep=space,
+    labelfont=bf
+}
+
+\newcommand{\listofproblems}{\listof{problemfloat}{Liste des Problèmes}}
+
+\newenvironment{problem}[1]
+{
+    \noindent\captionof{problemfloat}{#1}
+    \begin{algorithmic}
+}
+{
+    \end{algorithmic}
+}
