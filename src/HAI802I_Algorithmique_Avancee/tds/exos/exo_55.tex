@@ -1,11 +1,41 @@
 % ----- Consignes exo 55 ----- %
-\begin{td-exo}[title]\,\\ % 55 
-	
+\begin{td-exo}[Un algorithme de branchement pour le \(3\)-\textsc{SAT}]\,\\ % 55 
+	Le but de l'exercice est de fournir un algorithme de résolution du problème NP-complet \(3\)-\textsc{SAT} qui fonctionne en temps exponentiel, mais le plus rapide possible.
+
+	On précise d'abord quelques notations et définitions.
+	Une instance \(F\) de \(3\)-\textsc{SAT} est une formule booléenne sous forme normale conjonctive telle que chaque clause contie,,e au plus trois littéraux.
+	On notera \(n\) le nombre de variables de \(F\) et \(m\) son nombre de clauses.
+	Soit \(c_i = (l_1 \lor l_2 \lor l_3)\) une clause de \(F\).
+	On définit trois formules obtenues par \emph{assignement partiel} selon \(c_i\).
+	La formule \(F_1 = F | l_1 = \textsc{true}\) est obtenue en enlevant à \(F\) toutes les clauses contenant \(l_1\) (car elles sont satisfaites) et en enlevant le littéral \(\lnot l_1\) de toutes les clauses contenant \(\lnot l_1\) (car elles ne peuvent pas être satisfaites par \(l_1\)).
+	De même, \(F_2 = F | l_1 = \textsc{false}, l_2 = \textsc{true}\) est obtenue en enlevant à \(F\) toutes les clauses contenant \(l_2\) ou \(\lnot l_1\) et en enlevant le littéral \(\lnot l_2\) ou \(l_1\) de toutes les clauses contenant \(\lnot l_2\) ou \(l_1\).
+	Enfin, \(F_3 = F | l_1 = \textsc{false}, l_2 = \textsc{false}, l_3 = \textsc{true}\) est obtenue en enlevant à \(F\) toutes les clauses contenant \(l_3\) ou \(\lnot l_1\) ou \(\lnot l_2\) et en enlevant le littéral \(\lnot l_3\) ou \(l_1\) ou \(l_2\) de toutes les clauses contenant \(\lnot l_3\) ou \(l_1\) ou \(l_2\).
+
+	\begin{enumerate}
+		\item Rappeler un algorithme de résolution de \(3\)-\textsc{SAT} qui fonctionne en temps \(O(m \cdot 2^n)\).
+		
+		\item Soit \(F\) une instance de \(3\)-\textsc{SAT} et \(c_i = (l_{i,1} \lor l_{i,2} \lor l_{i,3})\) une clause de \(F\).
+		Montrer que si une formule obtenue par assignement partiel selon \(c_i\) est vide alors \(F\) est satisfiable.
+		Que dire si une formule obtenue par assignement partiel contient une clause vide?
+
+		\item Montrer que \(F\) est satisfiable si et seulement si l'une des trois formules \(F_1\), \(F_2\) ou \(F_3\) est satisfiable.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 55 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 55
-		
+		\begin{enumerate}
+			\item On essaie toutes les permutations de toutes les variables pour chacune des clauses.
+			La complexité est alors de \(O(m \cdot 2^n)\) où \(m\) est le nombre de clauses et \(n\) le nombre de variables.
+
+			\item Si une formule obtenue par assignement partiel est vide alors toutes les clauses de \(F\) sont satisfaites, et donc \(F\) est satisfiable.
+			Si une formule obtenue par assignement partiel contient une clause vide alors il existe une clause de \(F\) qui n'est pas satisfaite, et donc \(F\) n'est pas satisfiable.
+
+			\item Si \(F\) est satisfiable alors il existe une assignation des variables qui satisfait toutes les clauses de \(F\).
+			En particulier, il existe une assignation des variables qui satisfait la clause \(c_i\).
+			Par conséquent, il existe une assignation des variables qui satisfait l'une des trois formules \(F_1\), \(F_2\) ou \(F_3\).
+			Inversement, si l'une des trois formules \(F_1\), \(F_2\) ou \(F_3\) est satisfiable alors il existe une assignation des variables qui satisfait toutes les clauses de \(F\), et donc \(F\) est satisfiable.
+		\end{enumerate}
 	\end{td-sol}
 }{}
