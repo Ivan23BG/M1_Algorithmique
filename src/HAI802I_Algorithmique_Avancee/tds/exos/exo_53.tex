@@ -1,11 +1,55 @@
 % ----- Consignes exo 53 ----- %
-\begin{td-exo}[title]\,\\ % 53 
-	
+\begin{td-exo}[Complexité paramétrique: Kernelization pour le problème de \textsc{Vertex Cover}]\, % 53 
+	\begin{definition}
+		Un problème \(\Pi\) de paramètre \(k\) est de \defemph{complexité paramétrique polynomiale} (FPT) si la complexité en temps de \(\Pi\) pour une instance de taille \(n\) est bornée par \(f(k) \cdot n^{O(1)}\) pour une certaine fonction \(f\).
+	\end{definition}
+
+	Dans la suite nous allons nous intéresser au problème de \textsc{Vertex Cover} avec pour paramètre \(k\).
+
+	Nous allons procéder à la kernelization du problème de \textsc{Vertex Cover}.
+	Pour finir, nous proposerons une méthode exacte, utilisant en temps exponentiel \(k\) pour résoudre de manière exacte le problème.
+	Pour cela nous allons procéder à plusieurs réductions de l'instance initiale et après utiliser un arbre borné de recherche.
+
+	\begin{itemize}
+		\item Si \(x\) est un sommet isolé alors \(x\) n'appartion à aucun vertex cover de \(G\) et on peut le supprimer de \(G\).
+		\item Si \(x\) est un sommet de degré \(1\) voisin de \(y\) alors il existe une solution optimale contenant \(y\) donc
+		\begin{equation*}
+			VC(G, k) = VC(G \setminus \{x, y\}, k - 1) \cup \{y\}
+		\end{equation*}
+		\item Si \(x\) est un sommet de degré \(\geq k + 1\), alors si \(G\) possède une solution de taille \(k\) alors \(x\) doit appartenir à cette solution. Donc
+		\begin{equation*}
+			VC(G, k) = VC(G \setminus \{x\}, k - 1) \cup \{x\}
+		\end{equation*}
+	\end{itemize}
+
+	\begin{enumerate}
+		\item Justifier les trois règles précédentes.
+
+		\item Montrer que si \(G\) possède un vertex cover de taille \(k\) alors le graphe réduit possède au plus \(k^2 + k\) sommets et au plus \(k^2\) arêtes. 
+		Pour cela:
+		\begin{enumerate}
+			\item Montrer que le graphe réduit possède au plus \(k^2\) arêtes.
+			\item Montrer que le graphe réduit possède au plus \(k^2 + k\) sommets.
+		\end{enumerate}
+		
+		\item Montrer que si le graphe réduit possède plus de \(k^2\) arêtes ou plus de \(k^2 + k\) sommets alors \(G\) ne possède pas de solution.
+
+		\item Soit \({\left(x_v\right)}_{v \in V}\) une solution optimale d'une instance \((G, k)\) du problème de \textsc{Vertex Cover} obtenue par la relaxation du programme linéaire en nombres entiers et soit \(V_0, V_1, V_{1/2}\) les ensembles des solutions du programme linéaire.
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 53 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 53
-		
+		\begin{enumerate}
+			\item Les trois règles sont clairement cohérentes.
+
+			\item Il y a bien au plus \(k^2\) arêtes car toutes les arêtes sont couvertes et on a un vertex cover de taille \(k\).
+			Alors, chacun des \(k\) sommets du vertex cover a au plus \(k\) voisins (par notre réduction) et donc il y a bien au plus \(k \times k = k^2\) arêtes dans le graphe réduit.
+
+			De même, on a bien au plus \(k^2 + k\) sommets (de par le degré des sommets dans le graphe).
+
+			\item Une solution respecte forcément les critères précédents donc si on ne respecte pas les critères on a un certificat de non existence de solution.
+		\end{enumerate}
 	\end{td-sol}
 }{}
