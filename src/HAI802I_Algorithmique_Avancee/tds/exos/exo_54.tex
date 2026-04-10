@@ -1,11 +1,31 @@
 % ----- Consignes exo 54 ----- %
-\begin{td-exo}[title]\,\\ % 54 
-	
+\begin{td-exo}[Un algorithme de branchement pour le \textsc{Stable Maximum}]\,\\ % 54 
+	Proposez un algorithme de branchement pour le problème du \textsc{Stable Maximum}.
 \end{td-exo}
 
 % ----- Solutions exo 54 ----- %
 \iftoggle{showsolutions}{ 
 	\begin{td-sol}[]\ % 54
-		
+		On cherche \(\alpha(G)\) le nombre de stabilité du graphe \(G\) (la taille du plus grand stable dans \(G\)).
+		On cherche alors
+		\begin{equation*}
+			\alpha(G) = \max \left\{
+				\alpha(V \setminus \{v\}),
+				\alpha(V \setminus N(v)) + 1
+			\right\}
+		\end{equation*}
+		En effet, soit \(v\) est dans le stable maximum, alors on ne peut pas prendre les voisins de \(v\) et on a un gain de \(1\) (pour \(v\)) ou alors \(v\) n'est pas dans le stable maximum et on peut prendre les voisins de \(v\).
+
+		On rappelle que pour \(\Delta \leq 2\) on peut trouver un stable maximum en temps linéaire.
+		Pour \(\Delta \geq 3\) le problème est NP-complet.
+		Notre branchement se fait alors comme suit:
+		\begin{equation*}
+			\begin{cases}
+				T(n) 
+				&\leq T(n - 1) + T(n - \Delta - 1)\\
+				&\leq T(n - 1) + T(n - 4) 
+			\end{cases}
+		\end{equation*}
+		En se référant à la formule de branchement (dans le cours), on trouve que \(T(n) \leq O(1.3803^n)\).
 	\end{td-sol}
 }{}
