@@ -39,8 +39,10 @@
                 \item Tout d'abord on peut remarquer que l'ensemble des points dans le polyèdre est non borné en \(x_1\).
                 \item Les points extrêmes de ce polyèdre sont:
                 \begin{equation*}
-                    (0, 0), (0, 4/3), (5, 3), (6.5, 3), (6.5, 0)
+                    (0, 0), (0, 4/3), (5, 3)
                 \end{equation*}
+                \item Ici on pourrait aussi considérer les points \((6.5, 3), (6.5, 0)\) mais ils ne correspondent qu'aux bornes de la figure si on se rajoute la contrainte \(x_1 \leq 6.5\).
+                Ce n'est fait dans la figure~\ref{fig:dm1_ex01_f1} que pour mieux visualiser le polyèdre, mais ce n'est pas une contrainte du problème \(P_\varepsilon\).
             \end{itemize}
 
             Regardons maintenant le cas \(\varepsilon = 1\). Le problème \(P_\varepsilon\) devient le suivant:
@@ -80,11 +82,11 @@
 
             \input{../assets/tikz/dm1_ex01_f5.tex}
 
-            Enfin, on peut nettoyer un peu la figure pour voir plus clairement l'enveloppe convexe:
+            En nettoyant un peu la figure on peut voir plus clairement l'enveloppe convexe:
 
             \input{../assets/tikz/dm1_ex01_f6.tex}
 
-            On voit alors que ce polyèdre \(P_I\) est clairement défini par les trois contraintes suivantes:
+            On voit alors que ce polyèdre \(P_I\) est défini par trois contraintes, une par face du polyèdre, et que ces trois contraintes sont les suivantes:
             \begin{equation*}
                 (P_I) = 
                 \begin{cases}
