@@ -37,6 +37,9 @@
 			La somme de toute la production jusqu'à la semaine \(i\) doit être au moins égale à la demande cumulée \(d_i\).
 			\item La deuxième contrainte lie la production \(x_i\) à la variable binaire \(y_i\) pour s'assurer que \(x_i\) est nul si aucune production n'est réalisée pendant la semaine \(i\).
 			Pour cela, on impose que \(x_i \leq M y_i\), ce qui signifie que si \(y_i = 0\), alors \(x_i\) doit être égal à zéro, et si \(y_i = 1\), alors \(x_i\) peut prendre n'importe quelle valeur jusqu'à \(M\), qu'on fixera suffisamment grande pour ne pas restreindre les solutions admissibles.
+			\item A noter que plus formellement, la partie \(\sum_{j=1}^i x_j - d_i\) devrait être encadrée pour éviter les valeurs négatives, car on ne peut pas stocker une quantité négative. 
+			Cependant, dans ce contexte, on suppose que la demande \(d_i\) est toujours inférieure ou égale à la production cumulée \(\sum_{j=1}^i x_j\) pour garantir que le stockage est toujours positif ou nul.
+			Pour remédier à ce problème, on pourrait aussi juste introduire un maximum entre \(0\) et \(\sum_{j=1}^i x_j - d_i\) dans la fonction objectif pour s'assurer que le coût de stockage ne soit pas négatif, mais cela rendrait la modélisation plus complexe.
 		\end{itemize}
 
 		Une autre manière de modéliser ce problème serait d'utiliser des variables de stockage explicites pour chaque semaine, cela permettrait de simplifier la fonction objectif et les contraintes, mais la modélisation présentée ci-dessus est également valide et respecte les exigences du problème.
