@@ -55,7 +55,7 @@
 			Expliquer egalement le sens des trois types de contraintes impliquant les variables \(q\) (sans compter les bornes sur ces variables).
 
 			\item Donner la valeur des relaxations linéaires de ces formulations pour les instances disponibles au lien suivant:
-			\url{https://people.sc.fsn.edu/jburkardt/datasets/tsp/tsp.html}.
+			\url{https://people.sc.fsn.edu/\~jburkardt/datasets/tsp/tsp.html}.
 
 			\item Quelle formulation est la plus efficace pour résoudre le problème avec les contraintes binaires?
 			N'hésitez pas à limiter le temps de calcul avec la commande:
@@ -88,8 +88,70 @@
 
 % ----- Solutions exo 7 ----- %
 \iftoggle{showsolutions}{ 
-	\begin{td-sol}[]\,\\ % 7
-		On ne traitera pas cet exercice dans ce papier.
-		On a choisi de traiter l'exercice 8 à la place.
+	\begin{td-sol}[]\, % 7
+		\begin{enumerate}
+			\item On compare les formulations \(MTZ\) et \(SF\):
+			\begin{enumerate}
+				\item Les variables \(q_{ij}\) dans la formulation \(SF\) représentent le flux de marchandises transporté de la ville \(i\) à la ville \(j\).
+				Les contraintes liées à ces variables sont les suivantes:
+				\begin{itemize}
+					\item \(q_{ij} \leq (n-1) x_{ij}\): cette contrainte garantit que la quantité de marchandises transportée de \(i\) à \(j\) est nulle si l'arc \((i,j)\) n'est pas emprunté et ne dépasse pas \(n-1\), qui est la quantité maximale de marchandises pouvant être transportée entre deux villes si l'arc est emprunté.
+					\item \(\sum_{j=1}^n q_{1j} = n-1\): cette contrainte garantit que la quantité totale de marchandises sortant de la ville 1 est égale à \(n-1\).
+					\item \(\sum_{i\neq j} q_{ji} - \sum_{i\neq j} q_{ij} = 1 \quad \forall j \in \{2, \ldots, n\}\): cette contrainte garantit que chaque arc emprunté coute une unité de marchandise au passage.
+					L'avantage principal de cette nouvelle contrainte est qu'elle élimine automatiquement les sous-tours car elle impose que chaque ville doit être visitée exactement une fois.
+				\end{itemize}
+
+				\item On considérera les instances suivantes:
+				\begin{itemize}
+					\item \texttt{FIVE} \((n=5)\)
+					\item \texttt{GR17} \((n=17)\)
+					\item \texttt{FRI26} \((n=26)\)
+				\end{itemize}
+				Les valeurs des relaxations linéaires sont les suivantes:
+				\begin{itemize}
+					\item \texttt{FIVE}: \(LP = 18.0\) alors que \(ILP = 19\).
+
+					\item \texttt{GR17}: \(MTZ = 1656.0\) et \(SF = 1756.0625\) alors que \(ILP = 2085\).
+
+					\item \texttt{FRI26}: \(MTZ = 835.48\) et \(SF = 847.68\) alors que \(ILP = 937\).
+				\end{itemize}
+
+				\item On a
+				\begin{itemize}
+					\item \texttt{FIVE}: \(MTZ\) trouve en \(0.0054\) secondes alors que \(SF\) trouve en \(0.0094\) secondes.
+
+					\item \texttt{GR17}: \(MTZ\) trouve en \(0.2646\) secondes alors que \(SF\) trouve en \(0.3112\) secondes.
+
+					\item \texttt{FRI26}: \(MTZ\) trouve en \(4.5363\) secondes alors que \(SF\) trouve en \(4.5173\) secondes.
+				\end{itemize}
+				Pour une instance plus grande telle que \texttt{Dantzig42} on obtient une différence plus marquée: \(MTZ\) trouve \(756\) en une minute alors que \(SF\) trouve \(704\) en une minute.
+
+				Si on double le temps la solution de \(MTZ\) descend à \(752\) alors que celle de \(SF\) trouve l'optimal à \(699\) (sans finir tout le processus de branch and bound).
+
+				\item Ces résultats sont plutôt cohérents avec les valeurs obtenues pour les relaxations linéaires.
+				
+				Sur l’instance Dantzig42, les différences entre les formulations deviennent plus marquées en régime de temps limité. La formulation MTZ obtient une solution de valeur 756 en une minute, tandis que SF obtient 704 dans le même temps.
+
+				En augmentant le temps de calcul, MTZ améliore légèrement sa solution (752), tandis que SF atteint rapidement l’optimum connu (699).
+
+				Ce comportement s’explique par la qualité des relaxations linéaires : la formulation SF fournit une borne plus serrée, ce qui permet au branch-and-bound de converger plus rapidement vers l’optimum, alors que MTZ explore davantage d’états inutiles avant de progresser.
+
+				On peut donc en tirer que la qualité de la relaxation linéaire est un indicateur important de l’efficacité d’une formulation pour résoudre le problème avec des contraintes binaires.
+			\end{enumerate}
+			\item On ajoute les inégalités~\eqref{eq:exo07_e01} à la formulation \(SF\):
+
+			\begin{enumerate}
+				\item L'ajout de ces inégalités rend la solution optimale encore plus proche de l'optimal entier, ce qui rend la relaxation linéaire plus serrée. 
+
+				\item L'ajout de ces inégalités rend la formulation considérablement plus efficace, en particulier pour les instances plus grandes. Par exemple, pour l'instance \texttt{Dantzig42}, la solution de \(SF\) avec les inégalités~\eqref{eq:exo07_e01} trouve l'optimal à \(699\) en 3 secondes, alors que sans ces inégalités, il trouve \(704\) en une minute.
+				Ceci est dû au fait que les inégalités~\eqref{eq:exo07_e01} éliminent les solutions où les arcs \((i,j)\) et \((j,i)\) sont tous les deux empruntés, ce qui n'est pas possible dans une solution valide du problème du voyageur de commerce.
+
+				\item Oui, c'était prévisible à partir des valeurs obtenues pour les relaxations linéaires. En effet, l'inégalité~\eqref{eq:exo07_e01} élimine les solutions fractionnaires symétriques, ce qui rend la relaxation linéaire plus serrée et donc plus efficace pour trouver l'optimal entier.
+
+				\item L'inégalité~\eqref{eq:exo07_e01} impose une antisymétrie des arcs entre chaque paire de sommets: pour toute paire (i,j), un seul des deux arcs peut être sélectionné. Cela correspond à une orientation unique du cycle hamiltonien et évite les cycles de longueur 2.
+
+				\item Un exemple de solution fractionnaire pour la relaxation linéaire de \(MTZ\) ou \(SF\) qui ne satisfait pas la contrainte~\eqref{eq:exo07_e01} serait une solution où \(x_{ij} = 0.5\) et \(x_{ji} = 0.5\) pour une paire de villes \(i\) et \(j\). Cette solution est valide pour la relaxation linéaire, mais elle ne respecte pas la contrainte~\eqref{eq:exo07_e01} qui impose que \(x_{ij} + x_{ji} \leq 1\).
+			\end{enumerate}
+		\end{enumerate}
 	\end{td-sol}
 }{}
