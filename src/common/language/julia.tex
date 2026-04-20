@@ -1,14 +1,15 @@
 \lstdefinelanguage{julia}{
     keywords={function, end, if, else, elseif, while, for, in, return, break, continue, struct, 
     mutable, using, import, module, export, const, let, global, local, abstract, typealias, 
-    sin, atan, true, add},
+    sin, atan, true, add,
+    \@variable, \@constraint, \@objective},
     sensitive=true,
     comment=[l]{\#},
     morestring=[b]", % chktex 18
 }
 \lstdefinestyle{julia-style}{
     language=julia, % new language
-    basicstyle=\ttfamily\small\color{codetext},
+    basicstyle=\ttfamily\footnotesize\color{codetext},
     keywordstyle=\color{keywordcolor},
     commentstyle=\color{commentcolor},
     stringstyle=\color{verdant},
