@@ -1,6 +1,47 @@
 % ----- Consignes exo 7 ----- %
-\begin{td-exo}[title]\, % 7 
-	
+\begin{td-exo}[Sur le produit matriciel]\,\\ % 7 
+	Appelons \((p,q)\)-matrice une matrice à \(p\) lignes et \(q\) colonnes.
+	Nous admettons que le produit d'une \((p,q)\)-matrice par une \((q,r)\)-matrice peut se faire à l'aide de \(pqr\) opérations.
+
+	\begin{enumerate}
+		\item Soit \(M_i\) une \((p_i, p_{i+1})\)-matrice pour \(i = 1, \ldots, k\).
+		Nous effectuons le produit suivant:
+		\begin{equation*}
+			\left(
+				M1 \left(
+					M2 \left(
+						\ldots \left(
+							M_{k-1} M_k
+						\right)
+					\right)
+				\right)
+			\right)
+		\end{equation*}
+		et
+		\begin{equation*}
+			\left(
+				\left(
+					\ldots \left(
+						M1 M2
+					\right) M3
+				\right) \ldots M_k
+			\right)
+		\end{equation*}
+		Evaluer le nombre d'opérations nécessaires pour chacun de ces produits.
+		Que remarque-t-on?
+
+		\item Montrer que le nombre \(c(k)\) de parenthésages possibles d'un produit de \(k\) matrices vérifie, si on pose \(c(1) = 1\), 
+		\begin{equation*}
+			c(k) = \sum_{i=1}^{k-1} c(i) c(k - i)
+		\end{equation*}
+		Nous admettrons que \(c(k)\) est de l'ordre de \(\frac{4^{k - 1}}{k \sqrt{\pi k}}\) (ceci peut être obtenu en résolvant la récurrence puis à l'aide de la formule de Stirling).
+		Une description exhaustive de tous les parenthésages d'un produit de \(k\) matrices, dans le but de déterminer celui qui permet d'effectuer le produit avec un nombre minimum d'opérations, nécessite donc un temps de calcul déraisonnablement exponentiel.
+		La programmation dynamique permet de résoudre ce problème (d'un parenthésage optimum) en temps polynomial.
+
+		\item En considérant les blocs \(M_{i, j} = M_i M_{i + 1} \ldots M_j\) pour \(1 \leq i \leq j \leq k\), et en désignant par \(m_{i, j}\) le coût minimum du calcul du produit \(M_{i, j}\), établir la récurrence permettant d'appliquer la programmation dynamique pour obtenir \(m_{1, k}\) et le parenthésage correspondant.
+
+		\item Appliquer ce principe pouur \(k = 5\) et \(p_1 = , p_2 = 2, p_3 = 5, p_4 = 10, p_5 = 4\) et \(p_x = 100\) (nous n'omettrons pas de construire la table correspondante et d'indiquer précisément le parenthésage optimal).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 7 ----- %

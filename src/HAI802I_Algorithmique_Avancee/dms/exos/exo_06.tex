@@ -1,6 +1,13 @@
 % ----- Consignes exo 6 ----- %
-\begin{td-exo}[title]\, % 6 
-	
+\begin{td-exo}[Caractérisons des résultats]\, % 6 
+	\begin{enumerate}
+		\item Montrer que si \(\Pi_2 \in PTAS\) et \(A_2\) est un schéma polynomial d'approximation pour \(\Pi_2\), alors \(A_1(I, r_1) = g(I, A_S(f(I, R_2), r_2), r_2)\) est un schéma polynomial d'approximation pour \(\Pi_1\) avec \(r_1 = 1 + \frac{r_2 - 1}{\alpha}\).
+
+		\item Définir une \(AP\)-réduction d'un problème de minimisation à un problème de maximisation et démontrer qu'elle vérifie:
+		\begin{equation*}
+			\rho_{\Pi'}(f(I, r), S) \geq r \implies \rho_{\Pi}(I, g(I, S, r)) \leq 1 + \alpha \left( \frac1r - 1\right)
+		\end{equation*}
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 6 ----- %

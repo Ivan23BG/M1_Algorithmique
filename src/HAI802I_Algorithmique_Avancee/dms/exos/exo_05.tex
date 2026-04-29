@@ -1,6 +1,26 @@
 % ----- Consignes exo 5 ----- %
-\begin{td-exo}[title]\, % 5 
-	
+\begin{td-exo}[\(L\)-reduction for a variant of 3-DM]\,\\ % 5 
+	We consider a variant of 3DM in which the number of occurrences of any element in \(X, Y\) or \(Z\) is at most 3.
+	We call this the \textsc{3-Bounded Maximum 3-Dimensional Matching problem} and we denote it by \textsc{3B-3DM}.
+	The \textsc{3B-3DM} problem is shown to be MAX SNP-complete.
+	We consider a more special variation of the \textsc{3B-3DM} problem in which each pair of triples in \(T\) can share at most one common element.
+	We call this the \textsc{3-Bounded 1-Common Maximum 3-Dimensional Matching problem} and we denote it by \textsc{3B1C-3DM}.
+
+	\begin{enumerate}
+		\item Recall the definition of \textsc{3DM}.
+
+		\item We construct an instance of \textsc{3B1C-3DM} from an instance of \textsc{3B-3DM} as follows:
+
+		\begin{construction}
+			Given an instance \(I\) of the \textsc{3B-3DM} problem with \(|X| = |Y| = |Z| = q\) and \(m\) triples (with \(3q \leq m\)),
+			\begin{itemize}
+				\item For each triple \(T_u = (x_i, y_j, z_k)\) in \(T\), we construct the following five:
+				\(T_u' = (x_i, y_{u, 1}, z_{u, 2}), (x_{u, 1}, y_{u, 2}, z_k), (x_{u, 2}, y_j, z_{u, 1}), (x_{u, 1}, y_{u, 1}, z_{u, 1})\) and \((x_{u, 2}, y_{u, 2}, z_{u, 2})\).
+				Then, in the \textsc{3B1C-3DM} instance \(I'\), we have \(|X'| = |Y'| = |Z'| = q + 2m\) and \(5m\) triples.
+			\end{itemize}
+		\end{construction}
+		Show that the previous reduction leads to an \(L\)-reduction with \(\alpha_1 = 15\) and \(\alpha_2 = 1\).
+	\end{enumerate}
 \end{td-exo}
 
 % ----- Solutions exo 5 ----- %
